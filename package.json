@@ -8,7 +8,7 @@
 	"type": "module",
 	"scripts": {
 		"test": "jest",
-		"start": "node ./server/bin/start",
+		"start": "node ./dist/src/bin/server.js",
 		"dev": "nodemon ./server/bin/start"
 	},
 	"license": "MIT",

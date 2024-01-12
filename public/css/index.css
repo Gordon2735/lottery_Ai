@@ -1,5 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Chango&family=Source+Code+Pro:ital,wght@0,200;0,400;0,600;0,700;0,900;1,200;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Titillium+Web:ital,wght@0,200;0,400;0,700;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Bagel+Fat+One&family=Black+Ops+One&display=swap');
+/* 
+    font-family: 'Source Code Pro', monospace;
+    font-family: 'Titillium Web', sans-serif; 
+    font-family: 'Alberta Stencil', monospace;
+    font-family: 'Bagel Fat One', sans-serif; 
+    font-family: 'Black Ops One', sans-serif; 
+    font-family: 'Chango', sans-serif;
+*/
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    background-color: #333;
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    color: #ccc;
+}
+
+.index-header .index-header-h1 {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.index-header .index-header-para-1 {
+    font-family: 'Bagel Fat One', sans-serif;
+
 }

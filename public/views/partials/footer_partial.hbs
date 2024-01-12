@@ -1,0 +1,162 @@
+  
+  <section id="footerSection" class="footer-section">
+  
+    <footer class="footer">
+        <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social-icon">
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-facebook"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-twitter"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-linkedin"></ion-icon>
+                </a></li>
+            <li class="social-icon__item"><a class="social-icon__link" href="#">
+                <ion-icon name="logo-instagram"></ion-icon>
+                </a></li>
+        </ul>
+        <ul class="menu">
+            <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+        </ul>
+        <p class="footer-para">©️2023 Team Webelistics®️ LLC | All Rights Reserved</p>
+    </footer>
+
+  </section>
+
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+    .footer-section {
+      margin: 18em 0em 0em 0em;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      background-color: none;
+      justify-content: flex-end;
+      align-items: flex-end;
+      min-height: 23vh;
+      font-family: "Poppins", sans-serif;
+    }
+    .footer {
+      padding: 9px 10px;
+      position: relative;
+      width: 100%;
+      background: #3586ff;
+      min-height: 75px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .social-icon,
+    .menu {
+      margin: 10px 0;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      z-index: 1000;
+    }
+    .social-icon__item,
+    .menu__item {
+      list-style: none;
+      z-index: 1000;
+    }
+    .social-icon__link {
+      font-size: 2rem;
+      color: #fff;
+      margin: 0 10px;
+      display: inline-block;
+      transition: 0.5s;
+      z-index: 1000;
+    }
+    .social-icon__link:hover {
+      transform: translateY(-10px);
+    }
+    .menu__link {
+      font-size: 1.2rem;
+      color: #fff;
+      margin: 0 10px;
+      display: inline-block;
+      transition: 0.5s;
+      text-decoration: none;
+      opacity: 0.75;
+      font-weight: 300;
+      z-index: 1000;
+    }
+    .menu__link:hover {
+      opacity: 1;
+    }
+    .footer p {
+      margin: 12px 0 25px 0;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 300;
+      z-index: 1000;
+    }
+    .wave {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 17em;
+      background: url("https://i.ibb.co/wQZVxxk/wave.png");
+      background-size: 1000px 100px;
+    }
+    .wave#wave1 {
+      opacity: 1;
+      bottom: 0;
+      animation: animateWaves 4s linear infinite;
+      z-index: 1000;
+    }
+    .wave#wave2 {
+      opacity: 0.5;
+      bottom: 10px;
+      animation: animate 4s linear infinite !important;
+      z-index: 999;
+    }
+    .wave#wave3 {
+      opacity: 0.2;
+      bottom: 15px;
+      animation: animateWaves 3s linear infinite;
+      z-index: 1000;
+    }
+    .wave#wave4 {
+      opacity: 0.7;
+      bottom: 20px;
+      animation: animate 3s linear infinite;
+      z-index: 999;
+    }
+    @keyframes animateWaves {
+      0% {
+        background-position-x: 1000px;
+      }
+      100% {
+        background-positon-x: 0px;
+      }
+    }
+    @keyframes animate {
+      0% {
+        background-position-x: -1000px;
+      }
+      100% {
+        background-positon-x: 0px;
+      }
+    }
+
+  </style>

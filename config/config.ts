@@ -69,8 +69,8 @@ async function getConfig(): Promise<{
 			options: {
 				host: process.env.HOST || '',
 				port: 3306,
-				database: 'lottery_ai',
-				user: 'team',
+				database: 'lottery_mysql_db',
+				user: 'gordon_lottery_user',
 				password: 'jOhn338@mAt2819@',
 				waitForConnections: true,
 				queueLimit: 10
