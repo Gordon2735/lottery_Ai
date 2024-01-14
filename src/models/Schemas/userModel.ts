@@ -3,6 +3,8 @@
 import { connection } from '../databases/userDB.js';
 import { Connection } from 'mysql2/promise';
 import { Session, SessionData, Cookie } from 'express-session';
+import { IConfig } from '../../@types/interfaces/interfaces.js';
+import fs from 'fs';
 import mysql, { RowDataPacket } from 'mysql2/promise';
 import { executeMysqlQuery } from '../../controllers/mysql_controllers/mysql_pool_rowData.js';
 import { uuidV4 } from '../../app.js';
@@ -38,6 +40,8 @@ async function createSessionsTable(): Promise<void> {
 		const query = `
 			CREATE TABLE IF NOT EXISTS sessions (
 				session_id VARCHAR(255) NOT NULL COLLATE utf8mb4_0900_ai_ci,
+				name VARCHAR(255) DEFAULT NULL,
+				author VARCHAR(255) DEFAULT NULL,
 				expires int(11) unsigned NOT NULL,
 				user_id VARCHAR(255) DEFAULT NULL,
 				secretkey VARCHAR(255) NULL,
@@ -61,6 +65,8 @@ async function createSessionsTable(): Promise<void> {
 
 async function insertSession(
 	session_id: Session & Partial<SessionData>,
+	name: string | undefined,
+	author: string,
 	user_id: string | null,
 	secretkey: string,
 	username: string | null,
@@ -68,7 +74,12 @@ async function insertSession(
 	cookie: Cookie
 ): Promise<void> {
 	try {
-		// const conn: Connection = await connection();
+		const pkg: IConfig = JSON.parse(
+			fs.readFileSync('package.json', 'utf8')
+		);
+		name = pkg.name;
+		author = pkg.author;
+
 		const conn: mysql.Connection = await connection();
 		// async function dropDefaultAdd(
 		// 	new_user_id: string | null | undefined
@@ -79,9 +90,11 @@ async function insertSession(
 		// 	return `ALTER TABLE sessions ALTER COLUMN secretkey DROP DEFAULT,
 		// 		ALTER TABLE sessions ALTER COLUMN secretkey SET DEFAULT ${new_secretkey} `;
 		// }
-		const query = `INSERT INTO sessions (session_id, user_id, secretkey, username, data, cookie) VALUES (?, ?, ?, ?, ?, ?)`;
+		const query = `INSERT INTO sessions (session_id, name, author, user_id, secretkey, username, data, cookie) VALUES (?, ?, ?, ?, ?, ?)`;
 		await conn.query(query, [
 			session_id,
+			name,
+			author,
 			user_id,
 			secretkey,
 			username,

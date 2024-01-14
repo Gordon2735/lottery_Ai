@@ -24,10 +24,14 @@ interface Session {
 	data: SessionData;
 	views: number;
 	session_id: Session & Partial<SessionData>;
+	name: string;
+	author: string;
 }
 
 interface IConfig {
 	applicationName: string;
+	name: string | undefined;
+	author: string;
 	port: string | number;
 	host: string;
 	mysql: {

@@ -21,23 +21,92 @@ body {
 }
 
 .index-header {
+    margin: 5em auto;
+    padding: 0 20px;
     display: flex;
+    flex-direction: column;
+    width: 78.2%;
+    height: auto;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    height: 60px;
-    background-color: #fff;
+    border-radius: 12.3px;
+    background-color: hsla(187, 52%, 80%, 0.993);
     border-bottom: 1px solid #ccc;
-    color: #ccc;
+    color: hsla(240, 64%, 27%, 0.993);
 }
 
 .index-header .index-header-h1 {
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
+    display: inline-flex;
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 4em;
+    font-weight: 500;
 }
 
 .index-header .index-header-para-1 {
-    font-family: 'Bagel Fat One', sans-serif;
+    display: inline-flex;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 3em;
+    font-weight: 400;
+}
 
+.index-header .index-header-para-2 {
+    display: inline-flex;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 1.25em;
+    font-weight: 400;
+}
+
+#indexBtn {
+    margin: 15.5em auto 3.5em 44.3323%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 15em;
+    height: 4em;
+    background-color: hsla(0, 1%, 67%, 0.993);
+    border: 0.2em solid hsla(207, 44%, 49%, 0.993);
+    border-radius: 7px;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 400;
+    color: hsla(207, 44%, 49%, 0.993);
+    cursor: pointer;
+    filter: drop-shadow(1em 1em 2em hsla(0, 0%, 0%, 0.793));
+    box-shadow: inset 0 0 0.5em hsla(0, 0%, 0%, 0.493);
+}
+
+#indexBtnA {
+    text-decoration: none;
+    color: #000;
+}
+
+#indexBtn:hover {
+    background-color: hsla(248, 39%, 39%, 0.555);
+    color: hsla(0, 0%, 100%, 0.993);
+    border: 1px solid hsla(0, 0%, 100%, 0.693);
+}
+
+#indexBtn:hover #indexBtnA {
+    color: hsla(0, 0%, 100%, 0.993);
+    text-decoration: none;
+}
+
+#indexBtnA:hover {
+    background-color: hsla(248, 39%, 39%, 0.555);
+    color: hsla(0, 0%, 100%, 0.993);
+}
+
+#indexBtnA:hover #indexBtn {
+    background-color: hsla(248, 39%, 39%, 0.555);
+    color: hsla(0, 0%, 100%, 0.993);
+    border: 1px solid hsla(0, 0%, 100%, 0.693);
+}
+
+#indexBtn:active {
+    background-color: hsla(248, 97%, 15%, 0.555);
+    color: hsla(0, 0%, 100%, 0.493);
+    border: 1px solid hsla(248, 94%, 81%, 0.979);
+    filter: drop-shadow(1em 1em 14em hsla(248, 94%, 81%, 0.579));
+    box-shadow: inset 0 0 0.5em hsla(248, 94%, 81%, 0.479);
 }

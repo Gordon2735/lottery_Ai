@@ -1,15 +1,14 @@
 {
 	"name": "lottery_ai",
 	"version": "1.0.0",
-	"private": true,
 	"author": "Gordon R Mullen Jr <webelistics@gmail.com>",
 	"description": "Teaming with Ai to discover the right numbers to win it big playing the South Carolina Lottery.",
-	"main": "server.ts",
+	"main": "./dist/src/bin/server.js",
 	"type": "module",
 	"scripts": {
 		"test": "jest",
-		"start": "node ./dist/src/bin/server.js",
-		"dev": "nodemon ./server/bin/start"
+		"start": "npm run dev",
+		"dev": "nodemon ./src/bin/server.js"
 	},
 	"license": "MIT",
 	"devDependencies": {

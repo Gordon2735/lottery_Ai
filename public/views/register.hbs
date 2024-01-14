@@ -1,0 +1,204 @@
+{{> header_partial}}
+
+<main id="registerMain" class="register-main">
+    <figure id="registerHeader" class="register-header">
+        <figcaption class="register-header__caption">
+            Register here for Team Webelistics®️ LLC MySQL Tutorial
+        </figcaption>
+        <img src="../images/005_glass_people.webp" class="figure-logo" alt="Team Webelistics®️ LLC Logo Image">
+    </figure>
+
+    <section id="registerSection" class="register-section">
+        <h1 class="register-header__title">Create Your Account</h1>
+        <p class="register-header__text">
+            Please enter your credentials to register.
+        </p>
+
+        <form id="registerForm" class="register-form" action="/register" method="POST">
+            <div class="register-form__group">
+                <label for="username" class="register-form__label">Username</label>
+                <input type="text" name="username" id="username" class="register-form__input" placeholder="Enter your username" autocomplete="additional-name" required>
+            </div>
+
+            <div class="register-form__group">
+                <label for="email" class="register-form__label">Email</label>
+                <input type="email" name="email" id="email" class="register-form__input" placeholder="Enter your email" autocomplete="additional-name" required>
+            </div>
+
+            <div class="register-form__group">
+                <label for="password" class="register-form__label">Password</label>
+                <input type="password" name="password" id="password" class="register-form__input" placeholder="Enter your password" autocomplete="additional-name" required>
+            </div>
+
+            <div class="register-form__group">
+                <label for="confirmPassword" class="register-form__label">Confirm Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" class="register-form__input" placeholder="Confirm your password" required>
+            </div>
+
+            <div class="register-form__group">
+                <button type="submit" class="register-form__button">Register</button>
+            </div>
+        </form>
+
+        <p id="newUserPara" class="new-user-para">
+            Already registered? <a href="/login">Login here</a>
+        </p>        
+    </section>
+</main>
+
+{{> footer_partial}}
+
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Titillium+Web:ital,wght@0,200;0,400;0,700;1,200&display=swap');
+		`${font-family: 'Source Code Pro', monospace}`;
+		`${font-family: 'Titillium Web', sans-serif}`;
+            
+    .register-main {
+        margin: 1.7em auto 1em auto;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 640px;
+        text-align: center;
+        background-color: hsla(0, 0%, 65%, 0.993);
+        filter: drop-shadow(0 0 0.75rem hsla(0, 0%, 0%, 0.673));
+        box-shadow: inset 0.4em 0.4em 1.15em hsla(0, 0%, 0%, 0.473);
+        border: 3.7em solid hsla(207, 44%, 49%, 0.993);
+		border-radius: 10px;
+    }
+
+    .register-main .register-header {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    .register-header .figure-logo {
+        margin: 2.11em auto 1em auto;
+        display: inline-block;
+        width: 8em;
+    }
+
+    .register-header .register-header__caption {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        display: inline-block;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: hsla(207, 44%, 49%, 0.993);
+        text-shadow: 0.1em 0.1em 0.2em hsla(0, 0%, 0%, 0.773);
+    }
+
+    .register-section {
+        margin: 0 auto 5em auto;
+        padding: 0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+    }
+
+    .register-header__title {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 1.7rem;
+        font-weight: 400;
+        color: hsla(207, 44%, 49%, 0.993);
+        text-shadow: 0.1em 0.1em 0.2em hsla(0, 0%, 0%, 0.773);
+    }
+
+    .register-header__text {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 0.90rem;
+        font-weight: 400;
+        color: hsla(0, 0%, 0%, 0.993);
+        text-shadow: 0.1em 0.1em 0.2em hsla(0, 0%, 0%, 0.773);
+    }
+
+    .register-form {
+        margin-top: 1.1em;
+        display: inline-block;
+        text-align: left;
+    }
+
+    .register-form .register-form__label {
+        margin-bottom: 0.4em;
+        display: block;
+        font-family: 'Source Code Pro', monospace;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: hsla(0, 0%, 0%, 0.993);
+        text-shadow: 0.1em 0.1em 0.2em hsla(0, 0%, 0%, 0.773);
+    }
+
+    .register-form .register-form__input {
+        margin-bottom: 1em;
+        display: block;
+        width: 80%;
+        padding: 5px;
+        font-size: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .register-form .register-form__button {
+        margin-top: 1.5em;
+    	display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 15em;
+		height: 4em;
+		background-color: hsla(0, 1%, 67%, 0.993);
+		border: 0.7em solid hsla(207, 44%, 49%, 0.993);
+		border-radius: 7px;
+		font-family: 'Source Code Pro', monospace;
+		font-size: 0.97rem;
+		font-weight: 400;
+		color: hsla(207, 44%, 49%, 0.993);
+		cursor: pointer;
+		filter: drop-shadow(1em 1em 2em hsla(0, 0%, 0%, 0.793));
+		box-shadow: inset 0 0 0.5em hsla(0, 0%, 0%, 0.493);
+    }
+
+    .register-form .register-form__button:hover {
+        background-color: hsla(248, 39%, 39%, 0.555);
+		color: hsla(0, 0%, 100%, 0.993);
+		border: 1px solid hsla(0, 0%, 100%, 0.693);
+    }
+
+    .register-form .register-form__button:active {
+        background-color: hsla(248, 97%, 15%, 0.555);
+		color: hsla(0, 0%, 100%, 0.493);
+		border: 1px solid hsla(248, 94%, 81%, 0.979);
+		filter: drop-shadow(1em 1em 14em hsla(248, 94%, 81%, 0.579));
+		box-shadow: inset 0 0 0.5em hsla(248, 94%, 81%, 0.479);
+    }
+
+    .register-form .new-user-para {
+        font-family: 'Source Code Pro', monospace;
+		font-size: 0.77rem;
+		font-weight: 200;
+		color: hsla(207, 44%, 49%, 0.993);
+    }
+    
+</style>

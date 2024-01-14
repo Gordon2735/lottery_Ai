@@ -1,0 +1,205 @@
+{{> header_partial}}
+
+{{{sessionView}}}
+
+<header id="loginHeader" class="login-header">
+    <h1 class="login-header__title">Login</h1>
+    <p class="login-header__text">
+        Please enter your credentials to login.
+    </p>
+    <p id="newUserPara" class="new-user-para">
+        New user? <a href="/register">Register here</a>
+    </p>
+</header>
+
+<section id="successSection" class="success-section" style="display: none;">
+		<p id="loginSuccess" class="login-message">
+			message: Login Successful!
+        </p>    
+        <p id="loginSuccessNews" class="login-success-news">
+            welcome {{{username}}} to Lottery Ai !
+            Email: {{{email}}}
+		</p>
+        <button type="button" id="successCloseButton" class="success-close-button">
+            Proceed
+        </button>		
+</section> 
+
+<section id="loginSection" class="login-section">
+    <form action="/login" id="loginForm" class="login-form" method="POST">
+        <div class="login-form__group">
+            <label for="username" class="login-form__label">Username</label>
+            <input type="text" name="username" id="username" class="login-form__input" placeholder="Enter your username" autocomplete="additional-name" required />
+        </div>
+        <div class="login-form__group">
+            <label for="password" class="login-form__label">Password</label>
+            <input type="password" name="password" id="password" class="login-form__input" placeholder="Enter your password" required />
+        </div>
+        <div class="login-form__group">
+            <button type="submit" value="LogIn" name="loginForm" for="loginForm" id="loginFormButton" class=".login-form__button">
+                Login
+            </button>       
+        </div>
+    </form>
+</section>
+
+        {{!-- display: inline-block;
+        position: relative; --}}
+<style>    
+
+    .sessionParaFirst {
+        margin: 0.1em auto 0.1em auto;
+        padding: 0;
+        text-align: center;
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 0.975em;
+        font-weight: 600;
+        text-shadow: 0.07em 0.07em 0.1em hsla(290, 99%, 43%, 0.493);
+        letter-spacing: 0.2em;
+    }
+    .success-section {
+        margin: 11em auto 0em auto;
+        padding: 2em 1.2em 2em 1.2em;
+        /* display: none; */
+        visibility: hidden;
+        width: 38%;
+        min-height: 12em;
+        text-align: center;
+        border: 1.7em solid hsla(135, 97%, 70%, 0.966);
+        border-radius: 1.2em;
+        background-color: hsla(135, 19%, 46%, 0.966);
+        box-shadow: inset 0.3em 0.3em 0.7em hsla(88, 100%, 3%, 0.993);
+        filter: drop-shadow(0.3em 0.3em 0.7em hsla(88, 100%, 3%, 0.993));
+        z-index: 1001;
+    }
+    .success-section .login-success {
+        font-family: 'Alberta Stencil', monospace;
+        font-size: 1.2em;
+        color: hsla(90, 100%, 50%, 0.993);
+        text-shadow: 0.3em 0.3em 0.7em hsla(88, 100%, 3%, 0.993);
+    }
+
+    .success-section .login-success-news {
+        font-size: 1.7em;
+        color: hsla(308, 100%, 50%, 0.993);
+        text-shadow: 0.3em 0.3em 0.7em hsla(88, 100%, 3%, 0.993);
+    }
+    .success-close-button {
+        display: block;
+        padding: 10px;
+        width: 100%;
+        background-color: #007bff;
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 1.2rem;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        color: #fff;
+        filter: drop-shadow(1em 1em 2em hsla(0, 0%, 0%, 0.793));
+        box-shadow: inset 0 0 0.5em hsla(0, 0%, 0%, 0.493);
+        cursor: pointer;
+    }
+    .success-close-button:hover {
+        width: 101.5%;
+        background-color: #6ba2dd;
+        font-style: oblique;
+        color: #042344;
+    }
+    .success-close-button:active {
+        width: 102.5%;
+        background-color: #013368;
+        color: #f74803;
+        box-shadow: inset 0 0 0.5em hsla(0, 1%, 65%, 0.493);
+        filter: drop-shadow(1em 1em 12em hsla(0, 30%, 76%, 0.793));
+    }   
+    .login-header {
+        margin-top: 60px;
+        text-align: center;
+    }
+    .new-user-para {
+        margin-top: 0;
+    }  
+    .login-section {
+        margin: 6em auto 12em auto;
+        text-align: center;
+    }
+    .login-form {
+        margin-top: 0;
+        display: inline-block;
+        text-align: left;
+    }
+    .login-header .login-header__title {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    .login-header .login-header__text {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    .login-header .new-user-para {
+        font-size: 1.2rem;
+    }
+    .login-header .new-user-para a {
+        color: #007bff;
+    }
+    .login-form .login-form__group {
+        margin-bottom: 20px;
+    }
+    .login-form .login-form__label {
+        display: block;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    .login-form .login-form__input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 1.2rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .login-form__button {
+        display: block;
+        padding: 10px;
+        width: 100%;
+        background-color: #007bff;
+        font-family: 'Titillium Web', sans-serif;
+        font-size: 1.2rem;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        color: #fff;
+        filter: drop-shadow(1em 1em 2em hsla(0, 0%, 0%, 0.793));
+        box-shadow: inset 0 0 0.5em hsla(0, 0%, 0%, 0.493);
+        cursor: pointer;
+    }
+    .login-form__button:hover {
+        width: 101.5%;
+        background-color: #6ba2dd;
+        font-style: oblique;
+        color: #042344;
+    }
+    .login-form__button:active {
+        width: 102.5%;
+        background-color: #013368;
+        color: #f74803;
+        box-shadow: inset 0 0 0.5em hsla(0, 1%, 65%, 0.493);
+        filter: drop-shadow(1em 1em 12em hsla(0, 30%, 76%, 0.793));
+    }
+    .login-form__button:focus {
+        outline: none;
+    }
+    .login-form__button:disabled {
+        background-color: #007bff;
+        cursor: not-allowed;
+    }
+    .login-form__button:disabled:hover {
+        background-color: #007bff;
+    }
+    .login-form__button:disabled:active {
+        background-color: #007bff;
+    }
+    .login-form__button:disabled:focus {
+        outline: none;
+    }
+</style>
+
+{{> footer_partial}}

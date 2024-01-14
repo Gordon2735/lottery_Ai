@@ -31,6 +31,8 @@ declare module 'express-session' {
 		data: SessionData;
 		views: number;
 		session_id: Session & Partial<SessionData>;
+		name: string | undefined;
+		author: string;
 	}
 }
 
@@ -77,7 +79,7 @@ export default async function (config: {
 	app.use(cors());
 	app.use(
 		favicon(
-			path.join(__dirname, '..', '..', 'public', '/images/tw_logo.svg')
+			path.join(__dirname, '..', '..', 'public', '/images/palmetto.ico')
 		)
 	);
 	const configs = await getConfig();
@@ -90,6 +92,8 @@ export default async function (config: {
 		waitForConnections: boolean;
 		queueLimit: number;
 		session_id: string;
+		name: string | undefined;
+		author: string;
 		createDatabaseTable: boolean;
 		user_id: string;
 		secretkey: string;
@@ -101,6 +105,8 @@ export default async function (config: {
 		waitForConnections: true,
 		queueLimit: configs.mysql.options.queueLimit,
 		session_id: configs.sessions.session_id,
+		name: configs.sessions.name,
+		author: configs.sessions.author,
 		createDatabaseTable: false,
 		user_id: configs.sessions.user_id,
 		secretkey: `${process.env.SESSION_KEY}`
@@ -113,6 +119,8 @@ export default async function (config: {
 
 	app.use(
 		Session({
+			name: configs.sessions.name,
+			// author: `${configs.sessions.author}`,
 			secret: `${process.env.SESSION_KEY}`,
 			resave: false,
 			saveUninitialized: false,

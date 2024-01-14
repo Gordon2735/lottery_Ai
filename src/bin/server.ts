@@ -9,6 +9,7 @@ import http from 'http';
 import App from '../app.js';
 import { AddressInfo } from 'node:net';
 import { SessionData } from '../@types/interfaces/interfaces.js';
+import createUserTable from '../models/Schemas/userModel.js';
 
 const config: {
 	applicationName: string;
@@ -28,6 +29,8 @@ const config: {
 	};
 	sessions: {
 		session_id: string;
+		name: string | undefined;
+		author: string;
 		expires: number;
 		user_id: string;
 		secretkey: string;
@@ -60,6 +63,7 @@ const server: http.Server<
 > = http.createServer(await app);
 
 await turnOnListener();
+createUserTable();
 
 async function turnOnListener(): Promise<void> {
 	try {
@@ -106,7 +110,7 @@ async function onListening(): Promise<void> {
 			if (server_address && typeof server_address !== 'string') {
 				console.info(
 					`
-						server_address: ${config.host}:${(server_address as any).PORT}
+						server_address: ${config.host}:${(server_address as any).port}
 					`
 				);
 			} else {
@@ -117,7 +121,7 @@ async function onListening(): Promise<void> {
 				const bind =
 					typeof server_address === 'string'
 						? `pipe ${config.host}`
-						: `port ${(server_address as any).PORT}`;
+						: `port ${(server_address as any).port}`;
 
 				console.info(
 					`

@@ -14,6 +14,8 @@ declare module 'express-session' {
 		data: SessionData;
 		views: number;
 		session_id: Session & Partial<SessionData>;
+		name: string | undefined;
+		author: string;
 		user_id: string;
 		username: string;
 		cookie: Cookie;
@@ -40,6 +42,8 @@ async function getConfig(): Promise<{
 	};
 	sessions: {
 		session_id: string;
+		name: string | undefined;
+		author: string;
 		expires: number;
 		user_id: string;
 		secretkey: string;
@@ -70,14 +74,16 @@ async function getConfig(): Promise<{
 				host: process.env.HOST || '',
 				port: 3306,
 				database: 'lottery_mysql_db',
-				user: 'gordon_lottery_user',
-				password: 'jOhn338@mAt2819@',
+				user: 'gordon_lottery',
+				password: 'jOhn338@',
 				waitForConnections: true,
 				queueLimit: 10
 			}
 		},
 		sessions: {
 			session_id: '',
+			name: '',
+			author: '',
 			expires: 0,
 			user_id: '',
 			secretkey: `${process.env.SESSION_KEY}`,
