@@ -1,0 +1,3 @@
+// Webelistics Footer
+
+'use stricts';
