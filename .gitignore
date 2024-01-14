@@ -7,6 +7,11 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+# Config files
+./config
+./config/*.js
+./config/*.ts
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
