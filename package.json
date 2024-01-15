@@ -6,7 +6,7 @@
 	"main": "./dist/src/bin/server.js",
 	"type": "module",
 	"scripts": {
-		"test": "jest",
+		"test": "node --test ./dist/src/utility/__tests__ && ./dist/src/utility/__tests__/general_tests",
 		"start": "npm run dev",
 		"dev": "nodemon ./src/bin/server.js"
 	},
