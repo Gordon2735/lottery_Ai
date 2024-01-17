@@ -37,7 +37,7 @@ declare module 'express-session' {
 }
 
 export default async function (config: {
-	applicationName: any;
+	applicationName: string;
 }): Promise<express.Application> {
 	const app: Application = express();
 
@@ -112,7 +112,7 @@ export default async function (config: {
 		secretkey: `${process.env.SESSION_KEY}`
 	};
 
-	let session = MySQLStoreClass;
+	const session = MySQLStoreClass;
 	const MySQLStore = expressMySqlSession(session);
 	const sessionStore = new MySQLStore(options);
 	createSessionsTable();
@@ -141,9 +141,14 @@ export default async function (config: {
 		res.status(204);
 	});
 
-	app.use(async (_req: Request, res: Response, next: NextFunction) => {
+	app.use(async (req: Request, res: Response, next: NextFunction) => {
+		let user: string | undefined;
 		// To show the Application Name on the page.
-		res.locals.applicationName = await config.applicationName;
+		res.locals.applicationName = config.applicationName;
+		res.locals.username = req.body.username;
+		res.locals.email = req.body.email;
+		res.locals.user_id = req.body.user_id;
+		req.body.username = user;
 		return next();
 	});
 
@@ -175,7 +180,7 @@ export default async function (config: {
 	// );
 
 	// set Global Variables
-	app.use(function (req: Request, res: Response, next: NextFunction) {
+	app.use(function (req: Request, res: Response) {
 		res.locals.username = req.body.username;
 		res.locals.email = req.body.email;
 	});

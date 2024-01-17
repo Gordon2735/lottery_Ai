@@ -11,12 +11,10 @@ import {
 	findUserByUsername
 } from '../../../models/Schemas/userModel.js';
 import bcrypt from 'bcryptjs';
-import { connection } from '../../../models/databases/userDB.js';
-import { Connection } from 'mysql2/promise';
-import mysql, { RowDataPacket } from 'mysql2/promise';
 import Session from 'express-session';
 import {} from '../../../../src/@types/global.d.js';
-import { uuidV4 } from '../../../app.js';
+import IUser from '../../../../src/@types/interfaces/interfaces.js';
+// import { UnknownObject } from 'express-handlebars/types/index.js';
 declare module 'express-session' {
 	interface Session {
 		data: SessionData;
@@ -36,6 +34,30 @@ app.use(express.urlencoded({ extended: true }));
 
 async function indexHandler(req: Request, res: Response): Promise<void> {
 	const index_script = `<script type="module" src="/src/ts/index.js" content="text/javascript"></script>`;
+
+	// Move the function declaration to the root of the function body
+	async function sessionView(): Promise<string> {
+		if (!req.session.views) {
+			req.session.views = 1;
+			return `
+						<strong>
+							<p class="sessionParaFirst">
+								First View: | ${req.session.views} |
+							</p>
+						</strong>
+					`;
+		} else {
+			req.session.views++;
+			return `
+						<strong>
+							<p class="sessionParaMas">
+								Number of times you visited View: | ${req.session.views} |
+							</p>
+						</strong>
+	
+					`;
+		}
+	}
 	try {
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
@@ -50,7 +72,7 @@ async function indexHandler(req: Request, res: Response): Promise<void> {
 			session: `${await sessionView()}`
 		});
 
-		app.use((req: Request, _res: Response, _next: NextFunction) => {
+		app.use((req: Request) => {
 			return insertSession(
 				req.session.session_id,
 				req.session.name,
@@ -67,30 +89,6 @@ async function indexHandler(req: Request, res: Response): Promise<void> {
 			`name: ${config.sessions.name} || author: ${config.sessions.author}`
 		);
 
-		async function sessionView(): Promise<string> {
-			if (!req.session.views) {
-				req.session.views = 1;
-				return `
-					<strong>
-						<p class="sessionParaFirst">
-							First View: | ${req.session.views} |
-						</p>
-					</strong>
-				`;
-			} else {
-				req.session.views++;
-				return `
-					<strong>
-						<p class="sessionParaMas">
-							Number of times you visited View: | ${req.session.views} |
-						</p>
-					</strong>
-
-				`;
-			}
-		}
-
-		// req.body.session.views: ${req.body.session.views}
 		console.info(`
 				req.session.views: ${req.session.views}
 				req.body: ${req.body}
@@ -127,15 +125,12 @@ async function registerHandler(_req: Request, res: Response): Promise<void> {
 	}
 }
 
-async function registerPostHandler(
-	req: Request,
-	res: Response,
-	_next: NextFunction
-): Promise<void> {
+async function registerPostHandler(req: Request, res: Response): Promise<void> {
 	try {
-		const errors: any = [];
+		// const errors: unknown = [];
+		const errors: { msg: string }[] = [];
 
-		const { username, email, password, password2 }: any = req.body;
+		const { username, email, password, password2 } = req.body;
 		await insertUser(username, email, password);
 
 		if (username && email && password) {
@@ -143,20 +138,22 @@ async function registerPostHandler(
 				`${username}:  Thank You for registering! Please login`
 			);
 			res.redirect('/login');
-		} else if (!username || !email || !password || !password2) {
-			errors.push({ msg: 'Please fill in all fields' });
-		} else if (password !== password2) {
-			errors.push({ msg: 'Passwords do not match' });
-		} else if (password.length < 8) {
-			errors.push({ msg: 'Password must be at least 8 characters' });
-		} else if (errors.length > 0) {
-			res.render('register', {
-				errors
-			});
-		} else {
-			res.send('pass');
+
+			if (!username || !email || !password || !password2) {
+				errors.push({ msg: 'Please fill in all fields' });
+			} else if (password !== password2) {
+				errors.push({ msg: 'Passwords do not match' });
+			} else if (password.length < 8) {
+				errors.push({ msg: 'Password must be at least 8 characters' });
+			} else if (errors.length > 0) {
+				res.render('register', {
+					errors
+				});
+			} else {
+				res.send('pass');
+			}
+			return Promise.resolve() as Promise<void>;
 		}
-		return Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
 		console.error(`registerPostHandler had an ERROR: ${error}`);
 		res.status(500).send(`Post Register Error: ${error}`);
@@ -166,6 +163,23 @@ async function registerPostHandler(
 }
 
 async function loginHandler(req: Request, res: Response): Promise<void> {
+	async function sessionView(): Promise<string> {
+		if (!req?.session.views) {
+			req.session.views = 1;
+			return `
+					<p class="sessionParaFirst">
+						First View: | ${req.session.views} |
+					</p>
+				`;
+		} else {
+			req.session.views++;
+			return `
+					<p class="sessionParaFirst">
+						Number of times you visited View: | ${req.session.views} |
+					</p>
+				`;
+		}
+	}
 	try {
 		const login_index = `<script type="module" src="/src/ts/login_index.js" content="text/javascript"></script>`;
 
@@ -182,27 +196,10 @@ async function loginHandler(req: Request, res: Response): Promise<void> {
 			sessionView: `${await sessionView()}`
 		});
 
-		app.use((req: Request, _res: Response, _next: NextFunction) => {
+		app.use((req: Request) => {
 			return req.body;
 		});
 
-		async function sessionView(): Promise<string> {
-			if (!req?.session.views) {
-				req.session.views = 1;
-				return `
-						<p class="sessionParaFirst">
-							First View: | ${req.session.views} |
-						</p>
-					`;
-			} else {
-				req.session.views++;
-				return `
-						<p class="sessionParaFirst">
-							Number of times you visited View: | ${req.session.views} |
-						</p>
-					`;
-			}
-		}
 		await sessionView();
 
 		return Promise.resolve()
@@ -243,9 +240,9 @@ async function loginHandler(req: Request, res: Response): Promise<void> {
 	}
 }
 
-async function userLogin(user: string): Promise<string | undefined> {
+async function userLogin(user: IUser): Promise<IUser | undefined> {
 	try {
-		const currentUser: string = user;
+		const currentUser: IUser = user;
 		return currentUser;
 	} catch (error: unknown) {
 		console.error(`userLogin had an ERROR: ${(error as Error).message}`);
@@ -253,7 +250,7 @@ async function userLogin(user: string): Promise<string | undefined> {
 	}
 }
 
-const userArray: string[] = [];
+const userArray: IUser[] = [];
 
 async function loginPostHandler(
 	req: Request,
@@ -261,28 +258,30 @@ async function loginPostHandler(
 	next: NextFunction
 ): Promise<void> {
 	try {
-		const { id, username, password }: any | string = req.body;
-		const user: any | string = await findUserByUsername(username);
+		const { id, username, password }: IUser = req.body as IUser;
+		const user = (await findUserByUsername(req.body.username)) as IUser;
 
-		const nowUser = (await userLogin(user.username)) as
-			| string
-			| Promise<string>;
+		const nowUser = (await userLogin(user)) as IUser;
 
-		const loginUser = nowUser as string;
+		const loginUser = nowUser as IUser;
 
 		userArray.push(loginUser);
 
-		app.use((req: Request, _res: Response, _next: NextFunction) => {
-			return insertSession(
-				req.session.session_id,
-				req.session.name,
-				req.session.author,
-				user.id,
-				config.sessions.secretkey,
-				user.username,
-				config.sessions.data,
-				req.session.cookie
-			);
+		app.use((req: Request) => {
+			const user = req.body.user as { id: string; username: string }; // Add type annotations to ensure 'user' has 'id' and 'username' properties
+			if (typeof user === 'object' && user !== null && 'id' in user) {
+				return insertSession(
+					req.session.session_id,
+					req.session.name,
+					req.session.author,
+					user.id,
+					config.sessions.secretkey,
+					user.username,
+					config.sessions.data,
+					req.session.cookie
+				);
+			}
+			return null;
 		});
 		console.info(
 			`user.id: ${user.id} || user.username: ${user.username} || user.password: ${user.password}
@@ -325,7 +324,7 @@ async function loginPostHandler(
 			`
 			);
 
-			app.use((req: Request, _res: Response, _next: NextFunction) => {
+			app.use((req: Request) => {
 				return (
 					req.body.username,
 					req.body.email,

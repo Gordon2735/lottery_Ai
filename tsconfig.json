@@ -125,5 +125,5 @@
 		"./public/**/**/*",
 		"./errors/**/**/*"
 	],
-	"exclude": ["node_modules", "dist", "errors", "views"]
+	"exclude": ["node_modules", "dist", "errors", "views", "logs", "logs/**.*"]
 }

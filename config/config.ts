@@ -1,6 +1,7 @@
 'use strict';
 
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
+import OpenAI from 'openai';
 import fs from 'fs';
 import IConfig, { SessionData } from '../src/@types/interfaces/interfaces.js';
 
@@ -8,6 +9,12 @@ import IConfig, { SessionData } from '../src/@types/interfaces/interfaces.js';
 dotenv.config({
 	path: './config/.env'
 });
+
+const openAi: OpenAI = new OpenAI({
+	apiKey: process.env.OPENAI_API_KEY
+});
+
+console.log('OpenAi API: ', process.env.OPENAI_API_KEY);
 
 declare module 'express-session' {
 	interface Session {
@@ -49,11 +56,11 @@ async function getConfig(): Promise<{
 		secretkey: string;
 		username: string;
 		data: SessionData;
-		cookie: {};
+		cookie: object;
 		createDatabaseTable: boolean;
 	};
 	readonly serverUrl: string;
-	client: any;
+	client: unknown;
 	user: {
 		options: {
 			id: string;
@@ -109,4 +116,4 @@ async function getConfig(): Promise<{
 	};
 }
 
-export default getConfig;
+export { getConfig as default, openAi };

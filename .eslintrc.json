@@ -1,0 +1,27 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"project": "tsconfig.json"
+	},
+	"env": {
+		"es6": true,
+		"node": true
+	},
+	"ignorePatterns": [
+		"dist",
+		"views/helpers",
+		"jest.config.js",
+		"utils",
+		"OpenAiAPI.ts",
+		"node_modules",
+		"logs"
+	],
+	"rules": {},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended"
+	]
+}

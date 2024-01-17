@@ -27,3 +27,5 @@
 -   npm i @typescript-eslint/eslint-plugin @typescript-eslint/parser -D
 
 -   npm i @types/node@latest @types/uuid@latest -D
+-
+-   npm i openai

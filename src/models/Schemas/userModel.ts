@@ -3,12 +3,13 @@
 import { connection } from '../databases/userDB.js';
 import { Connection } from 'mysql2/promise';
 import { Session, SessionData, Cookie } from 'express-session';
-import { IConfig } from '../../@types/interfaces/interfaces.js';
+import IUser, { IConfig } from '../../@types/interfaces/interfaces.js';
 import fs from 'fs';
 import mysql, { RowDataPacket } from 'mysql2/promise';
 import { executeMysqlQuery } from '../../controllers/mysql_controllers/mysql_pool_rowData.js';
 import { uuidV4 } from '../../app.js';
 import bcrypt from 'bcryptjs';
+//import { User } from '../../@types/global.js' // Import the User type from the appropriate module
 
 async function createUserTable(): Promise<void> {
 	try {
@@ -29,7 +30,7 @@ async function createUserTable(): Promise<void> {
 	} catch (error: unknown) {
 		console.error(`Error in createUserTable: ${error}`);
 		Promise.reject() as Promise<void>;
-		throw error as any as unknown;
+		throw error as unknown;
 	}
 }
 
@@ -138,37 +139,31 @@ async function insertUser(
 	} catch (error: unknown) {
 		console.error(`Error in insertUser: ${error}`);
 		Promise.reject() as Promise<void>;
-		throw error as any as unknown;
+		throw error as unknown;
 	}
 }
 
-async function findUserByUsername(
-	username: string | any
-): Promise<string | any> {
+async function findUserByUsername(username: IUser): Promise<IUser> {
 	// <T>(spec: QuerySpecification<T>, database: string): Promise<T[]>
 	try {
-		// const conn: Connection = await connection();
 		const conn: Connection = await connection();
 		const query = `SELECT * FROM users WHERE username = '${username}'`;
-		// const rows:
-		// 	| mysql.RowDataPacket[]
-		// 	| mysql.ResultSetHeader[]
-		// 	| mysql.RowDataPacket[][]
-		// 	| mysql.ProcedureCallPacket
-		// 	| any[] = await conn.query(query, username);
 
-		const [rows]: any[] | string = await conn.query(query, username);
+		const [rows]: RowDataPacket[] = (await conn.query(
+			query,
+			username
+		)) as RowDataPacket[];
 
 		console.info(`rows: ${rows[0]}`);
 		await conn.end();
 
-		Promise.resolve() as Promise<void>;
 		return rows[0];
+		// Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
 		console.error(`Error in findUserByUsername: ${error}`);
 
 		Promise.reject() as Promise<void>;
-		throw error as any as unknown;
+		throw error as unknown;
 	}
 }
 
@@ -183,7 +178,7 @@ async function getRowsPacketUsers(): Promise<RowDataPacket[]> {
 	} catch (error: unknown) {
 		console.error(`Error in getRowsPacketUsers: ${error}`);
 		Promise.reject() as Promise<void>;
-		throw error as any as unknown;
+		throw error as unknown;
 	}
 }
 

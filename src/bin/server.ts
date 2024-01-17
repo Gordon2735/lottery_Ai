@@ -36,11 +36,11 @@ const config: {
 		secretkey: string;
 		username: string;
 		data: SessionData;
-		cookie: {};
+		cookie: object;
 		createDatabaseTable: boolean;
 	};
 	readonly serverUrl: string;
-	client: any;
+	client: unknown;
 	user: {
 		options: {
 			id: string;
@@ -81,20 +81,22 @@ async function turnOnListener(): Promise<void> {
 	}
 }
 
-function onError(error: any) {
-	if (error.syscall !== 'listen') {
+function onError(error: unknown) {
+	if ((error as NodeJS.ErrnoException).syscall !== 'listen') {
 		throw error;
 	}
 	const bind = typeof PORT === 'string' ? `Pipe  ${PORT} ` : `Port ${PORT}`;
 
 	// handle specific listen errors with friendly messages
-	switch (error.code) {
+	switch ((error as NodeJS.ErrnoException).code) {
 		case 'EACCES':
 			console.error(`${bind} requires elevated privileges`);
 			process.exit(1);
+		// falls through
 		case 'EADDRINUSE':
 			console.error(`${bind} is already in use`);
 			process.exit(1);
+		// falls through
 		default:
 			throw error;
 	}
@@ -110,18 +112,22 @@ async function onListening(): Promise<void> {
 			if (server_address && typeof server_address !== 'string') {
 				console.info(
 					`
-						server_address: ${config.host}:${(server_address as any).port}
+						server_address: ${config.host}:${server_address.port}
 					`
 				);
 			} else {
-				console.log(`server_address: ${config.host}:${server_address}`);
+				console.log(
+					`server_address: ${config.host}:${
+						server_address as string | AddressInfo | null
+					}`
+				);
 			}
 
 			if (server_address) {
 				const bind =
 					typeof server_address === 'string'
 						? `pipe ${config.host}`
-						: `port ${(server_address as any).port}`;
+						: `port ${server_address.port}`;
 
 				console.info(
 					`

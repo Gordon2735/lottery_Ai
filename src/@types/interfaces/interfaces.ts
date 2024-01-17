@@ -8,7 +8,7 @@ import { RowDataPacket } from 'mysql2';
 import { SessionData } from 'express-session';
 
 interface IUser extends RowDataPacket {
-	id?: number;
+	id: number;
 	username: string;
 	password: string;
 	admin: boolean;
@@ -46,7 +46,7 @@ interface IConfig {
 		};
 	};
 	readonly serverUrl: string;
-	client: any;
+	client: object;
 	user: {
 		options: {
 			id: string;

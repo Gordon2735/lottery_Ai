@@ -1,11 +1,10 @@
 'use strict';
 
 // import { buffer } from 'node:stream/consumers';
-import { Request, Response } from '../app.js';
+import { Request } from '../app.js';
 // import getConfig from '../../config/config.js';
 
 const req = new Request('/login').body as Request | null;
-const res = new Response('/login').body as Response | null;
 
 console.info(`You have routed to the Login page.`);
 

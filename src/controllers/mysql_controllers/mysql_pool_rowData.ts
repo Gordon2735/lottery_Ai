@@ -20,8 +20,8 @@ async function executeMysqlQuery<
 		| ResultSetHeader
 		| RowDataPacket[][]
 		| ProcedureCallPacket = RowDataPacket[]
->(query: string, values?: any[] | null): Promise<T> {
-	let conn: PoolConnection = await pool.getConnection();
+>(query: string, values?: unknown | null): Promise<T> {
+	const conn: PoolConnection = await pool.getConnection();
 	try {
 		const [rows] = await conn.execute<T>(query, [values]);
 		return rows;
