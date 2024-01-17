@@ -144,7 +144,6 @@ async function insertUser(
 }
 
 async function findUserByUsername(username: IUser): Promise<IUser> {
-	// <T>(spec: QuerySpecification<T>, database: string): Promise<T[]>
 	try {
 		const conn: Connection = await connection();
 		const query = `SELECT * FROM users WHERE username = '${username}'`;
@@ -157,8 +156,8 @@ async function findUserByUsername(username: IUser): Promise<IUser> {
 		console.info(`rows: ${rows[0]}`);
 		await conn.end();
 
+		Promise.resolve() as Promise<void>;
 		return rows[0];
-		// Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
 		console.error(`Error in findUserByUsername: ${error}`);
 

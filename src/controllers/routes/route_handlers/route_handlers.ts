@@ -258,17 +258,18 @@ async function loginPostHandler(
 	next: NextFunction
 ): Promise<void> {
 	try {
-		const { id, username, password }: IUser = req.body as IUser;
-		const user = (await findUserByUsername(req.body.username)) as IUser;
+		const { id, username, password }: IUser = req.body;
+		const user: IUser = await findUserByUsername(req.body.username);
 
 		const nowUser = (await userLogin(user)) as IUser;
 
-		const loginUser = nowUser as IUser;
+		const loginUser: IUser = nowUser;
 
 		userArray.push(loginUser);
 
 		app.use((req: Request) => {
 			const user = req.body.user as { id: string; username: string }; // Add type annotations to ensure 'user' has 'id' and 'username' properties
+			// Check and see if this is why the user is not being added to the database
 			if (typeof user === 'object' && user !== null && 'id' in user) {
 				return insertSession(
 					req.session.session_id,
@@ -378,11 +379,34 @@ async function logout(req: Request, res: Response): Promise<void> {
 	}
 }
 
+async function homeHandler(_req: Request, res: Response): Promise<void> {
+	try {
+		const home_index: string = `<script type="module" src="/src/ts/home_index.js" content="text/javascript"></script>`;
+		res.set('Content-Type', 'text/html');
+		res.set('target', '_blank');
+		res.render('home', {
+			title: 'Home',
+			layout: 'main',
+			partials: 'partials',
+			helpers: 'helpers',
+			script: [home_index]
+		});
+
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(`homeHandler had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
+		return Promise.reject() as Promise<void>;
+	}
+}
+
 export {
 	indexHandler as default,
 	registerHandler,
 	registerPostHandler,
 	loginHandler,
 	loginPostHandler,
-	logout
+	logout,
+	homeHandler
 };
