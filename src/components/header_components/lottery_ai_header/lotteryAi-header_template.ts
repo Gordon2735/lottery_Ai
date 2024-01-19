@@ -1,8 +1,9 @@
 // Lottery Ai Header Template
 
-'use strict';
+// import {  ILotteryAiHeaderTemplate } from './IlotteryAi_header.js';
+import 'use strict';
 
-export class LotAiHeaderTemplate {
+export class LotAiHeaderTemplate extends HTMLElement {
 	activateShadowDOM: boolean = false;
 	root: ShadowRoot | null | undefined;
 
@@ -18,5 +19,16 @@ export class LotAiHeaderTemplate {
 		if (this.activateShadowDOM === true)
 			this.attachShadow({ mode: 'open' });
 		this.render(this.template);
+	}
+	render(template: string): void {
+		const root: ShadowRoot | null = this.shadowRoot;
+		this.root = root;
+		if (this.activateShadowDOM === false) {
+			this.innerHTML = template || this.template;
+			return;
+		} else {
+			this.root!.innerHTML = template || this.template;
+			return;
+		}
 	}
 }
