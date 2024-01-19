@@ -8,7 +8,8 @@ import index_route, {
 	registerPOST_route,
 	login_route,
 	loginPOST_route,
-	logout_route
+	logout_route,
+	home_index_route
 } from './routes/routes.js';
 
 const app: Application = express();
@@ -23,7 +24,8 @@ const routes: Router[] = [
 	registerPOST_route,
 	login_route,
 	loginPOST_route,
-	logout_route
+	logout_route,
+	home_index_route
 ];
 
 const thisRoute: express.Router = router;

@@ -8,7 +8,8 @@ import indexHandler, {
 	registerPostHandler,
 	loginHandler,
 	loginPostHandler,
-	logout
+	logout,
+	homeHandler
 } from './route_handlers/route_handlers.js';
 
 const router: Router = express.Router();
@@ -23,6 +24,7 @@ const registerPOST_route: express.Router = router.post(
 const login_route: express.Router = router.get('/login', loginHandler);
 const loginPOST_route: express.Router = router.post('/login', loginPostHandler);
 const logout_route: express.Router = router.post('/logout', logout);
+const home_index_route: express.Router = router.get('/home', homeHandler);
 
 export {
 	index_route as default,
@@ -30,5 +32,6 @@ export {
 	registerPOST_route,
 	login_route,
 	loginPOST_route,
-	logout_route
+	logout_route,
+	home_index_route
 };
