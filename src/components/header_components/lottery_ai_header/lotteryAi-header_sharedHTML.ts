@@ -1,6 +1,6 @@
 // Lottery Ai Header Shared HTML
 
-import { ILotteryAiHeaderSharedHTML } from './IlotteryAi_header.js';
+import { ILotteryAiHeaderSharedHTML } from './Ilotteryai_header.js';
 
 const lotteryAiHeaderSharedHTML: ILotteryAiHeaderSharedHTML = {
 	global: '',
@@ -13,7 +13,7 @@ lotteryAiHeaderSharedHTML.global = /*html*/ `
 
 lotteryAiHeaderSharedHTML.shell = /*html*/ `
     
-    <lotteryAi-header id="lotteryAiHeader" class="lotteryAi-header"></lotteryAi-header>
+    <lotteryai-header id="lotteryAiHeader" class="lotteryAi-header"></lotteryai-header>
     
 `;
 

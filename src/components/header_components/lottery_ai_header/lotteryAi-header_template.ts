@@ -1,7 +1,4 @@
-// Lottery Ai Header Template
-
-// import {  ILotteryAiHeaderTemplate } from './IlotteryAi_header.js';
-import 'use strict';
+'use strict';
 
 export class LotAiHeaderTemplate extends HTMLElement {
 	activateShadowDOM: boolean = false;

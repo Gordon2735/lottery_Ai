@@ -28,23 +28,23 @@ async function setAttributes(
 	});
 }
 
-async function appendChildren({
-	parent,
-	children
-}: IAppendChildren): Promise<void> {
+const appendChildren: IAppendChildren = async function (
+	parent: HTMLElement | HTMLHeadElement,
+	children: Node[] | NodeListOf<Node>
+): Promise<void> {
 	children.forEach((child: Node) => {
 		return parent?.appendChild(child);
 	});
-}
+};
 
-async function removeChildren({
-	parent,
-	children
-}: IRemoveChildren): Promise<void> {
+const removeChildren: IRemoveChildren = async function (
+	parent: HTMLElement,
+	children: Node[]
+): Promise<void> {
 	children.forEach((child: Node) => {
 		return parent?.removeChild(child);
 	});
-}
+};
 
 export {
 	removeChildren as default,

@@ -1,6 +1,6 @@
 // Lottery Ai Header Shared Styles
 
-import { ILotteryAiHeaderSharedStyles } from './IlotteryAi_header.js';
+import { ILotteryAiHeaderSharedStyles } from './Ilotteryai_header.js';
 
 const lotteryAiHeaderSharedStyles: ILotteryAiHeaderSharedStyles = {
 	global: '',

@@ -7,13 +7,11 @@ interface ISetAttributes {
 }
 
 interface IAppendChildren {
-	parent: HTMLElement | null;
-	children: Node[];
+	(parent: HTMLElement, children: Node[]): Promise<void>;
 }
 
 interface IRemoveChildren {
-	parent: HTMLElement | null;
-	children: Node[];
+	(parent: HTMLElement, children: Node[]): Promise<void>;
 }
 
 export { ISetAttributes as default, IAppendChildren, IRemoveChildren };
