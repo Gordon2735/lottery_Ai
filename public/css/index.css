@@ -10,52 +10,651 @@
     font-family: 'Chango', sans-serif;
 */
 
+/* :: CSS Host Access Globally :: */
+:host {
+    display: block;
+}
+
+/* Custom Properties */
+:root {
+
+    /* Color Variables */
+    --clr-bckgrnd-dark: #333;
+    --clr-bckgrnd-light: #f4f4f4;
+
+    /* Font Variables */
+    --ff-src-code-pro: 'Source Code Pro', monospace;
+    --ff-titillium-web: 'Titillium Web', sans-serif;
+    --ff-allerta-stencil: 'Allerta Stencil', monospace;
+    --ff-bagel-fat-one: 'Bagel Fat One', sans-serif;
+    --ff-black-ops-one: 'Black Ops One', sans-serif;
+    --ff-chango: 'Chango', sans-serif;
+
+    /* Font Size Variables */
+    --fs-xxs: 0.5rem;
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.875rem;
+    --fs-md: 1rem;
+    --fs-lg: 1.125rem;
+    --fs-xl: 1.25rem;
+    --fs-xxl: 1.5rem;
+    --fs-xxxl: 1.875rem;
+    --fs-xxxxl: 2.25rem;
+    --fs-xxxxxl: 3rem;
+
+    /* Font Weight Variables */
+    --fw-thin: 100;
+    --fw-extra_light: 200;
+    --fw-light: 300;
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-extra_bold: 800;
+    --fw-black: 900;
+
+    /* Line Height Variables */
+    --lh-1: 1;
+    --lh-2: 1.25;
+    --lh-3: 1.5;
+    --lh-4: 1.75;
+    --lh-5: 2;
+
+    /* Padding Variables */
+    --padding-xxs: 0.25rem;
+    --padding-xs: 0.5rem;
+    --padding-sm: 0.75rem;
+    --padding-md: 1rem;
+    --padding-lg: 1.5rem;
+    --padding-xl: 2rem;
+    --padding-xxl: 3rem;
+
+    /* Spacing Variables */
+    --spacing-xxs: 0.25rem;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+
+    /* Border Radius Variables */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 2rem;
+    --radius-xxl: 3rem;
+
+    /* Box Shadow Variables */
+    --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 12px 35px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 16px 50px rgba(0, 0, 0, 0.15);
+    --shadow-xxl: 0 24px 60px rgba(0, 0, 0, 0.2);
+    --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    --shadow-inset-md: inset 0 4px 8px 0 rgba(0, 0, 0, 0.06);
+    --shadow-inset-lg: inset 0 6px 12px 0 rgba(0, 0, 0, 0.06);
+    --shadow-inset-xl: inset 0 8px 16px 0 rgba(0, 0, 0, 0.06);
+    --shadow-inset-xxl: inset 0 12px 24px 0 rgba(0, 0, 0, 0.06);
+    --shadow-inset-xxxl: inset 0 16px 32px 0 rgba(0, 0, 0, 0.06);
+    --shadow-inset-xxxxl: inset 0 24px 48px 0 rgba(0, 0, 0, 0.06);
+    --shadow-inset-xxxxxl: inset 0 32px 64px 0 rgba(0, 0, 0, 0.06);
+
+    /* Z-Index Variables */
+    --z-index-1: 100;
+    --z-index-2: 200;
+    --z-index-3: 300;
+    --z-index-4: 400;
+    --z-index-5: 500;
+    --z-index-6: 600;
+    --z-index-7: 700;
+    --z-index-8: 800;
+    --z-index-9: 900;
+    --z-index-10: 1000;
+
+    /* Transition Variables */
+    --transition: all 0.3s ease-in-out;
+    --transition-fast: all 0.1s ease-in-out;
+    --transition-slow: all 0.5s ease-in-out;
+
+    /* Border Variables */
+    --border-thin: 1px solid #000;
+    --border-thick: 2px solid #000;
+    --border-radius: 5px;
+    --border-radius-sm: 3px;
+    --border-radius-lg: 10px;
+
+    /* Filter Variables */
+    --filter-shadow: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5));
+    --filter-shadow-md: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5));
+    --filter-shadow-lg: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.5));
+    --filter-shadow-xl: drop-shadow(0 0 3rem rgba(0, 0, 0, 0.5));
+    --filter-shadow-xxl: drop-shadow(0 0 4rem rgba(0, 0, 0, 0.5));
+    --filter-shadow-inset: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5)) inset;
+    --filter-shadow-inset-md: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5)) inset;
+    --filter-shadow-inset-lg: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.5)) inset;
+    --filter-shadow-inset-xl: drop-shadow(0 0 3rem rgba(0, 0, 0, 0.5)) inset;
+    --filter-shadow-inset-xxl: drop-shadow(0 0 4rem rgba(0, 0, 0, 0.5)) inset;
+    --filter-shadow-inset-xxxl: drop-shadow(0 0 5rem rgba(0, 0, 0, 0.5)) inset;
+    --filter-shadow-inset-xxxxl: drop-shadow(0 0 6rem rgba(0, 0, 0, 0.5)) inset;
+    --filter-shadow-inset-xxxxxl: drop-shadow(0 0 7rem rgba(0, 0, 0, 0.5)) inset;
+
+    /* Gradient Variables */
+    --gradient-1: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%);
+    --gradient-2: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-3: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-4: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-5: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-6: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-7: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-8: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-9: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-10: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-11: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-12: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-13: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-14: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-15: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-16: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-17: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-18: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-19: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-20: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-21: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-22: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-23: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-24: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-25: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-26: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-27: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-28: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-29: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-30: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+
+    /* Media Query Variables */
+    --mq-phone: 37.5em;
+    --mq-tablet: 59.375em;
+    --mq-desktop: 81.25em;
+    --mq-big-desktop: 112.5em;
+
+    /* Breakpoint Variables */
+    --bp-phone: 23.4375em;
+    --bp-tablet: 37.1875em;
+    --bp-desktop: 50.625em;
+    --bp-big-desktop: 70.3125em;
+
+    /* Grid Variables */
+    --grid-gap: 1rem;
+    --grid-gap-sm: 0.5rem;
+    --grid-gap-lg: 1.5rem;
+    --grid-gap-xl: 2rem;
+    --grid-gap-xxl: 3rem;
+    --grid-gap-xxxl: 4rem;
+    --grid-gap-xxxxl: 5rem;
+    --grid-gap-xxxxxl: 6rem;
+    --grid-gap-xxxxxl-2: 7rem;
+    --grid-gap-xxxxxl-3: 8rem;
+    --grid-gap-xxxxxl-4: 9rem;
+    --grid-gap-xxxxxl-5: 10rem;
+    --grid-gap-xxxxxl-6: 11rem;
+    --grid-gap-xxxxxl-7: 12rem;
+
+    /* Grid Template Variables */
+    --grid-template-1: repeat(1, 1fr);
+    --grid-template-2: repeat(2, 1fr);
+    --grid-template-3: repeat(3, 1fr);
+    --grid-template-4: repeat(4, 1fr);
+    --grid-template-5: repeat(5, 1fr);
+    --grid-template-6: repeat(6, 1fr);
+    --grid-template-7: repeat(7, 1fr);
+    --grid-template-8: repeat(8, 1fr);
+    --grid-template-9: repeat(9, 1fr);
+    --grid-template-10: repeat(10, 1fr);
+    --grid-template-11: repeat(11, 1fr);
+    --grid-template-12: repeat(12, 1fr);
+    --grid-template-13: repeat(13, 1fr);
+    --grid-template-14: repeat(14, 1fr);
+    --grid-template-15: repeat(15, 1fr);
+    --grid-template-16: repeat(16, 1fr);
+    --grid-template-17: repeat(17, 1fr);
+
+    /* Grid Template Columns Variables */
+    --grid-template-columns-1: repeat(1, 1fr);
+    --grid-template-columns-2: repeat(2, 1fr);
+    --grid-template-columns-3: repeat(3, 1fr);
+    --grid-template-columns-4: repeat(4, 1fr);
+    --grid-template-columns-5: repeat(5, 1fr);
+    --grid-template-columns-6: repeat(6, 1fr);
+    --grid-template-columns-7: repeat(7, 1fr);
+    --grid-template-columns-8: repeat(8, 1fr);
+    --grid-template-columns-9: repeat(9, 1fr);
+    --grid-template-columns-10: repeat(10, 1fr);
+    --grid-template-columns-11: repeat(11, 1fr);
+    --grid-template-columns-12: repeat(12, 1fr);
+    --grid-template-columns-13: repeat(13, 1fr);
+
+    /* Grid Template Rows Variables */
+    --grid-template-rows-1: repeat(1, 1fr);
+    --grid-template-rows-2: repeat(2, 1fr);
+    --grid-template-rows-3: repeat(3, 1fr);
+    --grid-template-rows-4: repeat(4, 1fr);
+    --grid-template-rows-5: repeat(5, 1fr);
+    --grid-template-rows-6: repeat(6, 1fr);
+    --grid-template-rows-7: repeat(7, 1fr);
+    --grid-template-rows-8: repeat(8, 1fr);
+    --grid-template-rows-9: repeat(9, 1fr);
+    --grid-template-rows-10: repeat(10, 1fr);
+    --grid-template-rows-11: repeat(11, 1fr);
+    --grid-template-rows-12: repeat(12, 1fr);
+    --grid-template-rows-13: repeat(13, 1fr);
+
+    /* Flex Variables */
+    --flex-1: 1;
+    --flex-2: 2;
+    --flex-3: 3;
+    --flex-4: 4;
+    --flex-5: 5;
+    --flex-6: 6;
+    --flex-7: 7;
+    --flex-8: 8;
+    --flex-9: 9;
+    --flex-10: 10;
+    --flex-11: 11;
+    --flex-12: 12;
+    --flex-13: 13;
+    --flex-14: 14;
+    --flex-15: 15;
+    --flex-16: 16;
+    --flex-17: 17;
+    --flex-18: 18;
+    --flex-19: 19;
+    --flex-20: 20;
+    --flex-21: 21;
+
+    /* Flex Direction Variables */
+    --flex-direction-row: row;
+    --flex-direction-row-reverse: row-reverse;
+    --flex-direction-column: column;
+    --flex-direction-column-reverse: column-reverse;
+
+    /* Flex Wrap Variables */
+    --flex-wrap: wrap;
+    --flex-nowrap: nowrap;
+    --flex-wrap-reverse: wrap-reverse;
+
+    /* Flex Justify Content Variables */
+    --justify-content-flex-start: flex-start;
+    --justify-content-flex-end: flex-end;
+    --justify-content-center: center;
+    --justify-content-space-between: space-between;
+    --justify-content-space-around: space-around;
+    --justify-content-space-evenly: space-evenly;
+
+    /* Flex Align Items Variables */
+    --align-items-flex-start: flex-start;
+    --align-items-flex-end: flex-end;
+    --align-items-center: center;
+    --align-items-baseline: baseline;
+    --align-items-stretch: stretch;
+
+    /* Flex Align Content Variables */
+    --align-content-flex-start: flex-start;
+    --align-content-flex-end: flex-end;
+    --align-content-center: center;
+    --align-content-space-between: space-between;
+    --align-content-space-around: space-around;
+    --align-content-stretch: stretch;
+
+    /* Flex Align Self Variables */
+    --align-self-auto: auto;
+    --align-self-flex-start: flex-start;
+    --align-self-flex-end: flex-end;
+    --align-self-center: center;
+    --align-self-baseline: baseline;
+    --align-self-stretch: stretch;
+
+    /* Flex Order Variables */
+    --order-1: 1;
+    --order-2: 2;
+    --order-3: 3;
+    --order-4: 4;
+    --order-5: 5;
+    --order-6: 6;
+    --order-7: 7;
+    --order-8: 8;
+    --order-9: 9;
+    --order-10: 10;
+    --order-11: 11;
+    --order-12: 12;
+    --order-13: 13;
+    --order-14: 14;
+    --order-15: 15;
+    --order-16: 16;
+    --order-17: 17;
+    --order-18: 18;
+    --order-19: 19;
+    --order-20: 20;
+    --order-21: 21;
+
+    /* Position Variables */
+    --position-static: static;
+    --position-relative: relative;
+    --position-absolute: absolute;
+    --position-fixed: fixed;
+    --position-sticky: sticky;
+
+    /* Overflow Variables */
+    --overflow-visible: visible;
+    --overflow-hidden: hidden;
+    --overflow-scroll: scroll;
+    --overflow-auto: auto;
+
+    /* Display Variables */
+    --display-none: none;
+    --display-inline: inline;
+    --display-inline-block: inline-block;
+    --display-block: block;
+    --display-table: table;
+    --display-table-cell: table-cell;
+    --display-flex: flex;
+    --display-inline-flex: inline-flex;
+
+    /* Visibility Variables */
+    --visibility-visible: visible;
+    --visibility-hidden: hidden;
+    --visibility-collapse: collapse;
+
+    /* Text Align Variables */
+    --text-align-left: left;
+    --text-align-right: right;
+    --text-align-center: center;
+    --text-align-justify: justify;
+
+    /* Text Transform Variables */
+    --text-transform-uppercase: uppercase;
+    --text-transform-lowercase: lowercase;
+    --text-transform-capitalize: capitalize;
+    --text-transform-none: none;
+
+    /* Text Decoration Variables */
+    --text-decoration-none: none;
+    --text-decoration-underline: underline;
+    --text-decoration-overline: overline;
+    --text-decoration-line-through: line-through;
+
+    /* Text Overflow Variables */
+    --text-overflow-clip: clip;
+    --text-overflow-ellipsis: ellipsis;
+
+    /* Text White Space Variables */
+    --white-space-normal: normal;
+    --white-space-nowrap: nowrap;
+    --white-space-pre: pre;
+    --white-space-pre-line: pre-line;
+    --white-space-pre-wrap: pre-wrap;
+
+    /* Text Break Variables */
+    --word-break-normal: normal;
+    --word-break-break-all: break-all;
+    --word-break-keep-all: keep-all;
+    --word-break-break-word: break-word;
+
+    /* Text Shadow Variables */
+    --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    --text-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.5);
+    --text-shadow-lg: 0 6px 15px rgba(0, 0, 0, 0.5);
+    --text-shadow-xl: 0 8px 20px rgba(0, 0, 0, 0.5);
+    --text-shadow-xxl: 0 10px 25px rgba(0, 0, 0, 0.5);
+    --text-shadow-inset: 0 2px 5px rgba(0, 0, 0, 0.5) inset;
+    --text-shadow-inset-md: 0 4px 10px rgba(0, 0, 0, 0.5) inset;
+    --text-shadow-inset-lg: 0 6px 15px rgba(0, 0, 0, 0.5) inset;
+    --text-shadow-inset-xl: 0 8px 20px rgba(0, 0, 0, 0.5) inset;
+    --text-shadow-inset-xxl: 0 10px 25px rgba(0, 0, 0, 0.5) inset;
+    --text-shadow-inset-xxxl: 0 12px 30px rgba(0, 0, 0, 0.5) inset;
+    --text-shadow-inset-xxxxl: 0 14px 35px rgba(0, 0, 0, 0.5) inset;
+    --text-shadow-inset-xxxxxl: 0 16px 40px rgba(0, 0, 0, 0.5) inset;
+
+    /* Text Variables */
+    --text-1: 0.5rem;
+    --text-2: 0.75rem;
+
+    /* Text Color Variables */
+    --text-color-1: #000;
+    --text-color-2: #fff;
+    --text-color-3: #f4f4f4;
+    --text-color-4: #333;
+
+    /* Text Background Color Variables */
+    --text-bckgrnd-color-1: #000;
+    --text-bckgrnd-color-2: #fff;
+    --text-bckgrnd-color-3: #f4f4f4;
+    --text-bckgrnd-color-4: #333;
+
+    /* Text Hover Color Variables */
+    --text-hover-color-1: #000;
+    --text-hover-color-2: #fff;
+    --text-hover-color-3: #f4f4f4;
+    --text-hover-color-4: #333;
+
+    /* Text Hover Background Color Variables */
+    --text-hover-bckgrnd-color-1: #000;
+    --text-hover-bckgrnd-color-2: #fff;
+    --text-hover-bckgrnd-color-3: #f4f4f4;
+    --text-hover-bckgrnd-color-4: #333;
+
+    /* Text Active Color Variables */
+    --text-active-color-1: #000;
+    --text-active-color-2: #fff;
+    --text-active-color-3: #f4f4f4;
+    --text-active-color-4: #333;
+
+    /* Text Active Background Color Variables */
+    --text-active-bckgrnd-color-1: #000;
+    --text-active-bckgrnd-color-2: #fff;
+    --text-active-bckgrnd-color-3: #f4f4f4;
+    --text-active-bckgrnd-color-4: #333;
+
+    /* Text Focus Color Variables */
+    --text-focus-color-1: #000;
+    --text-focus-color-2: #fff;
+    --text-focus-color-3: #f4f4f4;
+    --text-focus-color-4: #333;
+
+    /* Text Focus Background Color Variables */
+    --text-focus-bckgrnd-color-1: #000;
+    --text-focus-bckgrnd-color-2: #fff;
+    --text-focus-bckgrnd-color-3: #f4f4f4;
+    --text-focus-bckgrnd-color-4: #333;
+
+    /* Text Active Hover Color Variables */
+    --text-active-hover-color-1: #000;
+    --text-active-hover-color-2: #fff;
+    --text-active-hover-color-3: #f4f4f4;
+    --text-active-hover-color-4: #333;
+
+    /* Text Active Hover Background Color Variables */
+    --text-active-hover-bckgrnd-color-1: #000;
+    --text-active-hover-bckgrnd-color-2: #fff;
+    --text-active-hover-bckgrnd-color-3: #f4f4f4;
+    --text-active-hover-bckgrnd-color-4: #333;
+
+    /* Text Active Focus Color Variables */
+    --text-active-focus-color-1: #000;
+    --text-active-focus-color-2: #fff;
+    --text-active-focus-color-3: #f4f4f4;
+    --text-active-focus-color-4: #333;
+
+    /* Text Active Focus Background Color Variables */
+    --text-active-focus-bckgrnd-color-1: #000;
+    --text-active-focus-bckgrnd-color-2: #fff;
+    --text-active-focus-bckgrnd-color-3: #f4f4f4;
+    --text-active-focus-bckgrnd-color-4: #333;
+
+    /* Text Active Hover Focus Color Variables */
+    --text-active-hover-focus-color-1: #000;
+    --text-active-hover-focus-color-2: #fff;
+    --text-active-hover-focus-color-3: #f4f4f4;
+    --text-active-hover-focus-color-4: #333;
+
+    /* Text Active Hover Focus Background Color Variables */
+    --text-active-hover-focus-bckgrnd-color-1: #000;
+    --text-active-hover-focus-bckgrnd-color-2: #fff;
+    --text-active-hover-focus-bckgrnd-color-3: #f4f4f4;
+    --text-active-hover-focus-bckgrnd-color-4: #333;
+
+    /* Container Query Variables */
+    --container-query-1: 1;
+    --container-query-2: 2;
+    --container-query-3: 3;
+    --container-query-4: 4;
+    --container-query-5: 5;
+    --container-query-6: 6;
+    --container-query-7: 7;
+    --container-query-8: 8;
+    --container-query-9: 9;
+    --container-query-10: 10;
+    --container-query-11: 11;
+    --container-query-12: 12;
+    --container-query-13: 13;
+    --container-query-14: 14;
+    --container-query-15: 15;
+    --container-query-16: 16;
+    --container-query-17: 17;
+    --container-query-18: 18;
+    --container-query-19: 19;
+    --container-query-20: 20;
+
+    /* Container Query Breakpoint Variables */
+    --container-query-breakpoint-1: 1;
+    --container-query-breakpoint-2: 2;
+    --container-query-breakpoint-3: 3;
+    --container-query-breakpoint-4: 4;
+    --container-query-breakpoint-5: 5;
+    --container-query-breakpoint-6: 6;
+    --container-query-breakpoint-7: 7;
+    --container-query-breakpoint-8: 8;
+    --container-query-breakpoint-9: 9;
+    --container-query-breakpoint-10: 10;
+    --container-query-breakpoint-11: 11;
+    --container-query-breakpoint-12: 12;
+    --container-query-breakpoint-13: 13;
+    --container-query-breakpoint-14: 14;
+    --container-query-breakpoint-15: 15;
+    --container-query-breakpoint-16: 16;
+    --container-query-breakpoint-17: 17;
+    --container-query-breakpoint-18: 18;
+    --container-query-breakpoint-19: 19;
+    --container-query-breakpoint-20: 20;
+
+    /* Container-Type */
+    --container-type-1: inline-size;
+    --container-type-2: block-size;
+    --container-type-3: min-inline-size;
+    --container-type-4: min-block-size;
+    --container-type-5: max-inline-size;
+    --container-type-6: max-block-size;
+    --container-type-7: width;
+    --container-type-8: height;
+    --container-type-9: min-width;
+    --container-type-10: min-height;
+    --container-type-11: max-width;
+    --container-type-12: max-height;
+    --container-type-13: aspect-ratio;
+    --container-type-14: min-aspect-ratio;
+    --container-type-15: max-aspect-ratio;
+
+    /* Container Name */
+    --container-name-1: Index_Main_Container;
+    --container-name-2: About_Main_Container;
+    --container-name-3: Projects_Main_Container;
+    --container-name-4: Contact_Main_Container;
+    --container-name-5: Footer_Main_Container;
+
+
+    /* Container-Value */
+
+}
+
 /* UTILITY CLASSES */
 
-* {
-    margin: 0;
-    padding: 0;
+/* Box Sizing Rules */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+/* Remove Default Margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Remove List Styles on ul, ol elements with a  */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set Core Body Defaults */
 body {
-    background-color: #333;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
 }
 
-.index-header {
-    margin: 5em auto;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    width: 78.2%;
-    height: auto;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 12.3px;
-    background-color: hsla(187, 52%, 80%, 0.993);
-    border-bottom: 1px solid #ccc;
-    color: hsla(240, 64%, 27%, 0.993);
+/* A elements that don't have a class get default */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
 }
 
-.index-header .index-header-h1 {
-    display: inline-flex;
-    font-family: 'Black Ops One', sans-serif;
-    font-size: 4em;
-    font-weight: 500;
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
 }
 
-.index-header .index-header-para-1 {
-    display: inline-flex;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 3em;
-    font-weight: 400;
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
 }
 
-.index-header .index-header-para-2 {
-    display: inline-flex;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 1.25em;
-    font-weight: 400;
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+body {
+    background-color: var(--clr-bckgrnd-dark);
+}
+
+.main-container {
+    container-type: var(--container-type-1);
+    container-name: var(--container-name-1);
 }
 
 #indexBtn {
@@ -112,3 +711,33 @@ body {
     filter: drop-shadow(1em 1em 14em hsla(248, 94%, 81%, 0.579));
     box-shadow: inset 0 0 0.5em hsla(248, 94%, 81%, 0.479);
 }
+
+/* Container Queries */
+/* @container (max-width: 500px) {
+    
+} */
+@container (min-width: 23.4375em) {
+    .main-container {
+        inline-size: 100%;
+    }
+}
+
+@container (min-width: 37.1875em) {
+    .main-container {
+        inline-size: 100%;
+    }
+}
+
+@container (min-width: 50.625em) {
+    .main-container {
+        inline-size: 100%;
+    }
+}
+
+@container (min-width: 70.3125em) {
+    .main-container {
+        inline-size: 100%;
+    }
+}
+
+/* Media Queries */

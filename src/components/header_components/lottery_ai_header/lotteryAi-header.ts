@@ -9,7 +9,7 @@ export class LotteryAiHeader extends LotAiHeaderTemplate {
 	constructor() {
 		super();
 
-		this.activateShadowDOM = true;
+		this.activateShadowDOM = false;
 	}
 	connectedCallback(): void {
 		super.connectedCallback();
@@ -19,7 +19,9 @@ export class LotteryAiHeader extends LotAiHeaderTemplate {
 		return /*html*/ `
             ${lotteryAiHeaderSharedHTML.container}
             <style>
+                ${lotteryAiHeaderSharedStyles.root}
                 ${lotteryAiHeaderSharedStyles.container}
+                ${lotteryAiHeaderSharedStyles.queries}
             </style>
         `;
 	}

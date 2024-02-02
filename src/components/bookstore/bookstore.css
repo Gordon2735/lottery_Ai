@@ -1,0 +1,132 @@
+:root {
+    --spacing: 1rem;
+    --highlight-color: #52947c;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic Layout Sections */
+
+.layout {
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.5rem;
+    padding: 0 var(--spacing);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.stage,
+.content,
+.cart {
+    padding: var(--spacing);
+    overflow-y: auto;
+}
+
+.stage {
+    position: relative;
+}
+
+.stage::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-color, var(--highlight-color));
+    filter: brightness(1.5);
+    transition: background-color .5s linear;
+    opacity: 0.25;
+}
+
+.booklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(201px, 1fr));
+    gap: var(--spacing);
+}
+
+.cart {
+    background-color: #f5f3f3;
+}
+
+.cart>*+* {
+    margin-top: 1rem;
+}
+
+/* Desktop Layout */
+
+@media (min-width: 1260px) {
+    .layout {
+        --spacing: 2rem;
+
+        display: grid;
+        min-height: 100vh;
+        grid-template-rows: 3.5rem auto;
+        grid-template-columns: 480px 1fr 130px;
+        overflow-y: hidden;
+    }
+
+    .header {
+        grid-column: 1 / -1;
+    }
+}
+
+/* No-CQ Support Notice */
+
+.support-notice {
+    padding: 1rem;
+    border-radius: .25rem;
+    margin-bottom: var(--spacing);
+    border: 2px solid salmon;
+    background-color: rgba(salmon, .1);
+    line-height: 1.4;
+}
+
+@supports (contain: layout style inline-size) {
+    .support-notice {
+        display: none;
+    }
+}
+
+/* Misc Helper Classes */
+
+.gu-mirror {
+    width: 180px !important;
+}
+
+.capitals {
+    font-size: .75rem;
+    font-weight: bold;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing);
+}
+
+.logo {
+    font-family: "Merriweather", serif;
+}
+
+.by a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+p {
+    margin: 0;
+}
