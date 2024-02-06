@@ -19,8 +19,17 @@
 :root {
 
     /* Color Variables */
+
+    /* Backgrounds */
     --clr-bckgrnd-dark: #333;
-    --clr-bckgrnd-light: #f4f4f4;
+    --clr-bckgrnd_light: hsla(187, 52%, 80%, 0.993);
+
+    --gradient-bckgrnd-dark-0: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 87%, hsla(188, 35%, 58%, 0.993));
+    --gradient-bckgrnd-dark-1: linear-gradient(90deg, hsla(187, 52%, 80%, 0.993) 0%, hsla(188, 98%, 34%, 0.993) 100%);
+    --gradient-bckgrnd-dark-2: linear-gradient(90deg, hsla(187, 52%, 80%, 0.993) 0%, hsla(188, 98%, 34%, 0.993) 100%);
+
+    --gradient-2: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+
 
     /* Font Variables */
     --ff-src-code-pro: 'Source Code Pro', monospace;
@@ -140,36 +149,9 @@
     --filter-shadow-inset-xxxxxl: drop-shadow(0 0 7rem rgba(0, 0, 0, 0.5)) inset;
 
     /* Gradient Variables */
-    --gradient-1: linear-gradient(90deg, #ff5f6d 0%, #ffc371 100%);
-    --gradient-2: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
+    --gradient-1: linear-gradient(90deg, hsla(187, 52%, 80%, 0.993) 0%, hsla(188, 98%, 34%, 0.993) 100%);
     --gradient-3: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
     --gradient-4: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-5: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-6: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-7: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-8: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-9: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-10: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-11: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-12: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-13: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-14: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-15: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-16: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-17: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-18: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-19: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-20: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-21: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-22: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-23: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-24: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-25: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-26: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-27: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-28: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-29: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
-    --gradient-30: linear-gradient(90deg, #f12711 0%, #f5af19 100%);
 
     /* Media Query Variables */
     --mq-phone: 37.5em;
@@ -398,6 +380,53 @@
     --word-break-break-all: break-all;
     --word-break-keep-all: keep-all;
     --word-break-break-word: break-word;
+
+    /* Width Variables */
+    --width-100: 100%;
+    --width-75: 75%;
+    --width-50: 50%;
+    --width-35: 35%;
+    --width-25: 25%;
+    --width-15: 15%;
+    --width-10: 10%;
+    --width-auto: auto;
+    --width-px: 1px;
+    --width-xxs: 0.125rem;
+    --width-xs: 0.25rem;
+    --width-sm: 0.5rem;
+    --width-md: 1rem;
+    --width-lg: 2rem;
+    --width-xl: 3rem;
+    --width-xxl: 4rem;
+    --width-xxxl: 5rem;
+    --width-xxxl-1: 6rem;
+    --width-xxxl-2: 7rem;
+    --width-xxxl-3: 8rem;
+    --width-xxxl-4: 9rem;
+    --width-xxxl-5: 10rem;
+
+    /* Height Variables */
+    --height-100: 100%;
+    --height-75: 75%;
+    --height-50: 50%;
+    --height-25: 25%;
+    --height-15: 15%;
+    --height-10: 10%;
+    --height-auto: auto;
+    --height-px: 1px;
+    --height-xxs: 0.125rem;
+    --height-xs: 0.25rem;
+    --height-sm: 0.5rem;
+    --height-md: 1rem;
+    --height-lg: 2rem;
+    --height-xl: 3rem;
+    --height-xxl: 4rem;
+    --height-xxxl: 5rem;
+    --height-xxxl-1: 6rem;
+    --height-xxxl-2: 7rem;
+    --height-xxxl-3: 8rem;
+    --height-xxxl-4: 9rem;
+    --height-xxxl-5: 10rem;
 
     /* Text Shadow Variables */
     --text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -649,14 +678,13 @@ select {
 }
 
 body {
-    background-color: var(--clr-bckgrnd-dark);
+    background-image: var(--gradient-bckgrnd-dark-0);
 }
 
-.main-container {
-    container-type: var(--container-type-1);
-    container-name: var(--container-name-1);
-}
 
+/* Media Queries */
+
+/*
 #indexBtn {
     margin: 15.5em auto 3.5em 44.3323%;
     display: flex;
@@ -711,33 +739,4 @@ body {
     filter: drop-shadow(1em 1em 14em hsla(248, 94%, 81%, 0.579));
     box-shadow: inset 0 0 0.5em hsla(248, 94%, 81%, 0.479);
 }
-
-/* Container Queries */
-/* @container (max-width: 500px) {
-    
-} */
-@container (min-width: 23.4375em) {
-    .main-container {
-        inline-size: 100%;
-    }
-}
-
-@container (min-width: 37.1875em) {
-    .main-container {
-        inline-size: 100%;
-    }
-}
-
-@container (min-width: 50.625em) {
-    .main-container {
-        inline-size: 100%;
-    }
-}
-
-@container (min-width: 70.3125em) {
-    .main-container {
-        inline-size: 100%;
-    }
-}
-
-/* Media Queries */
+*/

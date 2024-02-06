@@ -25,22 +25,19 @@ lotteryAiHeaderSharedHTML.queries = /*html*/ `
 
 lotteryAiHeaderSharedHTML.container = /*html*/ `
 
+	<figure id="figureLogo" class="figure-logo">
+		<img id="imgLogo" class="img-logo" src="../images/lotteryAi_logo_TRANS-AQUA.png" alt="LotteryAi Logo" />
+		<figcaption id="figCapLogo" class="fig-cap-logo">
+			<p id="figCapLogoP" class="fig-cap-logo-p">
+				LotteryAi
+			</p>
+		</figcaption>
+	</figure>
 	<header id="header" class="header">
-		<figure id="figureLogo" class="figure-logo">
-			<img id="imgLogo" class="img-logo" src="../images/lotteryAi_logo_TRANS-AQUA.png" alt="LotteryAi Logo" />
-			<figcaption id="figCapLogo" class="fig-cap-logo">
-				<p id="figCapLogoP" class="fig-cap-logo-p">
-					LotteryAi
-				</p>
-			</figcaption>
-		</figure>
 		<section id="sectionHeader1" class="section-header-1">			
 			<h1 id="headerH1" class="header-h1">
-				Lottery Ai
-			</h1>
-			<br />
-			<br />
-			<br />
+				LOTTERY Ai
+			</h1>	
 			<p id="headerPara1" class="header-para-1">
 				You have been &nbsp;  <strong> ENABLED </strong>&nbsp;  || &nbsp;  to WIN!
 			</p>
