@@ -300,7 +300,9 @@ lotteryAiHeaderSharedStyles.root = /*css*/ `
         --top-wc-xs: 0.25rem;
         --top-wc-sm: 0.5rem;
         --top-wc-md: 1rem;
+        --top-wc-mdlg: 1.15rem;
         --top-wc-lg: 2rem;
+        --top-wc-xlg: 2.25rem;
         --top-wc-xl: 3rem;
         --top-wc-xxl: 4rem;
         --top-wc-xxxl: 5rem;
@@ -698,7 +700,6 @@ lotteryAiHeaderSharedStyles.container = /*css*/ `
     */
 
     .figure-logo {
-       /* margin: var(--margin-wc-lg) var(--margin-wc-lg) var(--margin-wc-0) var(--margin-wc-lg); */
         display: var(--display-wc-inline-block);
         padding: var(--padding-wc-0);
         position: var(--position-wc-absolute);
@@ -777,8 +778,7 @@ lotteryAiHeaderSharedStyles.container = /*css*/ `
         font-family: var(--ff-wc-bagel-fat-one);
         font-size: var(--fs-wc-xxs);
         font-weight: var(--fw-wc-normal);
-    }
-
+    }  
 
     /* Container Queries */
     /* Container Name is var(--container-name-1) */
@@ -786,7 +786,7 @@ lotteryAiHeaderSharedStyles.container = /*css*/ `
     @container index_main_container (max-width: 1950px) {
 
         .figure-logo{
-            top: var(--top-wc-xl);
+            top: var(--top-wc-sm);
             left: var(--left-wc-mdlg);
         }
         .img-logo {
@@ -800,10 +800,9 @@ lotteryAiHeaderSharedStyles.container = /*css*/ `
         .header-h1 {
             font-size: var(--fs-wc-xxxl-5);
         }
-
     } 
 
-    @container index_main_container (max-width: 1750px) {
+    @container index_main_container (max-width: 1650px) {
 
         .figure-logo{
             top: var(--top-wc-xl);

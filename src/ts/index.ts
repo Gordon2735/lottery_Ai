@@ -9,34 +9,53 @@ import {
 
 console.log('Lottery Ai Index');
 
+init();
+
 const currentLocation: Location = document.location;
 const currentPage: string = currentLocation.hash;
 
 console.info(`currentPage: ${currentPage}`);
 
-// const button: HTMLElement | null = document.getElementById('indexBtn');
+async function init(): Promise<void> {
+	try {
+		const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
 
-// button?.addEventListener('click', (event: MouseEvent) => {
-// 	event.preventDefault();
-// 	console.log('indexBtn EventListener fired');
-// 	window.location.href = '/register';
-// });
+		const scriptHeader: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptHeader, {
+			type: 'module',
+			src: '/src/components/header_components/lottery_ai_header/lotteryai-header_shell.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
 
-const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
-// const indexerHeaderAi_shell: string = /*html*/ `
-//     <script type="module" src="/src/components/header_components/lottery_ai_header/lotteryai-header_shell.js"
-//         content="text/javascript">
-//     </script>
-// `;
+		const scriptCopyright: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptCopyright, {
+			type: 'module',
+			src: '/src/components/legal_components/copyright_comp/copyright-webelistics.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
 
-const scriptHeader: HTMLScriptElement = document.createElement('script');
-setAttributes(scriptHeader, {
-	type: 'module',
-	src: '/src/components/header_components/lottery_ai_header/lotteryai-header_shell.js',
-	content: 'text/javascript',
-	crossOrigin: 'anonymous'
-});
+		await appendChildren(head, [scriptHeader, scriptCopyright]);
 
-// head.insertAdjacentHTML('beforeend', scriptHeader);
+		console.info(
+			`%cThe Index.ts file's "init()" Function has "FIRED"!`,
+			`color: chartreuse; font-size: 1em; font-weight: bold; background-color: black; padding: 5px; border: 2px solid red;`
+		);
 
-appendChildren(head, [scriptHeader]);
+		return;
+	} catch (error) {
+		console.error(
+			`%c
+				The Index.ts file's "init()" Function has produced an Error!
+		
+				ERROR: ${error}
+			`,
+			`color: red; font-size: 2.25em; font-weight: bold; background-color: black; padding: 10px; border: 5px solid red;`
+		);
+
+		return;
+	}
+}

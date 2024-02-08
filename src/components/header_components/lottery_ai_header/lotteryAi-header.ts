@@ -18,11 +18,18 @@ export class LotteryAiHeader extends LotAiHeaderTemplate {
 	override get template(): string {
 		return /*html*/ `
             ${lotteryAiHeaderSharedHTML.container}
+
             <style>
                 ${lotteryAiHeaderSharedStyles.root}
-                ${lotteryAiHeaderSharedStyles.container}
-                ${lotteryAiHeaderSharedStyles.queries}
             </style>
+
+			<style>
+                ${lotteryAiHeaderSharedStyles.container}
+			</style>
+
+			<style>
+                ${lotteryAiHeaderSharedStyles.queries}
+			</style>
         `;
 	}
 }
