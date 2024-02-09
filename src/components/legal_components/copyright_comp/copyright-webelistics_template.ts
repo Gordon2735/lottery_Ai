@@ -24,6 +24,7 @@ class CopyrightWebelisticsTemplate extends HTMLElement {
 	render(template: string): void {
 		const root: ShadowRoot | null | undefined = this.shadowRoot;
 		this.root = root;
+
 		if (this.activateShadowDOM === false) {
 			this.innerHTML = template || this.template;
 			return;

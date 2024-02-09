@@ -5,7 +5,7 @@ import { LotAiHeaderTemplate } from './lotteryai-header_template.js';
 import { lotteryAiHeaderSharedStyles } from './lotteryai-header_sharedStyles.js';
 import { lotteryAiHeaderSharedHTML } from './lotteryai-header_sharedHTML.js';
 
-export class LotteryAiHeader extends LotAiHeaderTemplate {
+class LotteryAiHeader extends LotAiHeaderTemplate {
 	constructor() {
 		super();
 
@@ -34,3 +34,5 @@ export class LotteryAiHeader extends LotAiHeaderTemplate {
 	}
 }
 RegisterComponent('lotteryai-header', LotteryAiHeader);
+
+export { LotteryAiHeader };

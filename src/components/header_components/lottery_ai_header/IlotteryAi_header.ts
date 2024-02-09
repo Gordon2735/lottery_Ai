@@ -26,15 +26,15 @@ interface ILotteryAiHeaderShell {
 interface ILotteryAiHeaderSharedHTML {
 	global: string;
 	shell: string;
-	queries: string;
 	container: string;
+	queries: string;
 }
 interface ILotteryAiHeaderSharedStyles {
 	global: string;
 	root: string;
 	shell: string;
-	queries: string;
 	container: string;
+	queries: string;
 }
 
 export {

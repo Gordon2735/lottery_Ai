@@ -9,7 +9,7 @@ import { LotAiHeaderTemplate } from './lotteryai-header_template.js';
 import { lotteryAiHeaderSharedStyles } from './lotteryai-header_sharedStyles.js';
 import { lotteryAiHeaderSharedHTML } from './lotteryai-header_sharedHTML.js';
 
-export class LotAiHeaderShell extends LotAiHeaderTemplate {
+class LotAiHeaderShell extends LotAiHeaderTemplate {
 	head: HTMLHeadElement;
 	scriptHeader: HTMLScriptElement;
 
@@ -50,3 +50,5 @@ export class LotAiHeaderShell extends LotAiHeaderTemplate {
 	}
 }
 RegisterComponent('lotteryai-header_shell', LotAiHeaderShell);
+
+export { LotAiHeaderShell };

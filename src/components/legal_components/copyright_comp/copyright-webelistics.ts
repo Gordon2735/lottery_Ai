@@ -22,6 +22,12 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 			</section>
 		
 			<style>
+
+				.copyright-section {
+					container-type: inline-size;
+					container-name: copyright_container;
+				} 
+
 				.copyright-section {
 					padding: 0.5em;
 					position: absolute;
@@ -29,19 +35,53 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 					bottom: 0.1rem;
 					width: 100%;
 					color: hsla(0, 0%, 0%, 0.993);
+					z-index: 1000;
 				}
 				.copyright-paragraph {
 					margin: 0 auto 0 auto;
 					text-align: center;
 					font-family: 'Source Code Pro', monospace;
-					font-size: 0.67em;
+					font-size: 0.77em;
 					font-weight: bold;
-					text-shadow: 0.1em 0.1em 0.15em hsla(0, 0%, 0%, 0.393);
+					text-shadow: 0.1em 0.1em 0.1em hsla(0, 0%, 0%, 0.393);
 				}
 				.sup-TM {
 					font-size: 1.177em;
 					text-shadow: none;
 				}
+
+				/* 3) */
+				@container copyright_container (max-width: 1250px) {        
+
+					.copyright-paragraph {
+						font-size: 0.57em;        
+					}
+				}
+
+				/* 4) */
+				@container copyright_container (max-width: 1080px) {
+          
+					.copyright-paragraph {
+							font-size: 0.47em;        
+						}
+				}
+
+				/* 5) */
+				@container copyright_container (max-width: 840px) {
+ 
+					.copyright-paragraph {
+						font-size: 0.37em;        
+					}
+				}
+
+				/* 6) */
+				@container copyright_container (max-width: 600px) {
+					
+					.copyright-paragraph {
+						font-size: 0.3em;        
+					}
+				}
+
 			</style>
 		
 		

@@ -1,6 +1,6 @@
 'use strict';
 
-export class LotAiHeaderTemplate extends HTMLElement {
+class LotAiHeaderTemplate extends HTMLElement {
 	activateShadowDOM: boolean = false;
 	root: ShadowRoot | null | undefined;
 
@@ -15,11 +15,14 @@ export class LotAiHeaderTemplate extends HTMLElement {
 	connectedCallback(): void {
 		if (this.activateShadowDOM === true)
 			this.attachShadow({ mode: 'open' });
+
 		this.render(this.template);
 	}
+
 	render(template: string): void {
-		const root: ShadowRoot | null = this.shadowRoot;
+		const root: ShadowRoot | null | undefined = this.shadowRoot;
 		this.root = root;
+
 		if (this.activateShadowDOM === false) {
 			this.innerHTML = template || this.template;
 			return;
@@ -29,3 +32,5 @@ export class LotAiHeaderTemplate extends HTMLElement {
 		}
 	}
 }
+
+export { LotAiHeaderTemplate };
