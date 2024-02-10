@@ -7,24 +7,34 @@ import {
 	setAttributes
 } from '../components/componentTools/general_helpers.js';
 
-console.log('Lottery Ai Index');
-
 init();
+
+console.log(
+	`
+		Lottery Ai Index file has fired!
+	`
+);
 
 const currentLocation: Location = document.location;
 const currentPage: string = currentLocation.hash;
 
-console.info(`currentPage: ${currentPage}`);
+console.info(
+	`
+		%c:::::::: TESTING * TESTING * TESTING ::::::::
+			currentPage: ${currentPage}
+	`,
+	'color: chartreuse; font-size: 1.25em; font-weight: bold;'
+);
 
 async function init(): Promise<void> {
 	try {
 		const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
 
-		const scriptHeader: HTMLScriptElement =
+		const scriptWrapperShell: HTMLScriptElement =
 			document.createElement('script');
-		setAttributes(scriptHeader, {
+		setAttributes(scriptWrapperShell, {
 			type: 'module',
-			src: '/src/components/header_components/lottery_ai_header/lotteryai-header_shell.js',
+			src: '/src/components/wrapper_components/indexWrapper_comp/index-wrapper_shell.js',
 			content: 'text/javascript',
 			crossOrigin: 'anonymous'
 		});
@@ -38,7 +48,7 @@ async function init(): Promise<void> {
 			crossOrigin: 'anonymous'
 		});
 
-		await appendChildren(head, [scriptHeader, scriptCopyright]);
+		appendChildren(head, [scriptWrapperShell, scriptCopyright]);
 
 		console.info(
 			`%cThe Index.ts file's "init()" Function has "FIRED"!`,

@@ -36,12 +36,19 @@ class LotAiHeaderShell extends LotAiHeaderTemplate {
 		super.connectedCallback();
 
 		appendChildren(this.head, [this.scriptHeader]);
+
+		console.info(
+			`
+				The Lottery Ai Header Shell component has been connected to the DOM!
+			`
+		);
 	}
 
 	override get template(): string {
 		return /*html*/ `
 
             ${lotteryAiHeaderSharedHTML.shell}
+
             <style>
                 ${lotteryAiHeaderSharedStyles.shell}
             </style>
@@ -50,5 +57,3 @@ class LotAiHeaderShell extends LotAiHeaderTemplate {
 	}
 }
 RegisterComponent('lotteryai-header_shell', LotAiHeaderShell);
-
-export { LotAiHeaderShell };

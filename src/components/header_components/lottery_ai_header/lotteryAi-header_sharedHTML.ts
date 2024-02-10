@@ -5,8 +5,7 @@ import { ILotteryAiHeaderSharedHTML } from './Ilotteryai_header.js';
 const lotteryAiHeaderSharedHTML: ILotteryAiHeaderSharedHTML = {
 	global: '',
 	shell: '',
-	container: '',
-	queries: ''
+	contents: ''
 };
 
 lotteryAiHeaderSharedHTML.global = /*html*/ `
@@ -18,9 +17,8 @@ lotteryAiHeaderSharedHTML.shell = /*html*/ `
     
 `;
 
-lotteryAiHeaderSharedHTML.container = /*html*/ `
+lotteryAiHeaderSharedHTML.contents = /*html*/ `
 
-	<main id="mainContainer" class="main-container">
 		<figure id="figureLogo" class="figure-logo">
 			<img id="imgLogo" class="img-logo" src="../images/lotteryAi_logo_TRANS-AQUA.png" alt="LotteryAi Logo" />
 			<figcaption id="figCapLogo" class="fig-cap-logo figcap">
@@ -47,30 +45,8 @@ lotteryAiHeaderSharedHTML.container = /*html*/ `
 						this tool equips you with enormous &nbsp; ENABLING POWER!
 				</p>  
 			</section> 
-		</header>
-		<figure id="figureSlip" class="figure-slip">
-			<img id="imgSlip" class="img-slip" src="../images/lottery-slip-640x451.png" alt="Lottery Slip" />
-			<figcaption id="figCapSlip" class="fig-cap-slip figcap">
-				<p id="figCapSlipP" class="fig-cap-slip-p figcap-p">
-					Lottery Slip
-				</p>
-			</figcaption>
-		</figure>
-		<figure id="figureLotteryBalls" class="figure-lottery-balls">
-			<img id="imgLotteryBalls" class="img-lottery-balls" src="../images/lottery-balls-2.png" alt="Lottery Balls" />
-			<figcaption id="figCapBalls" class="fig-cap-balls figcap">
-				<p id="figCapBallsP" class="fig-cap-balls-p figcap-p">
-					Lottery Balls
-				</p>
-			</figcaption>
-		</figure>
-	</main>
+		</header>		
 
-`;
-
-lotteryAiHeaderSharedHTML.queries = /*html*/ `
-    
-    
 `;
 
 export { lotteryAiHeaderSharedHTML };

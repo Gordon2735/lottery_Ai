@@ -13,18 +13,21 @@ class LotteryAiHeader extends LotAiHeaderTemplate {
 	}
 	connectedCallback(): void {
 		super.connectedCallback();
+
+		console.info(
+			`
+				The Lottery Ai Header component has been connected to the DOM!
+			`
+		);
 	}
 
 	override get template(): string {
 		return /*html*/ `
-            ${lotteryAiHeaderSharedHTML.container}
 
-            <style>
-                ${lotteryAiHeaderSharedStyles.root}
-            </style>
+            ${lotteryAiHeaderSharedHTML.contents}
 
 			<style>
-                ${lotteryAiHeaderSharedStyles.container}
+				${lotteryAiHeaderSharedStyles.contents}
 			</style>
 
 			<style>
@@ -34,5 +37,3 @@ class LotteryAiHeader extends LotAiHeaderTemplate {
 	}
 }
 RegisterComponent('lotteryai-header', LotteryAiHeader);
-
-export { LotteryAiHeader };

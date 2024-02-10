@@ -1,45 +1,43 @@
-// Interface Lottery Ai Header
-
 'use strict';
 
-interface ILotteryAiHeader {
+interface IIndexWrapper {
 	activateShadowDOM: boolean;
 	root: ShadowRoot | null | undefined;
 	template: string;
 	connectedCallback(): void;
 }
 
-interface ILotteryAiHeaderTemplate {
+interface IIndexWrapperTemplate {
 	activateShadowDOM: boolean;
 	root: ShadowRoot | null | undefined;
 	template: string;
 	connectedCallback(): void;
 }
 
-interface ILotteryAiHeaderShell {
+interface IIndexWrapperShell {
 	activateShadowDOM: boolean;
 	root: ShadowRoot | null | undefined;
 	template: string;
 	connectedCallback(): void;
 }
 
-interface ILotteryAiHeaderSharedHTML {
+interface IIndexWrapperSharedHTML {
 	global: string;
 	shell: string;
-	contents: string;
+	container: string;
 }
-
-interface ILotteryAiHeaderSharedStyles {
+interface IIndexWrapperSharedStyles {
 	global: string;
+	root: string;
 	shell: string;
-	contents: string;
+	container: string;
 	queries: string;
 }
 
 export {
-	ILotteryAiHeader as default,
-	ILotteryAiHeaderTemplate,
-	ILotteryAiHeaderShell,
-	ILotteryAiHeaderSharedHTML,
-	ILotteryAiHeaderSharedStyles
+	IIndexWrapper,
+	IIndexWrapperTemplate,
+	IIndexWrapperShell,
+	IIndexWrapperSharedHTML,
+	IIndexWrapperSharedStyles
 };

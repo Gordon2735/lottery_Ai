@@ -93,11 +93,9 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 
 		console.info(
 			`
-			👋 Hello! This is the Copyright Webelistics Component.
+			👋 Hello! The Copyright Webelistics Component has fired and is now active.
 			`
 		);
 	}
 }
 RegisterComponent('copyright-webelistics', CopyrightWebelistics);
-
-export { CopyrightWebelistics };
