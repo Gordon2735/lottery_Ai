@@ -9,12 +9,6 @@ import {
 
 init();
 
-console.log(
-	`
-		Lottery Ai Index file has fired!
-	`
-);
-
 const currentLocation: Location = document.location;
 const currentPage: string = currentLocation.hash;
 
@@ -48,7 +42,7 @@ async function init(): Promise<void> {
 			crossOrigin: 'anonymous'
 		});
 
-		appendChildren(head, [scriptWrapperShell, scriptCopyright]);
+		await appendChildren(head, [scriptWrapperShell, scriptCopyright]);
 
 		console.info(
 			`%cThe Index.ts file's "init()" Function has "FIRED"!`,

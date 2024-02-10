@@ -13,7 +13,7 @@ lotteryAiHeaderSharedHTML.global = /*html*/ `
 
 lotteryAiHeaderSharedHTML.shell = /*html*/ `
     
-    <lotteryai-header id="lotteryAiHeader" class="lotteryAi-header"></lotteryai-header>
+    	<lotteryai-header id="lotteryAiHeader" class="lotteryAi-header"></lotteryai-header>
     
 `;
 

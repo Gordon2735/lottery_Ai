@@ -12,6 +12,7 @@ import { lotteryAiHeaderSharedHTML } from './lotteryai-header_sharedHTML.js';
 class LotAiHeaderShell extends LotAiHeaderTemplate {
 	head: HTMLHeadElement;
 	scriptHeader: HTMLScriptElement;
+	init: () => void;
 
 	constructor() {
 		super();
@@ -31,11 +32,25 @@ class LotAiHeaderShell extends LotAiHeaderTemplate {
 
 		this.head = head;
 		this.scriptHeader = scriptHeader;
+
+		const init: () => void = async (): Promise<void> => {
+			try {
+				await appendChildren(this.head, [this.scriptHeader]);
+			} catch (error: unknown) {
+				console.error(
+					`
+						An error has occurred in the Lottery Ai Header "init()" Function :::: ERROR: ${error}
+					`
+				);
+			}
+		};
+
+		this.init = init;
 	}
 	connectedCallback(): void {
 		super.connectedCallback();
 
-		appendChildren(this.head, [this.scriptHeader]);
+		this.init();
 
 		console.info(
 			`

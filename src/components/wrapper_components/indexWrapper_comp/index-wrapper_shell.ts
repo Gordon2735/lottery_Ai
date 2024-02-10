@@ -1,8 +1,8 @@
 'use strict';
 
 import { IndexWrapperTemplate } from './index-wrapper_template.js';
-import { RegisterComponent } from '../../componentTools/general_helpers.js';
 import {
+	RegisterComponent,
 	setAttributes,
 	appendChildren
 } from '../../componentTools/general_helpers.js';
@@ -75,7 +75,7 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 					this.scriptWhiteNumberBalls
 				]);
 				return;
-			} catch (error) {
+			} catch (error: unknown) {
 				console.error(
 					`
                         The Index Wrapper Shell Component's "init()" Function has produced an Error!
