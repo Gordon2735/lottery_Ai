@@ -33,7 +33,7 @@ lotteryAiHeaderSharedHTML.contents = /*html*/ `
 					LOTTERY Ai
 				</h1>	
 				<p id="headerPara1" class="header-para-1">
-					You have been &nbsp;  <strong> ENABLED </strong>&nbsp;  || &nbsp;  to WIN!
+					You have been <strong> ENABLED </strong> || to WIN!
 				</p>
 				<br />
 				<br />

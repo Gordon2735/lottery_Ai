@@ -49,7 +49,7 @@ lotteryAiHeaderSharedStyles.contents = /*css*/ `
 
     .fig-cap-logo-p {
         display: var(--display-wc-none);
-        font-family: var(--ff-wc-black-ops-one);
+        font-family: var(--ff-wc-src-code-pro);
         font-size: var(--fs-wc-md);
         font-weight: var(--fw-wc-normal);
         text-align: var(--text-align-wc-center);
@@ -95,7 +95,7 @@ lotteryAiHeaderSharedStyles.contents = /*css*/ `
     .header-para-1 {
         margin: var(--margin-wc-0) var(--margin-wc-auto);
         text-align: var(--text-align-wc-center);
-        font-family: var(--ff-wc-bagel-fat-one);
+        font-family: var(--ff-wc-src-code-pro);
         font-size: var(--fs-wc-md);
         font-weight: var(--fw-wc-normal);
     }

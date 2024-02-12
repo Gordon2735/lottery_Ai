@@ -25,6 +25,11 @@ indexWrapperSharedHTML.container = /*html*/ `
         <lotteryai-header_shell id="lotteryAiHeaderShell" class="lotteryAi-header-shell"></lotteryai-header_shell>            
         <lottery-slip id="lotterySlip" class="lottery-slip"></lottery-slip>
         <whitenumber-balls id="whiteNumberBalls" class="white-number-balls"></whitenumber-balls>
+		<power-ball id="powerBall" class="power-ball"></power-ball>
+		<mega-millions id="megaMillion" class="mega-million"></mega-millions>
+		<grant-scratch id="grantScratch" class="grant-scratch"></grant-scratch>
+		<hit-250 id="hit250" class="hit-250"></hit-250>
+		<pick-stand id="pickStand" class="pick-stand"></pick-stand>
 
 	</main>
 

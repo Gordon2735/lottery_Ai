@@ -17,7 +17,7 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 
 			<section id="copyrightSection" class="copyright-section">
 				<p id="copyrightParagraph" class="copyright-paragraph">
-					© COPYRIGHT 2021-2024 LOTTERY Ai<sup class="sup-TM">™️</sup> | Team-Webelistics<sup class="sup-TM">™️</sup>, LLC. All rights reserved.
+				&#169; COPYRIGHT 2023-2024 LOTTERY Ai<sup class="sup-TM">™️</sup> || Team-Webelistics<sup class="sup-TM">™️</sup>, LLC || All rights reserved.
 				</p>			
 			</section>
 		
@@ -41,13 +41,27 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 					margin: 0 auto 0 auto;
 					text-align: center;
 					font-family: 'Source Code Pro', monospace;
-					font-size: 0.77em;
+					font-size: 0.60em;
 					font-weight: bold;
-					text-shadow: 0.1em 0.1em 0.1em hsla(0, 0%, 0%, 0.393);
+					text-shadow: 0.1em 0.1em 0.1em hsla(0, 0%, 0%, 0.493);
+					letter-spacing: 0.1em;
+					cursor: pointer;
 				}
 				.sup-TM {
-					font-size: 1.177em;
+					font-size: 1.227em;
 					text-shadow: none;
+				}
+
+				.copyright-paragraph:hover,
+				.copyright-paragraph:focus {
+					color: hsla(203, 56%, 82%, 0.893);
+					letter-spacing: 0.17em;
+				}
+
+				.copyright-paragraph:active {
+					color: hsla(0, 98%, 50%, 0.793);
+					letter-spacing: 0.21em;
+					opacity: 0.7;
 				}
 
 				/* 3) */
@@ -62,7 +76,7 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 				@container copyright_container (max-width: 1080px) {
           
 					.copyright-paragraph {
-							font-size: 0.47em;        
+							font-size: 0.50em;        
 						}
 				}
 
@@ -70,7 +84,7 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 				@container copyright_container (max-width: 840px) {
  
 					.copyright-paragraph {
-						font-size: 0.37em;        
+						font-size: 0.47em;        
 					}
 				}
 
@@ -78,7 +92,7 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 				@container copyright_container (max-width: 600px) {
 					
 					.copyright-paragraph {
-						font-size: 0.3em;        
+						font-size: 0.40em;        
 					}
 				}
 

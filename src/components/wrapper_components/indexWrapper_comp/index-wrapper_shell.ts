@@ -15,7 +15,12 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 	scriptHeaderShell: HTMLScriptElement;
 	scriptLotterySlip: HTMLScriptElement;
 	scriptWhiteNumberBalls: HTMLScriptElement;
+	scriptPowerBall: HTMLScriptElement;
 	init: () => Promise<void>;
+	scriptMegaMil: HTMLScriptElement;
+	scriptGrantScratch: HTMLScriptElement;
+	scriptHit250: HTMLScriptElement;
+	scriptPickStand: HTMLScriptElement;
 
 	constructor() {
 		super();
@@ -60,11 +65,61 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 			crossOrigin: 'anonymous'
 		});
 
+		const scriptPowerBall: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptPowerBall, {
+			type: 'module',
+			src: '/src/components/image_components/lotteryImg_comp/powerball_comp/power-ball.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
+		const scriptMegaMil: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptMegaMil, {
+			type: 'module',
+			src: '/src/components/image_components/lotteryImg_comp/megaMil_comp/mega-mil.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
+		const scriptGrantScratch: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptGrantScratch, {
+			type: 'module',
+			src: '/src/components/image_components/lotteryImg_comp/grantScratch_comp/grant-scratch.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
+		const scriptHit250: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptHit250, {
+			type: 'module',
+			src: '/src/components/image_components/lotteryImg_comp/hit250_comp/hit-250.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
+		const scriptPickStand: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptPickStand, {
+			type: 'module',
+			src: '/src/components/image_components/lotteryImg_comp/pickStand_comp/pick-stand.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
 		this.head = head;
 		this.scriptWrapper = scriptWrapper;
 		this.scriptHeaderShell = scriptHeaderShell;
 		this.scriptLotterySlip = scriptLotterySlip;
 		this.scriptWhiteNumberBalls = scriptWhiteNumberBalls;
+		this.scriptPowerBall = scriptPowerBall;
+		this.scriptMegaMil = scriptMegaMil;
+		this.scriptGrantScratch = scriptGrantScratch;
+		this.scriptHit250 = scriptHit250;
+		this.scriptPickStand = scriptPickStand;
 
 		const init: () => Promise<void> = async (): Promise<void> => {
 			try {
@@ -72,7 +127,12 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 					this.scriptWrapper,
 					this.scriptHeaderShell,
 					this.scriptLotterySlip,
-					this.scriptWhiteNumberBalls
+					this.scriptWhiteNumberBalls,
+					this.scriptPowerBall,
+					this.scriptMegaMil,
+					this.scriptGrantScratch,
+					this.scriptHit250,
+					this.scriptPickStand
 				]);
 				return;
 			} catch (error: unknown) {
