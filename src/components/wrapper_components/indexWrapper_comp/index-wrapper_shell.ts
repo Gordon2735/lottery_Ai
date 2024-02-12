@@ -16,11 +16,11 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 	scriptLotterySlip: HTMLScriptElement;
 	scriptWhiteNumberBalls: HTMLScriptElement;
 	scriptPowerBall: HTMLScriptElement;
-	init: () => Promise<void>;
 	scriptMegaMil: HTMLScriptElement;
 	scriptGrantScratch: HTMLScriptElement;
 	scriptHit250: HTMLScriptElement;
 	scriptPickStand: HTMLScriptElement;
+	init: () => Promise<void>;
 
 	constructor() {
 		super();
@@ -123,7 +123,7 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 
 		const init: () => Promise<void> = async (): Promise<void> => {
 			try {
-				await appendChildren(head, [
+				await appendChildren(this.head, [
 					this.scriptWrapper,
 					this.scriptHeaderShell,
 					this.scriptLotterySlip,
