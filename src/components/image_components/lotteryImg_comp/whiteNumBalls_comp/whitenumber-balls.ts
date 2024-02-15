@@ -30,11 +30,11 @@ class WhiteNumberBalls extends WhiteNumberBallsTemplate {
                 .section-balls {
                     position: var(--position-wc-absolute);
                     display: var(--display-wc-inline-block);
-                    top: var(--top-wc-xxxl-26a);
+                    top: var(--top-wc-xxxl-25az);
                     left: var(--left-wc-xxxl-27a);
                     width: var(--width-wc-100a);
                     z-index: var(--z-index-wc-10);
-                    opacity: var(--opacity-wc-25);
+                    opacity: var(--opacity-wc-05);
                 }
 
                 .figure-lottery-balls {

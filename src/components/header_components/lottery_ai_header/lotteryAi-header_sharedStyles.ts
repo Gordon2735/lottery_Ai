@@ -76,9 +76,10 @@ lotteryAiHeaderSharedStyles.contents = /*css*/ `
         filter: var(--filter-shadow-wc-xmda);
         color: var(--clr-fc-wc-1);
         text-shadow: var(--text-shadow-wc-xmd);
-        overflow: var(--overflow-wc-hidden);
+        /*overflow: var(--overflow-wc-hidden);*/
+        /*z-index: var(--z-index-wc-10);*/
     }
-
+ 
     .section-header-1 {
         text-align: var(--text-align-wc-center);
     }
@@ -106,7 +107,7 @@ lotteryAiHeaderSharedStyles.contents = /*css*/ `
         font-family: var(--ff-wc-bagel-fat-one);
         font-size: var(--fs-wc-xxs);
         font-weight: var(--fw-wc-normal);
-    }  
+    }     
 
 `;
 

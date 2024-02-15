@@ -35,8 +35,6 @@ lotteryAiHeaderSharedHTML.contents = /*html*/ `
 				<p id="headerPara1" class="header-para-1">
 					You have been <strong> ENABLED </strong> || to WIN!
 				</p>
-				<br />
-				<br />
 				<p id="headerPara2" class="header-para-2">
 					<strong>Congratulations</strong>: &nbsp;&nbsp;  you &nbsp; NOW POSSESS &nbsp; a very advanced personal tool!
 				<br />

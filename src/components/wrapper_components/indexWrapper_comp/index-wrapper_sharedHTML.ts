@@ -20,6 +20,8 @@ indexWrapperSharedHTML.shell = /*html*/ `
 
 indexWrapperSharedHTML.container = /*html*/ `
 
+	<nav-menu_shell id="navMenuShell" class="nav-menu-shell"></nav-menu_shell>
+
 	<main id="mainContainer" class="main-container">
         
         <lotteryai-header_shell id="lotteryAiHeaderShell" class="lotteryAi-header-shell"></lotteryai-header_shell>            
@@ -30,6 +32,7 @@ indexWrapperSharedHTML.container = /*html*/ `
 		<grant-scratch id="grantScratch" class="grant-scratch"></grant-scratch>
 		<hit-250 id="hit250" class="hit-250"></hit-250>
 		<pick-stand id="pickStand" class="pick-stand"></pick-stand>
+		<money-pile id="moneyPile" class="money-pile"></money-pile>
 
 	</main>
 

@@ -12,7 +12,7 @@ class IndexWrapper extends IndexWrapperTemplate {
 		this.activateShadowDOM = false;
 	}
 
-	connectedCallback(): void {
+	override connectedCallback(): void {
 		super.connectedCallback();
 
 		console.info(

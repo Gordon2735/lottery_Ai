@@ -13,6 +13,7 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 	head: HTMLHeadElement;
 	scriptWrapper: HTMLScriptElement;
 	scriptHeaderShell: HTMLScriptElement;
+	scriptNavMenuShell: HTMLScriptElement;
 	scriptLotterySlip: HTMLScriptElement;
 	scriptWhiteNumberBalls: HTMLScriptElement;
 	scriptPowerBall: HTMLScriptElement;
@@ -20,6 +21,7 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 	scriptGrantScratch: HTMLScriptElement;
 	scriptHit250: HTMLScriptElement;
 	scriptPickStand: HTMLScriptElement;
+	scriptMoneyPile: HTMLScriptElement;
 	init: () => Promise<void>;
 
 	constructor() {
@@ -43,6 +45,15 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 		setAttributes(scriptHeaderShell, {
 			type: 'module',
 			src: '/src/components/header_components/lottery_ai_header/lotteryai-header_shell.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
+		const scriptNavMenuShell: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptNavMenuShell, {
+			type: 'module',
+			src: '/src/components/menu_components/navMenu_comp/nav-menu_shell.js',
 			content: 'text/javascript',
 			crossOrigin: 'anonymous'
 		});
@@ -110,9 +121,19 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 			crossOrigin: 'anonymous'
 		});
 
+		const scriptMoneyPile: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptMoneyPile, {
+			type: 'module',
+			src: '/src/components/image_components/lotteryImg_comp/moneyPile_comp/money-pile.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
 		this.head = head;
 		this.scriptWrapper = scriptWrapper;
 		this.scriptHeaderShell = scriptHeaderShell;
+		this.scriptNavMenuShell = scriptNavMenuShell;
 		this.scriptLotterySlip = scriptLotterySlip;
 		this.scriptWhiteNumberBalls = scriptWhiteNumberBalls;
 		this.scriptPowerBall = scriptPowerBall;
@@ -120,19 +141,22 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 		this.scriptGrantScratch = scriptGrantScratch;
 		this.scriptHit250 = scriptHit250;
 		this.scriptPickStand = scriptPickStand;
+		this.scriptMoneyPile = scriptMoneyPile;
 
 		const init: () => Promise<void> = async (): Promise<void> => {
 			try {
 				await appendChildren(this.head, [
 					this.scriptWrapper,
 					this.scriptHeaderShell,
+					this.scriptNavMenuShell,
 					this.scriptLotterySlip,
 					this.scriptWhiteNumberBalls,
 					this.scriptPowerBall,
 					this.scriptMegaMil,
 					this.scriptGrantScratch,
 					this.scriptHit250,
-					this.scriptPickStand
+					this.scriptPickStand,
+					this.scriptMoneyPile
 				]);
 				return;
 			} catch (error: unknown) {
@@ -164,14 +188,14 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 
 	public get template(): string {
 		return /*html*/ `
+		
+			<style>
+				${indexWrapperSharedStyles.global}
+			</style>
 
 			<style>
 				${indexWrapperSharedStyles.root}
 			</style>
-
-			<style>
-				${indexWrapperSharedStyles.global}
-			</style>        
 
 			${indexWrapperSharedHTML.shell}
         
