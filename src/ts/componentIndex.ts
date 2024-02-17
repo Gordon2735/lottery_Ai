@@ -15,7 +15,7 @@ const currentPage: string = currentLocation.hash;
 console.info(
 	`
 		%c:::::::: TESTING * TESTING * TESTING ::::::::
-			The Index.ts is testing the 'currentPage': ${currentPage}
+			The componentIndex.ts is testing 'currentPage': ${currentPage}
 	`,
 	'color: chartreuse; font-size: 1.25em; font-weight: bold;'
 );
@@ -23,15 +23,6 @@ console.info(
 async function init(): Promise<void> {
 	try {
 		const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
-
-		const scriptWrapperShell: HTMLScriptElement =
-			document.createElement('script');
-		setAttributes(scriptWrapperShell, {
-			type: 'module',
-			src: '/src/components/wrapper_components/indexWrapper_comp/index-wrapper_shell.js',
-			content: 'text/javascript',
-			crossOrigin: 'anonymous'
-		});
 
 		const scriptCopyright: HTMLScriptElement =
 			document.createElement('script');
@@ -42,10 +33,10 @@ async function init(): Promise<void> {
 			crossOrigin: 'anonymous'
 		});
 
-		await appendChildren(head, [scriptWrapperShell, scriptCopyright]);
+		await appendChildren(head, [scriptCopyright]);
 
 		console.info(
-			`%cThe Index.ts file's "init()" Function has "FIRED"!`,
+			`%cThe componentIndex.ts file's "init()" Function has "FIRED"!`,
 			`color: chartreuse; font-size: 1em; font-weight: bold; background-color: black; padding: 5px; border: 2px solid red;`
 		);
 
@@ -53,7 +44,7 @@ async function init(): Promise<void> {
 	} catch (error: unknown) {
 		console.error(
 			`%c
-				The Index.ts file's "init()" Function has produced an Error!
+				The componentIndex.ts file's "init()" Function has produced an Error!
 		
 				ERROR: ${error}
 			`,

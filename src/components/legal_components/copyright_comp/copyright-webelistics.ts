@@ -12,7 +12,7 @@ class CopyrightWebelistics extends CopyrightWebelisticsTemplate {
 		this.activateShadowDOM = true;
 	}
 
-	override get template(): string {
+	public get template(): string {
 		return /*html*/ `
 
 			<section id="copyrightSection" class="copyright-section">

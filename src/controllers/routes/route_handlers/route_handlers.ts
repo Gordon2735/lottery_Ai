@@ -379,22 +379,22 @@ async function logout(req: Request, res: Response): Promise<void> {
 	}
 }
 
-async function homeHandler(_req: Request, res: Response): Promise<void> {
+async function powerballHandler(_req: Request, res: Response): Promise<void> {
 	try {
-		const home_index: string = `<script type="module" src="/src/ts/home_index.js" content="text/javascript"></script>`;
+		const scriptPowerBallGameShell: string = `<script type="module" src="/src/components/game_components/powerBall_components/powerBall_game/powerball-game_shell.js" content="text/javascript"></script>`;
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
-		res.render('home', {
-			title: 'Home',
-			layout: 'main',
+		res.render('powerball', {
+			title: 'Powerball®️ Game',
+			layout: 'powerball_main',
 			partials: 'partials',
 			helpers: 'helpers',
-			script: [home_index]
+			script: [scriptPowerBallGameShell]
 		});
 
 		return Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
-		console.error(`homeHandler had an ERROR: ${error}`);
+		console.error(`powerballHandler had an ERROR: ${error}`);
 		res.status(500).send('Server Error');
 
 		return Promise.reject() as Promise<void>;
@@ -408,5 +408,5 @@ export {
 	loginHandler,
 	loginPostHandler,
 	logout,
-	homeHandler
+	powerballHandler
 };

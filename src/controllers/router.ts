@@ -9,7 +9,7 @@ import index_route, {
 	login_route,
 	loginPOST_route,
 	logout_route,
-	home_index_route
+	powerball_route
 } from './routes/routes.js';
 
 const app: Application = express();
@@ -25,7 +25,7 @@ const routes: Router[] = [
 	login_route,
 	loginPOST_route,
 	logout_route,
-	home_index_route
+	powerball_route
 ];
 
 const thisRoute: express.Router = router;
