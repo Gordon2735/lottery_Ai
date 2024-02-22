@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 'use strict';
 
@@ -6,34 +5,37 @@ import { SidePanelTemplate } from './side-panel_template.js';
 import { sidePanel_sharedStyles } from './side-panel_sharedStyles.js';
 import { sidePanel_sharedHTML } from './side-panel_sharedHTML.js';
 import { RegisterComponent } from '../../componentTools/general_helpers.js';
-
-export class SidePanel extends SidePanelTemplate {
-	override activateShadowDOM: boolean;
-	// body: HTMLBodyElement | null | undefined;
+class SidePanel extends SidePanelTemplate {
 	document: Document | null = this.ownerDocument;
-	landingAnchor: HTMLElement | null | undefined;
-	historyAnchor: HTMLElement | null | undefined;
-	resumeAnchor: HTMLElement | null | undefined;
-	projectsAnchor: HTMLElement | null | undefined;
-	goalsAnchor: HTMLElement | null | undefined;
-	codeExAnchor: HTMLElement | null | undefined;
-	root: ShadowRoot | null;
-	// declare root: ShadowRoot;
-	menuContainer: HTMLElement | any;
+	lotteryAnchor: HTMLElement | null | undefined;
+	powerballAnchor: HTMLElement | null | undefined;
+	mega_milAnchor: HTMLElement | null | undefined;
+	cash5Anchor: HTMLElement | null | undefined;
+	pick3Anchor: HTMLElement | null | undefined;
+	pick4Anchor: HTMLElement | null | undefined;
+	cash_popAnchor: HTMLElement | null | undefined;
+	winningsAnchor: HTMLElement | null | undefined;
+	today_numsAnchor: HTMLElement | null | undefined;
+	historiesAnchor: HTMLElement | null | undefined;
+	termsAnchor: HTMLElement | null | undefined;
+	q_aAnchor: HTMLElement | null | undefined;
+	securityAnchor: HTMLElement | null | undefined;
+	aboutAnchor: HTMLElement | null | undefined;
+	contactAnchor: HTMLElement | null | undefined;
+	menuContainer: HTMLElement | undefined;
 
 	constructor() {
 		super();
 
-		const root: ShadowRoot | null = this.shadowRoot;
-
 		this.activateShadowDOM = false;
-		this.root = root;
 
-		let menuContainer: HTMLElement | any;
+		let menuContainer: HTMLElement | undefined;
 		this.menuContainer = menuContainer;
 	}
-	override connectedCallback() {
+	connectedCallback() {
 		super.connectedCallback();
+
+		conLog();
 
 		class Menu {
 			container: HTMLElement | null | undefined;
@@ -43,9 +45,8 @@ export class SidePanel extends SidePanelTemplate {
 			tsSymbol: HTMLElement | undefined | null;
 			jsSymbol: HTMLElement | undefined | null;
 			menuBody: HTMLBodyElement | null | undefined;
-			menuContainer: HTMLElement | any;
+			menuContainer: HTMLElement | undefined;
 			itemHTML: HTMLElement | string | undefined;
-			declare root: ShadowRoot;
 
 			slide(): void {
 				this.container = document.getElementById('container');
@@ -74,7 +75,7 @@ export class SidePanel extends SidePanelTemplate {
 						(this.vanilla!.style.animation = 'FadeOut 1s'),
 						(this.isMenuShown = false));
 			}
-			elementID(doc: Document, element: string): HTMLElement | any {
+			elementID(doc: Document, element: string): HTMLElement | null {
 				const getElement: HTMLElement | null =
 					doc.getElementById(element);
 				return getElement;
@@ -83,31 +84,47 @@ export class SidePanel extends SidePanelTemplate {
 			constructor() {
 				this.isMenuShown = false;
 
-				// const menuBody: ShadowRoot = this.shadowRoot;
 				const menuBody: HTMLBodyElement | null =
 					document.querySelector('body');
 				this.menuContainer = menuBody?.querySelector('#container') as
 					| HTMLElement
-					| any;
-				// menuBody?.querySelector('#container');
+					| undefined;
 
 				const itemHTML: HTMLElement | string | undefined = /*html*/ `
-                    <div id="landingDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="landingA" class="landing-a" href="/landing">Landing Page</a></div>
-                    <div id="historyDiv" class="item" >&#127915;&nbsp;&nbsp;&nbsp;<a id="historyA" class="history-a" href="/history">Gordon's History</a></div>
-                    <div class="item">&#128203;&nbsp;&nbsp;&nbsp;<a id="resume" class="resume" href="/resume">Resume</a></div>
-                    <div  id:="projects"  class="item">&#128230;&nbsp;&nbsp;&nbsp;<a id="projectsAnchor" class="project-anchor"
-                        href="/projects">Projects</a></div>
-                    <div  id:="goals"  class="item">&#128211;&nbsp;&nbsp;&nbsp;<a id="goalsAnchor" class="goals-anchor"
-                        href="/goals">Gordon's Goals</a></div>
-                    <div class="item">&lambda;&nbsp;&nbsp;&nbsp;<a id="codeEx" class="code-ex">Code Examples &#160 <&#160|&#160></a></div>
-                    <img id="big-3" src="/src/components/componentTools/resources/images/html-js-css_transparent.png"
-                        alt="big three languages image" class="big-3">
-                    <hr id="line" class="line">
-                    <img id="js-symbol" src="/src/components/componentTools/resources/images/javascript-transparent.png"
-                        alt="big three languages image" class="js-symbol">
-                    <img id="ts-symbol" src="/src/components/componentTools/resources/images/typescript-transparent_tall.png"
-                        alt="big three languages image" class="ts-symbol">
-                    <hr id="line2" class="line2">
+                    <div id="lotteryDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="lotteryA" class="lottery-a" 
+						href="/">Lottery</a></div>
+                    <div id="powerballDiv" class="item" >&#127915;&nbsp;&nbsp;&nbsp;<a id="powerballAnchor" class="powerball-a" href="/powerball">Powerball</a></div>
+                    <div id="mega_milDiv" class="item">&#128203;&nbsp;&nbsp;&nbsp;<a id="mega_mil" class="mega_mil" 
+						href="/mega_mil">Mega-Millions</a></div>
+                    <div  id:="cash5Div"  class="item">&#128230;&nbsp;&nbsp;&nbsp;<a id="cash5Anchor" class="cash5-anchor"
+                        href="/cash5">Cash 5</a></div>
+                    <div  id:="pick3Div"  class="item">&#128211;&nbsp;&nbsp;&nbsp;<a id="pick3Anchor" class="pick3-anchor"
+                        href="/pick3">Pick 3</a></div>
+                    <div id="pick4Div" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="pick4Anchor" class="pick4-anchor"
+					 	href="/pick4">Pick 4<&#160|&#160></a></div>
+                    <div id="cash_popDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="cash_popAnchor" class="cash_pop-anchor"
+					 	href="/cash_pop">Cash Pop<&#160|&#160></a></div>
+                    <div id="winningsDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="winningsAnchor" class="winnings-anchor" 
+						href="/winnings">Lottery Ai Winnings<&#160|&#160></a></div>
+                    <div id="today_numsDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="today_numsAnchor" class="today_nums-anchor" 
+						href="/today_nums">Today's Numbers<&#160|&#160></a></div>
+                    <div id="historiesDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="historiesAnchor" class="histories-anchor" 
+						href="/histories">Win History<&#160|&#160></a></div>
+                    <div id="termsDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="termsAnchor" class="terms-anchor" 
+						href="/terms">Terms & Cond.<&#160|&#160></a></div>
+                    <div id="q_aDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="q_aAnchor" class="q_a-anchor" 
+						href="/q-a">Q & A<&#160|&#160></a></div>
+                    <div id="securityDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="securityAnchor" class="security-anchor" 
+						href="/security">Security<&#160|&#160></a></div>
+                    <div id="aboutDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="aboutAnchor" class="about-anchor" 
+						href="/about">About Us<&#160|&#160></a></div>
+                    <div id="contactDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="contactAnchor" class="contact-anchor" 
+						href="/contact">Contact Us<&#160|&#160></a></div>
+                    <img id="big-3" src="/components/menu_components/sidePanel/sidePanel_resources/sidePanel_imgs/html-js-css_transparent.png" alt="big three languages image" class="big-3" />
+                    <hr id="line" class="line" />
+                    <img id="js-symbol" src="/components/menu_components/sidePanel/sidePanel_resources/sidePanel_imgs/javascript-transparent.png" alt="big three languages image" class="js-symbol" />
+                    <img id="ts-symbol" src="/components/menu_components/sidePanel/sidePanel_resources/sidePanel_imgs/typescript-transparent_tall.png" alt="big three languages image" class="ts-symbol" />
+                    <hr id="line2" class="line2" />
                     <h3 id="vanilla" class="vanilla">Vanilla is BEST!</h3>
                 `;
 				this.menuContainer?.insertAdjacentHTML('afterbegin', itemHTML);
@@ -117,12 +134,22 @@ export class SidePanel extends SidePanelTemplate {
 		const menu: Menu = new Menu();
 		const hamburgers: HTMLElement | null | undefined =
 			document.getElementById('hamburgers');
-		function conLog(): void {
-			// const conLogging: void = console.log(
-			//     'Side-Panel is Rendered :::: HooT™️ Webelistics®️ '
-			// );null;
-			// return conLogging;
-			return;
+
+		async function conLog(): Promise<void> {
+			try {
+				const conLogging: void = console.info(
+					'Side-Panel is Rendered :::: HooT™️ Webelistics®️ '
+				);
+				null;
+				return conLogging;
+			} catch (error: unknown) {
+				console.error(
+					`
+						%cThere appears to be an error in the side-panel component's conLog Function; ERROR: ${error}
+					`,
+					'color: red; font-size: 0.85rem; font-weight: bold;'
+				);
+			}
 		}
 
 		hamburgers?.addEventListener(
@@ -143,7 +170,7 @@ export class SidePanel extends SidePanelTemplate {
 		);
 		const sliderContainer: HTMLElement | null | undefined =
 			document.getElementById('container');
-		sliderContainer?.addEventListener('click', (event) => {
+		sliderContainer?.addEventListener('click', (event: MouseEvent) => {
 			event.preventDefault();
 
 			menu.isMenuShown
@@ -155,68 +182,175 @@ export class SidePanel extends SidePanelTemplate {
 			event.stopImmediatePropagation();
 		});
 
-		// Landing Page
-		const landingAnchor: HTMLElement | null | undefined =
-			document.getElementById('landingA');
+		// Lottery Page
+		const lotteryDiv: HTMLElement | null | undefined =
+			document.getElementById('lotteryDiv');
+		const lotteryAnchor: HTMLElement | null | undefined =
+			document.getElementById('lotteryA');
 
-		landingAnchor?.addEventListener('click', (event) => {
+		lotteryDiv?.addEventListener('click', (event: MouseEvent) => {
 			event.preventDefault();
-			window.location.href = '/landing';
+			window.location.href = '/';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+		lotteryAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/';
 			menu.slide(), (menu.isMenuShown = false);
 			event.stopPropagation();
 		});
 
-		// History Page
-		const historyAnchor: HTMLElement | null | undefined =
-			document.getElementById('historyA');
+		// Powerball Game Page
+		const powerballAnchor: HTMLElement | null | undefined =
+			document.getElementById('powerballAnchor');
 
-		historyAnchor?.addEventListener('click', (event) => {
+		powerballAnchor?.addEventListener('click', (event: MouseEvent) => {
 			event.preventDefault();
-			window.location.href = '/history';
+			window.location.href = '/powerball';
 			menu.slide(), (menu.isMenuShown = false);
 			event.stopPropagation();
 		});
 
-		// Resume Page
-		const resumeAnchor: HTMLElement | null | undefined =
-			document.getElementById('resume');
+		// Mega-Millions Game Page
+		const mega_milAnchor: HTMLElement | null | undefined =
+			document.getElementById('mega_mil');
 
-		resumeAnchor?.addEventListener('click', (event) => {
+		mega_milAnchor?.addEventListener('click', (event: MouseEvent) => {
 			event.preventDefault();
-			window.location.href = '/resume';
+			window.location.href = '/mega_mil';
 			menu.slide(), (menu.isMenuShown = false);
 			event.stopPropagation();
 		});
 
-		// Projects Page
-		const projectsAnchor: HTMLElement | null | undefined =
-			document.getElementById('projectsAnchor');
+		// Cash 5 Game Page
+		const cash5Anchor: HTMLElement | null | undefined =
+			document.getElementById('cash5Anchor');
 
-		projectsAnchor?.addEventListener('click', (event) => {
+		cash5Anchor?.addEventListener('click', (event: MouseEvent) => {
 			event.preventDefault();
-			window.location.href = '/projects';
+			window.location.href = '/cash5';
 			menu.slide(), (menu.isMenuShown = false);
 			event.stopPropagation();
 		});
 
-		// Goals Page
-		const goalsAnchor: HTMLElement | null | undefined =
-			document.getElementById('goalsAnchor');
+		// Pick 3 Game Page
+		const pick3Anchor: HTMLElement | null | undefined =
+			document.getElementById('pick3Anchor');
 
-		goalsAnchor?.addEventListener('click', (event) => {
+		pick3Anchor?.addEventListener('click', (event: MouseEvent) => {
 			event.preventDefault();
-			window.location.href = '/goals';
+			window.location.href = '/pick3';
 			menu.slide(), (menu.isMenuShown = false);
 			event.stopPropagation();
 		});
 
-		// Code Examples Page
-		const codeExAnchor: HTMLElement | null | undefined =
-			document.getElementById('codeEx');
+		// Pick 4 Game Page
+		const pick4Anchor: HTMLElement | null | undefined =
+			document.getElementById('pick4Anchor');
 
-		codeExAnchor?.addEventListener('click', (event) => {
+		pick4Anchor?.addEventListener('click', (event: MouseEvent) => {
 			event.preventDefault();
-			window.location.href = '/code_examples';
+			window.location.href = '/pick4';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// Cash Pop Game Page
+		const cash_popAnchor: HTMLElement | null | undefined =
+			document.getElementById('cash_popAnchor');
+
+		cash_popAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/cash_pop';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// Lottery Ai Past Winning Numbers Page
+		const winningsAnchor: HTMLElement | null | undefined =
+			document.getElementById('winningsAnchor');
+
+		winningsAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/winnings';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// Today's Winning Numbers Page
+		const today_numsAnchor: HTMLElement | null | undefined =
+			document.getElementById('today_numsAnchor');
+
+		today_numsAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/today_nums';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// Winning Numbers Histories Page
+		const historiesAnchor: HTMLElement | null | undefined =
+			document.getElementById('historiesAnchor');
+
+		historiesAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/histories';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// Terms & Conditions Page
+		const termsAnchor: HTMLElement | null | undefined =
+			document.getElementById('termsAnchor');
+
+		termsAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/terms';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// Questions & Answers Page
+		const q_aAnchor: HTMLElement | null | undefined =
+			document.getElementById('q_aAnchor');
+
+		q_aAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/q_a';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// Application Security Provisions Page
+		const securityAnchor: HTMLElement | null | undefined =
+			document.getElementById('securityAnchor');
+
+		securityAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/security';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// About Us Page
+		const aboutAnchor: HTMLElement | null | undefined =
+			document.getElementById('aboutAnchor');
+
+		aboutAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/about';
+			menu.slide(), (menu.isMenuShown = false);
+			event.stopPropagation();
+		});
+
+		// Contact Us Page
+		const contactAnchor: HTMLElement | null | undefined =
+			document.getElementById('contactAnchor');
+
+		contactAnchor?.addEventListener('click', (event: MouseEvent) => {
+			event.preventDefault();
+			window.location.href = '/contact';
 			menu.slide(), (menu.isMenuShown = false);
 			event.stopPropagation();
 		});
@@ -236,14 +370,13 @@ export class SidePanel extends SidePanelTemplate {
 				which should be equal to: ${window.location} `)
 			: console.info(`old location: ${_oldValue}`);
 	}
-	override get template() {
+	public get template() {
 		return /*html*/ `
             ${sidePanel_sharedHTML.panel} 
-            ${sidePanel_sharedHTML.home} 
+            <!-- ${sidePanel_sharedHTML.lottery} -->
             <style>${sidePanel_sharedStyles.panel}</style>
             
             `;
 	}
 }
 RegisterComponent('side-panel', SidePanel);
-// <style>${sidePanel_sharedStyles.panel}</style>

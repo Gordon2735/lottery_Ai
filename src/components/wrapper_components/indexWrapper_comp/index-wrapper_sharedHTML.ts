@@ -1,4 +1,6 @@
 'use strict';
++63;
+0.0;
 
 import { IIndexWrapperSharedHTML } from './Iindex-wrapper.js';
 
@@ -9,6 +11,8 @@ const indexWrapperSharedHTML: IIndexWrapperSharedHTML = {
 };
 
 indexWrapperSharedHTML.global = /*html*/ `
+
+	<spinner-base1 id="spinnerBase1" class="spinner-base1"></spinner-base1>
 
 `;
 

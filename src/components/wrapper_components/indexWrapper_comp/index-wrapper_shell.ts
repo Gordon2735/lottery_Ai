@@ -23,6 +23,7 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 	scriptPickStand: HTMLScriptElement;
 	scriptMoneyPile: HTMLScriptElement;
 	init: () => Promise<void>;
+	scriptSpinnerBase1: HTMLScriptElement;
 
 	constructor() {
 		super();
@@ -30,6 +31,15 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 		this.activateShadowDOM = false;
 
 		const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
+
+		const scriptSpinnerBase1: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptSpinnerBase1, {
+			type: 'module',
+			src: '/src/components/animation_components/spinner_comps/spinnerBase1_comp/spinner-base1.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
 
 		const scriptWrapper: HTMLScriptElement =
 			document.createElement('script');
@@ -131,6 +141,7 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 		});
 
 		this.head = head;
+		this.scriptSpinnerBase1 = scriptSpinnerBase1;
 		this.scriptWrapper = scriptWrapper;
 		this.scriptHeaderShell = scriptHeaderShell;
 		this.scriptNavMenuShell = scriptNavMenuShell;
@@ -146,6 +157,7 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 		const init: () => Promise<void> = async (): Promise<void> => {
 			try {
 				await appendChildren(this.head, [
+					this.scriptSpinnerBase1,
 					this.scriptWrapper,
 					this.scriptHeaderShell,
 					this.scriptNavMenuShell,
@@ -197,6 +209,7 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 				${indexWrapperSharedStyles.root}
 			</style>
 
+			${indexWrapperSharedHTML.global}
 			${indexWrapperSharedHTML.shell}
         
         `;

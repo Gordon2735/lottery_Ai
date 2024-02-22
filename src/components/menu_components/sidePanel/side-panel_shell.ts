@@ -8,35 +8,36 @@ import {
 	setAttributes
 } from '../../componentTools/general_helpers.js';
 
-export class SidePanelShell extends SidePanelTemplate {
+class SidePanelShell extends SidePanelTemplate {
 	override activateShadowDOM: boolean;
 	head: HTMLHeadElement | null;
 	scriptSidePanel: HTMLScriptElement;
 	renderPanel!: {
-		global: string;
-		panel: string;
-		landing: string;
-		home: string;
-		letter: string;
-		about: string;
-		projects: string;
-		history: string;
-		resume: string;
-		codeEx: string;
-		goals: string;
+		lottery: string;
+		powerball: string;
+		megamil: string;
+		cash5: string;
+		pick3: string;
+		pick4: string;
+		cash_pop: string;
+		winnings: string;
+		today_nums: string;
+		histories: string;
+		terms: string;
 		contact: string;
-		spacex: string;
-		library: string;
-		chatbox: string;
+		security: string;
+		q_a: string;
+		about: string;
 	};
-	landing!: string;
+	/*renderStyles: string | undefined;*/
+	powerball!: string;
 
 	constructor() {
 		super();
 
 		this.activateShadowDOM = false;
 
-		const head: HTMLHeadElement | null = document.getElementById('head');
+		const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
 		const scriptSidePanel: HTMLScriptElement =
 			document.createElement('script');
 
@@ -44,12 +45,13 @@ export class SidePanelShell extends SidePanelTemplate {
 		this.scriptSidePanel = scriptSidePanel;
 
 		setAttributes(this.scriptSidePanel, {
-			type: 'module',
 			content: 'text/javascript',
-			src: '/src/components/sidePanel/side-panel.js'
+			type: 'module',
+			src: '/src/components/menu_components/sidePanel/side-panel.js',
+			crossOrigin: 'anonymous'
 		});
 	}
-	override connectedCallback() {
+	connectedCallback() {
 		super.connectedCallback();
 
 		const currentLocation = window.location.href;
@@ -59,33 +61,39 @@ export class SidePanelShell extends SidePanelTemplate {
 
 		return;
 	}
-	public override sidePanelStyleMod(url: string) {
+	public sidePanelStyleMod(url: string) {
 		super.sidePanelStyleMod(
 			(this.locationHREF = url),
 			(this.checkLocation = window.location.href),
-			(this.landingHREF = `${sidePanel_sharedStyles.landing}`),
-			(this.homeStartHREF = `${sidePanel_sharedStyles.home}`),
-			(this.coverLetterHREF = `${sidePanel_sharedStyles.letter}`),
+			(this.lotteryHREF = `${sidePanel_sharedStyles.lottery}`),
+			(this.powerballHREF = `${sidePanel_sharedStyles.powerball}`),
+			(this.mega_milHREF = `${sidePanel_sharedStyles.mega_mil}`),
+			(this.cash5HREF = `${sidePanel_sharedStyles.cash5}`),
+			(this.pick3HREF = `${sidePanel_sharedStyles.pick3}`),
+			(this.pick4HREF = `${sidePanel_sharedStyles.pick4}`),
+			(this.cash_popHREF = `${sidePanel_sharedStyles.cash_pop}`),
+			(this.winningsHREF = `${sidePanel_sharedStyles.winnings}`),
+			(this.today_numsHREF = `${sidePanel_sharedStyles.today_nums}`),
+			(this.historiesHREF = `${sidePanel_sharedStyles.histories}`),
+			(this.termsHREF = `${sidePanel_sharedStyles.terms}`),
+			(this.securityHREF = `${sidePanel_sharedStyles.security}`),
+			(this.q_aHREF = `${sidePanel_sharedStyles.q_a}`),
 			(this.aboutHREF = `${sidePanel_sharedStyles.about}`),
-			(this.projectsHREF = `${sidePanel_sharedStyles.projects}`),
-			(this.projectsHtmlCode = `${sidePanel_sharedHTML.projects}`),
-			(this.historyHREF = `${sidePanel_sharedStyles.history}`),
-			(this.resumeHREF = `${sidePanel_sharedStyles.resume}`),
-			(this.codeExHREF = `${sidePanel_sharedStyles.codeEx}`),
-			(this.goalsHREF = `${sidePanel_sharedStyles.goals}`),
 			(this.contactHREF = `${sidePanel_sharedStyles.contact}`),
-			(this.spacexHREF = `${sidePanel_sharedStyles.spacex}`),
-			(this.libraryHREF = `${sidePanel_sharedStyles.library}`),
-			(this.chatboxHREF = `${sidePanel_sharedStyles.chatbox}`),
 			this.renderStyles
 		);
 
 		return this.renderStyles;
 	}
-	override get template() {
+	public get template() {
 		return /*html*/ `
         
-            <style>${sidePanel_sharedStyles.global}</style>
+            <style>
+				${sidePanel_sharedStyles.global}
+			</style>
+            <style>
+				${sidePanel_sharedStyles.root}
+			</style>
             ${sidePanel_sharedHTML.shell}
         `;
 	}

@@ -24,6 +24,15 @@ async function init(): Promise<void> {
 	try {
 		const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
 
+		const scriptSidePanelShell: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptSidePanelShell, {
+			type: 'module',
+			src: '/src/components/menu_components/sidePanel/side-panel_shell.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
 		const scriptCopyright: HTMLScriptElement =
 			document.createElement('script');
 		setAttributes(scriptCopyright, {
@@ -33,7 +42,7 @@ async function init(): Promise<void> {
 			crossOrigin: 'anonymous'
 		});
 
-		await appendChildren(head, [scriptCopyright]);
+		await appendChildren(head, [scriptSidePanelShell, scriptCopyright]);
 
 		console.info(
 			`%cThe componentIndex.ts file's "init()" Function has "FIRED"!`,
