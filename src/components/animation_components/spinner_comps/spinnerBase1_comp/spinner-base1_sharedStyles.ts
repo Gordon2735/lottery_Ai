@@ -71,6 +71,10 @@ spinnerBase1_SharedStyles.construct = /*css*/ `
 
 spinnerBase1_SharedStyles.logic = /*css*/ `
 
+    .span-error-code {
+        display: none;
+    }
+
 `;
 
 spinnerBase1_SharedStyles.queries = /*css*/ `

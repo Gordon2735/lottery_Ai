@@ -12,7 +12,7 @@ const indexWrapperSharedHTML: IIndexWrapperSharedHTML = {
 
 indexWrapperSharedHTML.global = /*html*/ `
 
-	<spinner-base1 id="spinnerBase1" class="spinner-base1"></spinner-base1>
+	<spinner-base1 id="spinnerBase1" class="spinner-base1" data-section_spinner="default"></spinner-base1>
 
 `;
 

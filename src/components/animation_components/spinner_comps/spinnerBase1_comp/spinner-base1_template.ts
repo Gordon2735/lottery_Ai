@@ -34,30 +34,66 @@ class SpinnerBase1Template extends HTMLElement {
 		}
 	}
 
-	public progressSpinner(containerId: string) {
+	public progressSpinner(containerId: string): {
+		startLoading: () => Promise<void>;
+		stopLoading: () => Promise<void>;
+	} {
 		let spinnerElement: HTMLElement | null = null;
 		let isLoading: boolean = false;
 
-		init(containerId);
-
-		function startLoading(): void {
-			if (isLoading || !spinnerElement) return;
-
-			isLoading = true;
-			spinnerElement.style.display = 'block';
-			spinnerElement?.classList.add('loading');
-		}
-
-		function stopLoading(): void {
-			if (!isLoading || !spinnerElement) return;
-
-			isLoading = false;
-			spinnerElement.style.display = 'none';
-			spinnerElement?.classList.remove('loading');
-		}
-
-		function init(ID: string): void {
+		async function startLoading(): Promise<void> {
 			try {
+				if (isLoading || !spinnerElement) return;
+
+				isLoading = true;
+				spinnerElement.style.display = 'block';
+				spinnerElement?.classList.add('loading');
+
+				// return await new Promise(
+				// 	(resolve: (value: void | PromiseLike<void>) => void) => {
+				// 		resolve();
+				// 	}
+				// );
+				return;
+			} catch (error: unknown) {
+				console.error(
+					`
+				Initializing Component Method 'progressSpinner startLoading' had ERROR: ${error} 
+				`
+				);
+				return;
+			}
+		}
+
+		async function stopLoading(): Promise<void> {
+			try {
+				if (!isLoading || !spinnerElement) return;
+
+				isLoading = false;
+				spinnerElement.style.display = 'none';
+				spinnerElement?.classList.remove('loading');
+
+				// return await new Promise(
+				// 	(resolve: (value: void | PromiseLike<void>) => void) => {
+				// 		resolve();
+				// 	}
+				// );
+				return;
+			} catch (error: unknown) {
+				console.error(
+					`
+				Initializing Component Method 'progressSpinner stopLoading' had ERROR: ${error} 
+				`
+				);
+				return;
+			}
+		}
+
+		try {
+			const spinnerBase1Label: HTMLElement | null =
+				document.getElementById('spinnerBase1Label');
+
+			if (spinnerBase1Label === null) {
 				// Initialize spinner element
 				spinnerElement = document.createElement('label');
 				setAttributes(spinnerElement, {
@@ -65,27 +101,27 @@ class SpinnerBase1Template extends HTMLElement {
 					class: 'spinner-base1-label'
 				});
 
-				// let slotId: string;
-				// <slot name="getID"></slot>
-
 				const loadHTML: string = /*html*/ `
-					<progress id="spinnerBase1Progress" class="spinner-base1-progress"
-						aria-label="Loading Page...">
-					</progress>
-				`;
+				<progress id="spinnerBase1Progress" class="spinner-base1-progress"
+					aria-label="Loading Page...">
+				</progress>
+			`;
 
 				spinnerElement.innerHTML = loadHTML;
 
-				document.getElementById(ID)?.appendChild(spinnerElement);
-			} catch (error: unknown) {
-				console.error(
-					`
-						Initializing Component Method 'progressSpinner' had ERROR: ${error} 
-					`
-				);
+				document
+					.getElementById(containerId)
+					?.appendChild(spinnerElement);
+			} else {
+				null;
 			}
+		} catch (error: unknown) {
+			console.error(
+				`
+				Initializing Component Method 'progressSpinner' had ERROR: ${error} 
+				`
+			);
 		}
-
 		return {
 			startLoading,
 			stopLoading
