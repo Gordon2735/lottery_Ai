@@ -35,16 +35,16 @@ class LotAiHeaderShell extends LotAiHeaderTemplate {
 
 		const init: () => void = async (): Promise<void> => {
 			try {
-				await appendChildren(this.head, [this.scriptHeader]);
+				return await appendChildren(this.head, [this.scriptHeader]);
 			} catch (error: unknown) {
 				console.error(
 					`
 						An error has occurred in the Lottery Ai Header "init()" Function :::: ERROR: ${error}
 					`
 				);
+				return;
 			}
 		};
-
 		this.init = init;
 	}
 	connectedCallback(): void {

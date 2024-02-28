@@ -35,25 +35,26 @@ class SpinnerBase1Template extends HTMLElement {
 	}
 
 	public progressSpinner(containerId: string): {
-		startLoading: () => Promise<void>;
-		stopLoading: () => Promise<void>;
+		startLoading(element: HTMLLabelElement | null): Promise<void>;
+		stopLoading(element: HTMLLabelElement | null): Promise<void>;
+		init: () => Promise<void>;
 	} {
-		let spinnerElement: HTMLElement | null = null;
 		let isLoading: boolean = false;
 
-		async function startLoading(): Promise<void> {
+		async function startLoading(
+			element: HTMLLabelElement | null
+		): Promise<void> {
 			try {
-				if (isLoading || !spinnerElement) return;
+				if (isLoading === true) return;
 
 				isLoading = true;
-				spinnerElement.style.display = 'block';
-				spinnerElement?.classList.add('loading');
+				console.info(`STARTLOADING isLoading: ${isLoading}`);
+				if (element) {
+					element.style.display = 'block';
+					element.classList.add('loading');
+				}
 
-				// return await new Promise(
-				// 	(resolve: (value: void | PromiseLike<void>) => void) => {
-				// 		resolve();
-				// 	}
-				// );
+				Promise.resolve(element);
 				return;
 			} catch (error: unknown) {
 				console.error(
@@ -61,23 +62,24 @@ class SpinnerBase1Template extends HTMLElement {
 				Initializing Component Method 'progressSpinner startLoading' had ERROR: ${error} 
 				`
 				);
-				return;
+				return Promise.reject(error);
 			}
 		}
 
-		async function stopLoading(): Promise<void> {
+		async function stopLoading(
+			element: HTMLLabelElement | null
+		): Promise<void> {
 			try {
-				if (!isLoading || !spinnerElement) return;
+				if (isLoading === false) return;
 
 				isLoading = false;
-				spinnerElement.style.display = 'none';
-				spinnerElement?.classList.remove('loading');
+				console.info(`STOPLOADING isLoading: ${isLoading}`);
+				if (element) {
+					element.style.display = 'none';
+					element.classList.remove('loading');
+				}
 
-				// return await new Promise(
-				// 	(resolve: (value: void | PromiseLike<void>) => void) => {
-				// 		resolve();
-				// 	}
-				// );
+				Promise.resolve(element);
 				return;
 			} catch (error: unknown) {
 				console.error(
@@ -85,47 +87,45 @@ class SpinnerBase1Template extends HTMLElement {
 				Initializing Component Method 'progressSpinner stopLoading' had ERROR: ${error} 
 				`
 				);
-				return;
+				return Promise.reject(error);
 			}
 		}
 
-		try {
-			const spinnerBase1Label: HTMLElement | null =
-				document.getElementById('spinnerBase1Label');
-
-			if (spinnerBase1Label === null) {
+		async function init(): Promise<void> {
+			try {
 				// Initialize spinner element
-				spinnerElement = document.createElement('label');
-				setAttributes(spinnerElement, {
+				const spinnerElement: HTMLLabelElement =
+					document.createElement('label');
+
+				await setAttributes(spinnerElement, {
 					id: 'spinnerBase1Label',
 					class: 'spinner-base1-label'
 				});
 
 				const loadHTML: string = /*html*/ `
-				<progress id="spinnerBase1Progress" class="spinner-base1-progress"
-					aria-label="Loading Page...">
-				</progress>
-			`;
+					<progress id="spinnerBase1Progress" class="spinner-base1-progress"
+						aria-label="Loading Page...">
+					</progress>
+				`;
 
 				spinnerElement.innerHTML = loadHTML;
 
 				document
 					.getElementById(containerId)
 					?.appendChild(spinnerElement);
-			} else {
-				null;
+
+				return Promise.resolve();
+			} catch (error: unknown) {
+				console.error(
+					`
+					Initializing Component Method 'progressSpinner' had ERROR: ${error} 
+				`
+				);
+				return Promise.reject(error);
 			}
-		} catch (error: unknown) {
-			console.error(
-				`
-				Initializing Component Method 'progressSpinner' had ERROR: ${error} 
-				`
-			);
 		}
-		return {
-			startLoading,
-			stopLoading
-		};
+		Promise.resolve({ startLoading, stopLoading, init });
+		return { startLoading, stopLoading, init };
 	}
 }
 

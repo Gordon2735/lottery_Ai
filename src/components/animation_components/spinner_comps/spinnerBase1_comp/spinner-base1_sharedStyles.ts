@@ -31,26 +31,29 @@ spinnerBase1_SharedStyles.construct = /*css*/ `
         height: 3.5em;
     }
 
-    progress:indeterminate {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        width: 4vw; height: 4vw;
-        border: 0;
-        background: none;
-    }
-
+    -webkit-appearance: none;
+    -moz-appearance: none;
+   
     progress:indeterminate::-moz-progress-bar {
-        background: none; /* display:none doesn’t work, don’t ask me why */
+        background: none; 
     }
 
     progress:indeterminate::-webkit-progress-bar {
         display: none;
     }
 
-    progress:indeterminate::-ms-fill {
-        animation-name: none; /* Explicitly must be animation-name: none */
+    progress:indeterminate {
+        appearance: none;
+        width: 4vw; height: 4vw;
+        border: 0;
+        background: none;
     }
+
+
+    progress:indeterminate::-ms-fill {
+        animation-name: none; 
+    }
+
 
     progress:indeterminate {
         border-radius: 50%;
