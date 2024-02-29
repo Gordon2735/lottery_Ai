@@ -83,6 +83,7 @@ class PowerBallGameShell extends PowerBallGameTemplate {
 			</style>			
 					
 			${powerballGame_sharedHTML.shell}
+
         
         `;
 	}

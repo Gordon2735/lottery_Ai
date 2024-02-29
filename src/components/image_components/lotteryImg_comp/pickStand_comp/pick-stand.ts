@@ -13,11 +13,13 @@ class PickStand extends PickStandTemplate {
 	connectedCallback(): void {
 		super.connectedCallback();
 
-		console.info(
-			`
-                The Pick 3 & 4 Tickets Stand Web-Component has fired and is now active!
-            `
-		);
+		setTimeout(() => {
+			console.info(
+				`
+                    The Pick 3 & 4 Tickets Stand Web-Component has fired and is now active!
+                `
+			);
+		}, 30000);
 	}
 
 	public get template(): string {

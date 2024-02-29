@@ -23,11 +23,10 @@ indexWrapperSharedHTML.shell = /*html*/ `
 
 indexWrapperSharedHTML.container = /*html*/ `
 
-	<spinner-base1 id="spinnerBase1" class="spinner-base1" data-section_spinner="default"></spinner-base1>   
 	<nav-menu_shell id="navMenuShell" class="nav-menu-shell"></nav-menu_shell>
 
 	<main id="mainContainer" class="main-container">
-	
+
         <lotteryai-header_shell id="lotteryAiHeaderShell" class="lotteryAi-header-shell"></lotteryai-header_shell>            
         <lottery-slip id="lotterySlip" class="lottery-slip"></lottery-slip>
         <whitenumber-balls id="whiteNumberBalls" class="white-number-balls"></whitenumber-balls>

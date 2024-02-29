@@ -66,7 +66,7 @@ async function indexHandler(req: Request, res: Response): Promise<void> {
 			description: `Welcome to the 'Winning Team!!'`,
 			layout: 'main',
 			helpers: 'helpers',
-			partials: 'footer_partial',
+			partials: 'partials',
 			script: [index_script],
 			appName: config.applicationName,
 			session: `${await sessionView()}`

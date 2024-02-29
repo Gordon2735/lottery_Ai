@@ -10,6 +10,7 @@ const powerballGame_sharedHTML: IPowerBallGameSharedHTML = {
 
 powerballGame_sharedHTML.global = /*html*/ `
 
+
 `;
 
 powerballGame_sharedHTML.shell = /*html*/ `

@@ -2,7 +2,7 @@
 
 class NavMenuTemplate extends HTMLElement {
 	activateShadowDOM: boolean = false;
-	root: ShadowRoot | undefined | null;
+	root: ShadowRoot | null | undefined;
 
 	public set template(value: string) {
 		this.template = value;
@@ -20,14 +20,16 @@ class NavMenuTemplate extends HTMLElement {
 	}
 
 	render(template: string): void {
-		const root: ShadowRoot | null | undefined = this.shadowRoot;
+		const root: ShadowRoot | null = this.shadowRoot;
 		this.root = root;
 
 		if (this.activateShadowDOM === false) {
 			this.innerHTML = template || this.template;
 			return;
 		} else {
-			this.root!.innerHTML = template || this.template;
+			if (root) {
+				this.root!.innerHTML = template || this.template;
+			}
 			return;
 		}
 	}

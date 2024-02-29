@@ -24,6 +24,15 @@ async function init(): Promise<void> {
 	try {
 		const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
 
+		const scriptSpinnerBase1: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptSpinnerBase1, {
+			type: 'module',
+			src: '/src/components/animation_components/spinner_comps/spinnerBase1_comp/spinner-base1.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
 		const scriptSidePanelShell: HTMLScriptElement =
 			document.createElement('script');
 		setAttributes(scriptSidePanelShell, {
@@ -42,7 +51,11 @@ async function init(): Promise<void> {
 			crossOrigin: 'anonymous'
 		});
 
-		await appendChildren(head, [scriptSidePanelShell, scriptCopyright]);
+		await appendChildren(head, [
+			scriptSpinnerBase1,
+			scriptSidePanelShell,
+			scriptCopyright
+		]);
 
 		console.info(
 			`%cThe componentIndex.ts file's "init()" Function has "FIRED"!`,

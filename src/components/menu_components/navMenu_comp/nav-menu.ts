@@ -19,6 +19,26 @@ class NavMenu extends NavMenuTemplate {
 		return ['state'];
 	}
 
+	public get template(): string {
+		return /* html */ `
+
+            ${navMenu_sharedHTML.navbar}
+
+            <style>
+                ${navMenu_sharedStyles.navbar}
+            </style>
+
+            <style>
+                ${navMenu_sharedStyles.navHamBtn}
+            </style>
+
+            <style>
+                ${navMenu_sharedStyles.navbarQueries}
+            </style>
+
+        `;
+	}
+
 	constructor() {
 		super();
 
@@ -29,9 +49,8 @@ class NavMenu extends NavMenuTemplate {
 		const clickToggle: HTMLAnchorElement | null | undefined =
 			navMenu?.querySelector('.toggle-button');
 
-		const clickNavbarLinks = document.querySelector(
-			'.nav-menu-links'
-		) as HTMLDivElement;
+		const clickNavbarLinks: HTMLDivElement | null =
+			document.querySelector('.nav-menu-links');
 		const viewportWidth: number = 0;
 
 		this.navMenu = navMenu;
@@ -43,20 +62,10 @@ class NavMenu extends NavMenuTemplate {
 			number | void
 		> = async (): Promise<number | void> => {
 			try {
-				new Promise(
-					(
-						resolve
-					): ((
-						value: number | void | PromiseLike<number | void>
-					) => void) => {
-						resolve(
-							(this.viewportWidth =
-								window.innerWidth ||
-								document.documentElement.clientWidth)
-						);
-						return resolve;
-					}
-				);
+				this.viewportWidth =
+					window.innerWidth || document.documentElement.clientWidth;
+
+				return await Promise.resolve(this.viewportWidth);
 			} catch (error: unknown) {
 				console.error(
 					`
@@ -64,7 +73,7 @@ class NavMenu extends NavMenuTemplate {
                     `,
 					'color: red; font-weight: bold;'
 				);
-				return;
+				return await Promise.reject(error);
 			}
 		};
 
@@ -89,7 +98,7 @@ class NavMenu extends NavMenuTemplate {
 						? this.navMenu?.setAttribute('state', 'maximized')
 						: null;
 				}
-				return Promise.resolve(undefined);
+				return await Promise.resolve(undefined);
 			} catch (error: unknown) {
 				console.error(
 					`
@@ -97,7 +106,7 @@ class NavMenu extends NavMenuTemplate {
                     `,
 					'color: red; font-weight: bold;'
 				);
-				return Promise.resolve(undefined);
+				return await Promise.resolve(undefined);
 			}
 		};
 
@@ -106,6 +115,7 @@ class NavMenu extends NavMenuTemplate {
 				await this.getViewportWidth();
 
 				await this.currentWidth();
+				return await Promise.resolve();
 			} catch (error: unknown) {
 				console.error(
 					`
@@ -113,6 +123,7 @@ class NavMenu extends NavMenuTemplate {
                     `,
 					'color: red; font-weight: bold;'
 				);
+				return await Promise.reject(error);
 			}
 		};
 
@@ -131,43 +142,52 @@ class NavMenu extends NavMenuTemplate {
 		const toggleClick: HTMLAnchorElement | null =
 			document.querySelector('.toggle-button');
 
-		toggleClick?.addEventListener('click', (event: MouseEvent) => {
-			try {
-				const navbarLinks: HTMLDivElement | null =
-					document.querySelector('.nav-menu-links');
-				navbarLinks?.classList.toggle('active');
+		toggleClick?.addEventListener(
+			'click',
+			async (event: MouseEvent): Promise<void> => {
+				try {
+					const navbarLinks: HTMLDivElement | null =
+						document.querySelector('.nav-menu-links');
+					navbarLinks?.classList.toggle('active');
 
-				const active: boolean | undefined =
-					navbarLinks?.classList.contains('active');
+					const active: boolean | undefined =
+						navbarLinks?.classList.contains('active');
 
-				active === true
-					? console.log(
-							`
+					active === true
+						? console.log(
+								`
 							%c The BOOLEAN for the TOGGLE EVENT LISTENER is switching to true:  ${active}
 						`,
-							`color: Orange; font-weight: bold; font-family: 'One Day', sans-serif;`
-						)
-					: console.log(
-							`
+								`color: Orange; font-weight: bold; font-family: 'One Day', sans-serif;`
+							)
+						: console.log(
+								`
 							%c The BOOLEAN for the TOGGLE EVENT LISTENER is switching to false:  ${active}
 						`,
-							`color: red; font-weight: bold; font-family: 'One Day', sans-serif;`
-						);
-			} catch (error: unknown) {
-				console.error(
-					`
-                        %cError with the click-toggle event listener: **** ${error} ****
-                    `,
-					'color: red; font-weight: bold;'
-				);
+								`color: red; font-weight: bold; font-family: 'One Day', sans-serif;`
+							);
+					/*event.stopPropagation();*/
+					console.info(
+						`
+							clickToggle Event Listener pinged: ${event.type}
+						`
+					);
+					return await Promise.resolve();
+				} catch (error: unknown) {
+					console.error(
+						`
+								%cError with the click-toggle event listener: **** ${error} ****
+								`,
+						'color: red; font-weight: bold;'
+					);
+					return await Promise.reject(error);
+				}
 			}
-			/*event.stopPropagation();*/
-			console.info(`clickToggle Event Listener pinged: ${event.type}`);
-		});
+		);
 
 		window.addEventListener(
 			'resize',
-			() => {
+			async (event: Event): Promise<PageTransitionEvent> => {
 				try {
 					this.getViewportWidth();
 					this.currentWidth();
@@ -181,6 +201,8 @@ class NavMenu extends NavMenuTemplate {
                         `,
 						'color: chartreuse font-weight: bold;'
 					);
+					event.stopPropagation();
+					return await Promise.resolve(event as PageTransitionEvent);
 				} catch (error: unknown) {
 					console.error(
 						`
@@ -188,6 +210,7 @@ class NavMenu extends NavMenuTemplate {
                         `,
 						'color: red; font-weight: bold;'
 					);
+					return await Promise.reject(error);
 				}
 			},
 			false
@@ -197,7 +220,7 @@ class NavMenu extends NavMenuTemplate {
 		name: string,
 		oldValue: string,
 		newValue: string
-	): void {
+	): Promise<{ name: string; oldValue: string; newValue: string }> {
 		try {
 			switch (newValue) {
 				case 'maximized':
@@ -240,6 +263,7 @@ class NavMenu extends NavMenuTemplate {
 					);
 					break;
 			}
+			return Promise.resolve({ name, oldValue, newValue });
 		} catch (error: unknown) {
 			console.error(
 				`
@@ -248,30 +272,11 @@ class NavMenu extends NavMenuTemplate {
                 `,
 				'color: red; font-weight: bold;'
 			);
+			return Promise.reject(error);
 		}
 	}
 
-	public get template(): string {
-		return /* html */ `
-
-            ${navMenu_sharedHTML.navbar}
-
-            <style>
-                ${navMenu_sharedStyles.navbar}
-            </style>
-
-            <style>
-                ${navMenu_sharedStyles.navHamBtn}
-            </style>
-
-            <style>
-                ${navMenu_sharedStyles.navbarQueries}
-            </style>
-
-        `;
-	}
-
-	disconnectedCallback(): void {
+	disconnectedCallback(): Promise<unknown> {
 		try {
 			this.clickToggle?.removeEventListener(
 				'click',
@@ -283,6 +288,7 @@ class NavMenu extends NavMenuTemplate {
 			window.removeEventListener('resize', (event: UIEvent) => {
 				event.stopPropagation();
 			});
+			return Promise.resolve(undefined);
 		} catch (error: unknown) {
 			console.error(
 				`
@@ -291,6 +297,7 @@ class NavMenu extends NavMenuTemplate {
                 `,
 				'color: red; font-weight: bold;'
 			);
+			return Promise.reject(error);
 		}
 	}
 }

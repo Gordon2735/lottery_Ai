@@ -9,7 +9,10 @@ const spinnerBase1_SharedHTML: IspinnerBase1SharedHTML = {
 
 spinnerBase1_SharedHTML.construct = /*html*/ `
 
-    <section id="spinnerBase1Section" class="spinner-base1-section"></section>
+    <section id="spinnerBase1Section" class="spinner-base1-section">
+		<label id="spinnerBase1Label" class="spinner-base1-label" name="Loading Page...">
+		</label>
+	</section>
 
 `;
 
