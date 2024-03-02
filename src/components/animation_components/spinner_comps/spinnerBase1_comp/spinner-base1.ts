@@ -7,15 +7,6 @@ import { spinnerBase1_SharedStyles } from './spinner-base1_sharedStyles.js';
 
 class SpinnerBase1 extends SpinnerBase1Template {
 	activateShadowDOM: boolean = false;
-	document: Document;
-	state: string;
-	spinner: {
-		startLoading(element: HTMLLabelElement | null): Promise<void>;
-		stopLoading(element: HTMLLabelElement | null): Promise<void>;
-	};
-	initialize: () => Promise<void>;
-	spinnerBase1Label: HTMLLabelElement;
-	spinnerBase: HTMLElement | null | undefined;
 	spanErrorCode: HTMLElement | null | undefined;
 
 	public get template(): string {
@@ -39,47 +30,16 @@ class SpinnerBase1 extends SpinnerBase1Template {
 		return ['data-section_spinner'];
 	}
 
-	constructor(
-		document: Document,
-		state: DocumentReadyState,
-		spinner: {
-			startLoading(element: HTMLLabelElement | null): Promise<void>;
-			stopLoading(element: HTMLLabelElement | null): Promise<void>;
-			init: () => Promise<void>;
-		},
-		initialize: () => Promise<void>,
-		spinnerBase1Label: HTMLLabelElement
-	) {
+	constructor() {
 		super();
 
 		this.activateShadowDOM = false;
-		document = window.document;
-		this.document = document;
-
-		state = document.readyState;
-
-		spinner = this.progressSpinner('spinnerBase1Section');
-
-		initialize = spinner.init;
-
-		spinnerBase1Label = this.document.getElementById(
-			'spinnerBase1Label'
-		) as HTMLLabelElement;
-
-		this.state = state;
-		this.spinner = spinner;
-		this.spinnerBase1Label = spinnerBase1Label;
-		this.initialize = initialize;
 
 		return;
 	}
 
 	connectedCallback(): void {
 		super.connectedCallback();
-
-		// this.state;
-
-		this.initialize();
 
 		console.info(`<spinner-base1> ConnectedCallback has fired!`);
 
@@ -90,75 +50,72 @@ class SpinnerBase1 extends SpinnerBase1Template {
 			`
 		);
 
-		// document.addEventListener(
-		// 	'readystatechange',
-		document.onreadystatechange = async (
-			event: Event
-		): Promise<string | void> => {
-			try {
+		document.addEventListener(
+			'readystatechange',
+			// 'DOMContentLoaded',
+			async (event: Event): Promise<void> => {
+				const state: DocumentReadyState = document.readyState;
 				// event.preventDefault();
 				console.info(`Document initial event: ${event.target}`);
-				console.info(`Document initial state: ${this.state}`);
+				console.info(`Document initial state: ${state}`);
 
-				const getSpinnerLabel: HTMLLabelElement | null =
+				const spinnerProgress = this.progressSpinner(
+					'spinnerBase1Section'
+				);
+				const initialize: () => Promise<void> = spinnerProgress.init;
+
+				await initialize();
+
+				const spinnerComponent: HTMLElement | null =
+					document.getElementById('spinnerBase');
+
+				const getSpinnerLabel: HTMLLabelElement =
 					document.getElementById(
 						'spinnerBase1Label'
-					) as HTMLLabelElement | null;
+					) as HTMLLabelElement;
 
-				const state: DocumentReadyState = document.readyState;
-
-				if (this.state === 'interactive') {
-					this.spinner.startLoading(getSpinnerLabel);
-					this.spinnerBase?.setAttribute(
-						'data-section_spinner',
-						'loading'
-					);
-					console.info(
-						`
+				// spinnerProgress.startLoading(getSpinnerLabel);
+				spinnerComponent?.setAttribute(
+					'data-section_spinner',
+					'loading'
+				);
+				console.info(
+					`
 								The progressSpinner 'METHOD' from template is loading!
 							`
-					);
-
-					console.info(`SPINNER: LOADING`);
-					// event.stopPropagation();
-					// return await Promise.resolve(this.state);
-					return;
-				} else if (document.readyState === 'complete') {
-					setTimeout(() => {
-						this.spinner.stopLoading(getSpinnerLabel);
-						this.spinnerBase?.setAttribute(
-							'data-section_spinner',
-							'not-loading'
-						);
-						console.info(
-							`
-									Document complete state: ${state}
-								`
-						);
-						console.info(`SPINNER: NOT-LOADING`);
-						console.info(
-							`
-									The progressSpinner 'METHOD' from template 
-										has stop loading!            
-								`
-						);
-					}, 300);
-					return await Promise.resolve(this.state);
-				}
-				// return await Promise.resolve(this.state);
-				// return;
-			} catch (error: unknown) {
-				console.error(
-					`
-							Method 'attributeChangedCallback' 
-								readystatechange listener had ERROR: ${error}
-						`
 				);
-				return Promise.reject(error);
+
+				console.info(`SPINNER: LOADING`);
+
+				// Hide spinner when all resources are loaded
+				window.addEventListener(
+					'load',
+					async function (): Promise<void> {
+						setTimeout(() => {
+							spinnerProgress?.stopLoading(getSpinnerLabel);
+							spinnerComponent?.setAttribute(
+								'data-section_spinner',
+								'not-loading'
+							);
+							console.info(
+								`
+								Document complete state: ${state}
+							`
+							);
+							console.info(`SPINNER: NOT-LOADING`);
+							console.info(
+								`
+								The progressSpinner 'METHOD' from template
+									has stop loading!
+							`
+							);
+						}, 300);
+						await Promise.resolve(state);
+					}
+				);
+				return;
 			}
-		};
-		// );
-		// return;
+		);
 	}
 
 	public attributeChangedCallback(
@@ -175,6 +132,7 @@ class SpinnerBase1 extends SpinnerBase1Template {
 					New value: ${newValue}
 				`
 			);
+
 			return Promise.resolve({ name, oldValue, newValue });
 		} catch (error: unknown) {
 			console.error(
@@ -187,8 +145,8 @@ class SpinnerBase1 extends SpinnerBase1Template {
 	}
 
 	public progressSpinner(containerId: string): {
-		startLoading(element: HTMLLabelElement): Promise<void>;
-		stopLoading(element: HTMLLabelElement): Promise<void>;
+		startLoading: (element: HTMLLabelElement) => Promise<void>;
+		stopLoading: (element: HTMLLabelElement | null) => Promise<void>;
 		init: () => Promise<void>;
 	} {
 		let isLoading: boolean = false;
@@ -204,8 +162,6 @@ class SpinnerBase1 extends SpinnerBase1Template {
 					element.classList.add('loading');
 				}
 				console.log(element?.style.display);
-
-				// await Promise.resolve(element);
 			} catch (error: unknown) {
 				console.error(
 					`
@@ -220,11 +176,9 @@ class SpinnerBase1 extends SpinnerBase1Template {
 		}
 
 		async function stopLoading(
-			element: HTMLLabelElement | null | undefined
+			element: HTMLLabelElement | null
 		): Promise<void> {
 			try {
-				// if (isLoading === false) return;
-
 				isLoading = false;
 				console.info(`STOPLOADING isLoading: ${isLoading}`);
 				if (!isLoading) {
@@ -232,7 +186,6 @@ class SpinnerBase1 extends SpinnerBase1Template {
 					element?.classList.remove('loading');
 				}
 
-				// await Promise.resolve(element);
 				return;
 			} catch (error: unknown) {
 				console.error(
@@ -245,7 +198,7 @@ class SpinnerBase1 extends SpinnerBase1Template {
 			}
 		}
 
-		const init: () => Promise<void> = async (): Promise<void> => {
+		const init: () => Promise<void> = async () => {
 			try {
 				// Initialize spinner element
 				const spinnerElement: HTMLLabelElement | null =
@@ -276,7 +229,6 @@ class SpinnerBase1 extends SpinnerBase1Template {
 				return await Promise.reject(error);
 			}
 		};
-		// Promise.resolve({ startLoading, stopLoading, init });
 		return { startLoading, stopLoading, init };
 	}
 
@@ -315,11 +267,3 @@ class SpinnerBase1 extends SpinnerBase1Template {
 	}
 }
 RegisterComponent('spinner-base1', SpinnerBase1);
-
-// document.addEventListener("readystatechange", (event) => {
-// 	if (event.target.readyState === "interactive") {
-// 	  initLoader();
-// 	} else if (event.target.readyState === "complete") {
-// 	  initApp();
-// 	}
-//   });
