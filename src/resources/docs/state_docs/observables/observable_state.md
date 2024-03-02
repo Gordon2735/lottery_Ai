@@ -1,3 +1,5 @@
+![image](../../../../../public/images/typescript-letters.png)
+
 # **Typescript Simple Observable State and Web Components**
 
 -   [Typescript Simple Observable State and Web Components](https://codereview.stackexchange.com/questions/276342/typescript-simple-observable-state-and-web-component?newreg=15e11c8fbd984fb09b5b074cd316264e)
