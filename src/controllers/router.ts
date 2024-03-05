@@ -9,6 +9,7 @@ import index_route, {
 	login_route,
 	loginPOST_route,
 	logout_route,
+	state_box_route,
 	powerball_route
 } from './routes/routes.js';
 
@@ -25,6 +26,7 @@ const routes: Router[] = [
 	login_route,
 	loginPOST_route,
 	logout_route,
+	state_box_route,
 	powerball_route
 ];
 

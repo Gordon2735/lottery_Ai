@@ -38,9 +38,11 @@ class ProgressBar extends HTMLElement {
 	}
 
 	get percent() {
-		const value = this.getAttribute('percent');
+		const vals = <string>this.getAttribute('percent');
 
-		if (isNaN(value)) {
+		const value: number = parseInt(vals);
+
+		if (isNaN(<number>value)) {
 			return 0;
 		}
 
@@ -55,14 +57,13 @@ class ProgressBar extends HTMLElement {
 		return Number(value);
 	}
 
-	set percent(value) {
-		this.setAttribute('percent', value);
-	}
-
-	attributeChangedCallback(name) {
+	attributeChangedCallback(name: string) {
 		if (name === 'percent') {
-			this.shadowRoot.querySelector('.fill').style.width =
-				`${this.percent}%`;
+			const fillElement: HTMLElement | null | undefined =
+				this.shadowRoot?.querySelector('.fill');
+			if (fillElement !== null && fillElement !== undefined) {
+				fillElement.style.width = `${this.percent}%`;
+			}
 		}
 	}
 }

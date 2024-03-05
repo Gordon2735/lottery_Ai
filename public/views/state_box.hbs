@@ -1,0 +1,28 @@
+
+
+    <template id="pf-test">
+        <div>
+            <h1 id="pfTestH1" class="pf-test-h1">original</h1>
+        </div>
+    </template>
+
+    <test-observable_base caller="state.texty">
+    </test-observable_base>
+    <test-observable_base caller="state.numbery">
+    </test-observable_base>
+
+    <user-bit_base caller="state.is">
+        <div id="slotIn" slot="in">
+            <p>this is in</p>
+        </div>
+        <div id="slotOut" slot="out">
+            <p>OUT OUT OUT</p>
+        </div>
+    </user-bit_base>
+
+    <style>
+        body {
+            background-color: green;
+            color: white;
+        }
+    </style>

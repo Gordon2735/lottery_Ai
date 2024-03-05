@@ -379,6 +379,27 @@ async function logout(req: Request, res: Response): Promise<void> {
 	}
 }
 
+async function state_boxHandler(_req: Request, res: Response): Promise<void> {
+	try {
+		const state_box_script = `<script type="module" src="/src/ts/state_box.js" content="text/javascript"></script>`;
+		res.set('Content-Type', 'text/html');
+		res.set('target', '_blank');
+		res.render('state_box', {
+			title: 'State Box',
+			layout: 'state_box_main',
+			partials: 'partials',
+			helpers: 'helpers',
+			script: [state_box_script]
+		});
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(`state_boxHandler had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
+		return Promise.reject() as Promise<void>;
+	}
+}
+
 async function powerballHandler(_req: Request, res: Response): Promise<void> {
 	try {
 		const scriptPowerBallGameShell: string = `<script type="module" src="/src/components/game_components/powerBall_components/powerBall_game/powerball-game_shell.js" content="text/javascript"></script>`;
@@ -408,5 +429,6 @@ export {
 	loginHandler,
 	loginPostHandler,
 	logout,
+	state_boxHandler,
 	powerballHandler
 };
