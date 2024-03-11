@@ -1,4 +1,6 @@
-# ||.....LOTTERY Ai™️.....||.....README FILE.....||
+# **LOTTERY Ai™️**
+
+> :::MEMO: **This Application is for Entertainment Purposes Only!** > **README FILE**: _for the Application..._
 
 -   [x] **Welcome to the 'Winning Team!!'** You **NOW POSSESS** an advanced, and a technologically current cutting-edge tool with enormous **ENABLING POWER**! This new phone application **EMPOWERS** the user to combine **their talents** with **artificial intelligence's** full potentialities; thus creating a new and powerful **METHODOLOGY** for winning: teaming up with Ai to discover the right numbers to win it big playing the South Carolina Lottery. **INCREASING** your chances of **WINNING** one of the many lottery games by a **substantial order-of-magnitude** greater!
 

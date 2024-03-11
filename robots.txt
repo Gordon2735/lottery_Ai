@@ -1,6 +1,7 @@
 # Robots.txt file for www.microsoft.com
 
 User-agent: *
+Disallow: /*/store/locations/store-locations-sitemap.xml
 Disallow: /en-us/windows/si/matrix.html
 Disallow: /en-us/windows/si/matrix.html
 Disallow: /*/security/search-results.aspx?
@@ -113,12 +114,35 @@ Disallow: /windows/campaign/meet-apps.aspx
 Disallow: /windows/campaign/features-built-in-apps.aspx
 Disallow: /ru-ru/events/platforma/materials/default.aspx?speaker*
 Disallow: /de-de/corporate/rechtliche-hinweise/impressum_de.aspx
+Disallow: /en/microsoft-365
+Disallow: /en/microsoft-365/
+Disallow: /es/microsoft-365
+Disallow: /es/microsoft-365/
+Disallow: /fr/microsoft-365
+Disallow: /fr/microsoft-365/
+Disallow: /en/security
+Disallow: /en/security/
+Disallow: /es/security
+Disallow: /es/security/
+Disallow: /fr/security
+Disallow: /fr/security/
+Disallow: /en/microsoft-teams
+Disallow: /en/microsoft-teams/
+Disallow: /es/microsoft-teams
+Disallow: /es/microsoft-teams/
+Disallow: /fr/microsoft-teams
+Disallow: /fr/microsoft-teams/
+Disallow: /en/microsoft-viva
+Disallow: /en/microsoft-viva/
+Disallow: /es/microsoft-viva
+Disallow: /es/microsoft-viva/
+Disallow: /fr/microsoft-viva
+Disallow: /fr/microsoft-viva/
 
 Sitemap: https://www.microsoft.com/learning/sitemap.xml
 Sitemap: https://www.microsoft.com/filedata/sitemaps/RW5xN8
 Sitemap: https://www.microsoft.com/store/collections.xml
 Sitemap: https://www.microsoft.com/store/productdetailpages.index.xml
-Sitemap: https://www.microsoft.com/en-us/store/locations/store-locations-sitemap.xml
 Sitemap: https://www.microsoft.com/en-us/surface/surface.index.xml
 Sitemap: https://www.microsoft.com/microsoft-365/sitemapindex.xml
 Sitemap: https://www.microsoft.com/microsoft-teams/sitemapindex.xml
@@ -126,3 +150,7 @@ Sitemap: https://www.microsoft.com/microsoft-viva/sitemapindex.xml
 Sitemap: https://www.microsoft.com/security/sitemapindex.xml
 Sitemap: https://www.microsoft.com/windows-365/sitemapindex.xml
 Sitemap: https://www.microsoft.com/trust-center/sitemapindex.xml
+Sitemap: https://www.microsoft.com/store/categories.xml
+Sitemap: https://www.microsoft.com/evalcenter/sitemapindex.xml
+Sitemap: https://www.microsoft.com/isv/sitemapindex.xml
+Sitemap: https://www.microsoft.com/en-us/windows/windows-index.xml
