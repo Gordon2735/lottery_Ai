@@ -12,4 +12,23 @@ declare global {
 	// 	username: string;
 	// 	password: string;
 	// }
+
+	interface State {
+		[key: string]: object;
+	}
+	interface Actions {
+		[key: string]: object;
+	}
+	interface Mutations {
+		[key: string]: object;
+	}
+	interface Stores {
+		actions: Actions;
+		mutations: Mutations;
+		state: State;
+		status: string;
+		events: PubSub;
+		mixed: Array<number | string | boolean>;
+	}
+	type mixed = Array<number | string | boolean>;
 }
