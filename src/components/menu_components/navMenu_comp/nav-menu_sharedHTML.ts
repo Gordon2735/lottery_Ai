@@ -26,7 +26,7 @@ navMenu_sharedHTML.navbar = /*html*/ `
             <div class="nav-menu-links">
                 <ul>
                     <li><a href="/">Lottery &nbsp;</a></li>
-                    <li><a href="/state_box">State-Test &nbsp;</a></li>
+                    <li><a href="/state_mgt">State Mgt &nbsp;</a></li>
                     <li><a href="/powerball">Powerball®️ &nbsp;</a></li>
                     <li><a href="/mega_mil">Mega Millions®️ &nbsp;</a></li>
                     <li><a href="/cash5">Palmetto Cash 5 &nbsp;</a></li>

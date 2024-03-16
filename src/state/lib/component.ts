@@ -10,7 +10,7 @@ export default class Component {
 		// We're setting a render function as the one set by whatever inherits this base
 		// class or setting it to an empty by default. This is so nothing breaks if someone
 		// forgets to set it.
-		this.render = () => void [];
+		this.render = () => void [] || function () {};
 		// this.render = this.render || function () {};
 
 		// If there's a store passed in, subscribe to the state change

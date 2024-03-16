@@ -4,10 +4,15 @@
 * Define variables
 */
 :root {
+    --bg-state: #333;
     --border: #888888;
+    --border-state: #d4d103;
     --decor: #777777;
+    --decor-state: #b6b302;
     --text: #141414;
     --text-secondary: #555555;
+    --text-tertiary: #f3f3f3;
+    --text-quaternary: #c7c5c5;
     --danger: #d62c1a;
     --danger--dark: #a82315;
 }
@@ -18,10 +23,10 @@
 html {
     height: 100%;
     font-size: 16px;
-    background: #f3f3f3;
+    background: var(--bg-state);
 }
 
-body {
+.body_state {
     font-family: sans-serif;
     margin: 0;
     padding: 2rem 1rem;
@@ -29,7 +34,7 @@ body {
         Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.5;
-    color: var(--text);
+    color: var(--text-tertiary);
 }
 
 p {
@@ -57,7 +62,7 @@ h2 {
 .intro {
     padding: 0 0 1rem 0;
     margin: 0 0 2rem 0;
-    border-bottom: 1px dotted var(--border);
+    border-bottom: 1px dotted var(--border-state);
 }
 
 .intro__heading {
@@ -96,7 +101,7 @@ h2 {
     display: block;
     font-size: 1.3rem;
     font-weight: 400;
-    color: var(--text-secondary);
+    color: var(--text-quaternary);
 }
 
 .app__decor>* {
@@ -160,10 +165,10 @@ h2 {
 .new-item {
     margin: 2rem 0 0 0;
     padding: 1rem 0 0 0;
-    border-top: 1px dotted var(--border);
+    border-top: 1px dotted var(--border-state);
 }
 
-/* Imporants override Boilerform styles and allow us to pull the CSS straight from the repo */
+/* Important override Boilerform styles and allow us to pull the CSS straight from the repo */
 .new-item__button {
     position: relative;
     top: 2px;
@@ -180,7 +185,7 @@ h2 {
 */
 .no-items {
     margin: 1rem 0 0 0;
-    color: var(--text-secondary);
+    color: var(--text-quaternary);
 }
 
 /**

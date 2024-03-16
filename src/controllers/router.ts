@@ -4,13 +4,16 @@
 
 import express, { Application, Router } from 'express';
 import index_route, {
+	state_mgt_route,
 	register_route,
 	registerPOST_route,
 	login_route,
 	loginPOST_route,
 	logout_route,
 	state_box_route,
-	powerball_route
+	powerball_route,
+	server500Error_route,
+	browser404Error_route
 } from './routes/routes.js';
 
 const app: Application = express();
@@ -21,13 +24,16 @@ app.use(express.json());
 
 const routes: Router[] = [
 	index_route,
+	state_mgt_route,
 	register_route,
 	registerPOST_route,
 	login_route,
 	loginPOST_route,
 	logout_route,
 	state_box_route,
-	powerball_route
+	powerball_route,
+	server500Error_route,
+	browser404Error_route
 ];
 
 const thisRoute: express.Router = router;

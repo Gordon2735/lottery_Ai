@@ -9,21 +9,22 @@ import Status from './components/status.js';
 
 // Load up some DOM elements
 const formElement: HTMLFormElement | null = document.querySelector('.js-form');
-const inputElement: HTMLInputElement | null =
-	document.querySelector('#new-item-field');
+const inputElement = document.getElementById(
+	'new-item-field'
+) as HTMLInputElement;
 
 // Add a submit event listener to the form and prevent it from posting back
-formElement?.addEventListener('submit', (evt) => {
-	evt.preventDefault();
+formElement?.addEventListener('submit', (event: SubmitEvent) => {
+	event.preventDefault();
 
 	// Grab the text value of the text box and trim any whitespace off it
-	const value: string | undefined | null = inputElement?.value.trim();
+	const value: string | null = inputElement.value.trim();
 
 	// If there's some content, trigger the action and clear the field, ready for the next item
 	if (value?.length) {
 		store.dispatch('addItem', value);
-		inputElement!.value = '';
-		inputElement?.focus();
+		inputElement.value = ''; // Remove optional chaining operator
+		inputElement.focus();
 	}
 });
 

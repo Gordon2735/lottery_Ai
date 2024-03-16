@@ -32,8 +32,37 @@ app.use(express.json());
 app.set('json spaces', 2);
 app.use(express.urlencoded({ extended: true }));
 
+async function stateHandler(_req: Request, res: Response): Promise<void> {
+	try {
+		const state_index_script: string = `
+			<script type="module" src="/src/state/state_index.js" 
+				content="text/javascript" crossorigin="anonymous">
+			</script>
+		`;
+		console.info(
+			`
+				Node Request Argument on stateHandler : ${_req.body}
+			`
+		);
+		res.set('Content-Type', 'text/html');
+		res.set('target', '_blank');
+		res.render('state_mgt', {
+			title: 'State Management',
+			layout: 'state_mgt_main',
+			partials: 'partials',
+			helpers: 'helpers',
+			script: [state_index_script]
+		});
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(`stateHandler had an ERROR: ${error}`);
+		res.status(500).send('Server Error | stateHandler');
+		return Promise.reject() as Promise<void>;
+	}
+}
+
 async function indexHandler(req: Request, res: Response): Promise<void> {
-	const index_script = `<script type="module" src="/src/ts/index.js" content="text/javascript"></script>`;
+	const index_script: string = `<script type="module" src="/src/ts/index.js" content="text/javascript"></script>`;
 
 	// Move the function declaration to the root of the function body
 	async function sessionView(): Promise<string> {
@@ -422,7 +451,65 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 	}
 }
 
+async function server500ErrorHandler(
+	_req: Request,
+	res: Response
+): Promise<void> {
+	try {
+		const script500: string = `
+			<script type="module" src="/src/components/error_components/server500_comp/server-500.js" 
+				content="text/javascript">
+			</script>
+		`;
+
+		res.set('Content-Type', 'text/html');
+		res.set('target', '_blank');
+		res.render('500', {
+			title: '500 Server Error',
+			layout: 'errors_main',
+			partials: 'partials',
+			helpers: 'helpers',
+			script: [script500]
+		});
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(`500Handler had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
+		return Promise.reject() as Promise<void>;
+	}
+}
+async function browser404ErrorHandler(
+	_req: Request,
+	res: Response
+): Promise<void> {
+	try {
+		const script404: string = `
+			<script type="module" src="/src/components/error_components/404_comp/browser-404.js" 
+				content="text/javascript">
+			</script>
+		`;
+
+		res.set('Content-Type', 'text/html');
+		res.set('target', '_blank');
+		res.render('404', {
+			title: '404 Browser Error',
+			layout: 'errors_main',
+			partials: 'partials',
+			helpers: 'helpers',
+			script: [script404]
+		});
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(`500Handler had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
+		return Promise.reject() as Promise<void>;
+	}
+}
+
 export {
+	stateHandler,
 	indexHandler as default,
 	registerHandler,
 	registerPostHandler,
@@ -430,5 +517,7 @@ export {
 	loginPostHandler,
 	logout,
 	state_boxHandler,
-	powerballHandler
+	powerballHandler,
+	server500ErrorHandler,
+	browser404ErrorHandler
 };
