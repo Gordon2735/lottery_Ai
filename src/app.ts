@@ -23,6 +23,10 @@ import { fileURLToPath } from 'url';
 import router from './controllers/router.js';
 import helper from '../public/views/helpers/helpers.js';
 import favicon from 'express-favicon';
+// import { AbstractErrorTemplate } from './errors/AbstractErrorTemplate.js';
+// import { DatabaseError } from './errors/DatabaseError.js';
+// import { ServerError } from './errors/ServerError.js';
+// import { NotFounderError } from './errors/NotFoundError.js';
 import ErrorHandler from './errors/error_handler.js';
 import { v4 as uuid } from 'uuid';
 

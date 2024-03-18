@@ -336,6 +336,7 @@ error404_sharedStyles.browser404 = /*css*/ `
         --filter-dark: drop-shadow(1px 1px 2px hsla(0, 0%, 0%, 0.997));
         --filter-light: drop-shadow(1px 1px 2px hsla(0, 0%, 100%, 0.997));
         --filter-white: drop-shadow(1px 1px 2px hsla(0, 0%, 100%, 0.997));
+        --filter-white-0: drop-shadow(4px 5px 8px hsla(39, 77%, 83%, 0.997);
         --filter-black: drop-shadow(1px 1px 2px hsla(0, 0%, 0%, 0.997));
         --filter-red: drop-shadow(1px 1px 2px hsla(0, 100%, 50%, 0.997));
         --filter-chartreuse: drop-shadow(1px 1px 2px hsla(90, 100%, 50%, 0.997));

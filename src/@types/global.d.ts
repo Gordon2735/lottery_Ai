@@ -31,4 +31,9 @@ declare global {
 		mixed: Array<number | string | boolean>;
 	}
 	type mixed = Array<number | string | boolean>;
+
+	type GlobalErrorContent = {
+		message: string;
+		context?: { [key: string]: never };
+	};
 }
