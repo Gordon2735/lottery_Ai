@@ -13,6 +13,8 @@ const indexWrapperSharedHTML: IIndexWrapperSharedHTML = {
 indexWrapperSharedHTML.global = /*html*/ `
 
 
+
+
 `;
 
 indexWrapperSharedHTML.shell = /*html*/ `

@@ -41,6 +41,15 @@ class IndexWrapperShell extends IndexWrapperTemplate {
 			crossOrigin: 'anonymous'
 		});
 
+		const scriptBrowser404: HTMLScriptElement =
+			document.createElement('script');
+		setAttributes(scriptBrowser404, {
+			type: 'module',
+			src: '/src/components/error_components/404_comp/browser-404.js',
+			content: 'text/javascript',
+			crossOrigin: 'anonymous'
+		});
+
 		const scriptWrapper: HTMLScriptElement =
 			document.createElement('script');
 		setAttributes(scriptWrapper, {

@@ -1,20 +1,33 @@
 'use strict';
 
-import { RegisterComponent } from '../../componentTools/general_helpers.js';
 import { Browser404Template } from './browser-404_template.js';
+import {
+	RegisterComponent,
+	setAttributes
+} from '../../componentTools/general_helpers.js';
+import { error404_sharedHTML } from './browser-404_sharedHTML.js';
+import { error404_sharedStyles } from './browser-404_sharedStyles.js';
 
 class Browser404 extends Browser404Template {
-	activateShadowDOM: boolean = false;
-	spanErrorCode: HTMLElement | null | undefined;
+	error404H1: HTMLHeadingElement;
+	error404Paragraph: HTMLParagraphElement;
+	error404Anchor: HTMLAnchorElement;
 
 	public get template(): string {
 		return /*html*/ `
-            ${this.spanErrorCode}
-        `;
+
+			${error404_sharedHTML.browser404}
+
+			<style>
+
+				${error404_sharedStyles.browser404}
+
+			</style>
+	    `;
 	}
 
 	static get observedAttributes(): string[] {
-		return ['data-section_404'];
+		return ['data-error_404'];
 	}
 
 	constructor() {
@@ -22,19 +35,115 @@ class Browser404 extends Browser404Template {
 
 		this.activateShadowDOM = false;
 
+		const error404H1: HTMLHeadingElement = document.createElement('h1');
+		const error404Paragraph: HTMLParagraphElement =
+			document.createElement('p');
+		const error404Anchor: HTMLAnchorElement = document.createElement('a');
+
+		this.error404H1 = error404H1;
+		this.error404Paragraph = error404Paragraph;
+		this.error404Anchor = error404Anchor;
+
+		setAttributes(this.error404H1, {
+			id: 'h1404',
+			class: 'h1-404'
+		});
+		setAttributes(this.error404Paragraph, {
+			id: 'p404',
+			class: 'p-404'
+		});
+		setAttributes(this.error404Anchor, {
+			href: '/',
+			id: 'a404',
+			class: 'a-404 browser-404__link'
+		});
+
 		return;
 	}
 
 	connectedCallback(): void {
 		super.connectedCallback();
 
-		console.info(`<browser-404> ConnectedCallback has fired!`);
+		try {
+			console.info(
+				`
+				<browser-404> ConnectedCallback has fired!
+				`
+			);
+			console.info(
+				`
+					The Browser404 Web Component has fired 
+                    and is now active!            
+					`
+			);
 
+			const currentURL: string = window.location.href;
+			const error404_component = document.getElementById(
+				'browser-404'
+			) as HTMLElement;
+
+			this.fetch404Data(currentURL, error404_component);
+
+			return this.spanErrorCode(
+				this.error404H1,
+				this.error404Paragraph,
+				this.error404Anchor
+			);
+		} catch (error: unknown) {
+			console.error(
+				`
+					<browser-404> error in connectedCallback... 
+					ERROR: ${(error as Error).message}
+				`
+			);
+			return;
+		}
+	}
+
+	async fetch404Data(url: string, component: HTMLElement): Promise<void> {
+		try {
+			const response: Response = await fetch(url);
+			const status: number = response.status;
+
+			switch (status) {
+				case 500:
+					if (component !== null) {
+						component.style.display = 'block';
+						component.dataset.error_404 = 'active';
+					}
+					break;
+				default:
+					if (component !== null) {
+						component.style.display = 'none';
+						component.dataset.error_404 = 'inActive';
+					}
+					break;
+			}
+			return;
+		} catch (error: unknown) {
+			console.error(
+				`
+					<browser-404> fetch404Data error... 
+					ERROR: ${error}
+					MESSAGE: ${(error as Error).message}
+				`
+			);
+			return;
+		}
+	}
+
+	public attributeChangedCallback(
+		name: string,
+		oldValue: string,
+		newValue: string
+	): void {
 		console.info(
 			`
-                The Browser404 Web Component has fired 
-                    and is now active!            
-            `
+				<browser-404> attributeChanged... 
+				NAME: ${name}
+				OLD VALUE: ${oldValue}
+				NEW VALUE: ${newValue}
+			`
 		);
 	}
 }
