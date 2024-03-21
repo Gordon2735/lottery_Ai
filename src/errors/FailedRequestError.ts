@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
 import { AbstractErrorTemplate } from './AbstractErrorTemplate.js';
-class DatabaseError extends AbstractErrorTemplate {
-	private static readonly _statusCode = 500;
+
+class FailedRequestError extends AbstractErrorTemplate {
+	private static readonly _statusCode = 400;
 	private readonly _code: number;
 	private readonly _logging: boolean;
 	private readonly _context: { [key: string]: never };
@@ -16,13 +16,13 @@ class DatabaseError extends AbstractErrorTemplate {
 	}) {
 		const { code, message, logging } = params || {};
 
-		super(message || 'Database error');
+		super(message || 'Failed Request');
 
-		this._code = code || DatabaseError._statusCode;
+		this._code = code || FailedRequestError._statusCode;
 		this._logging = logging || false;
 		this._context = params?.context || {};
 
-		Object.setPrototypeOf(this, DatabaseError.prototype);
+		Object.setPrototypeOf(this, FailedRequestError.prototype);
 	}
 
 	get errors() {
@@ -38,4 +38,4 @@ class DatabaseError extends AbstractErrorTemplate {
 	}
 }
 
-export { DatabaseError };
+export { FailedRequestError };

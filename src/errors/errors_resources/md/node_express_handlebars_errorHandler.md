@@ -1,12 +1,14 @@
 <!-- Error Handling Study -->
 
-# Error Handling with Classes in a Node.js and Express.js Application, and Implementing Templating with Handlebars: Typescript
+# <span style="color: wheat;"> Error Handling with Classes in a Node.js and Express.js Application, and Implementing Templating with Handlebars: Typescript</span>
 
-**_serving html pages for errors like 404, 500, etc, using_**
+<span style="letter-spacing: 0.18em; color: chartreuse;">**_Serving HTML Pages for Errors like 404, 500, etc, using_**</span>
 
-Thank you [ChatGPT](https://chat.openai.com/) for the detailed explanation of error handling in a Node.js and Express.js application, and implementing templating with Handlebars. The explanation was very helpful and informative.
+<span style="margin: 1.2rem 0.4rem 0.7rem 0rem; display: inline-flex;"> <img src="https://s.gravatar.com/avatar/8919c21a69fc2528689eb1832c8ed37f?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fwe.png"
+    style="border-radius: 10%; width: 80px; height: 80px; filter: drop-shadow(0.4px 1px 5px hsla(187, 52%, 80%, 0.5997));"
+/></span><span style="color: violet; filter: drop-shadow(0.4px 1px 5px hsla(302, 59%, 65%, 0.593)); letter-spacing: 0.115em;"> **_Gordon_**</span>$~$: $~~~~~$<span style="color: magenta;">Thank you [ChatGPT](https://chat.openai.com/) for the detailed explanation of error handling in a Node.js and Express.js application, and implementing templating with Handlebars. The explanation was very helpful and informative.</span>
 
-<span style="border-radius: 7%; margin: 1.2rem 0.4rem 0.7rem 0rem; background-color: wheat; display: inline-flex; filter: drop-shadow(0.7px 4px 18px hsla(39, 77%, 83%, 0.297));">![OpenAi ChatGPT Logo Image](/src/resources/md/md_documentation/images/openAi_chatGPT_logo.svg)</span><span style="color: wheat; filter: drop-shadow(0.7px 4px 9px hsla(39, 77%, 83%, 0.397)); letter-spacing: 0.115em;"> _**ChatGPT**_</span>$~$: $~~$<span style="color: lightgray;">_To handle errors like 404, 500, etc., using Node.js with Express, Handlebars, and TypeScript, you can follow these steps_: </span>
+<span style="border-radius: 7%; margin: 1.2rem 0.4rem 0.7rem 0rem; background-color: wheat; display: inline-flex; filter: drop-shadow(0.7px 4px 18px hsla(39, 77%, 83%, 0.297));">![OpenAi ChatGPT Logo Image](/src/resources/md/md_documentation/images/openAi_chatGPT_logo.svg)</span><span style="color: wheat; filter: drop-shadow(0.7px 4px 9px hsla(39, 77%, 83%, 0.397)); letter-spacing: 0.115em;"> _**ChatGPT**_</span>$~$: $~~$<span style="color: goldenrod;">_To handle errors like 404, 500, etc., using Node.js with Express, Handlebars, and TypeScript, you can follow these steps_: </span>
 
 1. **Install required packages**: Ensure you have `express`, `@types/express`, `express-handlebars`, `@types/express-handlebars` installed. You might also need `@types/node` for TypeScript support.
 2. **Create a basic Express server**: Set up a basic Express server in TypeScript. Here's a simple example:
@@ -49,15 +51,13 @@ app.listen(PORT, () => {
 tsc && node server.js
 ```
 
-This setup will render the appropriate error page (404 or 500) when the corresponding error occurs. Ensure you have proper error handling in your routes and middleware functions to trigger these errors when needed.
+-   This setup will render the appropriate error page (404 or 500) when the corresponding error occurs. Ensure you have proper error handling in your routes and middleware functions to trigger these errors when needed.
 
-<img src="https://s.gravatar.com/avatar/8919c21a69fc2528689eb1832c8ed37f?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fwe.png"
-    style="border-radius: 10%; width: 80px; height: 80px; margin-bottom: -20px; margin-top: 10px;"
-/>
+<span style="margin: 1.2rem 0.4rem 0.7rem 0rem; display: inline-flex;"> <img src="https://s.gravatar.com/avatar/8919c21a69fc2528689eb1832c8ed37f?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fwe.png"
+    style="border-radius: 10%; width: 80px; height: 80px; filter: drop-shadow(0.4px 1px 5px hsla(187, 52%, 80%, 0.5997));"
+/></span><span style="color: violet; filter: drop-shadow(0.4px 1px 5px hsla(187, 52%, 80%, 0.5997)); letter-spacing: 0.115em;"> **_Gordon_**</span>$~$: $~~~~~$<span style="color: magenta;"> _Great thanks! Can offer code examples using abstract classes for the error handler for database errors, can not find, server, etc in detail with references and explanation: thanks for the time saving excellent examples that you always provide._</span>
 
-$~$ **_Gordon_**: $~~~~~$_Great thanks! Can offer code examples using abstract classes for the error handler for database errors, can not find, server, etc in detail with references and explanation: thanks for the time saving excellent examples that you always provide._
-
-<span style="border-radius: 7%; margin: 1.2rem 0.4rem 0.7rem 0rem; background-color: wheat; display: inline-flex; filter: drop-shadow(0.7px 4px 18px hsla(39, 77%, 83%, 0.297));">![OpenAi ChatGPT Logo Image](/src/resources/md/md_documentation/images/openAi_chatGPT_logo.svg)</span><span style="color: wheat; filter: drop-shadow(0.7px 4px 9px hsla(39, 77%, 83%, 0.397)); letter-spacing: 0.115em;"> _**ChatGPT**_</span>$~$: $~~$<span style="color: lightgray;">_Sure, I can provide an example of how to use abstract classes for error handling in a Node.js Express application, focusing on database errors, resource not found errors, and server errors. Here's how you can structure your code_: </span>
+<span style="border-radius: 7%; margin: 1.2rem 0.4rem 0.7rem 0rem; background-color: wheat; display: inline-flex; filter: drop-shadow(0.7px 4px 18px hsla(39, 77%, 83%, 0.297));">![OpenAi ChatGPT Logo Image](/src/resources/md/md_documentation/images/openAi_chatGPT_logo.svg)</span><span style="color: wheat; filter: drop-shadow(0.7px 4px 9px hsla(39, 77%, 83%, 0.397)); letter-spacing: 0.115em;"> _**ChatGPT**_</span>$~$: $~~$<span style="color: goldenrod;">_Sure, I can provide an example of how to use abstract classes for error handling in a Node.js Express application, focusing on database errors, resource not found errors, and server errors. Here's how you can structure your code_: </span>
 
 ```typescript
 // AbstractError.ts
@@ -101,12 +101,12 @@ class ServerError extends AbstractError {
 export { AbstractError, DatabaseError, NotFoundError, ServerError };
 ```
 
-Explanation:
+**Explanation**:
 
 1. **AbstractError**: This is an abstract class that extends the built-in Error class. It defines a property `statusCode` that represents the HTTP status code associated with the error. Subclasses of `AbstractError` will implement this property.
 2. **DatabaseError**, **NotFoundError**, **ServerError**: These are concrete error classes that extend `AbstractError`. Each class defines its own `statusCode` and constructor.
 
-**Usage in Express middleware**:
+## **Usage in Express middleware**:
 
 ```typescript
 import { Request, Response, NextFunction } from 'express';
@@ -132,64 +132,60 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 -   In your Express error handling middleware, you check if the error is an instance of `AbstractError`. If it is, you extract the status code from the error and send an appropriate response with the error message. If it's not an instance of `AbstractError`, you handle it as a generic server error.
 
-This approach allows you to create specific error classes for different types of errors, making your error handling more organized and easier to maintain. Additionally, it provides a clear separation of concerns between error generation and error handling.
+-   This approach allows you to create specific error classes for different types of errors, making your error handling more organized and easier to maintain. Additionally, it provides a clear separation of concerns between error generation and error handling.
 
-<img src="https://s.gravatar.com/avatar/8919c21a69fc2528689eb1832c8ed37f?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fwe.png"
-    style="border-radius: 10%; width: 80px; height: 80px; margin-bottom: -20px; margin-top: 10px;"
-/>
+<span style="margin: 1.2rem 0.4rem 0.7rem 0rem; display: inline-flex;"> <img src="https://s.gravatar.com/avatar/8919c21a69fc2528689eb1832c8ed37f?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fwe.png"
+    style="border-radius: 10%; width: 80px; height: 80px; filter: drop-shadow(0.4px 1px 5px hsla(187, 52%, 80%, 0.5997));"
+/></span><span style="color: violet; filter: drop-shadow(0.4px 1px 5px hsla(187, 52%, 80%, 0.5997)); letter-spacing: 0.115em;"> **_Gordon_**</span>$~$: $~~~~~$<span style="color: magenta;">_Thank you, and now let me study this for complete understanding_.</span>
 
-$~$ **_Gordon_**: $~~~~~$_Thank you, and now let me study this for complete understanding_.
+<span style="border-radius: 7%; margin: 1.2rem 0.4rem 0.7rem 0rem; background-color: wheat; display: inline-flex; filter: drop-shadow(0.7px 4px 18px hsla(39, 77%, 83%, 0.297));">![OpenAi ChatGPT Logo Image](/src/resources/md/md_documentation/images/openAi_chatGPT_logo.svg)</span><span style="color: wheat; filter: drop-shadow(0.7px 4px 9px hsla(39, 77%, 83%, 0.397)); letter-spacing: 0.115em;"> _**ChatGPT**_</span>$~$: $~~$<span style="color: goldenrod;">\_You're welcome! Take your time to study the code and feel free to ask if you have any questions or need further clarification on any part of it. Understanding error handling and how to structure your code for it is an important aspect of building robust applications. Happy coding! </span>
 
-<span style="border-radius: 7%; margin: 1.2rem 0.4rem 0.7rem 0rem; background-color: wheat; display: inline-flex; filter: drop-shadow(0.7px 4px 18px hsla(39, 77%, 83%, 0.297));">![OpenAi ChatGPT Logo Image](/src/resources/md/md_documentation/images/openAi_chatGPT_logo.svg)</span><span style="color: wheat; filter: drop-shadow(0.7px 4px 9px hsla(39, 77%, 83%, 0.397)); letter-spacing: 0.115em;"> _**ChatGPT**_</span>$~$: $~~$<span style="color: lightgray;">\_You're welcome! Take your time to study the code and feel free to ask if you have any questions or need further clarification on any part of it. Understanding error handling and how to structure your code for it is an important aspect of building robust applications. Happy coding! </span>
+<span style="margin: 1.2rem 0.4rem 0.7rem 0rem; display: inline-flex;"> <img src="https://s.gravatar.com/avatar/8919c21a69fc2528689eb1832c8ed37f?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fwe.png"
+    style="border-radius: 10%; width: 80px; height: 80px; filter: drop-shadow(0.4px 1px 5px hsla(187, 52%, 80%, 0.5997));"
+/></span><span style="color: violet; filter: drop-shadow(0.4px 1px 5px hsla(187, 52%, 80%, 0.5997)); letter-spacing: 0.115em;"> **_Gordon_**</span>$~$: $~~~~~$<span style="color: magenta;">_Can you give me a detailed explanation of the abstract keyword and it's significances both pros and cons_?</span>
 
-<img src="https://s.gravatar.com/avatar/8919c21a69fc2528689eb1832c8ed37f?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fwe.png"
-    style="border-radius: 10%; width: 80px; height: 80px; margin-bottom: -20px; margin-top: 10px;"
-/>
+<span style="border-radius: 7%; margin: 1.2rem 0.4rem 0.7rem 0rem; background-color: wheat; display: inline-flex; filter: drop-shadow(0.7px 4px 18px hsla(39, 77%, 83%, 0.297));">![OpenAi ChatGPT Logo Image](/src/resources/md/md_documentation/images/openAi_chatGPT_logo.svg)</span><span style="color: wheat; filter: drop-shadow(0.7px 4px 9px hsla(39, 77%, 83%, 0.397)); letter-spacing: 0.115em;"> _**ChatGPT**_</span>$~$: $~~$<span style="color: goldenrod;">Certainly! The `abstract` keyword in object-oriented programming languages like TypeScript, Java, and C# is used to define abstract classes and methods. Here's a detailed explanation of its significance, both pros, and cons:</span>
 
-$~$ **_Gordon_**: $~~~~~$_Can you give me a detailed explanation of the abstract keyword and it's significances both pros and cons_?
+### **Significance**
 
-<span style="border-radius: 7%; margin: 1.2rem 0.4rem 0.7rem 0rem; background-color: wheat; display: inline-flex; filter: drop-shadow(0.7px 4px 18px hsla(39, 77%, 83%, 0.297));">![OpenAi ChatGPT Logo Image](/src/resources/md/md_documentation/images/openAi_chatGPT_logo.svg)</span><span style="color: wheat; filter: drop-shadow(0.7px 4px 9px hsla(39, 77%, 83%, 0.397)); letter-spacing: 0.115em;"> _**ChatGPT**_</span>$~$: $~~$<span style="color: lightgray;">Certainly! The `abstract` keyword in object-oriented programming languages like TypeScript, Java, and C# is used to define abstract classes and methods. Here's a detailed explanation of its significance, both pros, and cons:</span>
-
-### Significance
-
-1. **Abstract Classes**:
+1. **_Abstract Classes_**:
 
     - **Definition**: An abstract class is a class that cannot be instantiated directly. It serves as a blueprint for other classes and may contain one or more abstract methods.
     - **Use Case**: Abstract classes are useful when you want to define a common interface or behavior that multiple subclasses will implement, but you don't want to instantiate the base class itself.
     - **Example**: In a geometric shape hierarchy, you might have an abstract class `Shape` with abstract methods like `calculateArea()` and `calculatePerimeter()`. Concrete subclasses like `Circle` and `Rectangle` would implement these methods differently.
 
-2. **Abstract Methods**:
+2. **_Abstract Methods_**:
 
     - **Definition**: An abstract method is a method declared in an abstract class but does not have an implementation.
     - **Use Case**: Abstract methods define a contract that concrete subclasses must implement. They ensure that subclasses provide specific behavior without prescribing how it should be implemented.
     - **Example**: In the `Shape` example, `calculateArea()` and `calculatePerimeter()` would be abstract methods that subclasses like `Circle` and `Rectangle` must implement.
 
-### Pros
+### **Pros**
 
-1. **Encapsulation and Abstraction**:
+1.  **_Encapsulation and Abstraction_**:
 
-    - Abstract classes and methods help in encapsulating common behavior and abstracting implementation details. This promotes code reusability and maintains a clear separation of concerns.
+    -   Abstract classes and methods help in encapsulating common behavior and abstracting implementation details. This promotes code reusability and maintains a clear separation of concerns.
 
-2. **Polymorphism**:
+2.  **_Polymorphism_**:
 
-    - Abstract classes enable polymorphism, allowing different subclasses to be treated interchangeably through a common interface. This fosters flexibility and extensibility in your codebase.
+    -   Abstract classes enable polymorphism, allowing different subclasses to be treated interchangeably through a common interface. This fosters flexibility and extensibility in your codebase.
 
-3. **Enforces Contracts**:
+3.  **_Enforces Contracts_**:
 
-    - Abstract methods enforce contracts that subclasses must adhere to, ensuring consistency and correctness in the implementation of derived classes.
+    -   Abstract methods enforce contracts that subclasses must adhere to, ensuring consistency and correctness in the implementation of derived classes.
 
-### Cons:
+### **Cons**
 
-1. **Complexity**:
+1.  **_Complexity_**:
 
-    - Introducing abstract classes and methods can add complexity to your codebase, especially for beginners or in smaller projects where simplicity is preferred.
+    -   Introducing abstract classes and methods can add complexity to your codebase, especially for beginners or in smaller projects where simplicity is preferred.
 
-2. **Inflexibility**:
+2.  **_Inflexibility_**:
 
-    - Once an abstract class is defined with abstract methods, it may be challenging to modify or extend without impacting existing subclasses. This can lead to rigid designs in some cases.
+    -   Once an abstract class is defined with abstract methods, it may be challenging to modify or extend without impacting existing subclasses. This can lead to rigid designs in some cases.
 
-3. **Performance Overhead**:
+3.  **_Performance Overhead_**:
 
-    - In some languages, there might be a slight performance overhead associated with abstract classes and method calls compared to non-abstract counterparts. However, this overhead is usually negligible in most scenarios.
+    -   In some languages, there might be a slight performance overhead associated with abstract classes and method calls compared to non-abstract counterparts. However, this overhead is usually negligible in most scenarios.
 
-In summary, the `abstract` keyword is a powerful tool for creating flexible, reusable, and maintainable code in object-oriented programming. It encourages good design practices like encapsulation, polymorphism, and enforcing contracts. However, it should be used judiciously to avoid unnecessary complexity and rigidity in your codebase.
+-   In summary, the `abstract` keyword is a powerful tool for creating flexible, reusable, and maintainable code in object-oriented programming. It encourages good design practices like encapsulation, polymorphism, and enforcing contracts. However, it should be used judiciously to avoid unnecessary complexity and rigidity in your codebase.

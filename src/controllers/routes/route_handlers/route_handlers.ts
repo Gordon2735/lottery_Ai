@@ -14,6 +14,7 @@ import bcrypt from 'bcryptjs';
 import Session from 'express-session';
 import {} from '../../../../src/@types/global.d.js';
 import IUser from '../../../../src/@types/interfaces/interfaces.js';
+import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
 // import { UnknownObject } from 'express-handlebars/types/index.js';
 declare module 'express-session' {
 	interface Session {
@@ -319,10 +320,7 @@ async function loginPostHandler(
 		);
 
 		if (!user.username) {
-			res.status(400).send({ message: 'Invalid Credentials!' });
-
-			// return Promise.reject() as Promise<void>;
-			return next();
+			postLoginErrorHandler(req, res, next, user);
 		}
 
 		res.locals.username = user.username;

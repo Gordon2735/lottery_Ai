@@ -1,5 +1,4 @@
 'use strict';
-
 abstract class AbstractErrorTemplate extends Error {
 	abstract readonly statusCode: number;
 	abstract readonly errors: GlobalErrorContent[];
@@ -14,5 +13,4 @@ abstract class AbstractErrorTemplate extends Error {
 		Object.setPrototypeOf(this, AbstractErrorTemplate.prototype);
 	}
 }
-
 export { AbstractErrorTemplate };
