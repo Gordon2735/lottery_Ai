@@ -7,6 +7,7 @@ class FailedRequestError extends AbstractErrorTemplate {
 	private readonly _code: number;
 	private readonly _logging: boolean;
 	private readonly _context: { [key: string]: never };
+	static code: number;
 
 	constructor(params?: {
 		code?: number;

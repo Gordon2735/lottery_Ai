@@ -1,12 +1,12 @@
 'use strict';
 
-// Path: src/components/error_components/404_comp/browser-404_template.ts
+// Path: src/components/error_components/404_comp/error-base_template.ts
 import {
 	setAttributes,
 	appendChildren
 } from '../../componentTools/general_helpers.js';
 
-class Browser404Template extends HTMLElement {
+class ErrorBaseTemplate extends HTMLElement {
 	activateShadowDOM: boolean = false;
 	root: ShadowRoot | undefined | null;
 
@@ -98,4 +98,4 @@ class Browser404Template extends HTMLElement {
 		}
 	}
 }
-export { Browser404Template };
+export { ErrorBaseTemplate };

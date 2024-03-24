@@ -6,13 +6,13 @@ class DatabaseError extends AbstractErrorTemplate {
 	private static readonly _statusCode = 500;
 	private readonly _code: number;
 	private readonly _logging: boolean;
-	private readonly _context: { [key: string]: never };
+	private readonly _context: { [key: string]: unknown };
 
 	constructor(params?: {
 		code?: number;
 		message?: string;
 		logging?: boolean;
-		context?: { [key: string]: never };
+		context?: { [key: string]: unknown };
 	}) {
 		const { code, message, logging } = params || {};
 

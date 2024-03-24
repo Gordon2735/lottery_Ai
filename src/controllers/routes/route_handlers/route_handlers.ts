@@ -15,7 +15,6 @@ import Session from 'express-session';
 import {} from '../../../../src/@types/global.d.js';
 import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
-// import { UnknownObject } from 'express-handlebars/types/index.js';
 declare module 'express-session' {
 	interface Session {
 		data: SessionData;
@@ -449,59 +448,30 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 	}
 }
 
-async function server500ErrorHandler(
-	_req: Request,
-	res: Response
-): Promise<void> {
+async function errorBaseHandler(req: Request, res: Response): Promise<void> {
 	try {
-		const script500: string = `
-			<script type="module" src="/src/components/error_components/server500_comp/server-500.js" 
+		const scriptErrorBase: string = `
+			<script type="module" src="/src/components/error_components/error_base_comp/error-base.js" 
 				content="text/javascript">
 			</script>
 		`;
 
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
-		res.render('500', {
-			title: '500 Server Error',
+		res.render('errors/errors', {
+			title: 'Error',
 			layout: 'errors_main',
 			partials: 'partials',
 			helpers: 'helpers',
-			script: [script500]
+			script: [scriptErrorBase]
 		});
 		return Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
-		console.error(`500Handler had an ERROR: ${error}`);
-		res.status(500).send('Server Error');
-
-		return Promise.reject() as Promise<void>;
-	}
-}
-async function browser404ErrorHandler(
-	_req: Request,
-	res: Response
-): Promise<void> {
-	try {
-		const script404: string = `
-			<script type="module" src="/src/components/error_components/404_comp/browser-404.js" 
-				content="text/javascript">
-			</script>
-		`;
-
-		res.set('Content-Type', 'text/html');
-		res.set('target', '_blank');
-		res.render('404', {
-			title: '404 Browser Error',
-			layout: 'errors_main',
-			partials: 'partials',
-			helpers: 'helpers',
-			script: [script404]
-		});
-		return Promise.resolve() as Promise<void>;
-	} catch (error: unknown) {
-		console.error(`500Handler had an ERROR: ${error}`);
-		res.status(500).send('Server Error');
-
+		console.error(
+			`
+				errorBaseHandler had an ERROR: ${error}
+			`
+		);
 		return Promise.reject() as Promise<void>;
 	}
 }
@@ -516,6 +486,5 @@ export {
 	logout,
 	state_boxHandler,
 	powerballHandler,
-	server500ErrorHandler,
-	browser404ErrorHandler
+	errorBaseHandler
 };

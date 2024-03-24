@@ -27,7 +27,7 @@ import favicon from 'express-favicon';
 // import { DatabaseError } from './errors/DatabaseError.js';
 // import { ServerError } from './errors/ServerError.js';
 // import { NotFounderError } from './errors/NotFoundError.js';
-import ErrorHandler from './errors/error_handler.js';
+import { ErrorHandler } from './errors/errorHandler.js';
 import { v4 as uuid } from 'uuid';
 
 declare module 'express-session' {
@@ -47,7 +47,7 @@ export default async function (config: {
 
 	const __filename: string = fileURLToPath(import.meta.url);
 	const __dirname: string = path.dirname(__filename);
-	const errors: ErrorHandler = new ErrorHandler(404, 'Not Found');
+	// const errors: ErrorHandler = new ErrorHandler(404, 'Not Found');
 	const routers: Router = router;
 	const oneDay = 1000 * 60 * 60 * 24;
 
@@ -157,31 +157,20 @@ export default async function (config: {
 	});
 
 	// catch 404 and forward to error handler
-	app.use((req: Request, _res: Response, next: NextFunction) => {
-		const error: Error = new Error(`Not Found (${req.url})`);
-		errors.message = error.message;
-		next(error);
-	});
+	// app.use((req: Request, _res: Response, next: NextFunction) => {
+	// 	const error: Error = new Error(`Not Found (${req.url})`);
+	// 	errors.message = error.message;
+	// 	next(error);
+	// });
 
 	// error handler
-	app.use(
-		(
-			error: unknown,
-			req: Request,
-			res: Response,
-			next: NextFunction,
-			errorStatus: number = 500
-		) => {
-			// set locals, only providing error in development
-			res.locals.error =
-				req.app.get('env') === 'development' ? error : {};
+	app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+		// set locals, only providing error in development
+		// res.locals.error =
+		// 	req.app.get('env') === 'development' ? error : {};
 
-			// errorStatus = errors.status;
-			res.status(errorStatus || 500);
-			res.render('error');
-			next();
-		}
-	);
+		ErrorHandler(error, req, res, next);
+	});
 
 	// set Global Variables
 	app.use(function (req: Request, res: Response) {

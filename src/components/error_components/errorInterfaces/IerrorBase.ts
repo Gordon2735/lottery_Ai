@@ -1,6 +1,6 @@
 'use strict';
 
-interface Ierror404Template {
+interface IerrorBaseTemplate {
 	activateShadowDOM: boolean;
 	root: ShadowRoot | null | undefined;
 	template: string;
@@ -9,24 +9,25 @@ interface Ierror404Template {
 	spanErrorCode: () => void;
 }
 
-interface Ierror404 {
+interface IerrorBase {
 	activateShadowDOM: boolean;
 	root: ShadowRoot | null | undefined;
 	template: string;
 	connectedCallback(): void;
 }
 
-interface Ierror404SharedHTML {
-	browser404: string;
+interface IerrorBaseSharedHTML {
+	base: string;
 }
 
-interface Ierror404SharedStyles {
-	browser404: string;
+interface IerrorBaseSharedStyles {
+	root: string;
+	base: string;
 }
 
 export {
-	Ierror404Template,
-	Ierror404,
-	Ierror404SharedHTML,
-	Ierror404SharedStyles
+	IerrorBaseTemplate,
+	IerrorBase,
+	IerrorBaseSharedHTML,
+	IerrorBaseSharedStyles
 };

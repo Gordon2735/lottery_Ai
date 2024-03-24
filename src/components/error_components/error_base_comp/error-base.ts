@@ -1,14 +1,14 @@
 'use strict';
 
-import { Browser404Template } from './browser-404_template.js';
+import { ErrorBaseTemplate } from './error-base_template.js';
 import {
 	RegisterComponent,
 	setAttributes
 } from '../../componentTools/general_helpers.js';
-import { error404_sharedHTML } from './browser-404_sharedHTML.js';
-import { error404_sharedStyles } from './browser-404_sharedStyles.js';
+import { errorBase_sharedHTML } from './error-base_sharedHTML.js';
+import { errorBase_sharedStyles } from './error-base_sharedStyles.js';
 
-class Browser404 extends Browser404Template {
+class ErrorBase extends ErrorBaseTemplate {
 	error404H1: HTMLHeadingElement;
 	error404Paragraph: HTMLParagraphElement;
 	error404Anchor: HTMLAnchorElement;
@@ -16,18 +16,18 @@ class Browser404 extends Browser404Template {
 	public get template(): string {
 		return /*html*/ `
 
-			${error404_sharedHTML.browser404}
+			${errorBase_sharedHTML.base}
 
 			<style>
 
-				${error404_sharedStyles.browser404}
+				${errorBase_sharedStyles.root}
 
 			</style>
 	    `;
 	}
 
 	static get observedAttributes(): string[] {
-		return ['data-error_404'];
+		return ['data-error_base'];
 	}
 
 	constructor() {
@@ -147,4 +147,4 @@ class Browser404 extends Browser404Template {
 		);
 	}
 }
-RegisterComponent('browser-404', Browser404);
+RegisterComponent('error-base', ErrorBase);

@@ -34,6 +34,6 @@ declare global {
 
 	type GlobalErrorContent = {
 		message: string;
-		context?: { [key: string]: never };
+		context?: { [key: string]: unknown };
 	};
 }

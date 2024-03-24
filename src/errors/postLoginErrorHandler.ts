@@ -19,8 +19,13 @@ async function postLoginErrorHandler(
 			});
 		}
 		if (!user && req.accepts('html')) {
-			res.status(400).render('404', {
-				message: 'Invalid Credentials'
+			res.status(400).render('errors/400', {
+				message: `
+					<h1>Failed Request || 400</h1>
+					<p>There was an error with the request</p>
+					<h2>Error 400:</h2>
+					<p>${req.params.error}</p>
+				`
 			});
 			next();
 		} else {

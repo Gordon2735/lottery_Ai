@@ -12,8 +12,7 @@ import index_route, {
 	logout_route,
 	state_box_route,
 	powerball_route,
-	server500Error_route,
-	browser404Error_route
+	errorBase_route
 } from './routes/routes.js';
 
 const app: Application = express();
@@ -32,8 +31,7 @@ const routes: Router[] = [
 	logout_route,
 	state_box_route,
 	powerball_route,
-	server500Error_route,
-	browser404Error_route
+	errorBase_route
 ];
 
 const thisRoute: express.Router = router;

@@ -12,8 +12,7 @@ import indexHandler, {
 	logout,
 	state_boxHandler,
 	powerballHandler,
-	server500ErrorHandler,
-	browser404ErrorHandler
+	errorBaseHandler
 } from './route_handlers/route_handlers.js';
 
 const router: Router = express.Router();
@@ -37,13 +36,9 @@ const powerball_route: express.Router = router.get(
 	'/powerball',
 	powerballHandler
 );
-const server500Error_route: express.Router = router.get(
-	'/500',
-	server500ErrorHandler
-);
-const browser404Error_route: express.Router = router.get(
-	'/404',
-	browser404ErrorHandler
+const errorBase_route: express.Router = router.get(
+	'errors/errors',
+	errorBaseHandler
 );
 
 export {
@@ -56,6 +51,5 @@ export {
 	logout_route,
 	state_box_route,
 	powerball_route,
-	server500Error_route,
-	browser404Error_route
+	errorBase_route
 };

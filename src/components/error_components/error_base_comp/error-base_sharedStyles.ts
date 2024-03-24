@@ -1,11 +1,12 @@
 'use strict';
-import { Ierror404SharedStyles } from '../errorInterfaces/Ierror404.js';
+import { IerrorBaseSharedStyles } from '../errorInterfaces/IerrorBase.js';
 
-const error404_sharedStyles: Ierror404SharedStyles = {
-	browser404: ``
+const errorBase_sharedStyles: IerrorBaseSharedStyles = {
+	root: ``,
+	base: ``
 };
 
-error404_sharedStyles.browser404 = /*css*/ `
+errorBase_sharedStyles.root = /*css*/ `
 
         /* ERRORS CSS STYLE FILE */
 
@@ -1083,6 +1084,9 @@ error404_sharedStyles.browser404 = /*css*/ `
         ;
 
     }
+`;
+
+errorBase_sharedStyles.base = /*css*/ `
 
     /* Box Sizing Rules */
     *,
@@ -1157,4 +1161,4 @@ error404_sharedStyles.browser404 = /*css*/ `
 
 `;
 
-export { error404_sharedStyles };
+export { errorBase_sharedStyles };
