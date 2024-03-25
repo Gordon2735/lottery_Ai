@@ -20,7 +20,7 @@ class FailedRequestError extends AbstractErrorTemplate {
 		super(message || 'Failed Request');
 
 		this._code = code || FailedRequestError._statusCode;
-		this._logging = logging || false;
+		this._logging = logging || true;
 		this._context = params?.context || {};
 
 		Object.setPrototypeOf(this, FailedRequestError.prototype);

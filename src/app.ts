@@ -23,10 +23,6 @@ import { fileURLToPath } from 'url';
 import router from './controllers/router.js';
 import helper from '../public/views/helpers/helpers.js';
 import favicon from 'express-favicon';
-// import { AbstractErrorTemplate } from './errors/AbstractErrorTemplate.js';
-// import { DatabaseError } from './errors/DatabaseError.js';
-// import { ServerError } from './errors/ServerError.js';
-// import { NotFounderError } from './errors/NotFoundError.js';
 import { ErrorHandler } from './errors/errorHandler.js';
 import { v4 as uuid } from 'uuid';
 
@@ -159,7 +155,7 @@ export default async function (config: {
 	// catch 404 and forward to error handler
 	// app.use((req: Request, _res: Response, next: NextFunction) => {
 	// 	const error: Error = new Error(`Not Found (${req.url})`);
-	// 	errors.message = error.message;
+	// 	error.message;
 	// 	next(error);
 	// });
 
@@ -167,9 +163,12 @@ export default async function (config: {
 	app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
 		// set locals, only providing error in development
 		// res.locals.error =
-		// 	req.app.get('env') === 'development' ? error : {};
-
-		ErrorHandler(error, req, res, next);
+		// 	req.app.get('env') === 'development'
+		// 		? ErrorHandler(error, req, res, next)
+		// 		: {};
+		console.error('error', () => {
+			ErrorHandler(error, req, res, next);
+		});
 	});
 
 	// set Global Variables

@@ -458,7 +458,7 @@ async function errorBaseHandler(req: Request, res: Response): Promise<void> {
 
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
-		res.render('errors/errors', {
+		res.render('errors', {
 			title: 'Error',
 			layout: 'errors_main',
 			partials: 'partials',

@@ -36,10 +36,7 @@ const powerball_route: express.Router = router.get(
 	'/powerball',
 	powerballHandler
 );
-const errorBase_route: express.Router = router.get(
-	'errors/errors',
-	errorBaseHandler
-);
+const errorBase_route: express.Router = router.get('/errors', errorBaseHandler);
 
 export {
 	index_route as default,

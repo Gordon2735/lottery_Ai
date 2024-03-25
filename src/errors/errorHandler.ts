@@ -28,18 +28,18 @@ async function ErrorHandler(
 				);
 			}
 			if (req.accepts('html')) {
-				const status: number = statusCode;
+				const status: number = error.statusCode;
 				switch (status) {
 					case 400:
-						res.status(status).render('errors/errors', {
-							message: /*HTML*/ `
-								<error-base id="errorBase" class="error-base" data-error_base="${status}" style="display: block;">
-									<h1>Failed Request || ${status}</h1>
-									<p>There was an error with the request</p>
-									<h2>Error ${status}:</h2>
-									<p>${errors[0].message}</p>
-								</error-base>
-							`
+						res.status(status).sendFile('errors/errors', {
+							// message: /*HTML*/ `
+							// 	<error-base id="errorBase" class="error-base" data-error_base="${status}" style="display: block;">
+							// 		<h1>Failed Request || ${status}</h1>
+							// 		<p>There was an error with the request</p>
+							// 		<h2>Error ${status}:</h2>
+							// 		<p>${errors[0].message}</p>
+							// 	</error-base>
+							// `
 						});
 						break;
 					case 401:
@@ -78,6 +78,18 @@ async function ErrorHandler(
 							`
 						});
 						break;
+					case 406:
+						res.status(status).render('errors/errors', {
+							message: /*HTML*/ `
+								<error-base id="errorBase" class="error-base" data-error_base="${status}" style="display: block;">
+									<h1>Not Acceptable || ${status}</h1>
+									<p>There was an error with the request</p>
+									<h2>Error ${status}:</h2>
+									<p>${errors[0].message}</p>
+								</error-base>
+							`
+						});
+						break;
 					case 500:
 						res.status(status).render('errors/errors', {
 							message: /*HTML*/ `
@@ -94,6 +106,7 @@ async function ErrorHandler(
 						res.status(status).render(`${{ errors }}`);
 						break;
 				}
+				return next();
 			} else {
 				res.status(statusCode).json({ errors });
 				return next();
