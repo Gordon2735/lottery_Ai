@@ -1,6 +1,6 @@
 'use strict';
 
-class Pick3HeaderTemplate extends HTMLElement {
+class Pick3ScrapeTemplate extends HTMLElement {
 	activateShadowDOM: boolean = false;
 	root: ShadowRoot | undefined | null;
 
@@ -19,7 +19,7 @@ class Pick3HeaderTemplate extends HTMLElement {
 		this.render(this.template);
 	}
 
-	render(template: string): void {
+	render(template: string) {
 		const root: ShadowRoot | null | undefined = this.shadowRoot;
 		this.root = root;
 
@@ -33,7 +33,5 @@ class Pick3HeaderTemplate extends HTMLElement {
 	}
 
 	disConnectedCallback(): void {}
-
-	// Create a possible method to access Official Pick3 Current Draw
 }
-export { Pick3HeaderTemplate };
+export { Pick3ScrapeTemplate };

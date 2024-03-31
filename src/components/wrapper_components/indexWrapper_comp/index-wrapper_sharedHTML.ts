@@ -29,6 +29,7 @@ indexWrapperSharedHTML.container = /*html*/ `
 
 	<main id="mainContainer" class="main-container">
 
+		<pick3-scrape id="pick3Scrape" class="pick3-scrape" data-scrape="non-active"></pick3-scrape>
         <lotteryai-header_shell id="lotteryAiHeaderShell" class="lotteryAi-header-shell"></lotteryai-header_shell>            
         <lottery-slip id="lotterySlip" class="lottery-slip"></lottery-slip>
         <whitenumber-balls id="whiteNumberBalls" class="white-number-balls"></whitenumber-balls>

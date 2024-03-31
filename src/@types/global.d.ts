@@ -36,4 +36,8 @@ declare global {
 		message: string;
 		context?: { [key: string]: unknown };
 	};
+
+	interface HTMLElementTagNameMap {
+		'pick3-scrape': Pick3Scrape;
+	}
 }
