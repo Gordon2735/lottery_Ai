@@ -15,6 +15,8 @@ import Session from 'express-session';
 import {} from '../../../../src/@types/global.d.js';
 import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
+import { dataPick3 } from '../../../models/appData/pick3ScrapingsData/pick3_scrapeData.js';
+
 declare module 'express-session' {
 	interface Session {
 		data: SessionData;
@@ -57,6 +59,34 @@ async function stateHandler(_req: Request, res: Response): Promise<void> {
 	} catch (error: unknown) {
 		console.error(`stateHandler had an ERROR: ${error}`);
 		res.status(500).send('Server Error | stateHandler');
+		return Promise.reject() as Promise<void>;
+	}
+}
+
+async function errorBaseHandler(req: Request, res: Response): Promise<void> {
+	try {
+		const scriptErrorBase: string = `
+			<script type="module" src="/src/components/error_components/error_base_comp/error-base.js" 
+				content="text/javascript">
+			</script>
+		`;
+
+		res.set('Content-Type', 'text/html');
+		res.set('target', '_blank');
+		res.render('errors', {
+			title: 'Error',
+			layout: 'errors_main',
+			partials: 'partials',
+			helpers: 'helpers',
+			script: [scriptErrorBase]
+		});
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(
+			`
+				errorBaseHandler had an ERROR: ${error}
+			`
+		);
 		return Promise.reject() as Promise<void>;
 	}
 }
@@ -448,36 +478,72 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 	}
 }
 
-async function errorBaseHandler(req: Request, res: Response): Promise<void> {
+async function pick3Handler(req: Request, res: Response) {
 	try {
-		const scriptErrorBase: string = `
-			<script type="module" src="/src/components/error_components/error_base_comp/error-base.js" 
-				content="text/javascript">
-			</script>
-		`;
+		const getDataPick3: Promise<
+			{
+				dateTime: string | null | undefined;
+				winningNumbers: string[];
+				fireballNumber: string | null | undefined;
+			}[]
+		> = dataPick3();
 
+		const dataArray: object[] = [];
+
+		await getDataPick3.then((value) => {
+			dataArray.push(...value);
+		});
+
+		const pick3Data: object[] = dataArray;
+
+		const scriptPick3GameShell: string = `<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-game_shell.js" content="text/javascript"></script>`;
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
-		res.render('errors', {
-			title: 'Error',
-			layout: 'errors_main',
+		res.render('pick3', {
+			title: 'Pick 3®️ Game',
+			layout: 'pick3_main',
 			partials: 'partials',
 			helpers: 'helpers',
-			script: [scriptErrorBase]
+			script: [scriptPick3GameShell],
+			date: pick3Data[0],
+			win3: pick3Data[1],
+			fire3: pick3Data[2]
 		});
+
+		// const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+
+		// const winningNumbers: HTMLElement | null = document.getElementById(
+		// 	'paraPick3ScrapeNumbers'
+		// );
+		// const winningFireball: HTMLElement | null = document.getElementById(
+		// 	'para-pick3-scrape-fireball'
+		// );
+
+		// const dataArray: object[] = [];
+		// this.pullPick3Data
+		// 	.then((value) => {
+		// 		dataArray.push(...value);
+		// 	})
+		// 	.catch((error) => {
+		// 		console.error(error);
+		// 	});
+		// dataArray.forEach((value) => {
+		// 	winningNumbers?.append(value.toString()[0][1]),
+		// 		winningFireball?.append(value.toString()[2]);
+		// });
+
 		return Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
-		console.error(
-			`
-				errorBaseHandler had an ERROR: ${error}
-			`
-		);
+		console.error(`pick3Handler had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
 		return Promise.reject() as Promise<void>;
 	}
 }
 
 export {
 	stateHandler,
+	errorBaseHandler,
 	indexHandler as default,
 	registerHandler,
 	registerPostHandler,
@@ -486,5 +552,5 @@ export {
 	logout,
 	state_boxHandler,
 	powerballHandler,
-	errorBaseHandler
+	pick3Handler
 };

@@ -5,6 +5,7 @@
 import express, { Router } from 'express';
 import indexHandler, {
 	stateHandler,
+	errorBaseHandler,
 	registerHandler,
 	registerPostHandler,
 	loginHandler,
@@ -12,7 +13,7 @@ import indexHandler, {
 	logout,
 	state_boxHandler,
 	powerballHandler,
-	errorBaseHandler
+	pick3Handler
 } from './route_handlers/route_handlers.js';
 
 const router: Router = express.Router();
@@ -36,11 +37,13 @@ const powerball_route: express.Router = router.get(
 	'/powerball',
 	powerballHandler
 );
+const pick3_route: express.Router = router.get('pick3', pick3Handler);
 const errorBase_route: express.Router = router.get('/errors', errorBaseHandler);
 
 export {
 	index_route as default,
 	state_mgt_route,
+	errorBase_route,
 	register_route,
 	registerPOST_route,
 	login_route,
@@ -48,5 +51,5 @@ export {
 	logout_route,
 	state_box_route,
 	powerball_route,
-	errorBase_route
+	pick3_route
 };

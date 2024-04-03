@@ -9,7 +9,7 @@ import {
 	// setAttributes,
 	// appendChildren
 } from '../../../componentTools/general_helpers.js';
-import { dataPick3 } from './pick3_scrapeData.js';
+import { dataPick3 } from '../../../../models/appData/pick3ScrapingsData/pick3_scrapeData.js';
 
 class Pick3Scrape extends Pick3ScrapeTemplate {
 	activateShadowDOM: boolean = false;

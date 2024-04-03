@@ -5,6 +5,7 @@
 import express, { Application, Router } from 'express';
 import index_route, {
 	state_mgt_route,
+	errorBase_route,
 	register_route,
 	registerPOST_route,
 	login_route,
@@ -12,7 +13,7 @@ import index_route, {
 	logout_route,
 	state_box_route,
 	powerball_route,
-	errorBase_route
+	pick3_route
 } from './routes/routes.js';
 
 const app: Application = express();
@@ -24,6 +25,7 @@ app.use(express.json());
 const routes: Router[] = [
 	index_route,
 	state_mgt_route,
+	errorBase_route,
 	register_route,
 	registerPOST_route,
 	login_route,
@@ -31,7 +33,7 @@ const routes: Router[] = [
 	logout_route,
 	state_box_route,
 	powerball_route,
-	errorBase_route
+	pick3_route
 ];
 
 const thisRoute: express.Router = router;
