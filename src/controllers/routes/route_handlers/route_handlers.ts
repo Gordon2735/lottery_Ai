@@ -67,7 +67,7 @@ async function errorBaseHandler(req: Request, res: Response): Promise<void> {
 	try {
 		const scriptErrorBase: string = `
 			<script type="module" src="/src/components/error_components/error_base_comp/error-base.js" 
-				content="text/javascript">
+				content="text/javascript" crossorigin="anonymous">
 			</script>
 		`;
 
@@ -92,7 +92,11 @@ async function errorBaseHandler(req: Request, res: Response): Promise<void> {
 }
 
 async function indexHandler(req: Request, res: Response): Promise<void> {
-	const index_script: string = `<script type="module" src="/src/ts/index.js" content="text/javascript"></script>`;
+	const index_script: string = `
+		<script type="module" src="/src/ts/index.js" content="text/javascript" 
+			crossorigin="anonymous">
+		</script>
+	`;
 
 	// Move the function declaration to the root of the function body
 	async function sessionView(): Promise<string> {
@@ -165,7 +169,11 @@ async function indexHandler(req: Request, res: Response): Promise<void> {
 
 async function registerHandler(_req: Request, res: Response): Promise<void> {
 	try {
-		const register_index = `<script type="module" src="/src/ts/register.js" content="text/javascript"></script>`;
+		const register_index: string = `
+			<script type="module" src="/src/ts/register.js" content="text/javascript"
+				crossorigin="anonymous">
+			</script>
+		`;
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
 		res.render('register', {
@@ -240,7 +248,11 @@ async function loginHandler(req: Request, res: Response): Promise<void> {
 		}
 	}
 	try {
-		const login_index = `<script type="module" src="/src/ts/login_index.js" content="text/javascript"></script>`;
+		const login_index: string = `
+			<script type="module" src="/src/ts/login_index.js" content="text/javascript"
+				crossorigin="anonymous">
+			</script>
+		`;
 
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
@@ -437,7 +449,11 @@ async function logout(req: Request, res: Response): Promise<void> {
 
 async function state_boxHandler(_req: Request, res: Response): Promise<void> {
 	try {
-		const state_box_script = `<script type="module" src="/src/ts/state_box.js" content="text/javascript"></script>`;
+		const state_box_script: string = `
+			<script type="module" src="/src/ts/state_box.js" content="text/javascript"
+				crossorigin="anonymous">
+			</script>
+		`;
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
 		res.render('state_box', {
@@ -458,7 +474,11 @@ async function state_boxHandler(_req: Request, res: Response): Promise<void> {
 
 async function powerballHandler(_req: Request, res: Response): Promise<void> {
 	try {
-		const scriptPowerBallGameShell: string = `<script type="module" src="/src/components/game_components/powerBall_components/powerBall_game/powerball-game_shell.js" content="text/javascript"></script>`;
+		const scriptPowerBallGameShell: string = `
+			<script type="module" src="/src/components/game_components/powerBall_components/powerBall_game/powerball-game_shell.js" 
+				content="text/javascript" crossorigin="anonymous">
+			</script>
+		`;
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
 		res.render('powerball', {
@@ -494,9 +514,17 @@ async function pick3Handler(req: Request, res: Response) {
 			dataArray.push(...value);
 		});
 
+		// for (const data of dataArray) {
+		// 	const time = data
+		// }
+
 		const pick3Data: object[] = dataArray;
 
-		const scriptPick3GameShell: string = `<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-game_shell.js" content="text/javascript"></script>`;
+		const scriptPick3GameShell: string = `
+			<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-game_shell.js" 
+				content="text/javascript" crossorigin="anonymous">
+			</script>
+		`;
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
 		res.render('pick3', {
@@ -505,9 +533,9 @@ async function pick3Handler(req: Request, res: Response) {
 			partials: 'partials',
 			helpers: 'helpers',
 			script: [scriptPick3GameShell],
-			date: pick3Data[0],
-			win3: pick3Data[1],
-			fire3: pick3Data[2]
+			date: [pick3Data[0].toString()],
+			win3: [pick3Data[1].toString()],
+			fire3: [pick3Data[2].toString()]
 		});
 
 		// const body: HTMLBodyElement = document.getElementsByTagName('body')[0];

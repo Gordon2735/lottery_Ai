@@ -37,7 +37,7 @@ const powerball_route: express.Router = router.get(
 	'/powerball',
 	powerballHandler
 );
-const pick3_route: express.Router = router.get('pick3', pick3Handler);
+const pick3_route: express.Router = router.get('/pick3', pick3Handler);
 const errorBase_route: express.Router = router.get('/errors', errorBaseHandler);
 
 export {

@@ -51,21 +51,11 @@ async function init(): Promise<void> {
 			crossOrigin: 'anonymous'
 		});
 
-		const scriptPick3Scrape: HTMLScriptElement =
-			document.createElement('script');
-		setAttributes(scriptPick3Scrape, {
-			type: 'module',
-			src: '/src/components/game_components/pick3_components/pick3_SC_scrape/pick3-scrape.js',
-			content: 'text/javascript',
-			crossOrigin: 'anonymous'
-		});
-
 		// Append the all component 'flat & shell' scripts to the head tag
 		await appendChildren(head, [
 			scriptSidePanelShell,
 			scriptWrapperShell,
-			scriptCopyright,
-			scriptPick3Scrape
+			scriptCopyright
 		]);
 
 		console.info(
