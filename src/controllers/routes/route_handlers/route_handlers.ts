@@ -500,31 +500,96 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 
 async function pick3Handler(req: Request, res: Response) {
 	try {
-		const getDataPick3: Promise<
-			{
+		let pick3Time: string | null | undefined;
+		let pick3Numbers: string[] | null | undefined;
+		let pick3Fireball: string | null | undefined;
+
+		const getData:
+			| {
+					dateTime: string | null | undefined;
+					combineNumbers: string[] | null | undefined;
+					fireballNumber: string | null | undefined;
+					// eslint-disable-next-line no-mixed-spaces-and-tabs
+			  }[]
+			| undefined = await dataPick3();
+
+		const currentData = getData?.map(
+			async (value: {
 				dateTime: string | null | undefined;
-				winningNumbers: string[];
+				combineNumbers: string[] | null | undefined;
 				fireballNumber: string | null | undefined;
-			}[]
-		> = dataPick3();
+			}) => {
+				pick3Time = value.dateTime;
+				pick3Numbers = value.combineNumbers;
+				pick3Fireball = value.fireballNumber;
 
-		const dataArray: object[] = [];
+				// const indexData = dataPick3.dateTime;
 
-		await getDataPick3.then((value) => {
-			dataArray.push(...value);
-		});
+				// let incNum: number = 0;
+				// let breakNum: number = 0;
 
-		// for (const data of dataArray) {
-		// 	const time = data
-		// }
+				// waitOnData: while (incNum < 115) {
+				// 	if (pick3Time === null) {
+				// 		incNum++;
+				// 		if (incNum < 815) {
+				// 			breakNum += incNum;
+				// 			console.log(breakNum);
+				// 			console.log(
+				// 				`
+				// 				DateTime scrape data inside of "waitOnData" Loop-Label:
+				// 					${pick3Time}
+				// 			`
+				// 			);
+				// 			continue waitOnData;
+				// 		} else {
+				// 			break waitOnData;
+				// 		}
+				// 	} else if (pick3Time !== null) {
+				// 		console.log(
+				// 			`
+				// 				BREAKOUT OF LABELED-WHILE LOOP && pick3Time !== null:
+				// 					DateTime: ${pick3Time}
+				// 					Winning Numbers: ${pick3Numbers}
+				// 					Fireball Number: ${pick3Fireball}
+				// 			`
+				// 		);
 
-		const pick3Data: object[] = dataArray;
+				// 		break waitOnData;
+				// 	} else if (incNum > 815) {
+				// 		console.error(
+				// 			`
+				// 				incNum > 815: ${incNum},
+				// 				DateTime: ${pick3Time},
+				// 				value.dateTime: ${value.dateTime}
+				// 			`
+				// 		);
+				// 		break waitOnData;
+				// 	}
+				console.log(
+					`
+						BREAKOUT OF LABELED-WHILE LOOP && pick3Time !== null:
+							DateTime: ${pick3Time}
+							Winning Numbers: ${pick3Numbers}
+							Fireball Number: ${pick3Fireball}
+					`
+				);
+				return pick3Time && pick3Numbers && pick3Fireball;
+			}
+		);
+
+		const pick3Date: Promise<string | null | undefined>[] | undefined =
+			currentData?.map((value) => {
+				return value;
+			});
+
+		// const pick3Time: string | null | undefined = dataPick3.dateTime;
 
 		const scriptPick3GameShell: string = `
 			<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-game_shell.js" 
 				content="text/javascript" crossorigin="anonymous">
 			</script>
 		`;
+
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
 		res.render('pick3', {
@@ -533,34 +598,12 @@ async function pick3Handler(req: Request, res: Response) {
 			partials: 'partials',
 			helpers: 'helpers',
 			script: [scriptPick3GameShell],
-			date: [pick3Data[0].toString()],
-			win3: [pick3Data[1].toString()],
-			fire3: [pick3Data[2].toString()]
+			date: pick3Date,
+			win3: [pick3Numbers],
+			fire3: pick3Fireball
 		});
-
-		// const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
-
-		// const winningNumbers: HTMLElement | null = document.getElementById(
-		// 	'paraPick3ScrapeNumbers'
-		// );
-		// const winningFireball: HTMLElement | null = document.getElementById(
-		// 	'para-pick3-scrape-fireball'
-		// );
-
-		// const dataArray: object[] = [];
-		// this.pullPick3Data
-		// 	.then((value) => {
-		// 		dataArray.push(...value);
-		// 	})
-		// 	.catch((error) => {
-		// 		console.error(error);
-		// 	});
-		// dataArray.forEach((value) => {
-		// 	winningNumbers?.append(value.toString()[0][1]),
-		// 		winningFireball?.append(value.toString()[2]);
-		// });
-
-		return Promise.resolve() as Promise<void>;
+		// return Promise.resolve() as Promise<void>;
+		// return;
 	} catch (error: unknown) {
 		console.error(`pick3Handler had an ERROR: ${error}`);
 		res.status(500).send('Server Error');
@@ -568,7 +611,6 @@ async function pick3Handler(req: Request, res: Response) {
 		return Promise.reject() as Promise<void>;
 	}
 }
-
 export {
 	stateHandler,
 	errorBaseHandler,
