@@ -1,11 +1,11 @@
 'use strict';
-
+// @ts-check
 import puppeteer from 'puppeteer';
 
 async function dataPick3(): Promise<
 	| {
 			dateTime: string | null | undefined;
-			combineNumbers: string[] | null | undefined;
+			combineNumbers: void;
 			fireballNumber: string | null | undefined;
 			// eslint-disable-next-line no-mixed-spaces-and-tabs
 	  }[]
@@ -20,14 +20,16 @@ async function dataPick3(): Promise<
 		await page.goto('https://www.sceducationlottery.com/Games/Pick3');
 
 		// Set the Screen Size
-		// await page.setViewport({ width: 1920, height: 1080 });
+		await page.setViewport({ width: 1920, height: 1080 });
 
-		const data: Promise<{
-			dateTime: string | null | undefined;
-			combineNumbers: string[] | null | undefined;
-			fireballNumber: string | null | undefined;
-			// eslint-disable-next-line no-mixed-spaces-and-tabs
-		}>[] = await page.$$eval('.col-md-2', (elements: Element[]) =>
+		const data: Promise<
+			{
+				dateTime: string | null | undefined;
+				combineNumbers: void;
+				fireballNumber: string | null | undefined;
+				// eslint-disable-next-line no-mixed-spaces-and-tabs
+			}[]
+		> = (await page.$$eval('.col-md-2', (elements: Element[]) =>
 			elements.map(async (times: Element) => {
 				console.log(`times: ${times}`);
 				const time: Element | null =
@@ -44,16 +46,18 @@ async function dataPick3(): Promise<
 					time?.textContent ?? null;
 
 				// const winningNumbers: () => IterableIterator<Element> =
-				const winningNumbers: IterableIterator<Element> =
-					numberCircleSpan.values();
+				const combineNumbers: void = numberCircleSpan.forEach(
+					(number: Element) => {
+						return [number.textContent ?? 0, number];
+					}
+				);
 
 				const fireballNumber: string | null | undefined =
 					spanFireball?.textContent;
 
-				const combineNumbers: string[] | null = Array.from(
-					winningNumbers
-				).map((num: Element) => num.textContent ?? '');
-
+				// const combineNumbers: string[] | null = Array.from(
+				// 	winningNumbers
+				// ).map((numbers: Element) => numbers.textContent ?? '');
 				console.log(
 					`
 						scrapping data...
@@ -66,19 +70,27 @@ async function dataPick3(): Promise<
 
 				return { dateTime, combineNumbers, fireballNumber };
 			})
-		);
-		const dataResults: Promise<
+		)) as unknown as Promise<
 			{
 				dateTime: string | null | undefined;
-				combineNumbers: string[] | null | undefined;
+				combineNumbers: void;
 				fireballNumber: string | null | undefined;
 				// eslint-disable-next-line no-mixed-spaces-and-tabs
 			}[]
-		> = Promise.all(data);
+		>;
+		await new Promise((resolve) => setTimeout(resolve, 5000));
 
 		await browser.close();
 
-		return dataResults;
+		return data as Promise<
+			| {
+					dateTime: string | null | undefined;
+					combineNumbers: void;
+					fireballNumber: string | null | undefined;
+					// eslint-disable-next-line no-mixed-spaces-and-tabs
+			  }[]
+			| undefined
+		>;
 	} catch (error: unknown) {
 		console.error(
 			`
@@ -86,8 +98,7 @@ async function dataPick3(): Promise<
 		`
 		);
 
-		Promise.reject() as Promise<void>;
-		return;
+		Promise.reject() as Promise<void> | undefined;
 	}
 }
 export { dataPick3 };
