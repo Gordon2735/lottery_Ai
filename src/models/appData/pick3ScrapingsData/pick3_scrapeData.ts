@@ -1,16 +1,23 @@
 'use strict';
 // @ts-check
 import puppeteer from 'puppeteer';
+// import { setTimeout } from 'timers/promises';
 
 async function dataPick3(): Promise<
-	| {
-			dateTime: string | null | undefined;
+	| Promise<{
+			dateTime: string | null;
 			combineNumbers: void;
 			fireballNumber: string | null | undefined;
 			// eslint-disable-next-line no-mixed-spaces-and-tabs
-	  }[]
+	  }>[]
 	| undefined
 > {
+	// let data: Promise<{
+	// 	dateTime: string | null;
+	// 	combineNumbers: void;
+	// 	fireballNumber: string | null | undefined;
+	// }>[] = [];
+
 	try {
 		// Launch Browser and open a new BLANK PAGE
 		const browser: puppeteer.Browser = await puppeteer.launch();
@@ -20,17 +27,12 @@ async function dataPick3(): Promise<
 		await page.goto('https://www.sceducationlottery.com/Games/Pick3');
 
 		// Set the Screen Size
-		await page.setViewport({ width: 1920, height: 1080 });
+		// await page.setViewport({ width: 1920, height: 1080 });
 
-		const data: Promise<
-			{
-				dateTime: string | null | undefined;
-				combineNumbers: void;
-				fireballNumber: string | null | undefined;
-				// eslint-disable-next-line no-mixed-spaces-and-tabs
-			}[]
-		> = (await page.$$eval('.col-md-2', (elements: Element[]) =>
+		// await setTimeout(5000).then(async () => {
+		const data = await page.$$eval('.col-md-2', (elements: Element[]) =>
 			elements.map(async (times: Element) => {
+				await page.waitForNavigation();
 				console.log(`times: ${times}`);
 				const time: Element | null =
 					times?.querySelector('.numbers-date');
@@ -48,7 +50,7 @@ async function dataPick3(): Promise<
 				// const winningNumbers: () => IterableIterator<Element> =
 				const combineNumbers: void = numberCircleSpan.forEach(
 					(number: Element) => {
-						return [number.textContent ?? 0, number];
+						return [number.textContent];
 					}
 				);
 
@@ -68,29 +70,28 @@ async function dataPick3(): Promise<
 					`
 				);
 
+				console.log(
+					`INSIDE DATA :::: combineNumbers: ${combineNumbers}`
+				);
+
 				return { dateTime, combineNumbers, fireballNumber };
 			})
-		)) as unknown as Promise<
-			{
-				dateTime: string | null | undefined;
-				combineNumbers: void;
-				fireballNumber: string | null | undefined;
-				// eslint-disable-next-line no-mixed-spaces-and-tabs
-			}[]
-		>;
-		await new Promise((resolve) => setTimeout(resolve, 5000));
+		);
+		await Promise.all([
+			// await page.waitForNavigation(),
+			console.log(
+				`${data.map(async (d) => {
+					JSON.stringify((await d).dateTime),
+						JSON.stringify((await d).combineNumbers),
+						JSON.stringify((await d).fireballNumber);
+				})}`
+			)
+		]);
 
 		await browser.close();
-
-		return data as Promise<
-			| {
-					dateTime: string | null | undefined;
-					combineNumbers: void;
-					fireballNumber: string | null | undefined;
-					// eslint-disable-next-line no-mixed-spaces-and-tabs
-			  }[]
-			| undefined
-		>;
+		// response;
+		return data;
+		// });
 	} catch (error: unknown) {
 		console.error(
 			`
@@ -100,5 +101,38 @@ async function dataPick3(): Promise<
 
 		Promise.reject() as Promise<void> | undefined;
 	}
+	// await setTimeout(10000).then(async () => {
+	// 	const scrapedData = await data;
+	// 	console.log(
+	// 		`
+	// 		Scraping Function scrapping data...
+	// 			DateTime: ${(await scrapedData[0]).dateTime}
+	// 			combineNumbers: ${(await scrapedData[1]).combineNumbers}
+	// 			Fireball Number: ${(await scrapedData[2]).fireballNumber}
+
+	// 	`
+	// 	);
+	// 	return Promise.resolve(
+	// 		[
+	// 			(await data[0]).dateTime,
+	// 			(await data[1]).combineNumbers,
+	// 			(await data[2]).fireballNumber
+	// 		] && data
+	// 	);
+	// });
+	// return data;
 }
+
 export { dataPick3 };
+
+// const response: [puppeteer.HTTPResponse | null, void] =
+// 	await Promise.all([
+// 		await page.waitForNavigation(),
+// 		console.log(
+// 			`${data.map(async (d) => {
+// 				(await d).dateTime,
+// 					(await d).combineNumbers,
+// 					(await d).fireballNumber;
+// 			})}`
+// 		)
+// 	]);

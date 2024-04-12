@@ -499,57 +499,161 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 	}
 }
 
-async function pick3Handler(_req: Request, res: Response) {
+async function pick3Handler(_req: Request, res: Response): Promise<void> {
 	try {
-		let pick3Time: string | null | undefined;
-		let pick3Numbers: void;
-		let pick3Fireball: string | null | undefined;
+		// let pick3Time: string | null = '';
+		// let pick3Numbers: void;
+		// let pick3Fireball: string | null | undefined;
 
 		const getData:
-			| {
-					dateTime: string | null | undefined;
+			| Promise<{
+					dateTime: string | null;
 					combineNumbers: void;
 					fireballNumber: string | null | undefined;
 					// eslint-disable-next-line no-mixed-spaces-and-tabs
-			  }[]
+			  }>[]
 			| undefined = await dataPick3();
 
-		const currentData = getData?.map(async (value) => {
-			return [
-				(pick3Time = value.dateTime?.toString()),
-				(pick3Numbers = value.combineNumbers),
-				(pick3Fireball = value.fireballNumber?.toString())
-			];
-			// return value;
+		const currentData:
+			| Promise<{
+					dateTime: string | null;
+					combineNumbers: void;
+					fireballNumber: string | null | undefined;
+					// eslint-disable-next-line no-mixed-spaces-and-tabs
+			  }>[]
+			| undefined = getData?.map(async (value) => {
+			return {
+				dateTime: (await value).dateTime,
+				combineNumbers: (await value).combineNumbers,
+				fireballNumber: (await value).fireballNumber
+			};
 		});
 
-		const pick3Number = await currentData![0];
-
-		// pick3Numbers = pick3Number;
-
-		console.info(pick3Number);
+		const pick3Time = (await currentData![0])?.dateTime;
+		const pick3Numbers = (await currentData![0]).combineNumbers;
+		const pick3Fireball = (
+			await currentData![0]
+		).fireballNumber?.toString();
 
 		const tempArray: string[] = [];
 
-		currentData?.forEach((data) => {
-			tempArray.push(JSON.stringify(data));
-			// data.finally(() => {
-			// data.toString();
-			// data.toString();
-			// data.toString();
-			// });
+		currentData?.forEach(async (data) => {
+			const resolvedData = await data;
+			tempArray.push(JSON.stringify(resolvedData));
 		});
 
-		console.info(`tempArray: ${JSON.stringify(tempArray)}`);
+		setTimeout(() => {
+			console.info(`tempArray: ${tempArray[0].valueOf()}`);
+
+			console.info(
+				`
+					DateTime scrape data inside of "setTimeout" Function:
+						${JSON.stringify(currentData![0].then((value) => value))}
+				`
+			);
+		}, 4000);
+
+		setTimeout(() => {
+			const resolveData: Promise<
+				| Promise<{
+						dateTime: string | null;
+						combineNumbers: void;
+						fireballNumber: string | null | undefined;
+						// eslint-disable-next-line no-mixed-spaces-and-tabs
+				  }>[]
+				| undefined
+			> = dataPick3();
+
+			const resolverArray: Promise<{
+				dateTime: string | null;
+				combineNumbers: void;
+				fireballNumber: string | null | undefined;
+			}>[] = [];
+
+			resolveData.then(async (value) => {
+				const data = value![0];
+
+				resolverArray.push(
+					Promise.resolve({
+						dateTime: (await data).dateTime,
+						combineNumbers: (await data).combineNumbers,
+						fireballNumber: (await data).fireballNumber
+					})
+				);
+
+				for (const resolved of resolverArray) {
+					const time3: string | null | undefined = (
+						await resolved
+					).dateTime?.toString();
+					const numbers: void = (await resolved).combineNumbers;
+					const fireball: string | null | undefined = (
+						await resolved
+					).fireballNumber?.toString();
+
+					resolved.then((value) => {
+						const timePick3: string | null | undefined =
+							value.dateTime;
+						const numbersPick3: void = value.combineNumbers;
+						const fireballPick3: string | null | undefined =
+							value.fireballNumber;
+
+						console.info(
+							`
+								:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+									DateTime scrape data inside of "setTimeout" Function
+									and the resolverArray Loop-Block:
+
+											dateTime: ${JSON.stringify(time3)}
+
+										combineNumbers: ${JSON.stringify(numbers)}
+
+										fireballNumber: ${JSON.stringify(fireball)}
+
+								:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+							`
+						);
+
+						console.info(
+							`
+							:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+								DateTime scrape data inside of "setTimeout" Function
+								and the resolverArray Loop-Block:
+
+										dateTime: ${JSON.stringify(timePick3)}
+
+									combineNumbers: ${JSON.stringify(numbersPick3)}
+
+									fireballNumber: ${JSON.stringify(fireballPick3)}
+
+							:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+						`
+						);
+					});
+				}
+
+				console.info(
+					`
+						resolverArray Array scrape data inside of "setTimeout" Function:
+							resolverArray:	${JSON.stringify(resolverArray)}
+					`
+				);
+			});
+		}, 5000);
 
 		console.info(
 			`
-				dataPick3() Scraper Function: ${dataPick3().then((value) => {
-					const datapick = value?.keys();
-					return JSON.stringify(datapick?.next().value);
-				})}
+				dataPick3() Scraper Function: ${await dataPick3().then((value) => {
+					const datapick = value![0];
 
-				dataPick3() Scraper Function: ${JSON.stringify(getData?.copyWithin(0, 0, 2))}
+					if (datapick === undefined) {
+						return undefined;
+					} else {
+						const data3 = datapick;
+						return JSON.stringify(data3);
+					}
+				})}
 			`
 		);
 
@@ -559,6 +663,13 @@ async function pick3Handler(_req: Request, res: Response) {
 			</script>
 		`;
 
+		const pick3DateTime = pick3Time;
+		const pick3Number = pick3Numbers;
+
+		console.info(pick3DateTime);
+		console.info(pick3Number);
+		console.info(pick3Fireball);
+
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
 		res.render('pick3', {
@@ -567,17 +678,17 @@ async function pick3Handler(_req: Request, res: Response) {
 			partials: 'partials',
 			helpers: 'helpers',
 			script: [scriptPick3GameShell],
-			date: pick3Time?.toString(),
-			win3: [pick3Numbers],
-			fire3: pick3Fireball?.toString()
+			date: JSON.stringify(pick3Time),
+			win3: JSON.stringify(pick3Numbers),
+			fire3: JSON.stringify(pick3Fireball)
 		});
 
 		return Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
-		console.error(`pick3Handler had an ERROR: ${error}`);
+		console.error(`pick3Handler had an ERROR: ${(error as Error).message}`);
 		res.status(500).send('Server Error');
 
-		return Promise.reject() as Promise<void>;
+		return Promise.resolve() as Promise<void>;
 	}
 }
 export {
