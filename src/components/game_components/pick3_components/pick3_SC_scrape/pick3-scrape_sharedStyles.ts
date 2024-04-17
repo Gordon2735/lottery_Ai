@@ -282,6 +282,8 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-margin--sp3-2: -2rem;
         --sp3-margin--sp3-1: -1rem;
         --sp3-margin-0: 1.2em 0em 1.2em 0.5em;
+        --sp3-margin-00: 0em 0em 0em 0em;
+        --sp3-margin-00a: 5em auto 0em auto;
         --sp3-margin-auto: auto;
         --sp3-margin-xxsm: 0.19rem;
         --sp3-margin-xxs: 0.25rem;
@@ -983,6 +985,7 @@ pick3Scrape_sharedStyles.root = /*css*/ `
 pick3Scrape_sharedStyles.container = /*css*/ `
 
     .pick3-scrape-main-container {
+        margin: var(--sp3-margin-00);
         display: var(--sp3-display-block);
         background-image: var(--sp3-gradient-dark-0);
         background-repeat: var(--sp3-repeat-2);
@@ -996,11 +999,15 @@ pick3Scrape_sharedStyles.container = /*css*/ `
 pick3Scrape_sharedStyles.header = /*css*/ `
     
     .pick3-scrape-header {
+        margin: var(--sp3-margin-00a);
         display: var(--sp3-display-grid);
+        width: var(--sp3-width-90);
+        border: var(--sp3-border-xthick);
+        border-radius: var(--sp3-radius-md);
         grid-template-areas: var(--sp3-grid-template-areas);
         grid-template-columns: var(--sp3-grid-template-columns-13);
         grid-template-rows: var(--sp3-grid-template-rows-1);
-        width: var(--sp3-width-90);
+        filter: var(--sp3-filter-shadow-xxl);
         font-family: var(--sp3-ff-src-code-pro);
     }
 

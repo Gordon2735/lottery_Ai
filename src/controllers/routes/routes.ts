@@ -13,7 +13,8 @@ import indexHandler, {
 	logout,
 	state_boxHandler,
 	powerballHandler,
-	pick3Handler
+	pick3Handler,
+	pick3ScrapePostHandler
 } from './route_handlers/route_handlers.js';
 
 const router: Router = express.Router();
@@ -38,6 +39,10 @@ const powerball_route: express.Router = router.get(
 	powerballHandler
 );
 const pick3_route: express.Router = router.get('/pick3', pick3Handler);
+const pick3ScrapePost_route: express.Router = router.post(
+	'/pick3',
+	pick3ScrapePostHandler
+);
 const errorBase_route: express.Router = router.get('/errors', errorBaseHandler);
 
 export {
@@ -51,5 +56,6 @@ export {
 	logout_route,
 	state_box_route,
 	powerball_route,
-	pick3_route
+	pick3_route,
+	pick3ScrapePost_route
 };

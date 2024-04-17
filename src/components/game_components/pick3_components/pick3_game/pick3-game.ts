@@ -7,8 +7,8 @@ import { pick3Game_sharedHTML } from './pick3-game_sharedHTML.js';
 import { pick3Game_sharedStyles } from './pick3-game_sharedStyles.js';
 import {
 	RegisterComponent,
-	setAttributes,
-	appendChildren
+	setAttributes
+	// appendChildren
 } from '../../../componentTools/general_helpers.js';
 
 class Pick3Game extends Pick3GameTemplate {
@@ -55,16 +55,16 @@ class Pick3Game extends Pick3GameTemplate {
 	connectedCallback(): void {
 		super.connectedCallback();
 
-		try {
-			appendChildren(this.head, [this.scriptPick3Scrape]);
-		} catch (error: unknown) {
-			console.error(
-				`
-                    Pick 3 Component's "connectedCallback() {}" had an error,
-                    ERROR: ${error}
-                `
-			);
-		}
+		// try {
+		// 	appendChildren(this.head, [this.scriptPick3Scrape]);
+		// } catch (error: unknown) {
+		// 	console.error(
+		// 		`
+		//             Pick 3 Component's "connectedCallback() {}" had an error,
+		//             ERROR: ${error}
+		//         `
+		// 	);
+		// }
 	}
 
 	public attributeChangedCallback(

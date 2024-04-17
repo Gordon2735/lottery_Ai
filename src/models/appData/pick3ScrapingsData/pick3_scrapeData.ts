@@ -28,11 +28,17 @@ async function dataPick3(): Promise<
 
 		// Set the Screen Size
 		// await page.setViewport({ width: 1920, height: 1080 });
+		const numbers = await page.waitForSelector('.number-circle');
+		const numbersText = await page.evaluate(
+			(numbers) => numbers?.textContent,
+			numbers
+		);
+		console.log(`Numbers: ${numbersText}`); // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
 		// await setTimeout(5000).then(async () => {
 		const data = await page.$$eval('.col-md-2', (elements: Element[]) =>
 			elements.map(async (times: Element) => {
-				await page.waitForNavigation();
+				// await page.waitForNavigation();
 				console.log(`times: ${times}`);
 				const time: Element | null =
 					times?.querySelector('.numbers-date');

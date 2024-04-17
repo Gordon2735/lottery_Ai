@@ -16,7 +16,7 @@ import Session from 'express-session';
 import {} from '../../../../src/@types/global.d.js';
 import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
-import { dataPick3 } from '../../../models/appData/pick3ScrapingsData/pick3_scrapeData.js';
+import ScrapePicks from '../../../models/appData/pick3ScrapingsData/01_scrapePick3.js';
 
 declare module 'express-session' {
 	interface Session {
@@ -501,174 +501,11 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 
 async function pick3Handler(_req: Request, res: Response): Promise<void> {
 	try {
-		// let pick3Time: string | null = '';
-		// let pick3Numbers: void;
-		// let pick3Fireball: string | null | undefined;
-
-		const getData:
-			| Promise<{
-					dateTime: string | null;
-					combineNumbers: void;
-					fireballNumber: string | null | undefined;
-					// eslint-disable-next-line no-mixed-spaces-and-tabs
-			  }>[]
-			| undefined = await dataPick3();
-
-		const currentData:
-			| Promise<{
-					dateTime: string | null;
-					combineNumbers: void;
-					fireballNumber: string | null | undefined;
-					// eslint-disable-next-line no-mixed-spaces-and-tabs
-			  }>[]
-			| undefined = getData?.map(async (value) => {
-			return {
-				dateTime: (await value).dateTime,
-				combineNumbers: (await value).combineNumbers,
-				fireballNumber: (await value).fireballNumber
-			};
-		});
-
-		const pick3Time = (await currentData![0])?.dateTime;
-		const pick3Numbers = (await currentData![0]).combineNumbers;
-		const pick3Fireball = (
-			await currentData![0]
-		).fireballNumber?.toString();
-
-		const tempArray: string[] = [];
-
-		currentData?.forEach(async (data) => {
-			const resolvedData = await data;
-			tempArray.push(JSON.stringify(resolvedData));
-		});
-
-		setTimeout(() => {
-			console.info(`tempArray: ${tempArray[0].valueOf()}`);
-
-			console.info(
-				`
-					DateTime scrape data inside of "setTimeout" Function:
-						${JSON.stringify(currentData![0].then((value) => value))}
-				`
-			);
-		}, 4000);
-
-		setTimeout(() => {
-			const resolveData: Promise<
-				| Promise<{
-						dateTime: string | null;
-						combineNumbers: void;
-						fireballNumber: string | null | undefined;
-						// eslint-disable-next-line no-mixed-spaces-and-tabs
-				  }>[]
-				| undefined
-			> = dataPick3();
-
-			const resolverArray: Promise<{
-				dateTime: string | null;
-				combineNumbers: void;
-				fireballNumber: string | null | undefined;
-			}>[] = [];
-
-			resolveData.then(async (value) => {
-				const data = value![0];
-
-				resolverArray.push(
-					Promise.resolve({
-						dateTime: (await data).dateTime,
-						combineNumbers: (await data).combineNumbers,
-						fireballNumber: (await data).fireballNumber
-					})
-				);
-
-				for (const resolved of resolverArray) {
-					const time3: string | null | undefined = (
-						await resolved
-					).dateTime?.toString();
-					const numbers: void = (await resolved).combineNumbers;
-					const fireball: string | null | undefined = (
-						await resolved
-					).fireballNumber?.toString();
-
-					resolved.then((value) => {
-						const timePick3: string | null | undefined =
-							value.dateTime;
-						const numbersPick3: void = value.combineNumbers;
-						const fireballPick3: string | null | undefined =
-							value.fireballNumber;
-
-						console.info(
-							`
-								:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-									DateTime scrape data inside of "setTimeout" Function
-									and the resolverArray Loop-Block:
-
-											dateTime: ${JSON.stringify(time3)}
-
-										combineNumbers: ${JSON.stringify(numbers)}
-
-										fireballNumber: ${JSON.stringify(fireball)}
-
-								:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-							`
-						);
-
-						console.info(
-							`
-							:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-								DateTime scrape data inside of "setTimeout" Function
-								and the resolverArray Loop-Block:
-
-										dateTime: ${JSON.stringify(timePick3)}
-
-									combineNumbers: ${JSON.stringify(numbersPick3)}
-
-									fireballNumber: ${JSON.stringify(fireballPick3)}
-
-							:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-						`
-						);
-					});
-				}
-
-				console.info(
-					`
-						resolverArray Array scrape data inside of "setTimeout" Function:
-							resolverArray:	${JSON.stringify(resolverArray)}
-					`
-				);
-			});
-		}, 5000);
-
-		console.info(
-			`
-				dataPick3() Scraper Function: ${await dataPick3().then((value) => {
-					const datapick = value![0];
-
-					if (datapick === undefined) {
-						return undefined;
-					} else {
-						const data3 = datapick;
-						return JSON.stringify(data3);
-					}
-				})}
-			`
-		);
-
 		const scriptPick3GameShell: string = `
 			<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-game_shell.js" 
 				content="text/javascript" crossorigin="anonymous">
 			</script>
 		`;
-
-		const pick3DateTime = pick3Time;
-		const pick3Number = pick3Numbers;
-
-		console.info(pick3DateTime);
-		console.info(pick3Number);
-		console.info(pick3Fireball);
 
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
@@ -678,19 +515,143 @@ async function pick3Handler(_req: Request, res: Response): Promise<void> {
 			partials: 'partials',
 			helpers: 'helpers',
 			script: [scriptPick3GameShell],
-			date: JSON.stringify(pick3Time),
-			win3: JSON.stringify(pick3Numbers),
-			fire3: JSON.stringify(pick3Fireball)
+			date: await _req.body.time3,
+			win3: await _req.body.numbers,
+			fire3: await _req.body.fireball
 		});
 
 		return Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
-		console.error(`pick3Handler had an ERROR: ${(error as Error).message}`);
+		console.error(`pick3Handler had an ERROR: ${error}`);
 		res.status(500).send('Server Error');
 
 		return Promise.resolve() as Promise<void>;
 	}
 }
+
+async function pick3ScrapePostHandler(
+	_req: Request,
+	res: Response,
+	_next: NextFunction
+): Promise<{
+	time3: string | undefined;
+	numbers: string | undefined;
+	fireball: string | undefined;
+}> {
+	console.info(
+		`
+		pick3ScrapePostHandler() {} Initial Log Message:
+			_request: ${_req.body}
+
+			response: ${res.locals}
+
+			_next: ${_next}
+		`
+	);
+
+	try {
+		const pick3URL: string = `https://www.sceducationlottery.com/Games/Pick3`;
+		const columnClass: string = '.col-md-2';
+		const numsDateClass: string = '.numbers-date';
+		const pick3NumsClass: string = '.number-circle';
+		const pick3FireballClass: string = '.number-circle-fireball-pick3';
+
+		const getData = new ScrapePicks(
+			pick3URL,
+			columnClass,
+			numsDateClass,
+			pick3NumsClass,
+			pick3FireballClass
+		);
+
+		setTimeout(async () => {
+			await getData.launchBrowser();
+
+			console.warn(
+				`
+				pick3Handler() {} routing handler function:
+				
+				APPLICATION IS CURRENTLY IN A SETTIMEOUT FUNCTION WHICH LAUNCHED
+				THE BROWSER AND IS WAITING FOR THE DATA TO BE SCRAPED FROM THE
+				WEBSITE...
+				
+				timeout is 5000 milliseconds!
+				`
+			);
+		}, 5000);
+
+		const currentData = getData.dataScrape;
+
+		console.log(JSON.stringify(currentData));
+		// console.log(JSON.stringify(currentData?.[0] ?? null));
+
+		const currentPick3 = currentData().then((data) => {
+			const resolvedData = data;
+			const time3 = resolvedData?.[0].slice(0, 1);
+			const numbers: string | undefined = resolvedData?.[0].slice(1, 2);
+			const fireball: string | null | undefined =
+				resolvedData?.[0].slice(2);
+
+			console.info(
+				`
+					time3: ${time3},
+					numbers: ${numbers},
+					fireball: ${fireball}
+				`
+			);
+
+			return { time3, numbers, fireball };
+		});
+
+		console.log(JSON.stringify((await currentPick3).time3 ?? null));
+		console.log(JSON.stringify((await currentPick3).numbers ?? null));
+		console.log(JSON.stringify((await currentPick3).fireball ?? null));
+
+		console.info(
+			`
+					:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+						DateTime scrape data inside of "forEach" Loop-Block:
+
+								dateTime: ${JSON.stringify((await currentPick3).time3)}
+
+							combineNumbers: ${JSON.stringify((await currentPick3).numbers)}
+
+							fireballNumber: ${JSON.stringify((await currentPick3).fireball)}
+
+					:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+				`
+		);
+		// let pick3DateTime: string | undefined = (await currentPick3).time3;
+		// let pick3Numbers: string | undefined = (await currentPick3).numbers;
+		// let pick3Fireball: string | undefined = (await currentPick3).fireball;
+
+		const {
+			time3 = (await currentPick3)?.time3,
+			numbers = (await currentPick3)?.numbers,
+			fireball = (await currentPick3)?.fireball
+		}: { time3?: string; numbers?: string; fireball?: string } = _req.body;
+
+		app.use((req: Request) => {
+			return (
+				req.body.time3,
+				req.body.numbers,
+				req.body.fireball,
+				time3,
+				numbers,
+				fireball
+			);
+		});
+
+		return { time3, numbers, fireball };
+	} catch (error: unknown) {
+		console.error(`pick3ScrapePostHandler had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
+		return { time3: undefined, numbers: undefined, fireball: undefined };
+	}
+}
+
 export {
 	stateHandler,
 	errorBaseHandler,
@@ -702,7 +663,8 @@ export {
 	logout,
 	state_boxHandler,
 	powerballHandler,
-	pick3Handler
+	pick3Handler,
+	pick3ScrapePostHandler
 };
 
 // let incNum: number = 0;
@@ -754,3 +716,146 @@ export {
 // 	);
 // 	return pick3Time && pick3Numbers && pick3Fireball;
 // }
+
+// const currentData:
+// | Promise<{
+// 		dateTime: string | null;
+// 		combineNumbers: void;
+// 		fireballNumber: string | null | undefined;
+// 		// eslint-disable-next-line no-mixed-spaces-and-tabs
+//   }>[]
+// | undefined = getData?.map(async (value) => {
+// return {
+// 	dateTime: (await value).dateTime,
+// 	combineNumbers: (await value).combineNumbers,
+// 	fireballNumber: (await value).fireballNumber
+// };
+// });
+
+// const pick3Time = (await currentData![0])?.dateTime;
+// const pick3Numbers = (await currentData![0]).combineNumbers;
+// const pick3Fireball = (
+// await currentData![0]
+// ).fireballNumber?.toString();
+
+// const tempArray: string[] = [];
+
+// currentData?.forEach(async (data) => {
+// const resolvedData = await data;
+// tempArray.push(JSON.stringify(resolvedData));
+// });
+
+// setTimeout(() => {
+// console.info(`tempArray: ${tempArray[0].valueOf()}`);
+
+// console.info(
+// 	`
+// 		DateTime scrape data inside of "setTimeout" Function:
+// 			${JSON.stringify(currentData![0].then((value) => value))}
+// 	`
+// );
+// }, 4000);
+
+// setTimeout(() => {
+// const resolveData: Promise<
+// 	| Promise<{
+// 			dateTime: string | null;
+// 			combineNumbers: void;
+// 			fireballNumber: string | null | undefined;
+// 			// eslint-disable-next-line no-mixed-spaces-and-tabs
+// 	  }>[]
+// 	| undefined
+// > = dataPick3();
+
+// const resolverArray: Promise<{
+// 	dateTime: string | null;
+// 	combineNumbers: void;
+// 	fireballNumber: string | null | undefined;
+// }>[] = [];
+
+// resolveData.then(async (value) => {
+// 	const data = value![0];
+
+// 	resolverArray.push(
+// 		Promise.resolve({
+// 			dateTime: (await data).dateTime,
+// 			combineNumbers: (await data).combineNumbers,
+// 			fireballNumber: (await data).fireballNumber
+// 		})
+// 	);
+
+// 	for (const resolved of resolverArray) {
+// 		const time3: string | null | undefined = (
+// 			await resolved
+// 		).dateTime?.toString();
+// 		const numbers: void = (await resolved).combineNumbers;
+// 		const fireball: string | null | undefined = (
+// 			await resolved
+// 		).fireballNumber?.toString();
+
+// 		resolved.then((value) => {
+// 			const timePick3: string | null | undefined =
+// 				value.dateTime;
+// 			const numbersPick3: void = value.combineNumbers;
+// 			const fireballPick3: string | null | undefined =
+// 				value.fireballNumber;
+
+// 			console.info(
+// 				`
+// 					:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// 						DateTime scrape data inside of "setTimeout" Function
+// 						and the resolverArray Loop-Block:
+
+// 								dateTime: ${JSON.stringify(time3)}
+
+// 							combineNumbers: ${JSON.stringify(numbers)}
+
+// 							fireballNumber: ${JSON.stringify(fireball)}
+
+// 					:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 				`
+// 			);
+
+// 			console.info(
+// 				`
+// 				:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// 					DateTime scrape data inside of "setTimeout" Function
+// 					and the resolverArray Loop-Block:
+
+// 							dateTime: ${JSON.stringify(timePick3)}
+
+// 						combineNumbers: ${JSON.stringify(numbersPick3)}
+
+// 						fireballNumber: ${JSON.stringify(fireballPick3)}
+
+// 				:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// 			`
+// 			);
+// 		});
+// 	}
+
+// 	console.info(
+// 		`
+// 			resolverArray Array scrape data inside of "setTimeout" Function:
+// 				resolverArray:	${JSON.stringify(resolverArray)}
+// 		`
+// 	);
+// });
+// }, 5000);
+
+// console.info(
+// `
+// 	dataPick3() Scraper Function: ${await dataPick3().then((value) => {
+// 		const datapick = value![0];
+
+// 		if (datapick === undefined) {
+// 			return undefined;
+// 		} else {
+// 			const data3 = datapick;
+// 			return JSON.stringify(data3);
+// 		}
+// 	})}
+// `
+// );
