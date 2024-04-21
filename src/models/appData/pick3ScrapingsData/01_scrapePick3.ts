@@ -29,26 +29,34 @@ class ScrapePicks {
 		this.timeClass = timeClass;
 		this.numsClass = numsClass;
 		this.numFireballClass = numFireballClass;
+
+		let browser: puppeteer.Browser | undefined;
+		let page: puppeteer.Page | null | undefined;
+
+		this.browser = browser;
+		this.page = page;
 	}
 
 	async launchBrowser(): Promise<puppeteer.Page | undefined | null> {
 		try {
-			const browser: puppeteer.Browser | null = await puppeteer.launch({
+			this.browser = await puppeteer.launch({
 				headless: false,
 				// defaultViewport: null,
 				slowMo: 1250,
 				devtools: true
 			}); //as unknown as typeof puppeteer.Browser | null;
-			this.browser = browser;
 
-			this.hookUpSiteURL();
+			this.page = await this.browser?.newPage();
 
-			setTimeout(async () => {
-				console.warn(`this.browser: ${JSON.stringify(this.browser)}`);
-			}, 4000);
+			await this.page?.goto(this.URL);
+			// await this.page?.setViewport({ width: 1920, height: 1080 });
 
-			// return this.page;
-			return;
+			console.info(`hookUpSiteURL() || this.URL: ${this.URL}`);
+
+			console.warn(`this.browser: ${JSON.stringify(this.browser)}`);
+			console.warn(`this.page: ${JSON.stringify(this.page)}`);
+
+			return this.page;
 		} catch (error: unknown) {
 			console.error(
 				`
@@ -56,109 +64,79 @@ class ScrapePicks {
                 ERROR MESSAGE: ${error}
                 `
 			);
-			// Response.redirect('/');
 
 			return;
 			// return Promise.reject();
 		}
 	}
-	async hookUpSiteURL(): Promise<puppeteer.Page | undefined> {
-		try {
-			setTimeout(async () => {
-				// Navigate to SC Lottery Data URL
-				const page = await this.browser?.newPage();
-				this.page = page;
-
-				// console.warn(`this.page: ${JSON.stringify(this.page)}`);
-			}, 3000);
-
-			setTimeout(async () => {
-				await this.page?.goto(this.URL);
-				await this.page?.setViewport({ width: 1920, height: 1080 });
-			}, 5000);
-
-			console.info(`hookUpSiteURL() || this.URL: ${this.URL}`);
-		} catch (error: unknown) {
-			console.error(
-				`
-                    Class ScrapePicks' hookUpSiteURL Method error...
-                        ERROR MESSAGE: ${error}
-                `
-			);
-		}
-		return;
-	}
-	async dataScrape(): Promise<string[] | undefined> {
+	async dataScrape(): Promise<
+		| {
+				datePeriod: string | undefined | null;
+				numsSet: string | undefined | null;
+				fireball: string | undefined | null;
+				// eslint-disable-next-line no-mixed-spaces-and-tabs
+		  }[]
+		| undefined
+	> {
 		try {
 			const dataDetails:
 				| {
-						datePeriod: string | null;
-						numsSet: string;
-						fireball: string | null;
+						datePeriod: string | undefined | null;
+						numsSet: string | undefined | null;
+						fireball: string | undefined | null;
 						// eslint-disable-next-line no-mixed-spaces-and-tabs
 				  }[]
 				| undefined = [];
-			setTimeout(async () => {
-				const data = await this.page?.$$eval(
-					this.colClass,
-					async (elements: Element[]) => {
-						elements.map(async (times: Element) => {
-							const pickTime: Element | null =
-								times.querySelector(this.timeClass);
-							const numbersSpans: NodeListOf<Element> =
-								times.querySelectorAll(this.numsClass);
-
-							const getNumbers: string[] = Array.from(
-								numbersSpans
-							).map(
-								(numbers: Element) => numbers.textContent ?? ''
-							);
-
-							const numFireball: Element | null =
-								times.querySelector(this.numFireballClass);
-
-							const scrapedDetails = await this.page?.evaluate(
-								() => {
-									const datePeriod =
-										pickTime?.textContent ?? null;
-									const numsSet = getNumbers.join('');
-									const fireball =
-										numFireball?.textContent ?? null;
-
-									return {
-										datePeriod,
-										numsSet,
-										fireball
-									};
-								}
-							);
-
-							if (scrapedDetails !== undefined) {
-								dataDetails.push(scrapedDetails);
-							}
-							console.log(
-								`dataDetails.fireball: ${JSON.stringify(
-									scrapedDetails?.fireball
-								)}`
-							);
-							console.log(JSON.stringify(scrapedDetails));
-							// });
-						});
-						console.log(
-							`dataDetails: ${JSON.stringify(dataDetails)}`
+			const data = await this.page?.$$eval(
+				this.colClass,
+				async (elements: Element[]) => {
+					elements.map(async (times: Element) => {
+						const pickTime: Element | null = times.querySelector(
+							this.timeClass
 						);
-						return dataDetails;
-					}
-				);
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				const updatedData: any[] | undefined = data;
-				setTimeout(async () => {
-					console.log(`data: ${JSON.stringify(updatedData)}`);
-				}, 3000);
+						const numbersSpans: NodeListOf<Element> =
+							times.querySelectorAll(this.numsClass);
 
-				await this.browser?.close();
-				return updatedData;
-			}, 5000);
+						const getNumbers: string[] = Array.from(
+							numbersSpans
+						).map((numbers: Element) => numbers.textContent ?? '');
+
+						const numFireball: Element | null = times.querySelector(
+							this.numFireballClass
+						);
+
+						const scrapedDetails = await this.page?.evaluate(() => {
+							const datePeriod: string | undefined | null =
+								pickTime?.textContent ?? null;
+							const numsSet: string | undefined | null =
+								getNumbers.join('');
+							const fireball: string | undefined | null =
+								numFireball?.textContent ?? null;
+
+							return {
+								datePeriod,
+								numsSet,
+								fireball
+							};
+						});
+
+						if (scrapedDetails !== undefined) {
+							dataDetails.push(scrapedDetails);
+						}
+						console.log(
+							`dataDetails.fireball: ${JSON.stringify(
+								scrapedDetails?.fireball
+							)}`
+						);
+						console.log(JSON.stringify(scrapedDetails));
+					});
+					console.log(`dataDetails: ${JSON.stringify(dataDetails)}`);
+					return dataDetails;
+				}
+			);
+
+			await this.browser?.close();
+			return data;
 		} catch (error: unknown) {
 			console.error(
 				`

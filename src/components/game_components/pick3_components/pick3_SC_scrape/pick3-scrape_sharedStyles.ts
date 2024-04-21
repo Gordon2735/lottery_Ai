@@ -19,6 +19,23 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         /* Background Colors */
         --sp3-bg-color-light: #f4f4f4;
         --sp3-bg-color-dark: #333;
+        --sp3-bg-color-button: hsla(209, 13%, 50%, 0.993);
+        --sp3-bg-color-button-hover: hsla(209, 13%, 40%, 0.993);
+        --sp3-bg-color-button-active: hsla(209, 13%, 30%, 0.993);
+        --sp3-bg-color-0: hsla(0, 0%, 0%, 0.993);
+        --sp3-bg-color-1: hsla(0, 0%, 41%, 0.997);
+        --sp3-bg-color-2: hsla(174, 72%, 56%, 0.996);
+        --sp3-bg-color-3: hsla(160, 100%, 75%, 0.993);
+        --sp3-bg-color-4: rgba(95, 158, 160, 0.993);
+        --sp3-bg-color-4t: rgba(95, 158, 160, 0.393);
+        --sp3-bg-color-5: hsla(182, 25%, 50%, 0.993);
+        --sp3-bg-color-6: rgba(100, 148, 237, 0.993);
+        --sp3-bg-color-7: rgba(176, 196, 222, 0.993);
+        --sp3-bg-color-8: hsla(80, 61%, 50%, 0.993);
+        --sp3-bg-color-9: rgba(105, 90, 205, 0.993);
+        --sp3-bg-color-10: hsla(0, 79%, 72%, 0.993);
+        --sp3-bg-color-11: hsl(108, 57%, 51%, 0.993);
+    
 
         /* Background Gradients */
         --sp3-gradient-dark-0: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 87%, hsla(188, 35%, 58%, 0.993));
@@ -99,6 +116,10 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         
         /* Font Styles Variables */
         --sp3-f-style-italic: italic;
+        --sp3-f-style-normal: normal;
+        --sp3-f-style-oblique: oblique;
+        --sp3-f-style-initial: initial;
+
 
         /* Text Variables */
         --sp3-text-1: 0.5rem;
@@ -117,6 +138,7 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-clr-fc-8: hsla(240, 64%, 27%, 0.993);
         --sp3-clr-fc-9: hsla(80, 61%, 50%, 0.993);
         --sp3-clr-fc-10: hsla(0, 79%, 72%, 0.593); 
+        --sp3-clr-fc-11: hsl(108, 57%, 51%, 0.993);
 
         /* 
         
@@ -229,6 +251,7 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-text-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.5);
         --sp3-text-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.5);
         --sp3-text-shadow-xmd: 0.2px 0.4px 3px hsla(0, 0%, 0%, 0.69);
+        --sp3-text-shadow-xmdz: 1.2px 1.4px 4px hsla(0, 0%, 0%, 0.89);
         --sp3-text-shadow-xmda: 3.2px 3.8px 8px hsla(0, 0%, 0%, 0.69);
         --sp3-text-shadow-lg: 0 6px 15px rgba(0, 0, 0, 0.5);
         --sp3-text-shadow-xl: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -282,8 +305,10 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-margin--sp3-2: -2rem;
         --sp3-margin--sp3-1: -1rem;
         --sp3-margin-0: 1.2em 0em 1.2em 0.5em;
+        --sp3-margin-0a: 0;
         --sp3-margin-00: 0em 0em 0em 0em;
         --sp3-margin-00a: 5em auto 0em auto;
+        --sp3-margin-00b: 0 auto 5em auto;
         --sp3-margin-auto: auto;
         --sp3-margin-xxsm: 0.19rem;
         --sp3-margin-xxs: 0.25rem;
@@ -429,6 +454,41 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-height-xxxl-3: 8rem;
         --sp3-height-xxxl-4: 9rem;
         --sp3-height-xxxl-5: 10rem;
+        --sp3-height-10: 10px;
+        --sp3-height-20: 20px;
+        --sp3-height-25: 25px;
+        --sp3-height-30: 30px;
+        --sp3-height-35: 35px;
+        --sp3-height-40: 40px;
+        --sp3-height-45: 45px;
+        --sp3-height-50: 50px;
+        --sp3-height-55: 55px;
+        --sp3-height-60: 60px;
+        --sp3-height-65: 65px;
+        --sp3-height-70: 70px;
+        --sp3-height-75: 75px;
+        --sp3-height-80: 80px;
+        --sp3-height-85: 85px;
+        --sp3-height-90: 90px;
+        --sp3-height-95: 95px;
+        --sp3-height-100: 100px;
+        --sp3-height-110: 110px;
+        --sp3-height-120: 120px;
+        --sp3-height-130: 130px;
+        --sp3-height-140: 140px;
+        --sp3-height-150: 150px;
+        --sp3-height-160: 160px;
+        --sp3-height-180: 180px;
+        --sp3-height-200: 200px;
+        --sp3-height-240: 240px;
+        --sp3-height-280: 280px;
+        --sp3-height-300: 300px;
+        --sp3-height-350: 350px;
+        --sp3-height-375: 375px;
+        --sp3-height-400: 400px;
+        --sp3-height-450: 450px;
+        --sp3-height-475: 475px;
+        --sp3-height-500: 500px;
         
         /* Position Variables */
         --sp3-position-static: static;
@@ -652,6 +712,18 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-display-inline-flex: inline-flex;
         --sp3-display-grid: grid;
 
+        /* Justify Variables */
+        --sp3-justify-start: start;
+        --sp3-justify-end: end;
+        --sp3-justify-center: center;
+        --sp3-justify-space-between: space-between;
+        --sp3-justify-space-around: space-around;
+        --sp3-justify-space-evenly: space-evenly;
+        --sp3-justify-right: right;
+        --sp3-justify-left: left;
+
+
+
         /* Flex Direction Variables */
         --sp3-flex-direction-row: row;
         --sp3-flex-direction-row-reverse: row-reverse;
@@ -688,9 +760,11 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-border-thin: 1px solid hsla(0, 0%, 0%, 0.993);
         --sp3-border-thick: 2px solid hsla(0, 0%, 0%, 0.993);
         --sp3-border-xthick: 3px solid hsla(188, 98%, 34%, 0.993);
+        --sp3-border-xthicka: 6px solid hsla(188, 98%, 34%, 0.993);
         --sp3-border-xxthick: 4px solid hsla(0, 0%, 0%, 0.993);
         --sp3-border-xxxthick: 10px solid hsla(188, 98%, 34%, 0.993);
         --sp3-border-feather: 10px solid hsla(188, 98%, 34%, 0.993);
+        --sp3-border-button: 3px solid hsla(188, 98%, 34%, 0.793);
 
         /* Border Radius Variables */
         --sp3-radius-0: 0rem;
@@ -743,6 +817,88 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-transition-moderate: all 0.3s ease-in-out;
         --sp3-transition-xmoderate: all 0.5s ease-in-out;
         --sp3-transition-slow: all 0.7s ease-in-out;
+        --sp3-transition-01s: 0.1s;
+        --sp3-transition-02s: 0.2s;
+        --sp3-transition-03s: 0.3s;
+        --sp3-transition-04s: 0.4s;
+        --sp3-transition-05s: 0.5s;
+        --sp3-transition-06s: 0.6s;
+        --sp3-transition-07s: 0.7s;
+        --sp3-transition-08s: 0.8s;
+        --sp3-transition-09s: 0.9s;
+        --sp3-transition-1s: 1s;
+        --sp3-transition-2.1s: 2.1s;
+        --sp3-transition-2.5s: 2.5s;
+        --sp3-transition-3s: 3s;
+        --sp3-transition-4s: 4s;
+
+
+        /* Transform Variables */
+        --sp3-transform-none: none;
+        --sp3-transform-rotate-0: rotate(0deg);
+        --sp3-transform-rotate-1: rotate(1deg);
+        --sp3-transform-rotate-2: rotate(2deg);
+        --sp3-transform-rotate-3: rotate(3deg);
+        --sp3-transform-rotate-5: rotate(5deg);
+        --sp3-transform-rotate-6: rotate(6deg);
+        --sp3-transform-rotate-7: rotate(7deg);
+        --sp3-transform-rotate-8: rotate(8deg);
+        --sp3-transform-rotate-9: rotate(9deg);
+        --sp3-transform-rotate-10: rotate(10deg);
+        --sp3-transform-rotate-15: rotate(15deg);
+        --sp3-transform-rotate-45: rotate(45deg);
+        scale(0.95);
+
+        /* Scale */
+        --sp3-scale-095: scale(0.95);
+        --sp3-scale-0: scale(0);
+        --sp3-scale-1: scale(0.10);
+        --sp3-scale-2: scale(0.20);
+        --sp3-scale-3: scale(0.30);
+        --sp3-scale-4: scale(0.40);
+        --sp3-scale-5: scale(0.50);
+        --sp3-scale-6: scale(0.60);
+        --sp3-scale-7: scale(0.70);
+        --sp3-scale-8: scale(0.80);
+        --sp3-scale-9: scale(0.90);
+        --sp3-scale-10: scale(1);
+
+        /* Skew */
+        --sp3-skew-0: 0;
+        --sp3-skew-1: 1deg;
+        --sp3-skew-2: 2deg;
+        --sp3-skew-3: 3deg;
+        --sp3-skew-5: 5deg;
+        --sp3-skew-6: 6deg;
+
+        /* Translate */
+        --sp3-translate-0: 0;
+        --sp3-translate-1: 1px;
+        --sp3-translate-2: 2px;
+        --sp3-translate-3: 3px;
+        --sp3-translate-5: 5px;
+        --sp3-translate-6: 6px;
+        --sp3-translate-7: 7px;
+        --sp3-translate-8: 8px;
+        --sp3-translate-9: 9px;
+        --sp3-translate-10: 10px;
+
+        /* cursor */
+        --sp3-cursor-pointer: pointer;
+        --sp3-cursor-default: default;
+        --sp3-cursor-move: move;
+        --sp3-cursor-not-allowed: not-allowed;
+        --sp3-cursor-auto: auto;
+        --sp3-cursor-crosshair: crosshair;
+        --sp3-cursor-help: help;
+        --sp3-cursor-text: text;
+        --sp3-cursor-ew-resize: ew-resize;
+        --sp3-cursor-ns-resize: ns-resize;
+        --sp3-cursor-nesw-resize: nesw-resize;
+        --sp3-cursor-nwse-resize: nwse-resize;
+        --sp3-cursor-none: none;
+
+
 
         /* Rotate */
         --sp3-rotate-0: 0;
@@ -778,12 +934,52 @@ pick3Scrape_sharedStyles.root = /*css*/ `
 
 
         /* Grid Type Variables */
-        --sp3-grid-template-areas:
-            ". image image ."
-            "header1 header1 header1 header1"
-            "header2 header2 header2 header2"
-            "numbers numbers numbers fireball";
+        --sp3-grid-template-areas-1: 
+            "image"
+            "header2"
+            "when-event"
+            "scrape-numbers"
+            "button";
 
+            --sp3-grid-template-areas-2: 
+            "image image"
+            "header2 header2"
+            "when-event when-event"
+            "scrape-numbers fireball_number"
+            ". button";
+
+            --sp3-grid-template-areas-3: 
+            "image image ."
+            "image image ."
+            ". header2 header2"
+            ". when-event ."
+            "scrape-numbers header4 fireball_number"
+            ". . button";
+
+            --sp3-grid-template-areas-4: 
+            "image image . ."
+            "image image . ."
+            "image image . ."
+            ". header2 header2 ."
+            ". . when-event ."
+            ". scrape-numbers header4 fireball_number"
+            ". . . button";
+   
+            --sp3-grid-template-areas-5: 
+            "image image image . ."
+            "image image image . ."
+            ".  header2 header2 header2 ."
+            ". when-event when-event . ."
+            ". scrape-numbers scrape-numbers header4 fireball_number"
+            ". . . button button";
+
+        --sp3-grid-template-areas-9:
+            "image image image image . . . . ."
+            "image image image image header2 header2 header2 header2 ."
+            ". when-event when-event when-event . . . . ."
+            "scrape-numbers scrape-numbers scrape-numbers scrape-numbers scrape-numbers header4 header4 fireball_number"
+            ". . . . . button button button button";
+            
 
 
 
@@ -824,11 +1020,25 @@ pick3Scrape_sharedStyles.root = /*css*/ `
 
         /* Grid Template Columns Variables */
         --sp3-grid-template-columns-1: repeat(1, 1fr);
+        --sp3-grid-template-columns-2: repeat(9, 1fr);
+        --sp3-grid-template-columns-3: (1fr, 1fr, 1fr);
+        --sp3-grid-template-columns-4: (1fr, 1fr, 1fr, 1fr);
+        --sp3-grid-template-columns-5: (1fr, 1fr, 1fr, 1fr, 1fr);
+        --sp3-grid-template-columns-5a: (1fr);
         --sp3-grid-template-columns-13: 100px 100px 100px 100px;
 
         /* Grid Template Rows Variables */
         --sp3-grid-template-rows-1: auto;
         --sp3-grid-template-rows-2: repeat(2, 1fr);
+
+        /* Grid auto Rows Variables */
+        --sp3-grid-auto-rows-1: auto;
+        --sp3-grid-auto-rows-2: 100px;
+        --sp3-grid-auto-rows-2a: 800px;
+        --sp3-grid-auto-rows-3: minmax(100px, auto);
+        --sp3-grid-auto-rows-4: 50px;
+        --sp3-grid-auto-rows-5: 60px;
+        --sp3-grid-auto-rows-6: 120px;
 
 
         /* Justify Content Variables */
@@ -985,86 +1195,155 @@ pick3Scrape_sharedStyles.root = /*css*/ `
 pick3Scrape_sharedStyles.container = /*css*/ `
 
     .pick3-scrape-main-container {
-        margin: var(--sp3-margin-00);
-        display: var(--sp3-display-block);
-        background-image: var(--sp3-gradient-dark-0);
-        background-repeat: var(--sp3-repeat-2);
-        background-size: var(--sp3-size-1);
+        margin: var(--sp3-margin-0a);
+        width: var(--sp3-width-100a);
         overflow: var(--sp3-overflow-hidden);
-        width: var(--sp3-width-500);
     }    
     
 `;
 
 pick3Scrape_sharedStyles.header = /*css*/ `
+
+    .scrape-pick3-logo {
+        grid-area: image;
+    }
+
+    .scrape-h2 {        
+        grid-area: header2;
+    }
+
+    .para-pick3-scrape-date {
+        grid-area: when-event;
+    }
+
+    .para-pick3-scrape-numbers {
+        grid-area: scrape-numbers;
+    }
+
+    .scrape-h4 {
+        grid-area: header4;
+    }
+
+    .para-pick3-scrape-fireball {
+        grid-area: fireball_number;
+    }
+
+    .pick3-scrape-button {
+        grid-area: button;
+    }
+
+    * {
+    box-sizing: border-box;
+  }
     
     .pick3-scrape-header {
-        margin: var(--sp3-margin-00a);
-        display: var(--sp3-display-grid);
-        width: var(--sp3-width-90);
-        border: var(--sp3-border-xthick);
+        margin: var(--sp3-margin-00a);  
+        width: var(--sp3-width-840);
+        height: var(--sp3-height-auto);
+        background-color: var(--sp3-bg-color-4t);
+        border: var(--sp3-border-xthicka);
         border-radius: var(--sp3-radius-md);
-        grid-template-areas: var(--sp3-grid-template-areas);
-        grid-template-columns: var(--sp3-grid-template-columns-13);
-        grid-template-rows: var(--sp3-grid-template-rows-1);
-        filter: var(--sp3-filter-shadow-xxl);
+        filter: var(--sp3-filter-shadow-xmda);
         font-family: var(--sp3-ff-src-code-pro);
     }
 
-    .scrape-pick3-logo {
-        margin: var(--sp3-margin-0);
-        display: var(--sp3-display-block);
-        justify-self: var(--sp3-justify-content-start);
-        width: var(--sp3-width-95);
-        rotate: var(--sp3-rotate-355);
+    .pick3-scrape-header > .scrape-pick3-logo {
+        margin: var(--sp3-margin-0);        
+        width: var(--sp3-width-300);
+        rotate: var(--sp3-rotate-345);
     }
 
-    .scrape-h1 {
-        display: var(--sp3-display-block);
-        justify-self: var(--sp3-justify-content-center);
-        font-size: var(--sp3-fs-xxxl-1);
-        font-weight: var(--sp3-fw-bold);
-        color: var(--sp3-clr-fc-2);
-        text-shadow: var(--sp3-text-shadow-xmd);
-    }
-
-    .scrape-h2 {
-        display: var(--sp3-display-block);
-        justify-self: var(--sp3-justify-content-center);
+    .pick3-scrape-header > .scrape-h2 {
         font-size: var(--sp3-fs-xxl);
+        font-weight: var(--sp3-fw-bold);
+        color: var(--sp3-clr-fc-11);
+        text-shadow: var(--sp3-text-shadow-xmdz);
+        text-align: var(--sp3-text-align-right);
+    }
+
+    .pick3-scrape-header > .para-pick3-scrape-date {
+        font-size: var(--sp3-fs-md);
         font-weight: var(--sp3-fw-semibold);
         color: var(--sp3-clr-fc-2);
         font-style: var(--sp3-f-style-italic);
         text-shadow: var(--sp3-text-shadow-xmd);
     }
 
-`;
-
-pick3Scrape_sharedStyles.numbers = /*css*/ `
-
-    .para-pick3-scrape-numbers {
-        display: var(--sp3-display-block);
-        justify-self: var(--sp3-justify-content-center);
-        font-family: var(--sp3-ff-titillium-web);
-        font-size: var(--sp3-fs-xxl);
-        font-weight: var(--sp3-fw-bold);
-        color: var(--sp3-clr-fc-0);
+    .pick3-scrape-header > .para-pick3-scrape-numbers {
+        justify: var(--sp3-justify-right);
+        font-size: var(--sp3-fs-xxxl-1);
+        font-weight: var(--sp3-fw-semibold);
+        color: var(--sp3-clr-fc-11);
+        font-style: var(--sp3-f-style-italic);
+        text-shadow: var(--sp3-text-shadow-xmdz);
+    }
+ 
+    .pick3-scrape-header > .scrape-h4 {
+        justify: var(--sp3-justify-end);
+        font-size: var(--sp3-fs-sm);
+        font-weight: var(--sp3-fw-semibold);
+        color: var(--sp3-clr-fc-6);
+        font-style: var(--sp3-f-style-italic);
         text-shadow: var(--sp3-text-shadow-xmd);
     }
 
-    .para-pick3-scrape-fireball {
-        display: var(--sp3-display-block);
-        justify-self: var(--sp3-justify-content-center);
+    .pick3-scrape-header > .para-pick3-scrape-fireball {
+        justify: var(--sp3-justify-start);
         font-family: var(--sp3-ff-titillium-web);
-        font-size: var(--sp3-fs-xxl);
+        font-size: var(--sp3-fs-xxxl-1);
         font-weight: var(--sp3-fw-bold);
         color: var(--sp3-clr-fc-0f);
         text-shadow: var(--sp3-text-shadow-xmd);
     }
 
-    .span-scrape-fireball {
-        display: var(--sp3-display-block);
+    .pick3-scrape-header > .pick3-scrape-button {
+        margin: var(--sp3-margin-00b);
+        width: var(--sp3-width-200);
+        height: var(--sp3-height-50);
+        font-size: var(--sp3-fs-md);
+        font-weight: var(--sp3-fw-bold);
+        color: var(--sp3-clr-fc-11);
+        text-shadow: var(--sp3-text-shadow-xmd);
+        border: var(--sp3-border-button);
+        border-radius: var(--sp3-radius-sm);
+        background-color: var(--sp3-bg-color-button);
+        box-shadow: var(--sp3-shadow-inset-xxl-1a);
+        filter: var(--sp3-filter-shadow-xmda);
     }
+
+    .pick3-scrape-button:hover {
+        background-color: var(--sp3-bg-color-button-hover);
+        transition: var(--sp3-transition-07s);
+        color: var(--sp3-clr-fc-9);
+        cursor: var(--sp3-cursor-pointer);    
+    }
+
+    .pick3-scrape-button:focus {
+        outline-color: transparent;
+        outline-style: solid;
+        box-shadow: 0 0 0 4px #5a01a7;
+        transition: 0.7s;
+        color: var(--sp3-clr-fc-9);
+    }
+
+    .pick3-scrape-button:active {
+        transform: var(--sp3-scale-095);
+        transition: var(--sp3-transition-01s);
+        background-color: var(--sp3-bg-color-button-active); 
+        color: var(--sp3-clr-fc-2);
+    }
+
+    .pick3-scrape-header {
+        display: var(--sp3-display-grid);
+        padding: var(--sp3-padding-xxs);
+        grid-template-columns: var(--sp3-grid-template-columns-4);
+        grid-auto-rows: var(--sp3-grid-auto-rows-5);
+        grid-template-areas: var(--sp3-grid-template-areas-4);
+      
+    }
+`;
+
+pick3Scrape_sharedStyles.numbers = /*css*/ `
 
 
 `;

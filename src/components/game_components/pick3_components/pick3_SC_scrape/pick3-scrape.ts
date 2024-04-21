@@ -9,6 +9,7 @@ import {
 	// setAttributes,
 	// appendChildren
 } from '../../../componentTools/general_helpers.js';
+
 // import { dataPick3 } from '../../../../models/appData/pick3ScrapingsData/pick3_scrapeData.js';
 // import ScrapePicks from '../../../../models/appData/pick3ScrapingsData/01_scrapePick3.js';
 
@@ -129,105 +130,78 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
 	connectedCallback(): void {
 		super.connectedCallback();
 
-		// const pick3URL: string = `https://www.sceducationlottery.com/Games/Pick3`;
-		// const columnClass: string = '.col-md-2';
-		// const numsDateClass: string = '.numbers-date';
-		// const pick3NumsClass: string = '.number-circle';
-		// const pick3FireballClass: string = '.number-circle-fireball-pick3';
+		document.addEventListener('DOMContentLoaded', () => {
+			const drawPeriod: HTMLElement | null = document.getElementById(
+				'paraPick3ScrapeDate'
+			);
+			const drawNumbers: HTMLElement | null = document.getElementById(
+				'paraPick3ScrapeNumbers'
+			);
+			const drawFireball: HTMLElement | null = document.getElementById(
+				'paraPick3ScrapeFireball'
+			);
+			const getButton: HTMLElement | null = document.getElementById(
+				'pick3ScrapeDataButton'
+			);
 
-		// // Implement a generator for time intervals
-		// const getScrapePick3: () => AsyncGenerator<
-		// 	1 | 2 | 3 | 4 | 5 | 6,
-		// 	undefined,
-		// 	unknown
-		// > = async function* () {
-		// 	try {
-		// 		const getData: ScrapePicks = new ScrapePicks(
-		// 			pick3URL,
-		// 			columnClass,
-		// 			numsDateClass,
-		// 			pick3NumsClass,
-		// 			pick3FireballClass
-		// 		);
-		// 		yield 1,
-		// 			setTimeout(async () => {
-		// 				await getData.launchBrowser();
-		// 				console.warn(
-		// 					`
-		// 			pick3Handler() {} routing handler function:
+			getButton?.addEventListener('click', async () => {
+				try {
+					const response: Response = await fetch('/pick3', {
+						method: 'POST'
+					});
 
-		// 			APPLICATION IS CURRENTLY IN A SETTIMEOUT FUNCTION WHICH LAUNCHED
-		// 			THE BROWSER AND IS WAITING FOR THE DATA TO BE SCRAPED FROM THE
-		// 			WEBSITE...
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
 
-		// 			timeout is 5000 milliseconds!
-		// 			`
-		// 				);
-		// 			}, 5000);
+					const data: Promise<{
+						time3: string | undefined | null;
+						numbers: string | undefined | null;
+						fireball: string | undefined | null;
+					}> = await response.json();
 
-		// 		yield 2;
+					console.log(await data);
 
-		// 		const currentData: () => Promise<string[] | undefined> =
-		// 			getData.dataScrape;
-
-		// 		yield 3;
-
-		// 		console.log(JSON.stringify(currentData));
-		// 		// console.log(JSON.stringify(currentData?.[0] ?? null));
-
-		// 		const currentPick3 = currentData().then((data) => {
-		// 			const resolvedData = data;
-		// 			const time3 = resolvedData?.[0].slice(0, 1);
-		// 			const numbers: string | undefined = resolvedData?.[0].slice(
-		// 				1,
-		// 				2
-		// 			);
-		// 			const fireball: string | null | undefined =
-		// 				resolvedData?.[0].slice(2);
-
-		// 			console.info(
-		// 				`
-		// 					time3: ${time3},
-		// 					numbers: ${numbers},
-		// 					fireball: ${fireball}
-		// 				`
-		// 			);
-
-		// 			return { time3, numbers, fireball };
-		// 		});
-		// 		yield 4;
-
-		// 		console.log(JSON.stringify((await currentPick3).time3 ?? null));
-		// 		console.log(
-		// 			JSON.stringify((await currentPick3).numbers ?? null)
-		// 		);
-		// 		console.log(
-		// 			JSON.stringify((await currentPick3).fireball ?? null)
-		// 		);
-		// 		yield 5;
-
-		// 		yield 6;
-		// 	} catch (error: unknown) {
-		// 		console.error(
-		// 			`
-		// 			getScrapePick3() {} generator function had an error,
-		// 			ERROR: ${error}
-		// 		`
-		// 		);
-		// 		return Promise.reject(error);
-		// 	}
-		// };
-		// const iterateScrapePick3: AsyncGenerator<
-		// 	6 | 5 | 1 | 4 | 3 | 2,
-		// 	undefined,
-		// 	unknown
-		// > = getScrapePick3();
-
-		// const yieldScrape: Promise<
-		// 	IteratorResult<1 | 2 | 3 | 4 | 5 | 6, undefined>
-		// > = iterateScrapePick3.next();
-
-		// this.yieldScrape = yieldScrape;
+					const asyncIterator = {
+						[Symbol.asyncIterator]() {
+							let index = 0;
+							const values = Object.values(data);
+							return {
+								async next() {
+									if (index < values.length) {
+										return {
+											value: values[index++],
+											done: false
+										};
+									} else {
+										return { done: true };
+									}
+								}
+							};
+						}
+					};
+					for await (const value of asyncIterator) {
+						drawPeriod?.append(value.time3),
+							drawNumbers?.append(value.numbers),
+							drawFireball?.append(value.fireball),
+							console.info(
+								`
+									time3: ${value.time3},
+									numbers: ${value.numbers},
+								   fireball: ${value.fireball}
+								`
+							);
+					}
+					return;
+				} catch (error: unknown) {
+					console.error(
+						`
+							Pick 3 Scrape Component's getButton EventListener Error: ${error}
+						`
+					);
+				}
+			});
+		});
 
 		const dataStart = async (valueStart: string): Promise<string> => {
 			const nonActive = 'non-active';
@@ -320,3 +294,103 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
 	}
 }
 RegisterComponent('pick3-scrape', Pick3Scrape);
+
+// const pick3URL: string = `https://www.sceducationlottery.com/Games/Pick3`;
+// const columnClass: string = '.col-md-2';
+// const numsDateClass: string = '.numbers-date';
+// const pick3NumsClass: string = '.number-circle';
+// const pick3FireballClass: string = '.number-circle-fireball-pick3';
+
+// // Implement a generator for time intervals
+// const getScrapePick3: () => AsyncGenerator<
+// 	1 | 2 | 3 | 4 | 5 | 6,
+// 	undefined,
+// 	unknown
+// > = async function* () {
+// 	try {
+// 		const getData: ScrapePicks = new ScrapePicks(
+// 			pick3URL,
+// 			columnClass,
+// 			numsDateClass,
+// 			pick3NumsClass,
+// 			pick3FireballClass
+// 		);
+// 		yield 1,
+// 			setTimeout(async () => {
+// 				await getData.launchBrowser();
+// 				console.warn(
+// 					`
+// 			pick3Handler() {} routing handler function:
+
+// 			APPLICATION IS CURRENTLY IN A SETTIMEOUT FUNCTION WHICH LAUNCHED
+// 			THE BROWSER AND IS WAITING FOR THE DATA TO BE SCRAPED FROM THE
+// 			WEBSITE...
+
+// 			timeout is 5000 milliseconds!
+// 			`
+// 				);
+// 			}, 5000);
+
+// 		yield 2;
+
+// 		const currentData: () => Promise<string[] | undefined> =
+// 			getData.dataScrape;
+
+// 		yield 3;
+
+// 		console.log(JSON.stringify(currentData));
+// 		// console.log(JSON.stringify(currentData?.[0] ?? null));
+
+// 		const currentPick3 = currentData().then((data) => {
+// 			const resolvedData = data;
+// 			const time3 = resolvedData?.[0].slice(0, 1);
+// 			const numbers: string | undefined = resolvedData?.[0].slice(
+// 				1,
+// 				2
+// 			);
+// 			const fireball: string | null | undefined =
+// 				resolvedData?.[0].slice(2);
+
+// 			console.info(
+// 				`
+// 					time3: ${time3},
+// 					numbers: ${numbers},
+// 					fireball: ${fireball}
+// 				`
+// 			);
+
+// 			return { time3, numbers, fireball };
+// 		});
+// 		yield 4;
+
+// 		console.log(JSON.stringify((await currentPick3).time3 ?? null));
+// 		console.log(
+// 			JSON.stringify((await currentPick3).numbers ?? null)
+// 		);
+// 		console.log(
+// 			JSON.stringify((await currentPick3).fireball ?? null)
+// 		);
+// 		yield 5;
+
+// 		yield 6;
+// 	} catch (error: unknown) {
+// 		console.error(
+// 			`
+// 			getScrapePick3() {} generator function had an error,
+// 			ERROR: ${error}
+// 		`
+// 		);
+// 		return Promise.reject(error);
+// 	}
+// };
+// const iterateScrapePick3: AsyncGenerator<
+// 	6 | 5 | 1 | 4 | 3 | 2,
+// 	undefined,
+// 	unknown
+// > = getScrapePick3();
+
+// const yieldScrape: Promise<
+// 	IteratorResult<1 | 2 | 3 | 4 | 5 | 6, undefined>
+// > = iterateScrapePick3.next();
+
+// this.yieldScrape = yieldScrape;

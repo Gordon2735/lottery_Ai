@@ -17,6 +17,7 @@ import {} from '../../../../src/@types/global.d.js';
 import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
 import ScrapePicks from '../../../models/appData/pick3ScrapingsData/01_scrapePick3.js';
+import EventEmitterHandlers from '../../../controllers/emitters/emitterHandlers.js';
 
 declare module 'express-session' {
 	interface Session {
@@ -501,6 +502,12 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 
 async function pick3Handler(_req: Request, res: Response): Promise<void> {
 	try {
+		EventEmitterHandlers.on('drawPickUpdate', (data) => {
+			res.locals.time3 = data.time3;
+			res.locals.numbers = data.numbers;
+			res.locals.fireball = data.fireball;
+		});
+
 		const scriptPick3GameShell: string = `
 			<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-game_shell.js" 
 				content="text/javascript" crossorigin="anonymous">
@@ -517,7 +524,10 @@ async function pick3Handler(_req: Request, res: Response): Promise<void> {
 			script: [scriptPick3GameShell],
 			date: await _req.body.time3,
 			win3: await _req.body.numbers,
-			fire3: await _req.body.fireball
+			fire3: await _req.body.fireball,
+			time3: await res.locals.time3,
+			numbers: await res.locals.numbers,
+			fireball: await res.locals.fireball
 		});
 
 		return Promise.resolve() as Promise<void>;
@@ -530,25 +540,13 @@ async function pick3Handler(_req: Request, res: Response): Promise<void> {
 }
 
 async function pick3ScrapePostHandler(
-	_req: Request,
-	res: Response,
-	_next: NextFunction
+	req: Request,
+	res: Response
 ): Promise<{
-	time3: string | undefined;
-	numbers: string | undefined;
-	fireball: string | undefined;
+	time3: string | null | undefined;
+	numbers: string | null | undefined;
+	fireball: string | null | undefined;
 }> {
-	console.info(
-		`
-		pick3ScrapePostHandler() {} Initial Log Message:
-			_request: ${_req.body}
-
-			response: ${res.locals}
-
-			_next: ${_next}
-		`
-	);
-
 	try {
 		const pick3URL: string = `https://www.sceducationlottery.com/Games/Pick3`;
 		const columnClass: string = '.col-md-2';
@@ -564,33 +562,40 @@ async function pick3ScrapePostHandler(
 			pick3FireballClass
 		);
 
-		setTimeout(async () => {
-			await getData.launchBrowser();
+		await getData.launchBrowser();
 
-			console.warn(
-				`
-				pick3Handler() {} routing handler function:
-				
-				APPLICATION IS CURRENTLY IN A SETTIMEOUT FUNCTION WHICH LAUNCHED
-				THE BROWSER AND IS WAITING FOR THE DATA TO BE SCRAPED FROM THE
-				WEBSITE...
-				
-				timeout is 5000 milliseconds!
-				`
-			);
-		}, 5000);
-
-		const currentData = getData.dataScrape;
+		const currentData: () => Promise<
+			| {
+					datePeriod: string | null | undefined;
+					numsSet: string | null | undefined;
+					fireball: string | null | undefined;
+					// eslint-disable-next-line no-mixed-spaces-and-tabs
+			  }[]
+			| undefined
+		> = getData.dataScrape;
 
 		console.log(JSON.stringify(currentData));
 		// console.log(JSON.stringify(currentData?.[0] ?? null));
 
-		const currentPick3 = currentData().then((data) => {
-			const resolvedData = data;
-			const time3 = resolvedData?.[0].slice(0, 1);
-			const numbers: string | undefined = resolvedData?.[0].slice(1, 2);
-			const fireball: string | null | undefined =
-				resolvedData?.[0].slice(2);
+		const currentPick3: Promise<{
+			time3: string | null | undefined;
+			numbers: string | null | undefined;
+			fireball: string | null | undefined;
+		}> = currentData().then((data) => {
+			const resolvedData:
+				| {
+						datePeriod: string | null | undefined;
+						numsSet: string | null | undefined;
+						fireball: string | null | undefined;
+						// eslint-disable-next-line no-mixed-spaces-and-tabs
+				  }[]
+				| undefined = data;
+			const time3: string | null | undefined =
+				resolvedData?.[0].datePeriod;
+			const numbers: string | null | undefined =
+				resolvedData?.[0].numsSet;
+			const fireball: string | null | undefined = resolvedData?.[0]
+				.fireball as string | undefined;
 
 			console.info(
 				`
@@ -622,15 +627,22 @@ async function pick3ScrapePostHandler(
 					:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 				`
 		);
-		// let pick3DateTime: string | undefined = (await currentPick3).time3;
-		// let pick3Numbers: string | undefined = (await currentPick3).numbers;
-		// let pick3Fireball: string | undefined = (await currentPick3).fireball;
 
 		const {
 			time3 = (await currentPick3)?.time3,
 			numbers = (await currentPick3)?.numbers,
 			fireball = (await currentPick3)?.fireball
-		}: { time3?: string; numbers?: string; fireball?: string } = _req.body;
+		}: {
+			time3?: string | null | undefined;
+			numbers?: string | null | undefined;
+			fireball?: string | null | undefined;
+		} = req.body;
+
+		// res.locals.time3 = time3;
+		// res.locals.numbers = numbers;
+		// res.locals.fireball = fireball;
+
+		upDatePick3Header(req, res, time3, numbers, fireball);
 
 		app.use((req: Request) => {
 			return (
@@ -643,12 +655,62 @@ async function pick3ScrapePostHandler(
 			);
 		});
 
+		console.info(
+			`
+			pick3ScrapePostHandler() {} Initial Log Message:
+				request || 	  req.body:	${req.body},
+						req.body.time3: ${req.body.time3},
+					  req.body.numbers: ${req.body.numbers},
+					 req.body.fireball: ${req.body.fireball}
+	
+				response ||	  res.locals.time3: ${res.locals.time3},
+						    res.locals.numbers:	${res.locals.numbers},
+						   res.locals.fireball:	${res.locals.fireball}	
+			`
+		);
+
+		// res.send({ time3, numbers, fireball });
 		return { time3, numbers, fireball };
 	} catch (error: unknown) {
 		console.error(`pick3ScrapePostHandler had an ERROR: ${error}`);
 		res.status(500).send('Server Error');
 
 		return { time3: undefined, numbers: undefined, fireball: undefined };
+	}
+}
+
+async function upDatePick3Header(
+	_req: Request,
+	res: Response,
+	drawTime: string | null | undefined,
+	drawNumbers: string | null | undefined,
+	drawFireball: string | null | undefined
+) {
+	try {
+		const newPickData: {
+			drawTime: string | null | undefined;
+			drawNumbers: string | null | undefined;
+			drawFireball: string | null | undefined;
+		} = {
+			drawTime,
+			drawNumbers,
+			drawFireball
+		};
+
+		// Assign the new data to res.locals
+		res.locals = { ...res.locals, ...newPickData };
+
+		// Emit an event with the updated locals data
+		EventEmitterHandlers.emit('drawPickUpdate', res.locals);
+
+		// Send response or render a page
+		res.send({ drawTime, drawNumbers, drawFireball });
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(`upDatePick3Header had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
+		return Promise.reject() as Promise<void>;
 	}
 }
 
