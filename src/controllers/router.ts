@@ -14,7 +14,9 @@ import index_route, {
 	state_box_route,
 	powerball_route,
 	pick3_route,
-	pick3ScrapePost_route
+	pick3ScrapePost_route,
+	pick3Test_route,
+	pick3TestPost_route
 } from './routes/routes.js';
 
 const app: Application = express();
@@ -35,7 +37,9 @@ const routes: Router[] = [
 	state_box_route,
 	powerball_route,
 	pick3_route,
-	pick3ScrapePost_route
+	pick3ScrapePost_route,
+	pick3Test_route,
+	pick3TestPost_route
 ];
 
 const thisRoute: express.Router = router;

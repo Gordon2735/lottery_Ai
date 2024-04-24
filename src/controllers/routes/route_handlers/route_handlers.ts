@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Lottery Ai Route Handlers
 
 'use strict';
@@ -18,6 +20,10 @@ import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
 import ScrapePicks from '../../../models/appData/pick3ScrapingsData/01_scrapePick3.js';
 import EventEmitterHandlers from '../../../controllers/emitters/emitterHandlers.js';
+import scraper from '../../../models/appData/puppeteer/pageScraper.js';
+import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
+
+// import { Browser } from 'puppeteer';
 
 declare module 'express-session' {
 	interface Session {
@@ -714,6 +720,58 @@ async function upDatePick3Header(
 	}
 }
 
+async function pick3TestHandler(_req: Request, res: Response) {
+	try {
+		const scriptIndexWebScraper: string = `
+			<script type="module" src="/src/models/appData/puppeteer/indexTestWebScraper.js" 
+				content="text/javascript" crossorigin="anonymous">
+			</script>
+		`;
+
+		res.set('Content-Type', 'text/html');
+		res.set('target', '_blank');
+		res.render('pick3Test', {
+			title: 'Pick 3®️ TEST',
+			layout: 'pick3Test_main',
+			partials: 'partials',
+			helpers: 'helpers',
+			script: [scriptIndexWebScraper]
+			// scraperText: _req.body
+		});
+
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(`pick3Test had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
+		return Promise.reject() as Promise<void>;
+	}
+}
+
+async function pick3TestPostHandler(_req: Request, res: Response) {
+	try {
+		await startScraperController();
+
+		const scraperText: {
+			url: string;
+			scraper(browser: any): Promise<{
+				scrapeData: any;
+			}>;
+		} = scraper;
+
+		const startScraper = scraperText.scraper;
+
+		res.send(startScraper);
+
+		return Promise.resolve() as Promise<void>;
+	} catch (error: unknown) {
+		console.error(`pick3TestPostHandler had an ERROR: ${error}`);
+		res.status(500).send('Server Error');
+
+		return Promise.reject() as Promise<void>;
+	}
+}
+
 export {
 	stateHandler,
 	errorBaseHandler,
@@ -726,7 +784,9 @@ export {
 	state_boxHandler,
 	powerballHandler,
 	pick3Handler,
-	pick3ScrapePostHandler
+	pick3ScrapePostHandler,
+	pick3TestHandler,
+	pick3TestPostHandler
 };
 
 // let incNum: number = 0;

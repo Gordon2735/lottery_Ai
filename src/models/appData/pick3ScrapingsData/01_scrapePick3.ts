@@ -49,6 +49,9 @@ class ScrapePicks {
 			this.page = await this.browser?.newPage();
 
 			await this.page?.goto(this.URL);
+
+			await this.page.waitForSelector(this.colClass);
+
 			// await this.page?.setViewport({ width: 1920, height: 1080 });
 
 			console.info(`hookUpSiteURL() || this.URL: ${this.URL}`);
