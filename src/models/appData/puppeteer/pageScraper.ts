@@ -6,11 +6,17 @@
 const scraper = {
 	url: 'https://www.sceducationlottery.com/Games/Pick3',
 	async startScraper(browser: any) {
-		const page = await browser.newPage();
+		// const preparePageForTests = async (page: any) => {
+		// 	const userAgent =
+		// 		'Mozilla/5.0 (X11; Linux x86_64)' +
+		// 		'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36';
+		// 	await page.setUserAgent(userAgent);
+		// };
+
+		// await preparePageForTests(page);
+		const page: any = await browser.newPage();
 
 		await page.goto(this.url);
-
-		await page.waitForSelector('.col-md-2');
 
 		const scrapeData = await page.evaluate(async () => {
 			const elements: {
@@ -21,6 +27,8 @@ const scraper = {
 
 			const elementsQuery: NodeListOf<Element> =
 				document.querySelectorAll('.col-md-2');
+
+			await page.waitForSelector('.col-md-2');
 
 			for (const element of elementsQuery) {
 				const dataEvent: Element | null =
@@ -53,6 +61,7 @@ const scraper = {
 				stringifyElements: ${stringifyElements}                
 				`
 			);
+			await browser.close();
 			return { elements };
 		});
 
