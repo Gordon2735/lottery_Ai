@@ -5,7 +5,7 @@
 
 const scraper = {
 	url: 'https://www.sceducationlottery.com/Games/Pick3',
-	async scraper(browser: any) {
+	async startScraper(browser: any) {
 		const page = await browser.newPage();
 
 		await page.goto(this.url);
@@ -14,13 +14,13 @@ const scraper = {
 
 		const scrapeData = await page.evaluate(async () => {
 			const elements: {
-				dataEvent: string | null | undefined;
-				numbers: (string | null | undefined)[];
-				fireballNumber: string | null | undefined;
-			}[] = [{ dataEvent: '', numbers: [], fireballNumber: '' }];
+				drawEvent: string | null | undefined;
+				winNumbers: (string | null)[];
+				fireNum: string | null | undefined;
+			}[] = [{ drawEvent: '', winNumbers: [], fireNum: '' }];
 
 			const elementsQuery: NodeListOf<Element> =
-				await document.querySelectorAll('.col-md-2');
+				document.querySelectorAll('.col-md-2');
 
 			for (const element of elementsQuery) {
 				const dataEvent: Element | null =
@@ -32,11 +32,11 @@ const scraper = {
 				);
 
 				elements.push({
-					dataEvent: dataEvent?.textContent,
-					numbers: Array.from(numbers)?.map(
+					drawEvent: dataEvent?.textContent,
+					winNumbers: Array.from(numbers)?.map(
 						(number) => number?.textContent
 					),
-					fireballNumber: fireballNumber?.textContent
+					fireNum: fireballNumber?.textContent
 				});
 			}
 
@@ -46,16 +46,18 @@ const scraper = {
 				`
 				scrapeData Return:
 				
-				elements: ${elements},
+				drawEvent: ${JSON.stringify(elements[0])},
+				winNumbers: ${JSON.stringify(elements[0])},
+				fireNum: ${JSON.stringify(elements[0])},
 				
 				stringifyElements: ${stringifyElements}                
 				`
 			);
-			return elements;
+			return { elements };
 		});
 
 		// console.log({ scrapeData });
-		return { scrapeData };
+		return scrapeData.elements[0];
 	}
 };
 export { scraper as default };

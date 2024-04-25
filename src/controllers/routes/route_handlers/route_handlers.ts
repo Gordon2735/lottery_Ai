@@ -20,7 +20,7 @@ import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
 import ScrapePicks from '../../../models/appData/pick3ScrapingsData/01_scrapePick3.js';
 import EventEmitterHandlers from '../../../controllers/emitters/emitterHandlers.js';
-import scraper from '../../../models/appData/puppeteer/pageScraper.js';
+// import scraper from '../../../models/appData/puppeteer/pageScraper.js';
 import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
 
 // import { Browser } from 'puppeteer';
@@ -508,11 +508,11 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 
 async function pick3Handler(_req: Request, res: Response): Promise<void> {
 	try {
-		EventEmitterHandlers.on('drawPickUpdate', (data) => {
-			res.locals.time3 = data.time3;
-			res.locals.numbers = data.numbers;
-			res.locals.fireball = data.fireball;
-		});
+		// EventEmitterHandlers.on('drawPickUpdate', (data) => {
+		// 	res.locals.time3 = data.time3;
+		// 	res.locals.numbers = data.numbers;
+		// 	res.locals.fireball = data.fireball;
+		// });
 
 		const scriptPick3GameShell: string = `
 			<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-game_shell.js" 
@@ -527,13 +527,13 @@ async function pick3Handler(_req: Request, res: Response): Promise<void> {
 			layout: 'pick3_main',
 			partials: 'partials',
 			helpers: 'helpers',
-			script: [scriptPick3GameShell],
-			date: await _req.body.time3,
-			win3: await _req.body.numbers,
-			fire3: await _req.body.fireball,
-			time3: await res.locals.time3,
-			numbers: await res.locals.numbers,
-			fireball: await res.locals.fireball
+			script: [scriptPick3GameShell]
+			// date: await _req.body.time3,
+			// win3: await _req.body.numbers,
+			// fire3: await _req.body.fireball,
+			// time3: await res.locals.time3,
+			// numbers: await res.locals.numbers,
+			// fireball: await res.locals.fireball
 		});
 
 		return Promise.resolve() as Promise<void>;
@@ -728,6 +728,27 @@ async function pick3TestHandler(_req: Request, res: Response) {
 			</script>
 		`;
 
+		// startScraperController();
+		// await startScraperController().then(() => {
+		// 	setTimeout(() => {
+		// 		const checkRequestBody = () => {
+		// 			if (!_req.body) {
+		// 				_req.body = 'No Data Returned';
+		// 			} else {
+		// 				console.info(
+		// 					`
+		// 				scrape data inside of "checkRequestBody" Function:
+		// 					_req.body:	${_req.body.data},
+		// 					res.locals.data: ${res.locals.data}
+		// 			`
+		// 				);
+		// 			}
+		// 			return JSON.stringify(_req.body);
+		// 		};
+		// 		checkRequestBody();
+		// 	}, 2000);
+		// });
+
 		res.set('Content-Type', 'text/html');
 		res.set('target', '_blank');
 		res.render('pick3Test', {
@@ -736,7 +757,7 @@ async function pick3TestHandler(_req: Request, res: Response) {
 			partials: 'partials',
 			helpers: 'helpers',
 			script: [scriptIndexWebScraper]
-			// scraperText: _req.body
+			// currentScraper: [checkRequestBody().toString()]
 		});
 
 		return Promise.resolve() as Promise<void>;
@@ -750,20 +771,82 @@ async function pick3TestHandler(_req: Request, res: Response) {
 
 async function pick3TestPostHandler(_req: Request, res: Response) {
 	try {
-		await startScraperController();
+		startScraperController();
+		// const scraperText = startScraperController;
 
-		const scraperText: {
-			url: string;
-			scraper(browser: any): Promise<{
-				scrapeData: any;
-			}>;
-		} = scraper;
+		// const startScraping = scraperText;
 
-		const startScraper = scraperText.scraper;
+		// const data = startBrowser
+		// 	const dataScrape = await scraper.startScraper();
+		// 	return dataScrape.scrapeData;
 
-		res.send(startScraper);
+		// const resolvedData = data.map((element) => ({
+		// 	dataEvent: element.dataEvent,
+		// 	numbers: element.numbers,
+		// 	fireballNumber: element.fireballNumber
 
-		return Promise.resolve() as Promise<void>;
+		// }))
+		// 		(_req.body.data = data),
+		// 		(_req.body.time3 = resolvedData.dataEvent),
+		// 		(_req.body.numbers = numbers),
+		// 		(_req.body.fireball = fireballNumber),
+		// 		(res.locals.data = data),
+		// 		(res.locals.time3 = dataEvent),
+		// 		(res.locals.numbers = numbers),
+		// 		(res.locals.fireball = fireballNumber)
+
+		// const currentScrape = setTimeout(() => {
+		// 	data
+		// 		?
+		// 				console.info(
+		// 					`
+		// 							dataEvent: ${resolvedData.dataEvent[0]},
+		// 							numbers: ${numbers},
+		// 							fireballNumber: ${fireballNumber}
+
+		// 						`
+		// 				);
+
+		// 		: console.error(
+		// 				`
+		// 				pick3TestPostHandler: No Data Returned,
+		// 					data: ${data},
+		// 					_req.body.data: ${_req.body.data},
+		// 				`
+		// 			);
+		// }, 12000);
+		// console.info(
+		// 	`
+		// 	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+		// 		DateTime scrape data inside of "forEach" Loop-Block:
+
+		// 				dataEvent: ${dataEvent},
+
+		// 			numbers: ${numbers},
+
+		// 			fireballNumber: ${fireballNumber}
+
+		// 	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		// `
+		// )
+
+		// res.send(startScraper);
+
+		// return (
+		// 	await currentScrape,
+		// 	JSON.stringify(_req.body.data)?.toString(),
+		// 	JSON.stringify(_req.body.time3)?.toString(),
+		// 	JSON.stringify(_req.body.numbers)?.toString(),
+		// 	JSON.stringify(_req.body.fireball)?.toString(),
+		// 	JSON.stringify(res.locals.data)?.toString(),
+		// 	JSON.stringify(res.locals.time3)?.toString(),
+		// 	JSON.stringify(res.locals.numbers)?.toString(),
+		// 	JSON.stringify(res.locals.fireball)?.toString()
+		// );
+
+		// return Promise.resolve() as Promise<void>;
+		return;
 	} catch (error: unknown) {
 		console.error(`pick3TestPostHandler had an ERROR: ${error}`);
 		res.status(500).send('Server Error');
