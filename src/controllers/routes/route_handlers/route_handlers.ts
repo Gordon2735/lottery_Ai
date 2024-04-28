@@ -772,13 +772,16 @@ async function pick3TestHandler(_req: Request, res: Response) {
 async function pick3TestPostHandler(_req: Request, res: Response) {
 	try {
 		startScraperController();
-		// const scraperText = startScraperController;
 
-		// const startScraping = scraperText;
+		const scraperText = startScraperController;
 
-		// const data = startBrowser
-		// 	const dataScrape = await scraper.startScraper();
-		// 	return dataScrape.scrapeData;
+		const startScraping: string = scraperText
+			.toString()[0]
+			.replace(/[\n\r]/g, '');
+
+		const data = startScraping;
+		// const dataScrape = await scraper.startScraper();
+		// return dataScrape.scrapeData;
 
 		// const resolvedData = data.map((element) => ({
 		// 	dataEvent: element.dataEvent,
@@ -786,14 +789,15 @@ async function pick3TestPostHandler(_req: Request, res: Response) {
 		// 	fireballNumber: element.fireballNumber
 
 		// }))
-		// 		(_req.body.data = data),
-		// 		(_req.body.time3 = resolvedData.dataEvent),
-		// 		(_req.body.numbers = numbers),
-		// 		(_req.body.fireball = fireballNumber),
-		// 		(res.locals.data = data),
-		// 		(res.locals.time3 = dataEvent),
-		// 		(res.locals.numbers = numbers),
-		// 		(res.locals.fireball = fireballNumber)
+		_req.body = data;
+		res.locals = _req.body;
+		// (_req.body.time3 = resolvedData.dataEvent),
+		// (_req.body.numbers = numbers),
+		// (_req.body.fireball = fireballNumber),
+		// (res.locals.data = data),
+		// (res.locals.time3 = dataEvent),
+		// (res.locals.numbers = numbers),
+		// (res.locals.fireball = fireballNumber)
 
 		// const currentScrape = setTimeout(() => {
 		// 	data
@@ -843,10 +847,9 @@ async function pick3TestPostHandler(_req: Request, res: Response) {
 		// 	JSON.stringify(res.locals.time3)?.toString(),
 		// 	JSON.stringify(res.locals.numbers)?.toString(),
 		// 	JSON.stringify(res.locals.fireball)?.toString()
-		// );
+		// // );
 
-		// return Promise.resolve() as Promise<void>;
-		return;
+		return Promise.resolve() as Promise<void>;
 	} catch (error: unknown) {
 		console.error(`pick3TestPostHandler had an ERROR: ${error}`);
 		res.status(500).send('Server Error');

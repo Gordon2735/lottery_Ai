@@ -1,22 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
-import puppeteer from 'puppeteer';
+import puppeteer, { Browser } from 'puppeteer';
 
-async function startBrowser() {
-	let browser;
+export default async function startBrowser(): Promise<Browser | undefined> {
 	try {
+		// let browser;
 		console.log('Opening the browser......');
-		browser = await puppeteer.launch({
+		const browser: puppeteer.Browser = await puppeteer.launch({
 			headless: false,
 			args: ['--disable-setuid-sandbox'],
 			ignoreHTTPSErrors: true,
 			devtools: true,
-			slowMo: 10000
+			slowMo: 300
 		});
-	} catch (err) {
-		console.log('Could not create a browser instance => : ', err);
+		return browser;
+	} catch (error) {
+		console.log('Could not create a browser instance => : ', error);
+		return;
 	}
-	return browser;
 }
 
-export { startBrowser as default };
+// export { startBrowser as default };

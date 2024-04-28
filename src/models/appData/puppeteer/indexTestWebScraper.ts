@@ -21,37 +21,41 @@ document.addEventListener('DOMContentLoaded', async () => {
 			}
 
 			const data: any[] = await response.json();
+			console.info(JSON.stringify(data));
 
 			const resolvedData: {
-				draw: any;
-				winNums: any;
-				fBall: any;
+				draw: string;
+				winNums: string;
+				fBall: string;
 			}[] = data.map((element: any) => ({
-				draw: element.dataEvent,
-				winNums: element.numbers,
-				fBall: element.fireballNumber
+				draw: JSON.stringify(element.dataEvent),
+				winNums: JSON.stringify(element.numbers),
+				fBall: JSON.stringify(element.fireballNumber)
 			}));
 
-			const dataEvent = resolvedData.slice(0, 1).join('');
+			console.info(resolvedData);
+
+			const dataEvent = resolvedData.slice(1, 2);
 			const numbers = resolvedData.slice(1, 2).join('');
 			const fireballNumber = resolvedData.slice(2, 3).join('');
 
-			if (data !== null && paragraph !== null) {
+			// if (data !== null && paragraph !== null) {
+			if (paragraph !== null) {
 				paragraph.textContent = `
-					Draw Time: ${dataEvent}
-					Winning Numbers: ${numbers}
-					Fireball Number: ${fireballNumber}
-
-				`;
-			} else {
-				paragraph !== null
-					? (paragraph.textContent = 'No Data Returned')
-					: console.error(
-							`
-							No data returned from the server...
-						`
-						);
+						Draw Time: ${dataEvent}
+						Winning Numbers: ${numbers}
+						Fireball Number: ${fireballNumber}
+					`;
 			}
+			// } else {
+			// 	paragraph !== null
+			// 		? (paragraph.textContent = 'No Data Returned')
+			// 		: console.error(
+			// 				`
+			// 				No data returned from the server...
+			// 			`
+			// 			);
+			// }
 			console.info(
 				`
 					indexTestWebScraper' data: ${data},
@@ -59,8 +63,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 				
 				`
 			);
+			return [dataEvent, numbers, fireballNumber];
 		} catch (error: unknown) {
 			console.error(`Button Event Listener Error: ${error}`);
 		}
 	});
+	return;
 });
