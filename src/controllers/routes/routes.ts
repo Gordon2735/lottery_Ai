@@ -13,8 +13,8 @@ import indexHandler, {
 	logout,
 	state_boxHandler,
 	powerballHandler,
-	pick3Handler,
-	pick3ScrapePostHandler,
+	// pick3Handler,
+	// pick3ScrapePostHandler,
 	pick3TestHandler,
 	pick3TestPostHandler
 } from './route_handlers/route_handlers.js';
@@ -40,11 +40,11 @@ const powerball_route: express.Router = router.get(
 	'/powerball',
 	powerballHandler
 );
-const pick3_route: express.Router = router.get('/pick3', pick3Handler);
-const pick3ScrapePost_route: express.Router = router.post(
-	'/pick3',
-	pick3ScrapePostHandler
-);
+// const pick3_route: express.Router = router.get('/pick3', pick3Handler);
+// const pick3ScrapePost_route: express.Router = router.post(
+// 	'/pick3',
+// 	pick3ScrapePostHandler
+// );
 const pick3Test_route: express.Router = router.get(
 	'/pick3test',
 	pick3TestHandler
@@ -66,8 +66,8 @@ export {
 	logout_route,
 	state_box_route,
 	powerball_route,
-	pick3_route,
-	pick3ScrapePost_route,
+	// pick3_route,
+	// pick3ScrapePost_route,
 	pick3Test_route,
 	pick3TestPost_route
 };

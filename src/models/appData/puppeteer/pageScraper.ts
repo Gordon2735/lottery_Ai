@@ -3,35 +3,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
-// import puppeteer from 'puppeteer';
 import { Browser, Page } from 'puppeteer';
 
 const scraper = {
 	url: 'https://www.sceducationlottery.com/Games/Pick3',
-	async scraper(browser: Browser | undefined): Promise<{
+	async scraper(browser: Browser): Promise<{
 		scrapeData: Promise<
 			Awaited<
 				ReturnType<
-					() =>
-						| {
-								drawEvent: string | null | undefined;
-								winNumbers: (string | null)[];
-								fireNum: string | null | undefined;
-						  }[]
-						| undefined
+					() => {
+						drawEvent: string | null | undefined;
+						winNumbers: string | null | undefined;
+						fireNum: string | null | undefined;
+					}[]
 				>
 			>
 		>;
 	}> {
-		// const preparePageForTests = async (page: any) => {
-		// 	const userAgent =
-		// 		'Mozilla/5.0 (X11; Linux x86_64)' +
-		// 		'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36';
-		// 	await page.setUserAgent(userAgent);
-		// };
-
-		// await preparePageForTests(page);
-		const page: Page | undefined = await browser?.newPage();
+		const page: Page = await browser.newPage();
 
 		console.info(
 			`
@@ -39,61 +28,68 @@ const scraper = {
 			
 			`
 		);
-		await page?.goto(this.url);
-		await page?.waitForSelector('.col-md-2');
+		await page.goto(this.url);
+		await page.waitForSelector('.col-md-2');
 
-		const scrapeData = await page?.evaluate(async () => {
-			const elements:
-				| {
-						drawEvent: string | null | undefined;
-						winNumbers: (string | null)[];
-						fireNum: string | null | undefined;
-				  }[]
-				| undefined = [{ drawEvent: '', winNumbers: [], fireNum: '' }];
+		const scrapeData = await page.evaluate(async () => {
+			const elements: {
+				drawEvent: string | null | undefined;
+				winNumbers: string | null | undefined;
+				fireNum: string | null | undefined;
+			}[] = [];
+			// | undefined = [{ drawEvent: '', winNumbers: '', fireNum: '' }];
 
-			const elementsQuery: NodeListOf<Element> =
+			const elementsQuery: NodeListOf<HTMLElement> =
 				document.querySelectorAll('.col-md-2');
 
 			for (const element of elementsQuery) {
-				const dataEvent: Element | null =
-					element.querySelector('.numbers-date');
-				const numbers: NodeListOf<Element> =
-					element.querySelectorAll('.number-circle');
-				const fireballNumber: Element | null = element.querySelector(
-					'.number-circle-fireball-pick3'
-				);
+				const dataEvent: HTMLElement | null | undefined =
+					element?.querySelector<HTMLElement>('.numbers-date');
+				const numbers: NodeListOf<HTMLElement> =
+					element?.querySelectorAll<HTMLElement>('.number-circle');
+				const fireballNumber: HTMLElement | null | undefined =
+					element.querySelector<HTMLElement>(
+						'.number-circle-fireball-pick3'
+					);
 
-				elements.push({
-					drawEvent: dataEvent?.textContent,
-					winNumbers: Array.from(numbers).map(
-						(number) => number.textContent
-					),
-					fireNum: fireballNumber?.textContent
-				});
+				const convertNumbers: (string | null)[] = [
+					numbers[0]?.textContent, // 1st number
+					numbers[1]?.textContent, // 2nd number
+					numbers[2]?.textContent // 3rd number
+				];
+
+				if (elements !== null || !'') {
+					elements?.push({
+						drawEvent: dataEvent?.textContent,
+						winNumbers: convertNumbers.join(''),
+						fireNum: fireballNumber?.textContent
+					});
+				}
 			}
-
 			const stringifyElements: string = JSON.stringify(elements);
 
 			console.log(
-				`
-				scrapeData Return:
-				
-				drawEvent: ${JSON.stringify(elements[0])},
-				winNumbers: ${JSON.stringify(elements[0])},
-				fireNum: ${JSON.stringify(elements[0])},
-				
-				stringifyElements: ${stringifyElements}                
+				`						
+					stringifyElements: ${stringifyElements}                
 				`
 			);
-			// await browser?.close();
-			// return Promise.resolve([...elements]);
-			return Promise.resolve(elements);
+			await browser.close();
+
+			return elements;
 		});
 
 		console.log({ scrapeData });
-		// return Promise.resolve([...scrapeData]);
 
 		return { scrapeData: Promise.resolve(scrapeData) };
 	}
 };
 export { scraper as default };
+
+// const preparePageForTests = async (page: any) => {
+// 	const userAgent =
+// 		'Mozilla/5.0 (X11; Linux x86_64)' +
+// 		'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36';
+// 	await page.setUserAgent(userAgent);
+// };
+
+// await preparePageForTests(page);

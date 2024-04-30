@@ -1,14 +1,16 @@
 'use strict';
 
-import { Browser } from 'puppeteer';
+// import { Browser } from 'puppeteer';
+import puppeteer from 'puppeteer';
 import startBrowser from './browser.js';
 import scraperController from './pageController.js';
 
 //Start the browser and create a browser instance
-const browserInstance: Browser | undefined = await startBrowser();
+const browserInstance: puppeteer.Browser = await startBrowser();
 
 async function startScraperController() {
-	await scraperController(browserInstance);
+	return await scraperController(browserInstance);
 }
 
-export { startScraperController as default };
+export default startScraperController;
+// export { browserInstance };

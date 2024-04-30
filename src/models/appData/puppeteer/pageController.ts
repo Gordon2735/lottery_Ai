@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
+// import { Browser } from 'puppeteer';
 import puppeteer from 'puppeteer';
-
+// import { browserInstance } from './indexWebScraper.js';
 import pageScraper from './pageScraper.js';
 
-async function scrapeAll(browserInstance: puppeteer.Browser | undefined) {
-	let browser: puppeteer.Browser | undefined;
+// const browserInstances: puppeteer.Browser = browserInstance;
+async function scrapeAll(browserInstance: puppeteer.Browser) {
+	let browser: puppeteer.Browser;
+	// browserInstance = browserInstances;
 	try {
-		browser = await browserInstance;
+		browser = browserInstance;
 		await pageScraper.scraper(browser);
 	} catch (error) {
 		console.log('Could not resolve the browser instance => ', error);
@@ -16,6 +19,5 @@ async function scrapeAll(browserInstance: puppeteer.Browser | undefined) {
 	return;
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default (
-	browserInstance: puppeteer.Browser | undefined
-): Promise<void> => scrapeAll(browserInstance);
+export default (browserInstance: puppeteer.Browser): Promise<void> =>
+	scrapeAll(browserInstance);
