@@ -722,11 +722,11 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 
 async function pick3TestHandler(_req: Request, res: Response) {
 	try {
-		const scriptIndexWebScraper: string = `
-			<script type="module" src="/src/models/appData/puppeteer/indexTestWebScraper.js"
-				content="text/javascript" crossorigin="anonymous">
-			</script>
-		`;
+		// const scriptIndexWebScraper: string = `
+		// 	<script type="module" src="/src/models/appData/puppeteer/indexTestWebScraper.js"
+		// 		content="text/javascript" crossorigin="anonymous">
+		// 	</script>
+		// `;
 
 		// startScraperController();
 		// await startScraperController().then(() => {
@@ -755,8 +755,8 @@ async function pick3TestHandler(_req: Request, res: Response) {
 			title: 'Pick 3®️ TEST',
 			layout: 'pick3Test_main',
 			partials: 'partials',
-			helpers: 'helpers',
-			script: [scriptIndexWebScraper]
+			helpers: 'helpers'
+			// script: [scriptIndexWebScraper]
 			// currentScraper: [checkRequestBody().toString()]
 		});
 
@@ -772,21 +772,24 @@ async function pick3TestHandler(_req: Request, res: Response) {
 
 async function pick3TestPostHandler(_req: Request, res: Response) {
 	try {
-		// res.send(`
-		// <script type="module" src="/src/models/appData/puppeteer/indexTestWebScraper.js"
-		// content="text/javascript" crossorigin="anonymous">
-		// </script>
-		// `);
 		await startScraperController();
+		// const dataScrape = await startScraperController();
+
+		// if (!dataScrape) {
+		// 	console.error(
+		// 		`
+		// 		pick3TestPostHandler: No Data Returned,
+		// 			dataScrape: ${dataScrape},
+		// 			_req.body.data: ${_req.body.data},
+		// 		`
+		// 	);
+		// }
 
 		const scraperText = scraper;
 
-		// const startScraping: string = scraperText.scraper
-		// 	.toString()[0]
-		// 	.replace(/[\n\r]/g, '');
-
 		const data = scraperText.scraper;
 		// const dataScrape = await scraper.startScraper();
+
 		// return dataScrape.scrapeData;
 
 		// const resolvedData = data.map((element) => ({
@@ -803,9 +806,10 @@ async function pick3TestPostHandler(_req: Request, res: Response) {
 				fireballNumber: element.fireballNumber
 			}));
 		} else {
-			_req.body = [data];
+			// _req.body = [data];
+			null;
 		}
-		res.locals = _req.body;
+		// res.locals = _req.body;
 		// (_req.body.time3 = resolvedData.dataEvent),
 		// (_req.body.numbers = numbers),
 		// (_req.body.fireball = fireballNumber),
@@ -863,7 +867,7 @@ async function pick3TestPostHandler(_req: Request, res: Response) {
 		// 	JSON.stringify(res.locals.numbers)?.toString(),
 		// 	JSON.stringify(res.locals.fireball)?.toString()
 		// // );
-		res.json({ data });
+		res.json({ ...data });
 		return;
 	} catch (error: unknown) {
 		console.error(`pick3TestPostHandler had an ERROR: ${error}`);

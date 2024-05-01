@@ -3,11 +3,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
-import { Browser, Page } from 'puppeteer';
+import puppeteer from 'puppeteer';
+// import puppeteer, { Page } from 'puppeteer';
 
 const scraper = {
 	url: 'https://www.sceducationlottery.com/Games/Pick3',
-	async scraper(browser: Browser): Promise<{
+	async scraper(browser: puppeteer.Browser): Promise<{
 		scrapeData: Promise<
 			Awaited<
 				ReturnType<
@@ -20,7 +21,7 @@ const scraper = {
 			>
 		>;
 	}> {
-		const page: Page = await browser.newPage();
+		const page: puppeteer.Page = await browser.newPage();
 
 		console.info(
 			`
@@ -29,6 +30,15 @@ const scraper = {
 			`
 		);
 		await page.goto(this.url);
+
+		async function takeScreenshot(page: puppeteer.Page, name?: string) {
+			return await page.screenshot({
+				type: 'png',
+				path: `./screenshots/${Date.now()}_${name}.png`
+			});
+		}
+		await takeScreenshot(page, 'pick3Screenshot');
+
 		await page.waitForSelector('.col-md-2');
 
 		const scrapeData = await page.evaluate(async () => {
