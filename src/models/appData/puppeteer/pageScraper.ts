@@ -4,94 +4,95 @@
 'use strict';
 
 import puppeteer from 'puppeteer';
-// import puppeteer, { Page } from 'puppeteer';
+import fileName_date_time from '../../../tools/date_time/file_date_template.js';
 
 const scraper = {
-	url: 'https://www.sceducationlottery.com/Games/Pick3',
-	async scraper(browser: puppeteer.Browser): Promise<{
-		scrapeData: Promise<
-			Awaited<
-				ReturnType<
-					() => {
-						drawEvent: string | null | undefined;
-						winNumbers: string | null | undefined;
-						fireNum: string | null | undefined;
-					}[]
-				>
-			>
-		>;
-	}> {
-		const page: puppeteer.Page = await browser.newPage();
+    url: 'https://www.sceducationlottery.com/Games/Pick3',
+    async scraper(browser: puppeteer.Browser): Promise<{
+        scrapeData: Promise<
+            Awaited<
+                ReturnType<
+                    () => {
+                        drawEvent: string | null | undefined;
+                        winNumbers: string | null | undefined;
+                        fireNum: string | null | undefined;
+                    }[]
+                >
+            >
+        >;
+    }> {
+        const page: puppeteer.Page = await browser.newPage();
 
-		console.info(
-			`
+        console.info(
+            `
 				Navigating to Pick 3 Scraping Data from: ${this.url}...
 			
 			`
-		);
-		await page.goto(this.url);
+        );
+        await page.goto(this.url);
 
-		async function takeScreenshot(page: puppeteer.Page, name?: string) {
-			return await page.screenshot({
-				type: 'png',
-				path: `./screenshots/${Date.now()}_${name}.png`
-			});
-		}
-		await takeScreenshot(page, 'pick3Screenshot');
+        const screenshotDataTime: string = fileName_date_time;
 
-		await page.waitForSelector('.col-md-2');
+        async function takeScreenshot(page: puppeteer.Page, name?: string) {
+            return await page.screenshot({
+                type: 'png',
+                path: `./public/images/screenshots/${screenshotDataTime}_${name}.png`
+            });
+        }
+        await takeScreenshot(page, 'pick3Screenshot');
 
-		const scrapeData = await page.evaluate(async () => {
-			const elements: {
-				drawEvent: string | null | undefined;
-				winNumbers: string | null | undefined;
-				fireNum: string | null | undefined;
-			}[] = [];
-			// | undefined = [{ drawEvent: '', winNumbers: '', fireNum: '' }];
+        await page.waitForSelector('.col-md-2');
 
-			const elementsQuery: NodeListOf<HTMLElement> =
-				document.querySelectorAll('.col-md-2');
+        const scrape = await page.evaluate(async () => {
+            const elements: {
+                drawEvent: string | null | undefined;
+                winNumbers: string | null | undefined;
+                fireNum: string | null | undefined;
+            }[] = [];
+            // | undefined = [{ drawEvent: '', winNumbers: '', fireNum: '' }];
 
-			for (const element of elementsQuery) {
-				const dataEvent: HTMLElement | null | undefined =
-					element?.querySelector<HTMLElement>('.numbers-date');
-				const numbers: NodeListOf<HTMLElement> =
-					element?.querySelectorAll<HTMLElement>('.number-circle');
-				const fireballNumber: HTMLElement | null | undefined =
-					element.querySelector<HTMLElement>(
-						'.number-circle-fireball-pick3'
-					);
+            const elementsQuery: NodeListOf<HTMLElement> =
+                document.querySelectorAll('.col-md-2');
 
-				const convertNumbers: (string | null)[] = [
-					numbers[0]?.textContent, // 1st number
-					numbers[1]?.textContent, // 2nd number
-					numbers[2]?.textContent // 3rd number
-				];
+            for (const element of elementsQuery) {
+                const dataEvent: HTMLElement | null | undefined =
+                    element?.querySelector<HTMLElement>('.numbers-date');
+                const numbers: NodeListOf<HTMLElement> =
+                    element?.querySelectorAll<HTMLElement>('.number-circle');
+                const fireballNumber: HTMLElement | null | undefined =
+                    element.querySelector<HTMLElement>(
+                        '.number-circle-fireball-pick3'
+                    );
 
-				if (elements !== null || !'') {
-					elements?.push({
-						drawEvent: dataEvent?.textContent,
-						winNumbers: convertNumbers.join(''),
-						fireNum: fireballNumber?.textContent
-					});
-				}
-			}
-			const stringifyElements: string = JSON.stringify(elements);
+                const convertNumbers: (string | null)[] = [
+                    numbers[0]?.textContent, // 1st number
+                    numbers[1]?.textContent, // 2nd number
+                    numbers[2]?.textContent // 3rd number
+                ];
 
-			console.log(
-				`						
+                if (elements !== null || !'') {
+                    elements?.push({
+                        drawEvent: dataEvent?.textContent,
+                        winNumbers: convertNumbers.join(''),
+                        fireNum: fireballNumber?.textContent
+                    });
+                }
+            }
+            const stringifyElements: string = JSON.stringify(elements);
+
+            console.log(
+                `						
 					stringifyElements: ${stringifyElements}                
 				`
-			);
-			await browser.close();
+            );
+            await browser.close();
 
-			return elements;
-		});
+            return stringifyElements;
+        });
+        console.log({ scraper: scrape });
 
-		console.log({ scrapeData });
-
-		return { scrapeData: Promise.resolve(scrapeData) };
-	}
+        return scraper.scraper(browser);
+    }
 };
 export { scraper as default };
 
