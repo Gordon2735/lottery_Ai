@@ -20,8 +20,10 @@ import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
 // import ScrapePicks from '../../../models/appData/pick3ScrapingsData/01_scrapePick3.js';
 // import EventEmitterHandlers from '../../../controllers/emitters/emitterHandlers.js';
+import puppeteer from 'puppeteer';
 import scraper from '../../../models/appData/puppeteer/pageScraper.js';
 import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
+import startBrowser from '../../../models/appData/puppeteer/browser.js';
 
 // import { Browser } from 'puppeteer';
 
@@ -508,13 +510,19 @@ async function powerballHandler(_req: Request, res: Response): Promise<void> {
 
 async function pick3TestHandler(_req: Request, res: Response) {
     try {
+        const scriptPick3TestHandler: string = `
+            <script type="module" src="../../src/models/appData/puppeteer/indexTestWebScraper.js"
+                content="text/javascript" crossorigin="anonymous">
+            </script>`;
+
         res.set('Content-Type', 'text/html');
         res.set('target', '_blank');
         res.render('pick3Test', {
             title: 'Pick 3®️ TEST',
             layout: 'pick3Test_main',
             partials: 'partials',
-            helpers: 'helpers'
+            helpers: 'helpers',
+            script: [scriptPick3TestHandler]
         });
 
         return;
@@ -530,24 +538,27 @@ async function pick3TestHandler(_req: Request, res: Response) {
 async function pick3TestPostHandler(_req: Request, res: Response) {
     try {
         console.log('pick3TestPostHandler ROUTER: starting scraperController');
+
         await startScraperController();
 
-        const scraperText = scraper;
+        const browser = (await startBrowser()) as puppeteer.Browser;
+        // const browser = startBrowser.returnType = 'Promise<puppeteer.Browser>';
 
-        const data = scraperText.scraper;
+        const scrapeCollection: object[] = [];
 
-        // if (Array.isArray(data) && data.length > 0) {
-        //     _req.body = data.map((element) => ({
-        //         dataEvent: element.dataEvent,
-        //         numbers: element.numbers,
-        //         fireballNumber: element.fireballNumber
-        //     }));
-        // } else {
-        //     null;
-        // }
+        const scraperText = scraper.scrapers(browser);
 
-        res.json({ ...data });
-        return;
+        const scrapered = (await scraperText).scrapeData;
+
+        scrapeCollection.push({ scrapeData: scrapered });
+
+        console.log(
+            `JSON.stringify({ scrapeCollection }): ${JSON.stringify({
+                scrapeCollection
+            })}`
+        );
+
+        return res.json({ scrapeCollection });
     } catch (error: unknown) {
         console.error(`pick3TestPostHandler had an ERROR: ${error}`);
         res.status(500).send('Server Error');

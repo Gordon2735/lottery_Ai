@@ -8,13 +8,13 @@ import fileName_date_time from '../../../tools/date_time/file_date_template.js';
 
 const scraper = {
     url: 'https://www.sceducationlottery.com/Games/Pick3',
-    async scraper(browser: puppeteer.Browser): Promise<{
+    async scrapers(browser: puppeteer.Browser): Promise<{
         scrapeData: Promise<
             Awaited<
                 ReturnType<
                     () => {
                         drawEvent: string | null | undefined;
-                        winNumbers: string | null | undefined;
+                        winNumbers: string;
                         fireNum: string | null | undefined;
                     }[]
                 >
@@ -46,7 +46,7 @@ const scraper = {
         const scrape = await page.evaluate(async () => {
             const elements: {
                 drawEvent: string | null | undefined;
-                winNumbers: string | null | undefined;
+                winNumbers: string;
                 fireNum: string | null | undefined;
             }[] = [];
             // | undefined = [{ drawEvent: '', winNumbers: '', fireNum: '' }];
@@ -58,20 +58,30 @@ const scraper = {
                 const dataEvent: HTMLElement | null | undefined =
                     element?.querySelector<HTMLElement>('.numbers-date');
                 const numbers: NodeListOf<HTMLElement> =
-                    element?.querySelectorAll<HTMLElement>('.number-circle');
+                    element.querySelectorAll<HTMLElement>('.number-circle');
                 const fireballNumber: HTMLElement | null | undefined =
                     element.querySelector<HTMLElement>(
                         '.number-circle-fireball-pick3'
                     );
 
-                const convertNumbers: (string | null)[] = [
-                    numbers[0]?.textContent, // 1st number
-                    numbers[1]?.textContent, // 2nd number
-                    numbers[2]?.textContent // 3rd number
-                ];
+                let convertNumbers: string[];
+                if (numbers == null) {
+                    convertNumbers = [];
+                } else {
+                    convertNumbers = [
+                        // numbers[0]?.textContent, // 1st number
+                        // numbers[1]?.textContent, // 2nd number
+                        // numbers[2]?.textContent // 3rd number
+                        numbers[0]?.textContent ?? '', // 1st number
+                        numbers[1]?.textContent ?? '', // 2nd number
+                        numbers[2]?.textContent ?? '' // 3rd number
+                    ];
+                }
 
-                if (elements !== null || !'') {
-                    elements?.push({
+                if (dataEvent && convertNumbers && fireballNumber == null) {
+                    null;
+                } else {
+                    elements.push({
                         drawEvent: dataEvent?.textContent,
                         winNumbers: convertNumbers.join(''),
                         fireNum: fireballNumber?.textContent
@@ -85,16 +95,29 @@ const scraper = {
 					stringifyElements: ${stringifyElements}                
 				`
             );
-            await browser.close();
+            // await browser.close();
 
-            return stringifyElements;
+            return elements;
         });
         console.log({ scraper: scrape });
 
-        return scraper.scraper(browser);
+        return {
+            scrapeData: scrape as unknown as Promise<
+                Awaited<
+                    ReturnType<
+                        () => {
+                            drawEvent: string | null | undefined;
+                            winNumbers: string;
+                            fireNum: string | null | undefined;
+                        }[]
+                    >
+                >
+            >
+        };
     }
 };
-export { scraper as default };
+// export { scraper as default };
+export default scraper;
 
 // const preparePageForTests = async (page: any) => {
 // 	const userAgent =

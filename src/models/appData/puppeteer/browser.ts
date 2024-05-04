@@ -13,7 +13,8 @@ export default async function startBrowser(): Promise<puppeteer.Browser> {
             args: ['--disable-setuid-sandbox'],
             ignoreHTTPSErrors: true,
             devtools: true,
-            slowMo: 300
+            slowMo: 300,
+            protocolTimeout: 220000
         });
         return browser;
     } catch (error) {
@@ -21,5 +22,3 @@ export default async function startBrowser(): Promise<puppeteer.Browser> {
         return Promise.reject(error);
     }
 }
-
-// export { startBrowser as default };

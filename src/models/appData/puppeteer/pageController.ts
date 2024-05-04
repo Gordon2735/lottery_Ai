@@ -3,7 +3,6 @@
 
 // import { Browser } from 'puppeteer';
 import puppeteer from 'puppeteer';
-// import { browserInstance } from './indexWebScraper.js';
 import pageScraper from './pageScraper.js';
 
 // const browserInstances: puppeteer.Browser = browserInstance;
@@ -12,7 +11,7 @@ async function scrapeAll(browserInstance: puppeteer.Browser) {
     // browserInstance = browserInstances;
     try {
         browser = browserInstance;
-        await pageScraper.scraper(browser);
+        await pageScraper.scrapers(browser);
     } catch (error) {
         console.log('Could not resolve the browser instance => ', error);
     }

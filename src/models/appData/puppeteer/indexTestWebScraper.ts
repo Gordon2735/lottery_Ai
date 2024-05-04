@@ -20,44 +20,42 @@ document.addEventListener('DOMContentLoaded', async () => {
                 throw new Error('Network response was not ok');
             }
 
-            const data: any[] = await response.json();
-            console.info(JSON.stringify(data));
+            const data = await response.json();
 
-            const resolvedData = data?.map((element: any) =>
-                JSON.stringify(element)
-            );
+            const dataNull = null;
 
-            console.info(resolvedData);
+            data !== null || !''
+                ? paragraph !== null
+                    ? (paragraph.textContent = JSON.stringify({ data }))
+                    : dataNull
+                : dataNull;
 
-            const dataEvent = resolvedData.slice(1, 2);
-            const numbers = resolvedData.slice(1, 2).join('');
-            const fireballNumber = resolvedData.slice(2, 3).join('');
+            // console.info(
+            //     `
+            //         JSON.stringify(data): ${JSON.stringify({ data })}
+            //     `
+            // );
+
+            // const dataEvent = data[0];
+            // const numbers = data[1];
+            // const fireballNumber = data[2];
 
             // if (data !== null && paragraph !== null) {
-            if (paragraph !== null) {
-                paragraph.textContent = `
-						Draw Time: ${dataEvent}
-						Winning Numbers: ${numbers}
-						Fireball Number: ${fireballNumber}
-					`;
-            }
-            // } else {
-            // 	paragraph !== null
-            // 		? (paragraph.textContent = 'No Data Returned')
-            // 		: console.error(
-            // 				`
-            // 				No data returned from the server...
-            // 			`
-            // 			);
+            // if (paragraph !== null) {
+            //     paragraph.textContent = `
+            // 			Draw Time: ${dataEvent}
+            // 			Winning Numbers: ${numbers}
+            // 			Fireball Number: ${fireballNumber}
+            // 		`;
             // }
-            console.info(
-                `
-					indexTestWebScraper' data: ${data},
-					resolvedData: ${resolvedData}
-				
-				`
-            );
-            return [dataEvent, numbers, fireballNumber];
+
+            // console.info(
+            //     `
+            // 		indexTestWebScraper' data: ${JSON.stringify({ data })}
+            // 	`
+            // );
+            return { data };
+            // return [dataEvent, numbers, fireballNumber];
         } catch (error: unknown) {
             console.error(`Button Event Listener Error: ${error}`);
         }

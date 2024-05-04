@@ -9,24 +9,19 @@ import scraperController from './pageController.js';
 const browserInstance: puppeteer.Browser = await startBrowser();
 
 async function startScraperController() {
-    if (!browserInstance.process()) {
+    if (!browserInstance.connected) {
         console.error('No browser instance found...');
         return await scraperController(browserInstance);
     } else {
         console.info('Browser instance found...');
-        console.log(process.cwd());
-        const currentURL: string = process.cwd();
-        const URL: string = 'https://www.sceducationlottery.com/Games/Pick3';
 
-        currentURL === URL
+        !browserInstance.connected
             ? await scraperController(browserInstance)
-            : //await browserInstance.close(),
-              setTimeout(async () => {
-                  await scraperController(browserInstance);
-              }, 4000);
+            : await browserInstance.close(),
+            setTimeout(async () => {
+                await scraperController(browserInstance);
+            }, 4000);
         return;
     }
 }
-
 export default startScraperController;
-// export { browserInstance };
