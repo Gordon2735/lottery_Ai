@@ -40,7 +40,6 @@ const scraper = {
             });
         }
         await takeScreenshot(page, 'pick3Screenshot');
-
         await page.waitForSelector('.col-md-2');
 
         const scrape = await page.evaluate(async () => {
@@ -64,28 +63,49 @@ const scraper = {
                         '.number-circle-fireball-pick3'
                     );
 
-                let convertNumbers: string[];
+                let convertNumbers: string[] = [];
+
                 if (numbers == null) {
                     convertNumbers = [];
                 } else {
-                    convertNumbers = [
-                        // numbers[0]?.textContent, // 1st number
-                        // numbers[1]?.textContent, // 2nd number
-                        // numbers[2]?.textContent // 3rd number
-                        numbers[0]?.textContent ?? '', // 1st number
-                        numbers[1]?.textContent ?? '', // 2nd number
-                        numbers[2]?.textContent ?? '' // 3rd number
-                    ];
+                    switch (numbers[0]) {
+                        case null:
+                            convertNumbers = [];
+                            break;
+                        case undefined:
+                            convertNumbers = [];
+                            break;
+                        case numbers[0]:
+                            convertNumbers = [
+                                numbers[0]?.textContent ?? `Scrape is Null `,
+                                numbers[1]?.textContent ?? `Scrape is Null `,
+                                numbers[2]?.textContent ?? `Scrape is Null `
+                            ];
+                            break;
+                        default:
+                            convertNumbers = [];
+                            break;
+                    }
                 }
+                const culledCovertNumbers = convertNumbers.filter((numbers) => {
+                    numbers != null ||
+                        numbers != '' ||
+                        numbers != 'Scrape is Null ';
+                    // (number) => !number.includes('Scrape is Null ') || null
+                });
 
-                if (dataEvent && convertNumbers && fireballNumber == null) {
-                    null;
-                } else {
+                if (
+                    dataEvent ||
+                    culledCovertNumbers ||
+                    fireballNumber != null
+                ) {
                     elements.push({
                         drawEvent: dataEvent?.textContent,
-                        winNumbers: convertNumbers.join(''),
+                        winNumbers: culledCovertNumbers.join(''),
                         fireNum: fireballNumber?.textContent
                     });
+                } else {
+                    return null;
                 }
             }
             const stringifyElements: string = JSON.stringify(elements);
@@ -95,12 +115,11 @@ const scraper = {
 					stringifyElements: ${stringifyElements}                
 				`
             );
-            // await browser.close();
 
             return elements;
         });
-        console.log({ scraper: scrape });
 
+        console.log({ scraper: scrape });
         return {
             scrapeData: scrape as unknown as Promise<
                 Awaited<
