@@ -544,7 +544,9 @@ async function pick3TestPostHandler(_req: Request, res: Response) {
         const browser = (await startBrowser()) as puppeteer.Browser;
         // const browser = startBrowser.returnType = 'Promise<puppeteer.Browser>';
 
-        const scrapeCollection: object[] = [];
+        const scrapeCollection = [];
+
+        // const collectionModified = [];
 
         const scraperText = scraper.scrapers(browser);
 
@@ -552,8 +554,14 @@ async function pick3TestPostHandler(_req: Request, res: Response) {
 
         scrapeCollection.push({ scrapeData: scrapered });
 
+        // if (scrapered != null) {
+        // for (const data of await scrapered) {
+        //     collectionModified.push(data);
+        //     }
+        // }
+
         console.log(
-            `JSON.stringify({ scrapeCollection }): ${JSON.stringify({
+            `JSON.stringify({ collectionModified }): ${JSON.stringify({
                 scrapeCollection
             })}`
         );

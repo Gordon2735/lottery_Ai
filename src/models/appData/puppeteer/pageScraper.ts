@@ -25,9 +25,9 @@ const scraper = {
 
         console.info(
             `
-				Navigating to Pick 3 Scraping Data from: ${this.url}...
-			
-			`
+    				Navigating to Pick 3 Scraping Data from: ${this.url}...
+    			
+    			`
         );
         await page.goto(this.url);
 
@@ -40,7 +40,10 @@ const scraper = {
             });
         }
         await takeScreenshot(page, 'pick3Screenshot');
-        await page.waitForSelector('.col-md-2');
+
+        await page.waitForSelector('.col-md-2', {
+            timeout: 5000
+        });
 
         const scrape = await page.evaluate(async () => {
             const elements: {
@@ -48,7 +51,6 @@ const scraper = {
                 winNumbers: string;
                 fireNum: string | null | undefined;
             }[] = [];
-            // | undefined = [{ drawEvent: '', winNumbers: '', fireNum: '' }];
 
             const elementsQuery: NodeListOf<HTMLElement> =
                 document.querySelectorAll('.col-md-2');
@@ -63,65 +65,54 @@ const scraper = {
                         '.number-circle-fireball-pick3'
                     );
 
-                let convertNumbers: string[] = [];
+                const convertNumbers: any[] = [];
 
-                if (numbers == null) {
-                    convertNumbers = [];
-                } else {
-                    switch (numbers[0]) {
-                        case null:
-                            convertNumbers = [];
-                            break;
-                        case undefined:
-                            convertNumbers = [];
-                            break;
-                        case numbers[0]:
-                            convertNumbers = [
-                                numbers[0]?.textContent ?? `Scrape is Null `,
-                                numbers[1]?.textContent ?? `Scrape is Null `,
-                                numbers[2]?.textContent ?? `Scrape is Null `
-                            ];
-                            break;
-                        default:
-                            convertNumbers = [];
-                            break;
-                    }
-                }
-                const culledCovertNumbers = convertNumbers.filter((numbers) => {
-                    numbers != null ||
-                        numbers != '' ||
-                        numbers != 'Scrape is Null ';
-                    // (number) => !number.includes('Scrape is Null ') || null
+                Array.from(numbers).map((number) => {
+                    return convertNumbers.push(number.textContent);
                 });
 
-                if (
-                    dataEvent ||
-                    culledCovertNumbers ||
-                    fireballNumber != null
-                ) {
-                    elements.push({
-                        drawEvent: dataEvent?.textContent,
-                        winNumbers: culledCovertNumbers.join(''),
-                        fireNum: fireballNumber?.textContent
-                    });
-                } else {
-                    return null;
-                }
+                elements.push({
+                    drawEvent: dataEvent?.textContent,
+                    winNumbers: convertNumbers.join(''),
+                    fireNum: fireballNumber?.textContent
+                });
             }
             const stringifyElements: string = JSON.stringify(elements);
 
             console.log(
                 `						
-					stringifyElements: ${stringifyElements}                
-				`
+    					stringifyElements: ${stringifyElements}                
+    				`
             );
 
             return elements;
         });
 
-        console.log({ scraper: scrape });
-        return {
-            scrapeData: scrape as unknown as Promise<
+        const scrapedCollection: {
+            drawEvent: string | null | undefined;
+            winNumbers: string;
+            fireNum: string | null | undefined;
+        }[] = [];
+
+        // const scrapedCollection: {
+        //     drawEvent: string | null | undefined;
+        //     winNumbers: string;
+        //     fireNum: string | null | undefined;
+        // }[] = [];
+
+        const data: {
+            drawEvent: string | null | undefined;
+            winNumbers: string;
+            fireNum: string | null | undefined;
+        }[] = scrape;
+
+        scrapedCollection.push(...data);
+
+        console.log(scrapedCollection);
+
+        await browser.close();
+        return { scrapeData: scrapedCollection } as unknown as {
+            scrapeData: Promise<
                 Awaited<
                     ReturnType<
                         () => {
@@ -131,7 +122,7 @@ const scraper = {
                         }[]
                     >
                 >
-            >
+            >;
         };
     }
 };

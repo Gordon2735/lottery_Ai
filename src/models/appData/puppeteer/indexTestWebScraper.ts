@@ -20,42 +20,79 @@ document.addEventListener('DOMContentLoaded', async () => {
                 throw new Error('Network response was not ok');
             }
 
-            const data = await response.json();
+            // const data: {
+            //     scrapeData: Promise<
+            //         Awaited<
+            //             ReturnType<
+            //                 () => {
+            //                     drawEvent: string | null | undefined;
+            //                     winNumbers: string;
+            //                     fireNum: string | null | undefined;
+            //                 }[]
+            //             >
+            //         >
+            //     >[];
+            // }[] = [{ scrapeData: [Promise.resolve(await response.json())] }];
 
-            const dataNull = null;
+            const data: {
+                scrapeData: Promise<
+                    Awaited<
+                        ReturnType<
+                            () => {
+                                drawEvent: string;
+                                winNumbers: string;
+                                fireNum: string;
+                            }[]
+                        >
+                    >
+                >[];
+            }[] = await response.json();
 
-            data !== null || !''
-                ? paragraph !== null
-                    ? (paragraph.textContent = JSON.stringify({ data }))
-                    : dataNull
-                : dataNull;
+            console.log(`JSON.stringify(data): ${JSON.stringify(data)}`);
 
-            // console.info(
-            //     `
-            //         JSON.stringify(data): ${JSON.stringify({ data })}
-            //     `
-            // );
+            const dataString = data;
 
-            // const dataEvent = data[0];
-            // const numbers = data[1];
-            // const fireballNumber = data[2];
+            const dataStringer = dataString[0].scrapeData.map((element) => {
+                return element;
+            });
 
-            // if (data !== null && paragraph !== null) {
-            // if (paragraph !== null) {
-            //     paragraph.textContent = `
-            // 			Draw Time: ${dataEvent}
-            // 			Winning Numbers: ${numbers}
-            // 			Fireball Number: ${fireballNumber}
-            // 		`;
-            // }
+            console.log(`dataStringer: ${dataStringer}`);
 
-            // console.info(
-            //     `
-            // 		indexTestWebScraper' data: ${JSON.stringify({ data })}
-            // 	`
-            // );
-            return { data };
-            // return [dataEvent, numbers, fireballNumber];
+            // const dataStringer: Promise<
+            //     {
+            //         drawEvent: string;
+            //         winNumbers: string;
+            //         fireNum: string;
+            //     }[]
+            // >[] = await data.scrapeData;
+
+            const dataEvent: string = 'dataEvent';
+            const numbers: string = 'winNumbers';
+            const fireballNumber: string = 'fireNum';
+
+            const searchData = async (keyword: any) => {
+                const result = dataStringer.filter(async (element) => {
+                    switch (keyword) {
+                        case 'drawEvent':
+                            return (await element)[0].drawEvent;
+                        case 'winNumbers':
+                            return (await element)[0].winNumbers;
+                        case 'fireNum':
+                            return (await element)[0].fireNum;
+                        default:
+                            return null;
+                    }
+                });
+                return result;
+            };
+
+            if (paragraph) {
+                paragraph.textContent = `
+            			Draw Time: ${await searchData(dataEvent)}
+            			Winning Numbers: ${await searchData(numbers)}
+            			Fireball Number: ${await searchData(fireballNumber)}
+            		`;
+            }
         } catch (error: unknown) {
             console.error(`Button Event Listener Error: ${error}`);
         }
