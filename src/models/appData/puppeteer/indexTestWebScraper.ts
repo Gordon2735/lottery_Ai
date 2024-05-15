@@ -12,90 +12,89 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     button?.addEventListener('click', async () => {
         try {
-            const response: Response = await fetch('/pick3Test', {
-                method: 'POST'
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            // const data: {
-            //     scrapeData: Promise<
-            //         Awaited<
-            //             ReturnType<
-            //                 () => {
-            //                     drawEvent: string | null | undefined;
-            //                     winNumbers: string;
-            //                     fireNum: string | null | undefined;
-            //                 }[]
-            //             >
-            //         >
-            //     >[];
-            // }[] = [{ scrapeData: [Promise.resolve(await response.json())] }];
-
-            const data: {
-                scrapeData: Promise<
-                    Awaited<
-                        ReturnType<
-                            () => {
-                                drawEvent: string;
-                                winNumbers: string;
-                                fireNum: string;
-                            }[]
-                        >
-                    >
-                >[];
-            }[] = await response.json();
-
-            console.log(`JSON.stringify(data): ${JSON.stringify(data)}`);
-
-            const dataString = data;
-
-            const dataStringer = dataString[0].scrapeData.map((element) => {
-                return element;
-            });
-
-            console.log(`dataStringer: ${dataStringer}`);
-
-            // const dataStringer: Promise<
-            //     {
-            //         drawEvent: string;
-            //         winNumbers: string;
-            //         fireNum: string;
-            //     }[]
-            // >[] = await data.scrapeData;
-
-            const dataEvent: string = 'dataEvent';
-            const numbers: string = 'winNumbers';
-            const fireballNumber: string = 'fireNum';
-
-            const searchData = async (keyword: any) => {
-                const result = dataStringer.filter(async (element) => {
-                    switch (keyword) {
-                        case 'drawEvent':
-                            return (await element)[0].drawEvent;
-                        case 'winNumbers':
-                            return (await element)[0].winNumbers;
-                        case 'fireNum':
-                            return (await element)[0].fireNum;
-                        default:
-                            return null;
-                    }
-                });
-                return result;
-            };
-
-            if (paragraph) {
-                paragraph.textContent = `
-            			Draw Time: ${await searchData(dataEvent)}
-            			Winning Numbers: ${await searchData(numbers)}
-            			Fireball Number: ${await searchData(fireballNumber)}
-            		`;
-            }
+            return await searchFetchResponse(
+                'scrapeData',
+                ['drawEvent', 'winNumbers', 'fireNum'],
+                paragraph
+            );
         } catch (error: unknown) {
             console.error(`Button Event Listener Error: ${error}`);
         }
     });
     return;
 });
+
+async function searchFetchResponse(
+    key: string,
+    value: string[],
+    element: HTMLElement | null
+): Promise<void> {
+    try {
+        const response: Response = await fetch('/pick3Test', {
+            method: 'POST'
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data: scrapeData = await response.json();
+
+        console.log(`JSON.stringify(data): ${JSON.stringify(data)}`);
+
+        searchScrapeDataNestedObjects(data, key, value, element);
+    } catch (error: unknown) {
+        console.error(`searchFetchResponse Error: ${error}`);
+    } finally {
+        console.log('searchFetchResponse function has been executed');
+    }
+}
+
+function searchScrapeDataNestedObjects(
+    data: scrapeData,
+    key: string,
+    value: string[],
+    element: HTMLElement | null
+): void {
+    for (const prop in data) {
+        if (typeof data[prop] === 'object') {
+            const dataProp: scrapeData = data[prop] as unknown as scrapeData;
+            // const dataProp = JSON.parse(data[prop]);
+            // const dataProp = JSON.parse(`{"${prop}": "${data[prop]}"}`);
+            searchScrapeDataNestedObjects(dataProp, key, value, element);
+        } else if (typeof data[prop] === 'string' && data[prop].trim() === '') {
+            continue; // Skip empty strings
+        } else if (
+            (prop === key && data[prop] === value[0]) ||
+            value[1] ||
+            value[2] ||
+            value[3]
+        ) {
+            const dataProp = [JSON.parse(`{"${prop}": "${data[prop]}"}`)];
+
+            const dataPropCollection: scrapeData[] = [];
+
+            dataProp.map((object: scrapeData) => {
+                dataPropCollection.push(object);
+            });
+
+            // dataPropCollection.push(...dataProp);
+
+            element!.innerHTML = /*html*/ `
+                <p id="dataPara" class="data-para">${JSON.stringify(
+                    dataPropCollection.values().return?.valueOf()
+                )}</p><br />
+            `;
+            console.log(
+                'Found matching key-value pair:',
+                dataPropCollection.values().next().value
+            );
+            if (element != null) {
+                element.textContent = `${JSON.stringify(
+                    dataPropCollection.values().return?.valueOf()
+                )}
+                `;
+            }
+        }
+    }
+}

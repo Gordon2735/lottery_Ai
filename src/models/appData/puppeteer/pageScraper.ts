@@ -12,11 +12,14 @@ const scraper = {
         scrapeData: Promise<
             Awaited<
                 ReturnType<
-                    () => {
-                        drawEvent: string | null | undefined;
-                        winNumbers: string;
-                        fireNum: string | null | undefined;
-                    }[]
+                    () =>
+                        | {
+                              drawEvent: string | null | undefined;
+                              winNumbers: string;
+                              fireNum: string | null | undefined;
+                          }[]
+                        | null
+                        | undefined
                 >
             >
         >;
@@ -115,11 +118,14 @@ const scraper = {
             scrapeData: Promise<
                 Awaited<
                     ReturnType<
-                        () => {
-                            drawEvent: string | null | undefined;
-                            winNumbers: string;
-                            fireNum: string | null | undefined;
-                        }[]
+                        () =>
+                            | {
+                                  drawEvent: string | null | undefined;
+                                  winNumbers: string;
+                                  fireNum: string | null | undefined;
+                              }[]
+                            | null
+                            | undefined
                     >
                 >
             >;
