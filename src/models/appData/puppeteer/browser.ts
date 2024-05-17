@@ -10,6 +10,7 @@ export default async function startBrowser(): Promise<puppeteer.Browser> {
         console.log('Opening the browser......');
         browser = await puppeteer.launch({
             headless: false,
+            defaultViewport: null,
             args: ['--disable-setuid-sandbox'],
             ignoreHTTPSErrors: true,
             devtools: true,

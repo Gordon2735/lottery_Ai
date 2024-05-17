@@ -28,11 +28,12 @@ const scraper = {
 
         console.info(
             `
-    				Navigating to Pick 3 Scraping Data from: ${this.url}...
-    			
-    			`
+    			Navigating to Pick 3 Scraping Data from: ${this.url}...    		
+    		`
         );
-        await page.goto(this.url);
+        await page.goto(this.url, {
+            waitUntil: 'domcontentloaded'
+        });
 
         const screenshotDataTime: string = fileName_date_time;
 
@@ -84,8 +85,8 @@ const scraper = {
 
             console.log(
                 `						
-    					stringifyElements: ${stringifyElements}                
-    				`
+    				stringifyElements: ${stringifyElements}                
+    			`
             );
 
             return elements;
@@ -96,12 +97,6 @@ const scraper = {
             winNumbers: string;
             fireNum: string | null | undefined;
         }[] = [];
-
-        // const scrapedCollection: {
-        //     drawEvent: string | null | undefined;
-        //     winNumbers: string;
-        //     fireNum: string | null | undefined;
-        // }[] = [];
 
         const data: {
             drawEvent: string | null | undefined;
@@ -132,7 +127,6 @@ const scraper = {
         };
     }
 };
-// export { scraper as default };
 export default scraper;
 
 // const preparePageForTests = async (page: any) => {

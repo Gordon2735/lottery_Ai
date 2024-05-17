@@ -74,25 +74,33 @@ function searchScrapeDataNestedObjects(
 
             const dataPropCollection: scrapeData[] = [];
 
-            dataProp.map((object: scrapeData) => {
-                dataPropCollection.push(object);
+            dataProp.map((value) => {
+                dataPropCollection.push(value);
             });
 
             // dataPropCollection.push(...dataProp);
 
             element!.innerHTML = /*html*/ `
-                <p id="dataPara" class="data-para">${JSON.stringify(
-                    dataPropCollection.values().return?.valueOf()
-                )}</p><br />
+                <p id="dataPara" class="data-para">${[
+                    dataPropCollection.entries().return?.arguments(),
+                    dataPropCollection.entries().return?.arguments(),
+                    dataPropCollection.entries().return?.arguments().prototype()
+                ]}</p><br />
             `;
             console.log(
                 'Found matching key-value pair:',
-                dataPropCollection.values().next().value
+                dataPropCollection.values().next().value,
+                dataPropCollection.entries().return?.arguments().prototype()
             );
             if (element != null) {
-                element.textContent = `${JSON.stringify(
-                    dataPropCollection.values().return?.valueOf()
-                )}
+                element.textContent = `${[
+                    dataPropCollection.entries().return?.arguments(),
+                    dataPropCollection
+                        .entries()
+                        .return?.arguments()
+                        .prototype(),
+                    dataPropCollection.entries().return?.arguments().prototype()
+                ]}
                 `;
             }
         }
