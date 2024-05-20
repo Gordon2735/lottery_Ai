@@ -47,15 +47,4 @@ declare global {
         [fireNum: string | null | undefined]: string;
     }
     [] | null | undefined | string;
-
-    // interface scrapeData {
-    //     [key: string]: any;
-    // }
-    // interface scrapeData {
-    //     [
-    //         drawEvent: string | null | undefined,
-    //         winNumbers: string,
-    //         fireNum: string | null | undefined
-    //     ]: any;
-    // }
 }

@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
+import {
+    setAttributes,
+    appendChildren
+} from '../../../components/componentTools/general_helpers.js';
+
 // Pick3 Test Web Scraper
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -24,6 +29,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
 });
 
+let data: scrapeData = {};
+
 async function searchFetchResponse(
     key: string,
     value: string[],
@@ -31,17 +38,20 @@ async function searchFetchResponse(
 ): Promise<void> {
     try {
         const response: Response = await fetch('/pick3Test', {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         });
 
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
 
-        const data: scrapeData = await response.json();
+        data = await response.json();
 
-        console.log(`JSON.stringify(data): ${JSON.stringify(data)}`);
-
+        // Recursive Function to ITERATE Fetched Data Object...
         searchScrapeDataNestedObjects(data, key, value, element);
     } catch (error: unknown) {
         console.error(`searchFetchResponse Error: ${error}`);
@@ -50,59 +60,136 @@ async function searchFetchResponse(
     }
 }
 
-function searchScrapeDataNestedObjects(
+// Set up Current Pick3 DOM Elements and Append them...
+const container: HTMLElement | null = document.getElementById(
+    'pick3TestMainContainer'
+);
+const section: HTMLElement | null = document.createElement('section');
+const currentH1: HTMLElement | null = document.createElement('h1');
+const currentH2: HTMLElement | null = document.createElement('h2');
+const currentUL: HTMLElement | null = document.createElement('ul');
+
+setAttributes(section, {
+    id: 'currentPick3Section',
+    class: 'current-pick3-section'
+});
+setAttributes(currentH1, {
+    id: 'currentH1',
+    class: 'current-h1'
+});
+setAttributes(currentUL, {
+    id: 'currentUL',
+    class: 'current-UL'
+});
+(currentH1.innerHTML = 'Last Two Winning Draws'), `<br />`;
+
+container?.appendChild(section);
+appendChildren(section, [currentH1, currentH2, currentUL]);
+
+async function searchScrapeDataNestedObjects(
     data: scrapeData,
     key: string,
     value: string[],
     element: HTMLElement | null
-): void {
-    for (const prop in data) {
-        if (typeof data[prop] === 'object') {
-            const dataProp: scrapeData = data[prop] as unknown as scrapeData;
-            // const dataProp = JSON.parse(data[prop]);
-            // const dataProp = JSON.parse(`{"${prop}": "${data[prop]}"}`);
-            searchScrapeDataNestedObjects(dataProp, key, value, element);
-        } else if (typeof data[prop] === 'string' && data[prop].trim() === '') {
-            continue; // Skip empty strings
-        } else if (
-            (prop === key && data[prop] === value[0]) ||
-            value[1] ||
-            value[2] ||
-            value[3]
-        ) {
-            const dataProp = [JSON.parse(`{"${prop}": "${data[prop]}"}`)];
+): Promise<void> {
+    try {
+        for (const prop in data) {
+            if (typeof data[prop] === 'object') {
+                const dataProp: scrapeData = data[
+                    prop
+                ] as unknown as scrapeData;
 
-            const dataPropCollection: scrapeData[] = [];
+                await searchScrapeDataNestedObjects(
+                    dataProp,
+                    key,
+                    value,
+                    element
+                );
+            } else if (
+                typeof data[prop] === 'string' &&
+                data[prop].trim() === ''
+            ) {
+                continue; // Skip empty strings
+            } else if (
+                (prop === key && data[prop] === value[0]) ||
+                value[1] ||
+                value[2] ||
+                value[3]
+            ) {
+                const dataProp = [JSON.parse(`{"${prop}": "${data[prop]}"}`)];
 
-            dataProp.map((value) => {
-                dataPropCollection.push(value);
-            });
+                const dataPropCollection: scrapeData[] = [];
 
-            // dataPropCollection.push(...dataProp);
+                dataProp.map((value) => {
+                    dataPropCollection.push(value);
 
-            element!.innerHTML = /*html*/ `
-                <p id="dataPara" class="data-para">${[
-                    dataPropCollection.entries().return?.arguments(),
-                    dataPropCollection.entries().return?.arguments(),
-                    dataPropCollection.entries().return?.arguments().prototype()
-                ]}</p><br />
-            `;
-            console.log(
-                'Found matching key-value pair:',
-                dataPropCollection.values().next().value,
-                dataPropCollection.entries().return?.arguments().prototype()
-            );
-            if (element != null) {
-                element.textContent = `${[
-                    dataPropCollection.entries().return?.arguments(),
-                    dataPropCollection
-                        .entries()
-                        .return?.arguments()
-                        .prototype(),
-                    dataPropCollection.entries().return?.arguments().prototype()
-                ]}
-                `;
+                    const currentLi: HTMLElement | null =
+                        document.createElement('li');
+
+                    setAttributes(currentLi, {
+                        id: 'currentLi',
+                        class: 'current-li',
+                        style: `font-family: fantasy; font-size: 1.2em; 
+                          color: hsla(196, 51%, 70%, 0.993); text-shadow: 2px 1px 6px hsla(0, 0%, 0%, 0.993);
+                          letter-spacing: 0.15em;`
+                    });
+                    currentUL?.appendChild(currentLi);
+
+                    switch (
+                        value['drawEvent'] ||
+                        value['winNumbers'] ||
+                        value['fireNum']
+                    ) {
+                        case value.drawEvent:
+                            currentLi.innerHTML =
+                                `Drawing: ` +
+                                JSON.stringify(value.drawEvent).replace(
+                                    /"/g,
+                                    ''
+                                );
+                            console.log(`Drawing: ${data.drawEvent}`);
+                            break;
+                        case value.winNumbers:
+                            currentLi.innerHTML = `Win: ${JSON.stringify(
+                                value.winNumbers
+                            ).replace(/"/g, '')}`;
+                            console.log(
+                                `Win: ${JSON.stringify(value.winNumbers)}`
+                            );
+                            break;
+                        case value.fireNum:
+                            currentLi.innerHTML = `Fireball: ${JSON.stringify(
+                                value.fireNum
+                            ).replace(
+                                /"/g,
+                                ''
+                            )} <br /> <hr style="filter: drop-shadow(0px 2px 7px hsla(0, 0%, 0%, 0.693));" />`;
+                            console.log(
+                                `Fireball: ${JSON.stringify(value.fireNum)}`
+                            );
+                            break;
+
+                        default:
+                            console.warn(
+                                `
+                               WARNING: The Function searchScrapeDataNestedObjects()
+                               Scraped Data Map-Iterator Function's 
+                               Switch Statement deferred to Default... 
+                            `
+                            );
+                    }
+                });
             }
         }
+    } catch (error: unknown) {
+        console.error(
+            `Async Function searchScrapeDataNestedObjects() Error: ${error}`
+        );
+        return;
+    } finally {
+        console.log(
+            'Async Function searchScrapeDataNestedObjects() has been executed'
+        );
     }
+    return;
 }
