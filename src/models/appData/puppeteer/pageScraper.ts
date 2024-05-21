@@ -6,6 +6,8 @@
 import puppeteer from 'puppeteer';
 import fileName_date_time from '../../../tools/date_time/file_date_template.js';
 
+//! Implement a Try-Catch in the Scraper
+//! Refactor Code for this FILE...
 const scraper = {
     url: 'https://www.sceducationlottery.com/Games/Pick3',
     async scrapers(browser: puppeteer.Browser): Promise<{
@@ -106,9 +108,32 @@ const scraper = {
 
         scrapedCollection.push(...data);
 
-        console.log(scrapedCollection);
+        // console.log(scrapedCollection);
 
-        await browser.close();
+        /* 
+            Need to find why the following is never resolved and gives the error:        
+            Could not resolve the browser instance =>  ProtocolError: Target.createTarget 
+            timed out. Increase the 'protocolTimeout' setting in launch/connect calls for a 
+            higher timeout if needed at <instance_members_initializer> 
+            (file:///C:/Users/gordo/Desktop/Team_Webelistics_LLC/lottery_Ai/node_modules/puppeteer-core/
+                lib/esm/puppeteer/common/CallbackRegistry.js:89:14)
+        */
+        Promise.resolve(await browser.close()),
+            () => {
+                try {
+                    console.log(
+                        `The 'browser.close()' Promise.resolve() has been solved...`
+                    );
+                } catch (error: unknown) {
+                    console.error(
+                        `
+                        The Promise.resolve() with the browser.close() method has 
+                        produced an error...
+                        ERROR: ${error}
+                    `
+                    );
+                }
+            };
         return { scrapeData: scrapedCollection } as unknown as {
             scrapeData: Promise<
                 Awaited<

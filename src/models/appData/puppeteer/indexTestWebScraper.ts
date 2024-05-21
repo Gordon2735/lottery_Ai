@@ -1,13 +1,18 @@
+/* eslint-disable no-case-declarations */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
 import {
     setAttributes,
-    appendChildren
+    appendChildren,
+    insertStyle
 } from '../../../components/componentTools/general_helpers.js';
 
-// Pick3 Test Web Scraper
+//! Refactor the Code for this FILE / Especially in the DOM Element creations
+//! and most definitely the styles in the <li></li> element which upon each iteration
+//! the li elements render repeating styles...
 
+// Pick3 Test Web Scraper
 document.addEventListener('DOMContentLoaded', async () => {
     const button: HTMLElement | null =
         document.getElementById('pick3TestButton1');
@@ -71,17 +76,19 @@ const currentUL: HTMLElement | null = document.createElement('ul');
 
 setAttributes(section, {
     id: 'currentPick3Section',
-    class: 'current-pick3-section'
+    class: 'current-pick3-section',
+    style: 'justify: center; display: block; text-align: center; justify-self: center;'
 });
 setAttributes(currentH1, {
     id: 'currentH1',
-    class: 'current-h1'
+    class: 'current-h1',
+    style: 'margin: 2.7em auto 0em auto; color: hsla(196, 95%, 85%, 0.993);'
 });
 setAttributes(currentUL, {
     id: 'currentUL',
     class: 'current-UL'
 });
-(currentH1.innerHTML = 'Last Two Winning Draws'), `<br />`;
+(currentH1.innerHTML = 'Last Two Winning Pick3 Draws'), `<br />`;
 
 container?.appendChild(section);
 appendChildren(section, [currentH1, currentH2, currentUL]);
@@ -129,9 +136,9 @@ async function searchScrapeDataNestedObjects(
                     setAttributes(currentLi, {
                         id: 'currentLi',
                         class: 'current-li',
-                        style: `font-family: fantasy; font-size: 1.2em; 
-                          color: hsla(196, 51%, 70%, 0.993); text-shadow: 2px 1px 6px hsla(0, 0%, 0%, 0.993);
-                          letter-spacing: 0.15em;`
+                        style: `margin: 2.111em auto 0em auto; display: block; font-family: fantasy; font-size: 1.2em; 
+                                    color: hsla(90, 100%, 50%, 0.993); text-shadow: 2px 1px 6px hsla(0, 0%, 0%, 0.993);
+                                    letter-spacing: 0.15em; justify: center; text-align: center;`
                     });
                     currentUL?.appendChild(currentLi);
 
@@ -153,6 +160,33 @@ async function searchScrapeDataNestedObjects(
                             currentLi.innerHTML = `Win: ${JSON.stringify(
                                 value.winNumbers
                             ).replace(/"/g, '')}`;
+                            const addingKeyframes: string = /*css*/ `
+                                @keyframes blink {
+                                    0% {
+                                        color: hsla(90, 100%, 50%, 0.993);
+                                    }
+                                    25% {
+                                        color: hsla(90, 100%, 50%, 0.1193);
+                                    }
+                                    50% {
+                                        color: hsla(348, 83%, 47%, 0.993);
+                                    }
+                                    75% {
+                                        color: hsla(90, 100%, 50%, 0.1193); 
+                                    }
+                                    100% {
+                                        color: hsla(90, 100%, 50%, 0.993);
+                                    }
+                                }
+                            `;
+                            insertStyle(
+                                'currentLi',
+                                {
+                                    animation: 'blink 1.5s linear infinite;'
+                                },
+                                currentLi,
+                                addingKeyframes
+                            );
                             console.log(
                                 `Win: ${JSON.stringify(value.winNumbers)}`
                             );
@@ -163,7 +197,11 @@ async function searchScrapeDataNestedObjects(
                             ).replace(
                                 /"/g,
                                 ''
-                            )} <br /> <hr style="filter: drop-shadow(0px 2px 7px hsla(0, 0%, 0%, 0.693));" />`;
+                            )} <br /> <hr style="margin: 1.777em auto 0em auto; color: hsla(180, 100%, 100%, 0.993); 
+                                        width: 48%; filter: drop-shadow(0px 2px 7px hsla(0, 0%, 0%, 0.693));" />
+                                <br />
+                                `;
+
                             console.log(
                                 `Fireball: ${JSON.stringify(value.fireNum)}`
                             );
