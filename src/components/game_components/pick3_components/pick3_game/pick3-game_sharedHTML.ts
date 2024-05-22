@@ -3,10 +3,10 @@
 import { Ipick3GameSharedHTML } from './Ipick3_game.js';
 
 const pick3Game_sharedHTML: Ipick3GameSharedHTML = {
-	shell: ``,
-	container: ``,
-	game: ``,
-	results: ``
+    shell: ``,
+    container: ``,
+    game: ``,
+    results: ``
 };
 
 pick3Game_sharedHTML.shell = /*html*/ `
@@ -17,6 +17,8 @@ pick3Game_sharedHTML.shell = /*html*/ `
 `;
 
 pick3Game_sharedHTML.container = /*html*/ `
+
+	<lotteryai-header_shell id="lotteryAiHeaderShell" class="lotteryAi-header-shell"></lotteryai-header_shell>            
 
     <pick3-scrape id="pick3Scrape" class="pick3-scrape" data-scrape="non-active"></pick3-scrape>
 
