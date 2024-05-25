@@ -3,11 +3,11 @@
 import { Ipick3GameSharedStyles } from './Ipick3_game.js';
 
 const pick3Game_sharedStyles: Ipick3GameSharedStyles = {
-	root: ``,
-	shell: ``,
-	container: ``,
-	game: ``,
-	results: ``
+    root: ``,
+    shell: ``,
+    container: ``,
+    game: ``,
+    results: ``
 };
 
 pick3Game_sharedStyles.root = /*css*/ `
@@ -19,11 +19,16 @@ pick3Game_sharedStyles.root = /*css*/ `
         /* Background Colors */
         --pk3-bg-color-light: #f4f4f4;
         --pk3-bg-color-dark: #333;
+        --pk3-bg-color-4t: rgba(95, 158, 160, 0.393);
 
         /* Background Gradients */
         --pk3-gradient-dark-0: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 87%, hsla(188, 35%, 58%, 0.993));
+        --pk3-gradient-dark-0a: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 77%, hsla(188, 35%, 58%, 0.993));
+        --pk3-gradient-dark-descripSection: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 53%, hsla(41, 92%, 53%, 0.393));
         --pk3-gradient-dark-1: linear-gradient(178.35deg, hsla(188, 98%, 34%, 0.993), 34.5%, hsla(187, 52%, 80%, 0.593));
+        --pk3-gradient-dark-1a: linear-gradient(178.35deg, hsla(188, 98%, 34%, 0.993), 64.5%, hsla(187, 52%, 80%, 0.593));
         --pk3-gradient-dark-2: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 87%, hsla(188, 35%, 58%, 0.993));
+        --pk3-gradient-dark-3: linear-gradient(178.35deg, hsla(41, 92%, 53%, 0.993), 94.5%, hsla(187, 52%, 80%, 0.593));
 
         /* Background Image */
         --pk3-bgImage-pick3: url('../images/033e_sc_lottery.webp');
@@ -42,7 +47,14 @@ pick3Game_sharedStyles.root = /*css*/ `
 
         /* Font Family Variables */
         --pk3-ff-src-code-pro: 'Source Code Pro', monospace;
-        --pk3-ff-titillium-web: 'Titillium Web', sans-serif;
+        --pk3-ff-titillium-web: 'Titillium Web', sans-serif;      
+        --pk3-ff-allerta-stencil: 'Allerta Stencil', monospace;
+        --pk3-ff-bagel-fat-one: 'Bagel Fat One', sans-serif;
+        --pk3-ff-black-ops-one: 'Black Ops One', sans-serif;
+        --pk3-ff-chango: 'Chango', sans-serif;
+        --pk3-ff-saira-stencil-one: 'Saira Stencil One', sans-serif;
+        --pk3-ff-days-one: 'Days One', sans-serif;
+        --pk3-ff-Black-Han-Sans: "Black Han Sans", sans-serif;
 
         /* Font Size Variables */
         --pk3-fs-xxs: 0.5rem;
@@ -52,6 +64,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-fs-lg: 1.125rem;
         --pk3-fs-xl: 1.25rem;
         --pk3-fs-xxl: 1.5rem;
+        --pk3-fs-xxlz: 1.82rem;
         --pk3-fs-xxxl: 1.875rem;
         --pk3-fs-xxxl-0: 2rem;
         --pk3-fs-xxxl-1: 2.25rem;
@@ -99,6 +112,9 @@ pick3Game_sharedStyles.root = /*css*/ `
         
         /* Font Styles Variables */
         --pk3-f-style-italic: italic;
+        --pk3-f-style-normal: normal;
+        --pk3-f-style-oblique: oblique;
+
 
         /* Text Variables */
         --pk3-text-1: 0.5rem;
@@ -117,6 +133,13 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-clr-fc-8: hsla(240, 64%, 27%, 0.993);
         --pk3-clr-fc-9: hsla(80, 61%, 50%, 0.993);
         --pk3-clr-fc-10: hsla(0, 79%, 72%, 0.593); 
+        --pk3-clr-fc-pick3-11: hsla(108, 60%, 53%, 0.993);
+        --pk3-clr-fc-pick3-12: hsla(187, 52%, 80%, 0.993);
+        --pk3-clr-fc-pick3-13: hsla(108, 88%, 84%, 0.993);
+        --pk3-clr-fc-pick3-14: hsla(234, 68%, 37%, 0.993);
+        --pk3-clr-fc-pick3-15: hsla(34, 78%, 91%, 0.993);
+        --pk3-clr-fc-pick3-16: hsla(41, 92%, 53%, 0.993);
+
 
         /* 
         
@@ -137,6 +160,19 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-text-color-2: #fff;
         --pk3-text-color-3: #f4f4f4;
         --pk3-text-color-4: #333;
+
+        /* Text Outline */
+        --pk3-text-outline-1: 2px 2px #FF0000;
+        --pk3-text-outline-2: 2px 2px hsla(234, 68%, 37%, 0.993);
+        --pk3-text-outline-3: 1px 1px hsla(234, 68%, 37%, 0.993);
+        --pk3-text-outline-4: 3px 3px hsla(234, 68%, 37%, 0.993);
+
+        /* Text Stroke */
+        --pk3-webkit-text-stroke-black-1: 2px black;
+        --pk3-webkit-text-stroke-black-2: 0.8px black;
+        --pk3-webkit-text-stroke-pick3-1: 2px hsla(234, 68%, 37%, 0.993);
+        --pk3-webkit-text-stroke-pick3-2: 3px hsla(234, 68%, 37%, 0.993);
+        --pk3-webkit-text-stroke-pick3-3: 4px hsla(234, 68%, 37%, 0.993);
 
 
         /* Text Background Color Variables */
@@ -229,6 +265,9 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-text-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.5);
         --pk3-text-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.5);
         --pk3-text-shadow-xmd: 0.2px 0.4px 3px hsla(0, 0%, 0%, 0.69);
+        --pk3-text-shadow-xmdz: 0.8px 1px 2px hsla(0, 0%, 0%, 0.99);
+        --pk3-text-shadow-standard: 0px 0px 7px hsla(0, 0%, 0%, 0.99);
+        --pk3-text-shadow-standard-2: 0px 0px 8px hsla(0, 0%, 0%, 0.99);
         --pk3-text-shadow-xmda: 3.2px 3.8px 8px hsla(0, 0%, 0%, 0.69);
         --pk3-text-shadow-lg: 0 6px 15px rgba(0, 0, 0, 0.5);
         --pk3-text-shadow-xl: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -281,7 +320,23 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-margin--pk3-3: -3rem;
         --pk3-margin--pk3-2: -2rem;
         --pk3-margin--pk3-1: -1rem;
-        --pk3-margin-0: 1.2em 0em 1.2em 0.5em;
+        --pk3-margin-0-a: 0em 0em 0em -2em;
+        --pk3-margin-0-b: 0em 0em 0em -5em;
+        --pk3-margin-0-c: -2.5em 0em 0em -5em;
+        --pk3-margin-0-d: -1.9em 0em 0em 9em;
+        --pk3-margin-0-e: -2.3em 0em 0em 5.7em;
+        --pk3-margin-0: 0em 0em 0em 0em;
+        --pk3-margin-1: 1.2em 0em 1.2em 0.5em;
+        --pk3-margin-00a: 6em auto 0em auto;
+        --pk3-margin-00z: 1em auto 0em auto;
+        --pk3-margin-descripSection: 0.7em auto 0em auto;
+        --pk3-margin-pick3-palmetto: -3.2em -6em 0em 12em;
+        --pk3-margin-00az: 4em auto 0em auto;
+        --pk3-margin-00b: 5em auto 0em auto;
+        --pk3-margin-00c: 2em auto 1em auto;
+        --pk3-margin-00d: 2em 0em 1em 3em;
+        --pk3-margin-00e: -1.7em 0em 0em 5.3em;
+        --pk3-margin-00f: -1.08em 0em 0em 5.7em;
         --pk3-margin-auto: auto;
         --pk3-margin-xxsm: 0.19rem;
         --pk3-margin-xxs: 0.25rem;
@@ -370,6 +425,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-width-160: 160px;
         --pk3-width-180: 180px;
         --pk3-width-200: 200px;
+        --pk3-width-220: 220px;
         --pk3-width-240: 240px;
         --pk3-width-280: 280px;
         --pk3-width-300: 300px;
@@ -404,6 +460,8 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-width-1950: 1950px;
         --pk3-width-minimum: 320px;
         --pk3-width-em-75: 75em;
+        --pk3-width-vw-20: 20vw;
+        --pk3-width-vw-25: 25vw;
         
         /* Height Variables */
         --pk3-height-100: 100%;
@@ -453,6 +511,8 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-top-15: 15%;
         --pk3-top-10: 10%;
         --pk3-top-5: 5%;
+        --pk3-top-3: 3%;
+        --pk3-top-0-a: 0.5%;
         --pk3-top-0: 0;
         --pk3-top-xxs: 0.125rem;
         --pk3-top-xs: 0.25rem;
@@ -671,6 +731,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-opacity-05: 0.05;
         --pk3-opacity-08: 0.08;
         --pk3-opacity-10: 0.10;
+        --pk3-opacity-12: 0.12;
         --pk3-opacity-15: 0.15;
         --pk3-opacity-25: 0.25;
         --pk3-opacity-35: 0.35;
@@ -686,9 +747,11 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-border-thin: 1px solid hsla(0, 0%, 0%, 0.993);
         --pk3-border-thick: 2px solid hsla(0, 0%, 0%, 0.993);
         --pk3-border-xthick: 3px solid hsla(188, 98%, 34%, 0.993);
+        --pk3-border-xthicka: 6px solid hsla(188, 98%, 34%, 0.993);
         --pk3-border-xxthick: 4px solid hsla(0, 0%, 0%, 0.993);
         --pk3-border-xxxthick: 10px solid hsla(188, 98%, 34%, 0.993);
         --pk3-border-feather: 10px solid hsla(188, 98%, 34%, 0.993);
+        --pk3-border-descripSection: 6px solid hsla(41, 92%, 53%, 0.993);
 
         /* Border Radius Variables */
         --pk3-radius-0: 0rem;
@@ -720,8 +783,10 @@ pick3Game_sharedStyles.root = /*css*/ `
         
         /* Filter Variables */
         --pk3-filter-shadow-sm: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5));
+        --pk3-filter-shadow-pick3:  drop-shadow(0 0 0.7rem hsla(187, 52%, 80%, 0.793));
         --pk3-filter-shadow-md: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5));
         --pk3-filter-shadow-xmd: drop-shadow(0 0 1rem hsla(0, 0%, 0%, 0.69));
+        --pk3-filter-shadow-descripSection: drop-shadow(0 0 0.3rem hsla(0, 0%, 0%, 0.69));
         --pk3-filter-shadow-xmda: drop-shadow(0.7rem 0.7rem 1.7rem hsla(0, 0%, 0%, 0.763));
         --pk3-filter-shadow-xmdaz: drop-shadow(2rem 2rem 4.9rem hsla(0, 0%, 0%, 0.963));
         --pk3-filter-shadow-lg: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.5));
@@ -754,6 +819,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-rotate-9: 9deg;
         --pk3-rotate-10: 10deg;
         --pk3-rotate-15: 15deg;
+        --pk3-rotate-30: 30deg;
         --pk3-rotate-45: 45deg;
         --pk3-rotate-90: 90deg;
         --pk3-rotate-180: 180deg;
@@ -837,6 +903,9 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-justify-content-space-around: space-around;
         --pk3-justify-content-space-evenly: space-evenly;
 
+        /* Justify Self */
+        --pk3-justify-self-center: center;
+
         /* Flex Align Items Variables */
         --pk3-align-items-flex-start: flex-start;
         --pk3-align-items-flex-end: flex-end;
@@ -905,7 +974,35 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-z-index-19: 1900;
         --pk3-z-index-20: 2000;
 
-    }
+    }   
+
+`;
+
+pick3Game_sharedStyles.shell = /*css*/ `
+
+     
+
+`;
+
+pick3Game_sharedStyles.container = /*css*/ `
+
+    @import url('https://fonts.googleapis.com/css2?family=Chango&family=Source+Code+Pro:ital,wght@0,200;0,400;0,600;0,700;0,900;1,200;1,400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Titillium+Web:ital,wght@0,200;0,400;0,700;1,200&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Bagel+Fat+One&family=Black+Ops+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Days+One&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Days+One&display=swap');
+    /* 
+            font-family: 'Source Code Pro', monospace;
+            font-family: 'Titillium Web', sans-serif; 
+            font-family: 'Alberta Stencil', monospace;
+            font-family: 'Bagel Fat One', sans-serif; 
+            font-family: 'Black Ops One', sans-serif; 
+            font-family: 'Chango', sans-serif;
+            font-family: 'Saira Stencil One', sans-serif;
+            font-family: "Days One", sans-serif;
+            font-family: "Black Han Sans", sans-serif;
+        */
 
     /* Box Sizing Rules */
     *,
@@ -979,24 +1076,84 @@ pick3Game_sharedStyles.root = /*css*/ `
         }
     }
 
-`;
-
-pick3Game_sharedStyles.shell = /*css*/ `
-
-
-
-`;
-
-pick3Game_sharedStyles.container = /*css*/ `
-
     .main-body {
         margin: 0em;
         padding: 0;
-        background-image: var(--pk3-gradient-dark-0); 
+        background-image: var(--pk3-gradient-dark-0),
+                          var(--pk3-gradient-dark-1);   
         background-repeat: var(--pk3-repeat-2);
         background-size: var(--pk3-size-1);
         overflow: var(--pk3-overflow-hidden);
         width: var(--pk3-width-100a);
+    }
+        
+    /* Spinner */
+    .spinner-1:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        margin-top: -30px;
+        margin-left: -30px;
+        border-radius: 50%;
+        border: 3px solid hsl(0, 0%, 36%);
+        border-top-color: #3498db;
+        /* smooth */
+        animation: spinner-a 0.7s linear infinite;
+
+    }
+
+    .spinner-2:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        margin-top: -30px;
+        margin-left: -30px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #3498db;
+        /* jerky */
+        animation: spinner-a 0.7s ease infinite;
+    }
+
+    .spinner-3:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        margin-top: -30px;
+        margin-left: -30px;
+        border-radius: 50%;
+        border-top: 2px solid #3498db;
+        border-right: 2px solid transparent;
+        /* smooth */
+        animation: spinner-a 0.7s linear infinite;
+    }
+
+    /* .spinner-3:after {
+        display: none;
+    } */
+
+    @keyframes spinner-a {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinner-b {
+        to {
+            transform: rotate(360deg);
+        }
     }
 
 
@@ -1010,6 +1167,140 @@ pick3Game_sharedStyles.game = /*css*/ `
 
 pick3Game_sharedStyles.results = /*css*/ `
 
+    .descrip-section {
+        margin: var(--pk3-margin-00z);
+        position: var(--pk3-position-absolute);
+        top: var(--pk3-top-3);
+        left: var(--pk3-left-25);
+        width: var(--pk3-width-1080);
+        height: var(--pk3-height-10);
+        justify-content: var(--pk3-justify-content-center);
+        background-image: var(--pk3-gradient-dark-descripSection),
+                          var(--pk3-gradient-dark-3);  
+        border: var(--pk3-border-descripSection);
+        border-radius: var(--pk3-radius-md);
+        filter: var(--pk3-filter-shadow-xmda);
+        
+    }
+
+    .descrip-section > .descrip-section-para {
+        margin: var(--pk3-margin-descripSection);
+        position: var(--pk3-position-relative);
+        display: var(--pk3-display-block);
+        text-align: var(--pk3-text-align-center);
+        font-family: var(--pk3-ff-src-code-pro);
+        font-size: var(--pk3-fs-lg);
+        font-weight: var(--pk3-fw-medium);
+        font-style: var(--pk3-f-style-italic);
+        color: var(--pk3-clr-fc-pick3-15);
+        text-shadow: var(--pk3-text-shadow-xmdz);
+        filter: var(--pk3-filter-shadow-descripSection);
+    }
+
+    .get-pick3-container {
+        margin: var(--pk3-margin-00a);
+        position: var(--pk3-position-absolute);
+        top: var(--pk3-top-15);
+        left: var(--pk3-left-25);
+        width: var(--pk3-width-1080);
+        height: var(--pk3-height-50);
+        justify-content: var(--pk3-justify-content-center);
+        background-image: var(--pk3-gradient-dark-0a),
+                          var(--pk3-gradient-dark-1a);  
+        border: var(--pk3-border-xthicka);
+        border-radius: var(--pk3-radius-md);
+        filter: var(--pk3-filter-shadow-xmda);
+        font-family: var(--pk3-ff-src-code-pro);
+    }
+
+    .get-pick3-container > .lottery-Ai-palmetto {
+        margin: var(--pk3-margin-pick3-palmetto);
+        position: var(--pk3-position-fixed);
+        display: var(--pk3-display-block);
+        width: var(--pk3-width-400);
+        justify-self: var(--pk3-justify-self-center);
+        text-align: var(--pk3-text-align-center);
+        filter: var(--pk3-filter-shadow-xmda);
+        rotate: var(--pk3-rotate-30);
+        opacity: var(--pk3-opacity-10);
+    }
+
+
+    .get-pick3-container > .pick3-logo {
+        margin: var(--pk3-margin-0-c);
+        position: var(--pk3-position-relative);
+        width: var(--pk3-width-375);
+        rotate: var(--pk3-rotate-335);
+    }
+
+    .get-pick3-container > .grab-pick3-number-h1 {
+        margin: var(--pk3-margin-00f);
+        position: var(--pk3-position-relative);
+        display: var(--pk3-display-block);
+        text-align: var(--pk3-text-align-center);
+        font-family: var(--pk3-ff-Black-Han-Sans);
+        font-size: var(--pk3-fs-xxlz);
+        font-weight: var(--pk3-fw-black);
+        color: var(--pk3-clr-fc-pick3-11);
+        text-shadow: var(--pk3-text-shadow-xmdz);
+        -webkit-text-stroke: var(--pk3-webkit-text-stroke-pick3-1);
+        filter: var(--pk3-filter-shadow-pick3);
+        letter-spacing: var(--pk3-spacing-xxsa);
+    }
+
+    .get-pick3-container > .grab-_Standard-pick3-h2 {
+        margin: var(--pk3-margin-00d);
+        position: var(--pk3-position-relative);
+        display: var(--pk3-display-block);
+        text-align: var(--pk3-text-align-left);
+        font-family: var(--pk3-ff-src-code-pro);
+        font-size: var(--pk3-fs-xl);
+        font-weight: var(--pk3-fw-normal);
+        color: var(--pk3-clr-fc-pick3-12);
+        text-shadow: var(--pk3-text-shadow-standard);        
+    }
+
+    .get-pick3-container > ._standard-pick3-para {
+        margin: var(--pk3-margin-00e);
+        position: var(--pk3-position-relative);
+        display: var(--pk3-display-block);
+        text-align: var(--pk3-text-align-left);
+        
+    }
+
+    ._standard-pick3-para > ._standard-pick3-span {
+        font-family: var(--pk3-ff-Black-Han-Sans);
+        font-size: var(--pk3-fs-xxxl-2);
+        font-weight: var(--pk3-fw-bold);
+        color: var(--pk3-clr-fc-pick3-13);
+        text-shadow: var(--pk3-text-shadow-standard-2); 
+        letter-spacing: var(--pk3-spacing-xxsa);
+        -webkit-text-stroke: var(--pk3-webkit-text-stroke-black-2);
+    }
+
+    .blink {
+        animation: blinkIt 4s ease-in-out infinite;
+    }
+
+    @keyframes blinkIt {
+        0% {
+            color: var(--pk3-clr-fc-pick3-13); 
+        }
+        25% {
+            opacity: 0;
+        }
+        50% {
+            color: var(--pk3-clr-fc-pick3-16);
+            opacity: 1;
+        }
+        75% {
+            opacity: 0;
+        }
+        100% {
+            color: var(--pk3-clr-fc-pick3-13);
+            opacity: 1;
+        }
+    }
 
 
 `;

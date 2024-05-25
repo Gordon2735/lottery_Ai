@@ -3,9 +3,9 @@
 import { ILotteryAiHeaderSharedHTML } from './Ilotteryai_header.js';
 
 const lotteryAiHeaderSharedHTML: ILotteryAiHeaderSharedHTML = {
-	global: '',
-	shell: '',
-	contents: ''
+    global: '',
+    shell: '',
+    contents: ''
 };
 
 lotteryAiHeaderSharedHTML.global = /*html*/ `

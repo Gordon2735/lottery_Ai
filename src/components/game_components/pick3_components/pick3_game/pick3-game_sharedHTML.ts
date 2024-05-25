@@ -16,11 +16,11 @@ pick3Game_sharedHTML.shell = /*html*/ `
 
 `;
 
+// <pick3-scrape id="pick3Scrape" class="pick3-scrape" data-scrape="non-active"></pick3-scrape>
+// <lotteryai-header_shell id="lotteryAiHeaderShell" class="lotteryAi-header-shell"></lotteryai-header_shell>
 pick3Game_sharedHTML.container = /*html*/ `
 
-	<lotteryai-header_shell id="lotteryAiHeaderShell" class="lotteryAi-header-shell"></lotteryai-header_shell>            
 
-    <pick3-scrape id="pick3Scrape" class="pick3-scrape" data-scrape="non-active"></pick3-scrape>
 
 
 

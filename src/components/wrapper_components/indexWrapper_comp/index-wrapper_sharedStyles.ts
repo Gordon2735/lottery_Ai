@@ -3,11 +3,11 @@
 import { IIndexWrapperSharedStyles } from './Iindex-wrapper.js';
 
 const indexWrapperSharedStyles: IIndexWrapperSharedStyles = {
-	global: '',
-	root: '',
-	shell: '',
-	container: '',
-	queries: ''
+    global: '',
+    root: '',
+    shell: '',
+    container: '',
+    queries: ''
 };
 
 indexWrapperSharedStyles.global = /*css*/ `

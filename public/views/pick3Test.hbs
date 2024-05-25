@@ -1,5 +1,7 @@
 {{!-- pick3 Test Page --}}
 
+<spinner-base1 id="spinnerBase" class="spinner-base1" data-section_spinner="default"></spinner-base1>
+
 <main id="pick3TestMainContainer" class="pick3-test-main-container">
 
     <header id="pick3Header" class="pick3-header">
@@ -25,7 +27,73 @@
         background-color: hsla(241, 100%, 50%, 0.993);
         justify: start;
     }
-    
+
+    /* Spinner */
+    .spinner-1:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        margin-top: -30px;
+        margin-left: -30px;
+        border-radius: 50%;
+        border: 3px solid hsl(0, 0%, 36%);
+        border-top-color: #3498db;
+        /* smooth */
+        animation: spinner-a 0.7s linear infinite;
+
+    }
+    .spinner-2:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        margin-top: -30px;
+        margin-left: -30px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #3498db;
+        /* jerky */
+        animation: spinner-a 0.7s ease infinite;
+    }
+    .spinner-3:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        margin-top: -30px;
+        margin-left: -30px;
+        border-radius: 50%;
+        border-top: 2px solid #3498db;
+        border-right: 2px solid transparent;
+        /* smooth */
+        animation: spinner-a 0.7s linear infinite;
+    }
+
+    /* .spinner-3:after {
+        display: none;
+    } */
+
+    @keyframes spinner-a {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinner-b {
+        to {
+            transform: rotate(360deg);
+        }
+    }    
     h1 {
         margin: 0.5em auto 1.2em auto;
         font-family: fantasy;
