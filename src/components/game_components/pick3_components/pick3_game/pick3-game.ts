@@ -17,6 +17,8 @@ class Pick3Game extends Pick3GameTemplate {
     head: HTMLHeadElement;
     body: HTMLBodyElement;
     scriptHeaderShell: HTMLScriptElement;
+    scriptHistoricalData: HTMLScriptElement;
+    scriptPick3Scrape: HTMLScriptElement;
     getPick3Container: HTMLElement;
     lotteryAiPalmetto: HTMLImageElement;
     descripSection: HTMLElement;
@@ -32,6 +34,10 @@ class Pick3Game extends Pick3GameTemplate {
         return /*html*/ `
         
             ${pick3Game_sharedHTML.container}
+
+            <style>
+                ${pick3Game_sharedStyles.root}
+            </style>
 
             <style>
                 ${pick3Game_sharedStyles.container}
@@ -57,6 +63,10 @@ class Pick3Game extends Pick3GameTemplate {
         const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
         const scriptHeaderShell: HTMLScriptElement =
             document.createElement('script');
+        const scriptHistoricalData: HTMLScriptElement =
+            document.createElement('script');
+        const scriptPick3Scrape: HTMLScriptElement =
+            document.createElement('script');
         const getPick3Container: HTMLElement | null =
             document.createElement('section');
         const lotteryAiPalmetto: HTMLImageElement =
@@ -79,6 +89,8 @@ class Pick3Game extends Pick3GameTemplate {
         this.head = head;
         this.body = body;
         this.scriptHeaderShell = scriptHeaderShell;
+        this.scriptHistoricalData = scriptHistoricalData;
+        this.scriptPick3Scrape = scriptPick3Scrape;
         this.getPick3Container = getPick3Container;
         this.lotteryAiPalmetto = lotteryAiPalmetto;
         this.descripSection = descripSection;
@@ -93,6 +105,18 @@ class Pick3Game extends Pick3GameTemplate {
         setAttributes(this.scriptHeaderShell, {
             type: 'module',
             src: '/src/components/header_components/lottery_ai_header/lotteryai-header_shell.js',
+            content: 'text/javascript',
+            crossOrigin: 'anonymous'
+        });
+        setAttributes(this.scriptHistoricalData, {
+            type: 'module',
+            src: '/src/components/game_components/pick3_components/pick3_logic/historical_lottery.js',
+            content: 'text/javascript',
+            crossOrigin: 'anonymous'
+        });
+        setAttributes(this.scriptPick3Scrape, {
+            type: 'module',
+            src: '/src/components/game_components/pick3_components/pick3_SC_scrape/pick3-scrape.js',
             content: 'text/javascript',
             crossOrigin: 'anonymous'
         });
@@ -144,23 +168,23 @@ class Pick3Game extends Pick3GameTemplate {
     connectedCallback(): void {
         super.connectedCallback();
 
-        appendChildren(this.head, [this.scriptHeaderShell]);
+        appendChildren(this.head, [
+            this.scriptHeaderShell,
+            this.scriptHistoricalData,
+            this.scriptPick3Scrape
+        ]);
 
         const pick3Window: () => Promise<void> = async () => {
             try {
                 const getPick3: Promise<number> = pick3RandomInts(3, 9);
                 console.log(getPick3);
 
-                await appendChildren(this.body, [
+                await appendChildren(this, [
                     this.descripSection,
                     this.getPick3Container
                 ]);
                 this._StandardPick3Para.appendChild(this._StandardPick3Span);
                 this.descripSection.appendChild(this.descripSectionPara);
-
-                // const renderBreak: HTMLBRElement =
-                //     this.descripSectionPara.appendChild(this.breaks);
-                //     ${renderBreak}
 
                 this.descripSectionPara.innerHTML = `By leveraging complex scientific and professional methodologies,
                     <br />

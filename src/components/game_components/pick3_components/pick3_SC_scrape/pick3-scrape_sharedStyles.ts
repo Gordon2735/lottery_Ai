@@ -3,11 +3,11 @@
 import { Ipick3Scrape_sharedStyles } from './Ipick3-scrape.js';
 
 const pick3Scrape_sharedStyles: Ipick3Scrape_sharedStyles = {
-	// shared styles
-	root: '',
-	container: '',
-	header: '',
-	numbers: ''
+    // shared styles
+    root: '',
+    container: '',
+    header: '',
+    numbers: ''
 };
 
 pick3Scrape_sharedStyles.root = /*css*/ `
@@ -309,6 +309,7 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-margin-00: 0em 0em 0em 0em;
         --sp3-margin-00a: 5em auto 0em auto;
         --sp3-margin-00b: 0 auto 5em auto;
+        --sp3-margin-00c: 1em auto 0.2em auto;
         --sp3-margin-auto: auto;
         --sp3-margin-xxsm: 0.19rem;
         --sp3-margin-xxs: 0.25rem;
@@ -1119,84 +1120,13 @@ pick3Scrape_sharedStyles.root = /*css*/ `
 
     }
 
-    /* Box Sizing Rules */
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
-
-    /* Remove Default Margin */
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    p,
-    figure,
-    blockquote,
-    dl,
-    dd {
-        margin: 0;
-    }
-
-    /* Remove List Styles on ul, ol elements with a  */
-    ul[role='list'],
-    ol[role='list'] {
-        list-style: none;
-    }
-
-    /* Set Core Body Defaults */
-    body {
-        min-height: 100vh;
-        scroll-behavior: smooth;
-        text-rendering: optimizeSpeed;
-        line-height: 1.5;
-    }
-
-    /* A elements that don't have a class get default */
-    a:not([class]) {
-        text-decoration-skip-ink: auto;
-    }
-
-    /* Make images easier to work with */
-    img,
-    picture {
-        max-width: 100%;
-        display: block;
-    }
-
-    /* Inherit fonts for inputs and buttons */
-    input,
-    button,
-    textarea,
-    select {
-        font: inherit;
-    }
-
-    /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-    @media (prefers-reduced-motion: reduce) {
-        html:focus-within {
-            scroll-behavior: auto;
-        }
-
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-            color: magenta;
-        }
-    }
 `;
 
 pick3Scrape_sharedStyles.container = /*css*/ `
 
     .pick3-scrape-main-container {
         margin: var(--sp3-margin-0a);
-        width: var(--sp3-width-100a);
+        width: var(--sp3-width-25);
         overflow: var(--sp3-overflow-hidden);
     }    
     
@@ -1238,9 +1168,10 @@ pick3Scrape_sharedStyles.header = /*css*/ `
     
     .pick3-scrape-header {
         margin: var(--sp3-margin-00a);  
-        width: var(--sp3-width-840);
+        width: var(--sp3-width-20);
         height: var(--sp3-height-auto);
-        background-color: var(--sp3-bg-color-4t);
+        background-image: var(--sp3-gradient-dark-0),
+                          var(--sp3-gradient-dark-1);  
         border: var(--sp3-border-xthicka);
         border-radius: var(--sp3-radius-md);
         filter: var(--sp3-filter-shadow-xmda);
@@ -1249,12 +1180,12 @@ pick3Scrape_sharedStyles.header = /*css*/ `
 
     .pick3-scrape-header > .scrape-pick3-logo {
         margin: var(--sp3-margin-0);        
-        width: var(--sp3-width-300);
+        width: var(--sp3-width-120);
         rotate: var(--sp3-rotate-345);
     }
 
     .pick3-scrape-header > .scrape-h2 {
-        font-size: var(--sp3-fs-xxl);
+        font-size: var(--sp3-fs-md);
         font-weight: var(--sp3-fw-bold);
         color: var(--sp3-clr-fc-11);
         text-shadow: var(--sp3-text-shadow-xmdz);
@@ -1262,7 +1193,7 @@ pick3Scrape_sharedStyles.header = /*css*/ `
     }
 
     .pick3-scrape-header > .para-pick3-scrape-date {
-        font-size: var(--sp3-fs-md);
+        font-size: var(--sp3-fs-xs);
         font-weight: var(--sp3-fw-semibold);
         color: var(--sp3-clr-fc-2);
         font-style: var(--sp3-f-style-italic);
@@ -1271,7 +1202,7 @@ pick3Scrape_sharedStyles.header = /*css*/ `
 
     .pick3-scrape-header > .para-pick3-scrape-numbers {
         justify: var(--sp3-justify-right);
-        font-size: var(--sp3-fs-xxxl-1);
+        font-size: var(--sp3-fs-xs);
         font-weight: var(--sp3-fw-semibold);
         color: var(--sp3-clr-fc-11);
         font-style: var(--sp3-f-style-italic);
@@ -1290,7 +1221,7 @@ pick3Scrape_sharedStyles.header = /*css*/ `
     .pick3-scrape-header > .para-pick3-scrape-fireball {
         justify: var(--sp3-justify-start);
         font-family: var(--sp3-ff-titillium-web);
-        font-size: var(--sp3-fs-xxxl-1);
+        font-size: var(--sp3-fs-xs);
         font-weight: var(--sp3-fw-bold);
         color: var(--sp3-clr-fc-0f);
         text-shadow: var(--sp3-text-shadow-xmd);

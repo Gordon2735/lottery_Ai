@@ -634,6 +634,8 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-left-16: 16%;
         --pk3-left-15: 15%;
         --pk3-left-10: 10%;
+        --pk3-left-5: 5%;
+        --pk3-left-2: 2%;
         --pk3-left-xxs: 0.125rem;
         --pk3-left-xs: 0.25rem;
         --pk3-left-sm: 0.5rem;
@@ -1154,6 +1156,12 @@ pick3Game_sharedStyles.container = /*css*/ `
         to {
             transform: rotate(360deg);
         }
+    }
+
+    .pick3-scrape {
+        position: var(--pk3-position-absolute);
+        top: var(--pk3-bottom-20pc);
+        left: var(--pk3-left-2);
     }
 
 

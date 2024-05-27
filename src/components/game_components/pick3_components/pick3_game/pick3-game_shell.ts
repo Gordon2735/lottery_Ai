@@ -2,7 +2,7 @@
 
 import { Pick3GameTemplate } from './pick3-game_template.js';
 import { pick3Game_sharedHTML } from './pick3-game_sharedHTML.js';
-import { pick3Game_sharedStyles } from './pick3-game_sharedStyles.js';
+// import { pick3Game_sharedStyles } from './pick3-game_sharedStyles.js';
 import {
     RegisterComponent,
     setAttributes,
@@ -17,13 +17,10 @@ class Pick3GameShell extends Pick3GameTemplate {
 
     public get template(): string {
         return /*html*/ `
-        
-            ${pick3Game_sharedHTML.shell}
 
-            <style>
-                ${pick3Game_sharedStyles.root}
-            </style>           
-        
+            ${pick3Game_sharedHTML.shell}
+            
+
         `;
     }
 

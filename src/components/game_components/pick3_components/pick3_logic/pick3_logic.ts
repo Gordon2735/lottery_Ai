@@ -1,8 +1,5 @@
 'use strict';
 
-// import * as ss from 'simple-statistics';
-// import { Chart } from 'chart.js';
-
 export default class LCG {
     private seed: number;
     private modulus: number;
@@ -63,42 +60,3 @@ export async function pick3RandomInts(
     return newPick3Number;
 }
 console.log(pick3RandomInts(3, 9));
-
-// Example data: historical lottery numbers
-// const lotteryData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-// Calculate basic statistics
-// const mean = ss.mean(lotteryData);
-// const median = ss.median(lotteryData);
-// const standardDeviation = ss.standardDeviation(lotteryData);
-
-// console.log(
-//     `Mean: ${mean}, Median: ${median}, Standard Deviation: ${standardDeviation}`
-// );
-
-// Create a chart to visualize the data
-// const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-// const myChart = new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//         labels: lotteryData.map((_, index) => `Draw ${index + 1}`),
-//         datasets: [
-//             {
-//                 label: '# of Draws',
-//                 data: lotteryData,
-//                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//                 borderColor: 'rgba(75, 192, 192, 1)',
-//                 borderWidth: 1
-//             }
-//         ]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
-
-// ctx.myChart;
