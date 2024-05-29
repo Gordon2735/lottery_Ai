@@ -18,14 +18,10 @@ import Session from 'express-session';
 import {} from '../../../../src/@types/global.d.js';
 import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
-import ScrapePicks from '../../../models/appData/pick3ScrapingsData/01_scrapePick3.js';
-// import EventEmitterHandlers from '../../../controllers/emitters/emitterHandlers.js';
 import puppeteer from 'puppeteer';
 import scraper from '../../../models/appData/puppeteer/pageScraper.js';
 import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
 import startBrowser from '../../../models/appData/puppeteer/browser.js';
-
-// import { Browser } from 'puppeteer';
 
 declare module 'express-session' {
     interface Session {
@@ -550,140 +546,31 @@ async function pick3Handler(_req: Request, res: Response): Promise<void> {
 async function pick3ScrapePostHandler(
     req: Request,
     res: Response
-): Promise<{
-    time3: string | null | undefined;
-    numbers: string | null | undefined;
-    fireball: string | null | undefined;
-}> {
+): Promise<void | Response<any, Record<string, any>>> {
     try {
-        const pick3URL: string = `https://www.sceducationlottery.com/Games/Pick3`;
-        const columnClass: string = '.col-md-2';
-        const numsDateClass: string = '.numbers-date';
-        const pick3NumsClass: string = '.number-circle';
-        const pick3FireballClass: string = '.number-circle-fireball-pick3';
+        console.log('pick3TestPostHandler ROUTER: starting scraperController');
 
-        const getData = new ScrapePicks(
-            pick3URL,
-            columnClass,
-            numsDateClass,
-            pick3NumsClass,
-            pick3FireballClass
+        await startScraperController();
+
+        const browser = (await startBrowser()) as puppeteer.Browser;
+        const scrapeCollection = [];
+        const scraperText = scraper.scrapers(browser);
+        const scrapered = (await scraperText).scrapeData;
+
+        scrapeCollection.push({ scrapeData: scrapered });
+
+        console.log(
+            `JSON.stringify({ collectionModified }): ${JSON.stringify({
+                scrapeCollection
+            })}`
         );
 
-        // await getData.launchBrowser();
-
-        const currentData: () => Promise<
-            | {
-                  datePeriod: string | null | undefined;
-                  numsSet: string | null | undefined;
-                  fireball: string | null | undefined;
-                  // eslint-disable-next-line no-mixed-spaces-and-tabs
-              }[]
-            | undefined
-        > = getData.dataScrape;
-
-        console.log(JSON.stringify(currentData));
-        // console.log(JSON.stringify(currentData?.[0] ?? null));
-
-        const currentPick3: Promise<{
-            time3: string | null | undefined;
-            numbers: string | null | undefined;
-            fireball: string | null | undefined;
-        }> = currentData().then((data) => {
-            const resolvedData:
-                | {
-                      datePeriod: string | null | undefined;
-                      numsSet: string | null | undefined;
-                      fireball: string | null | undefined;
-                      // eslint-disable-next-line no-mixed-spaces-and-tabs
-                  }[]
-                | undefined = data;
-            const time3: string | null | undefined =
-                resolvedData?.[0].datePeriod;
-            const numbers: string | null | undefined =
-                resolvedData?.[0].numsSet;
-            const fireball: string | null | undefined = resolvedData?.[0]
-                .fireball as string | undefined;
-
-            console.info(
-                `
-					time3: ${time3},
-					numbers: ${numbers},
-					fireball: ${fireball}
-				`
-            );
-
-            return { time3, numbers, fireball };
-        });
-
-        console.log(JSON.stringify((await currentPick3).time3 ?? null));
-        console.log(JSON.stringify((await currentPick3).numbers ?? null));
-        console.log(JSON.stringify((await currentPick3).fireball ?? null));
-
-        console.info(
-            `
-					:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-						DateTime scrape data inside of "forEach" Loop-Block:
-
-								dateTime: ${JSON.stringify((await currentPick3).time3)}
-
-							combineNumbers: ${JSON.stringify((await currentPick3).numbers)}
-
-							fireballNumber: ${JSON.stringify((await currentPick3).fireball)}
-
-					:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-				`
-        );
-
-        const {
-            time3 = (await currentPick3)?.time3,
-            numbers = (await currentPick3)?.numbers,
-            fireball = (await currentPick3)?.fireball
-        }: {
-            time3?: string | null | undefined;
-            numbers?: string | null | undefined;
-            fireball?: string | null | undefined;
-        } = req.body;
-
-        // res.locals.time3 = time3;
-        // res.locals.numbers = numbers;
-        // res.locals.fireball = fireball;
-
-        // upDatePick3Header(req, res, time3, numbers, fireball);
-
-        app.use((req: Request) => {
-            return (
-                req.body.time3,
-                req.body.numbers,
-                req.body.fireball,
-                time3,
-                numbers,
-                fireball
-            );
-        });
-
-        console.info(
-            `
-			pick3ScrapePostHandler() {} Initial Log Message:
-				request || 	  req.body:	${req.body},
-						req.body.time3: ${req.body.time3},
-					  req.body.numbers: ${req.body.numbers},
-					 req.body.fireball: ${req.body.fireball}
-
-				response ||	  res.locals.time3: ${res.locals.time3},
-						    res.locals.numbers:	${res.locals.numbers},
-						   res.locals.fireball:	${res.locals.fireball}
-			`
-        );
-
-        // res.send({ time3, numbers, fireball });
-        return { time3, numbers, fireball };
+        return res.json({ scrapeCollection });
     } catch (error: unknown) {
-        console.error(`pick3ScrapePostHandler had an ERROR: ${error}`);
+        console.error(`pick3TestPostHandler had an ERROR: ${error}`);
         res.status(500).send('Server Error');
 
-        return { time3: undefined, numbers: undefined, fireball: undefined };
+        return Promise.reject() as Promise<void>;
     }
 }
 

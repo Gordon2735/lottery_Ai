@@ -70,14 +70,6 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
 
         const currentAttribute: string | undefined = '';
 
-        // const pullPick3Data: Promise<
-        // 	{
-        // 		dateTime: string | null | undefined;
-        // 		winningNumbers: string[];
-        // 		fireballNumber: string | null | undefined;
-        // 	}[]
-        // > = {} // dataPick3();
-
         const datasetAttributes = async (
             _attribute: string | undefined
         ): Promise<string | undefined> => {
@@ -123,8 +115,8 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
         this.root = this.shadowRoot;
         this.body = body;
         this.pick3Scrape_dataset = pick3Scrape_dataset;
-        this.datasetAttributes = datasetAttributes;
         this.currentAttribute = currentAttribute;
+        this.datasetAttributes = datasetAttributes;
     }
 
     connectedCallback(): void {
@@ -224,13 +216,7 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
         );
 
         const dataArray: object[] = [];
-        // this.pullPick3Data
-        // 	.then((value) => {
-        // 		dataArray.push(...value);
-        // 	})
-        // 	.catch((error) => {
-        // 		console.error(error);
-        // 	});
+
         dataArray.forEach((value) => {
             winningNumbers?.append(value.toString()[0][1]),
                 winningFireball?.append(value.toString()[2]);

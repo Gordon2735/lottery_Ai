@@ -306,6 +306,7 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-margin--sp3-1: -1rem;
         --sp3-margin-0: 1.2em 0em 1.2em 0.5em;
         --sp3-margin-0a: 0;
+        --sp3-margin-0bz: 0em 5em 0em -4em;
         --sp3-margin-00: 0em 0em 0em 0em;
         --sp3-margin-00a: 5em auto 0em auto;
         --sp3-margin-00b: 0 auto 5em auto;
@@ -1125,8 +1126,9 @@ pick3Scrape_sharedStyles.root = /*css*/ `
 pick3Scrape_sharedStyles.container = /*css*/ `
 
     .pick3-scrape-main-container {
-        margin: var(--sp3-margin-0a);
-        width: var(--sp3-width-25);
+        margin: var(--sp3-margin-0bz);
+        width: var(--sp3-width-auto);
+        background: none;
         overflow: var(--sp3-overflow-hidden);
     }    
     
@@ -1166,9 +1168,9 @@ pick3Scrape_sharedStyles.header = /*css*/ `
     box-sizing: border-box;
   }
     
-    .pick3-scrape-header {
+  .pick3-scrape-main-container > .pick3-scrape-header {
         margin: var(--sp3-margin-00a);  
-        width: var(--sp3-width-20);
+        width: var(--sp3-width-35);
         height: var(--sp3-height-auto);
         background-image: var(--sp3-gradient-dark-0),
                           var(--sp3-gradient-dark-1);  
@@ -1176,6 +1178,7 @@ pick3Scrape_sharedStyles.header = /*css*/ `
         border-radius: var(--sp3-radius-md);
         filter: var(--sp3-filter-shadow-xmda);
         font-family: var(--sp3-ff-src-code-pro);
+        opacity: var(--sp3-opacity-1);
     }
 
     .pick3-scrape-header > .scrape-pick3-logo {

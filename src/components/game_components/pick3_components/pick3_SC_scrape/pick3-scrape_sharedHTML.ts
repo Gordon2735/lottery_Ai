@@ -3,9 +3,9 @@
 import { Ipick3Scrape_sharedHTML } from './Ipick3-scrape.js';
 
 const pick3Scrape_sharedHTML: Ipick3Scrape_sharedHTML = {
-	container: ``,
-	header: ``,
-	numbers: ``
+    container: ``,
+    header: ``,
+    numbers: ``
 };
 
 pick3Scrape_sharedHTML.container = /* html */ `
@@ -30,11 +30,10 @@ pick3Scrape_sharedHTML.header = /* html */ `
 			<p id="paraPick3ScrapeFireball" class="para-pick3-scrape-fireball"></p>
 
 			<button id="pick3ScrapeDataButton" class="pick3-scrape-button">
-				Get Now!
+				Update
 			</button>
 		</header>
-	</main>
-	
+	</main>	
 
 `;
 
