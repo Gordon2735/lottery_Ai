@@ -127,6 +127,26 @@ async function searchScrapeDataNestedObjects(
 
                 const dataPropCollection: scrapeData[] = [];
 
+                const addingKeyframes: string = /*css*/ `
+                    @keyframes blink {
+                        0% {
+                            color: hsla(90, 100%, 50%, 0.993);
+                        }
+                        25% {
+                            color: hsla(90, 100%, 50%, 0.1193);
+                        }
+                        50% {
+                            color: hsla(348, 83%, 47%, 0.993);
+                        }
+                        75% {
+                            color: hsla(90, 100%, 50%, 0.1193); 
+                        }
+                        100% {
+                            color: hsla(90, 100%, 50%, 0.993);
+                        }
+                    }
+                `;
+
                 dataProp.map((value) => {
                     dataPropCollection.push(value);
 
@@ -157,36 +177,17 @@ async function searchScrapeDataNestedObjects(
                             console.log(`Drawing: ${data.drawEvent}`);
                             break;
                         case value.winNumbers:
-                            currentLi.innerHTML = `Win: ${JSON.stringify(
+                            (currentLi.innerHTML = `Win: ${JSON.stringify(
                                 value.winNumbers
-                            ).replace(/"/g, '')}`;
-                            const addingKeyframes: string = /*css*/ `
-                                @keyframes blink {
-                                    0% {
-                                        color: hsla(90, 100%, 50%, 0.993);
-                                    }
-                                    25% {
-                                        color: hsla(90, 100%, 50%, 0.1193);
-                                    }
-                                    50% {
-                                        color: hsla(348, 83%, 47%, 0.993);
-                                    }
-                                    75% {
-                                        color: hsla(90, 100%, 50%, 0.1193); 
-                                    }
-                                    100% {
-                                        color: hsla(90, 100%, 50%, 0.993);
-                                    }
-                                }
-                            `;
-                            insertStyle(
-                                'currentLi',
-                                {
-                                    animation: 'blink 1.5s linear infinite;'
-                                },
-                                currentLi,
-                                addingKeyframes
-                            );
+                            ).replace(/"/g, '')}`),
+                                insertStyle(
+                                    'currentLi',
+                                    {
+                                        animation: 'blink 1.5s linear infinite;'
+                                    },
+                                    currentLi,
+                                    addingKeyframes
+                                );
                             console.log(
                                 `Win: ${JSON.stringify(value.winNumbers)}`
                             );

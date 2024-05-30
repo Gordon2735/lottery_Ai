@@ -54,7 +54,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-ff-chango: 'Chango', sans-serif;
         --pk3-ff-saira-stencil-one: 'Saira Stencil One', sans-serif;
         --pk3-ff-days-one: 'Days One', sans-serif;
-        --pk3-ff-Black-Han-Sans: "Black Han Sans", sans-serif;
+        --pk3-ff-Black-Han-Sans: 'Black Han Sans', sans-serif;
 
         /* Font Size Variables */
         --pk3-fs-xxs: 0.5rem;
@@ -327,8 +327,8 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-margin-0-e: -2.3em 0em 0em 5.7em;
         --pk3-margin-0: 0em 0em 0em 0em;
         --pk3-margin-1: 1.2em 0em 1.2em 0.5em;
-        --pk3-margin-00a: 6em auto 0em auto;
-        --pk3-margin-00z: 1em auto 0em auto;
+        --pk3-margin-00a: 3em auto 0em auto;
+        --pk3-margin-00z: 0.4em auto 0em auto;
         --pk3-margin-descripSection: 0.7em auto 0em auto;
         --pk3-margin-pick3-palmetto: -3.2em -6em 0em 12em;
         --pk3-margin-00az: 4em auto 0em auto;
@@ -467,6 +467,9 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-height-100: 100%;
         --pk3-height-75: 75%;
         --pk3-height-50: 50%;
+        --pk3-height-48: 48%;
+        --pk3-height-42: 42%;
+        --pk3-height-30: 30%;
         --pk3-height-25: 25%;
         --pk3-height-15: 15%;
         --pk3-height-10: 10%;
@@ -582,6 +585,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-right-xxxl-2: 7rem;
 
         /* bottom Variables */
+        --pk3-bottom-2pc: 2%;
         --pk3-bottom-5pc: 5%;
         --pk3-bottom-10pc: 10%;
         --pk3-bottom-15pc: 15%;
@@ -1160,20 +1164,13 @@ pick3Game_sharedStyles.container = /*css*/ `
 
     .pick3-scrape {
         position: var(--pk3-position-absolute);
-        top: var(--pk3-bottom-20pc);
-        left: var(--pk3-left-2);
+        bottom: var(--pk3-bottom-2pc);
+        left: var(--pk3-left-25);
     }
-
 
 `;
 
 pick3Game_sharedStyles.game = /*css*/ `
-
-
-
-`;
-
-pick3Game_sharedStyles.results = /*css*/ `
 
     .descrip-section {
         margin: var(--pk3-margin-00z);
@@ -1184,7 +1181,7 @@ pick3Game_sharedStyles.results = /*css*/ `
         height: var(--pk3-height-10);
         justify-content: var(--pk3-justify-content-center);
         background-image: var(--pk3-gradient-dark-descripSection),
-                          var(--pk3-gradient-dark-3);  
+                        var(--pk3-gradient-dark-3);  
         border: var(--pk3-border-descripSection);
         border-radius: var(--pk3-radius-md);
         filter: var(--pk3-filter-shadow-xmda);
@@ -1211,10 +1208,10 @@ pick3Game_sharedStyles.results = /*css*/ `
         top: var(--pk3-top-15);
         left: var(--pk3-left-25);
         width: var(--pk3-width-1080);
-        height: var(--pk3-height-50);
+        height: var(--pk3-height-48);
         justify-content: var(--pk3-justify-content-center);
         background-image: var(--pk3-gradient-dark-0a),
-                          var(--pk3-gradient-dark-1a);  
+                        var(--pk3-gradient-dark-1a);  
         border: var(--pk3-border-xthicka);
         border-radius: var(--pk3-radius-md);
         filter: var(--pk3-filter-shadow-xmda);
@@ -1309,6 +1306,12 @@ pick3Game_sharedStyles.results = /*css*/ `
             opacity: 1;
         }
     }
+
+
+`;
+
+pick3Game_sharedStyles.results = /*css*/ `
+
 
 
 `;

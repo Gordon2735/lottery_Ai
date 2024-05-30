@@ -5,34 +5,22 @@ import { Pick3ScrapeTemplate } from './pick3-scrape_template.js';
 import { pick3Scrape_sharedStyles } from './pick3-scrape_sharedStyles.js';
 import { pick3Scrape_sharedHTML } from './pick3-scrape_sharedHTML.js';
 import {
-    RegisterComponent
-    // setAttributes,
-    // appendChildren
+    RegisterComponent,
+    setAttributes,
+    insertStyle
+    // appendChildren,
 } from '../../../componentTools/general_helpers.js';
-
-// import { dataPick3 } from '../../../../models/appData/pick3ScrapingsData/pick3_scrapeData.js';
-// import ScrapePicks from '../../../../models/appData/pick3ScrapingsData/01_scrapePick3.js';
-
 class Pick3Scrape extends Pick3ScrapeTemplate {
     activateShadowDOM: boolean = false;
     body: HTMLBodyElement;
+    addingKeyframes: string;
     pick3Scrape_dataset: string;
     _attribute: string | undefined;
     datasetAttributes: (
         _attribute: string | undefined
     ) => Promise<string | undefined>;
     currentAttribute: string;
-    yieldScrape:
-        | Promise<IteratorResult<6 | 5 | 1 | 4 | 3 | 2, undefined>>
-        | undefined;
-
-    // pullPick3Data: Promise<
-    // 	{
-    // 		dateTime: string | null | undefined;
-    // 		winningNumbers: string[];
-    // 		fireballNumber: string | null | undefined;
-    // 	}[]
-    // >;
+    data: scrapeData;
 
     public get template(): string {
         return /*html*/ `
@@ -65,6 +53,27 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
         this.activateShadowDOM = false;
 
         const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+
+        const addingKeyframes: string = /*css*/ `
+            @keyframes blink {
+                0% {
+                    color: hsla(90, 100%, 50%, 0.993);
+                }
+                25% {
+                    color: hsla(90, 100%, 50%, 0.1193);
+                }
+                50% {
+                    color: hsla(348, 83%, 47%, 0.993);
+                }
+                75% {
+                    color: hsla(90, 100%, 50%, 0.1193); 
+                }
+                100% {
+                    color: hsla(90, 100%, 50%, 0.993);
+                }
+            }
+        `;
+
         const pick3Scrape_dataset: string =
             this.getAttribute('data-scrape') || 'non-active';
 
@@ -92,7 +101,7 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
                         );
                         break;
                     default:
-                        this.setAttribute('data-scrape', 'non-active');
+                        this.setAttribute('data-scrape', 'active');
                         console.info(
                             `
                             Switch Statement defaulted and data-scrape was changed to 'active'
@@ -101,7 +110,7 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
                         break;
                 }
                 Promise.resolve();
-                return _attribute;
+                return;
             } catch (error: unknown) {
                 console.error(
                     `
@@ -112,87 +121,198 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
             }
         };
 
+        const data: scrapeData = {};
+
         this.root = this.shadowRoot;
         this.body = body;
+        this.addingKeyframes = addingKeyframes;
         this.pick3Scrape_dataset = pick3Scrape_dataset;
         this.currentAttribute = currentAttribute;
         this.datasetAttributes = datasetAttributes;
+        this.data = data;
     }
 
     connectedCallback(): void {
         super.connectedCallback();
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const drawPeriod: HTMLElement | null = document.getElementById(
-                'paraPick3ScrapeDate'
-            );
-            const drawNumbers: HTMLElement | null = document.getElementById(
-                'paraPick3ScrapeNumbers'
-            );
-            const drawFireball: HTMLElement | null = document.getElementById(
-                'paraPick3ScrapeFireball'
-            );
-            const getButton: HTMLElement | null = document.getElementById(
-                'pick3ScrapeDataButton'
-            );
+        const paraDrawNumbers: HTMLElement | null = document.getElementById(
+            'paraPick3ScrapeNumbers'
+        );
+        const getButton: HTMLElement | null = document.getElementById(
+            'pick3ScrapeDataButton'
+        );
 
-            getButton?.addEventListener('click', async () => {
-                try {
-                    const response: Response = await fetch('/pick3', {
-                        method: 'POST'
-                    });
+        const searchScrapeDataNestedObjects = async (
+            data: scrapeData,
+            key: string,
+            value: string[],
+            element: HTMLElement | null
+        ): Promise<void> => {
+            try {
+                for (const prop in data) {
+                    if (typeof data[prop] === 'object') {
+                        const dataProp: scrapeData = data[
+                            prop
+                        ] as unknown as scrapeData;
 
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                        await searchScrapeDataNestedObjects(
+                            dataProp,
+                            key,
+                            value,
+                            element
+                        );
+                    } else if (
+                        typeof data[prop] === 'string' &&
+                        data[prop].trim() === ''
+                    ) {
+                        continue; // Skip empty strings
+                    } else if (
+                        (prop === key && data[prop] === value[0]) ||
+                        value[1] ||
+                        value[2] ||
+                        value[3]
+                    ) {
+                        const dataProp = [
+                            JSON.parse(`{"${prop}": "${data[prop]}"}`)
+                        ];
+
+                        const dataPropCollection: scrapeData[] = [];
+
+                        dataProp.map((value) => {
+                            dataPropCollection.push(value);
+
+                            const currentUL: HTMLElement | null =
+                                document.createElement('ul');
+                            const currentLi: HTMLElement | null =
+                                document.createElement('li');
+
+                            setAttributes(currentUL, {
+                                id: 'currentUL',
+                                class: 'current-UL'
+                            });
+                            setAttributes(currentLi, {
+                                id: 'currentLi',
+                                class: 'current-li',
+                                style: `margin: 0.1em auto 0em auto; display: inline-flex; font-family: 'Black Han Sans', sans-serif; font-size: 1.2em; 
+                                            color: hsla(174, 72%, 56%, 0.996); text-shadow: 2px 1px 6px hsla(0, 0%, 0%, 0.993);
+                                            letter-spacing: 0.17em; justify: center; text-align: center;`
+                            });
+                            paraDrawNumbers?.appendChild(currentUL);
+                            currentUL?.appendChild(currentLi);
+
+                            switch (
+                                value['drawEvent'] ||
+                                value['winNumbers'] ||
+                                value['fireNum']
+                            ) {
+                                case value.drawEvent:
+                                    currentLi.innerHTML = JSON.stringify(
+                                        value.drawEvent
+                                    ).replace(/"/g, '');
+                                    console.log(`Drawing: ${data.drawEvent}`);
+                                    break;
+                                case value.winNumbers:
+                                    (currentLi.innerHTML = `${JSON.stringify(
+                                        value.winNumbers
+                                    ).replace(/"/g, '')}`),
+                                        insertStyle(
+                                            'currentLi',
+                                            {
+                                                animation:
+                                                    'blink 1.5s linear infinite;'
+                                            },
+                                            currentLi,
+                                            this.addingKeyframes
+                                        );
+                                    console.log(
+                                        `Win: ${JSON.stringify(
+                                            value.winNumbers
+                                        )}`
+                                    );
+                                    break;
+                                case value.fireNum:
+                                    currentLi.innerHTML = `Fireball: ${JSON.stringify(
+                                        value.fireNum
+                                    ).replace(/"/g, '')}`;
+
+                                    console.log(
+                                        `Fireball: ${JSON.stringify(
+                                            value.fireNum
+                                        )}`
+                                    );
+                                    break;
+
+                                default:
+                                    console.warn(
+                                        `
+                                       WARNING: The Function searchScrapeDataNestedObjects()
+                                       Scraped Data Map-Iterator Function's 
+                                       Switch Statement deferred to Default... 
+                                    `
+                                    );
+                            }
+                        });
                     }
-
-                    const data: Promise<{
-                        time3: string | undefined | null;
-                        numbers: string | undefined | null;
-                        fireball: string | undefined | null;
-                    }> = await response.json();
-
-                    console.log(await data);
-
-                    const asyncIterator = {
-                        [Symbol.asyncIterator]() {
-                            let index = 0;
-                            const values = Object.values(data);
-                            return {
-                                async next() {
-                                    if (index < values.length) {
-                                        return {
-                                            value: values[index++],
-                                            done: false
-                                        };
-                                    } else {
-                                        return { done: true };
-                                    }
-                                }
-                            };
-                        }
-                    };
-                    for await (const value of asyncIterator) {
-                        drawPeriod?.append(value.time3),
-                            drawNumbers?.append(value.numbers),
-                            drawFireball?.append(value.fireball),
-                            console.info(
-                                `
-									time3: ${value.time3},
-									numbers: ${value.numbers},
-								   fireball: ${value.fireball}
-								`
-                            );
-                    }
-                    return;
-                } catch (error: unknown) {
-                    console.error(
-                        `
-							Pick 3 Scrape Component's getButton EventListener Error: ${error}
-						`
-                    );
                 }
-            });
+            } catch (error: unknown) {
+                console.error(
+                    `Async Function searchScrapeDataNestedObjects() Error: ${error}`
+                );
+                return;
+            } finally {
+                console.log(
+                    'Async Function searchScrapeDataNestedObjects() has been executed'
+                );
+            }
+            return;
+        };
+
+        const searchFetchResponse = async (
+            key: string,
+            value: string[],
+            element: HTMLElement | null
+        ): Promise<void> => {
+            try {
+                const response: Response = await fetch('/pick3', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(this.data)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                this.data = await response.json();
+
+                // Recursive Function to ITERATE Fetched Data Object...
+                searchScrapeDataNestedObjects(this.data, key, value, element);
+            } catch (error: unknown) {
+                console.error(`searchFetchResponse Error: ${error}`);
+            } finally {
+                console.log('searchFetchResponse function has been executed');
+            }
+        };
+
+        getButton?.addEventListener('click', async () => {
+            try {
+                setTimeout(async () => {
+                    await searchFetchResponse(
+                        'scrapeData',
+                        ['drawEvent', 'winNumbers', 'fireNum'],
+                        paraDrawNumbers
+                    );
+                }, 1500);
+
+                return;
+            } catch (error: unknown) {
+                console.error(`Button Event Listener Error: ${error}`);
+                console.warn(`searchFetchResponse Error: ??`);
+            } finally {
+                console.log('searchFetchResponse function has been executed');
+            }
         });
 
         const dataStart = async (valueStart: string): Promise<string> => {
@@ -207,20 +327,6 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
         const valueSwitch = dataStart(this.currentAttribute);
 
         this.datasetAttributes(valueSwitch as unknown as string);
-
-        const winningNumbers: HTMLElement | null = document.getElementById(
-            'paraPick3ScrapeNumbers'
-        );
-        const winningFireball: HTMLElement | null = document.getElementById(
-            'para-pick3-scrape-fireball'
-        );
-
-        const dataArray: object[] = [];
-
-        dataArray.forEach((value) => {
-            winningNumbers?.append(value.toString()[0][1]),
-                winningFireball?.append(value.toString()[2]);
-        });
     }
     public attributeChangedCallback(
         name: string,
@@ -228,7 +334,7 @@ class Pick3Scrape extends Pick3ScrapeTemplate {
         newValue: string
     ): void {
         const datasetName: string | undefined = this.dataset.keyname;
-        const getAttribute: string | null = this.getAttribute('pick3-scrape');
+        const getAttribute: string | null = this.getAttribute('data-scrape');
 
         if (name === datasetName) {
             switch (getAttribute) {

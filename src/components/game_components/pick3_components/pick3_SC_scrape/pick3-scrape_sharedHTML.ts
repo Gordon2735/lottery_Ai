@@ -24,10 +24,7 @@ pick3Scrape_sharedHTML.header = /* html */ `
 			
 			<h2 id="scrapeH2" class="scrape-h2">Current Winning Numbers</h2>
 			
-			<p id="paraPick3ScrapeDate" class="para-pick3-scrape-date"></p>
 			<p id="paraPick3ScrapeNumbers" class="para-pick3-scrape-numbers"></p>
-			<h4 id="scrapeH4" class="scrape-h4">Fireball</h4>
-			<p id="paraPick3ScrapeFireball" class="para-pick3-scrape-fireball"></p>
 
 			<button id="pick3ScrapeDataButton" class="pick3-scrape-button">
 				Update
@@ -36,6 +33,10 @@ pick3Scrape_sharedHTML.header = /* html */ `
 	</main>	
 
 `;
+// <p id="paraPick3ScrapeDate" class="para-pick3-scrape-date"></p>
+// <p id="paraPick3ScrapeFireball" class="para-pick3-scrape-fireball"></p>
+
+// <h4 id="scrapeH4" class="scrape-h4">Fireball</h4>
 
 pick3Scrape_sharedHTML.numbers = /* html */ `
 

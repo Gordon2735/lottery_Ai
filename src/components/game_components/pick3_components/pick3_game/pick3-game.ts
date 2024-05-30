@@ -18,7 +18,6 @@ class Pick3Game extends Pick3GameTemplate {
     body: HTMLBodyElement;
     scriptHeaderShell: HTMLScriptElement;
     scriptHistoricalData: HTMLScriptElement;
-    scriptPick3Scrape: HTMLScriptElement;
     getPick3Container: HTMLElement;
     lotteryAiPalmetto: HTMLImageElement;
     descripSection: HTMLElement;
@@ -33,19 +32,14 @@ class Pick3Game extends Pick3GameTemplate {
     public get template(): string {
         return /*html*/ `
         
-            ${pick3Game_sharedHTML.container}
-
+        
             <style>
                 ${pick3Game_sharedStyles.root}
-            </style>
-
-            <style>
                 ${pick3Game_sharedStyles.container}
-            </style>    
+                ${pick3Game_sharedStyles.game}
+            </style>   
 
-            <style>
-                ${pick3Game_sharedStyles.results}
-            </style>
+            ${pick3Game_sharedHTML.container}
 
         `;
     }
@@ -64,8 +58,6 @@ class Pick3Game extends Pick3GameTemplate {
         const scriptHeaderShell: HTMLScriptElement =
             document.createElement('script');
         const scriptHistoricalData: HTMLScriptElement =
-            document.createElement('script');
-        const scriptPick3Scrape: HTMLScriptElement =
             document.createElement('script');
         const getPick3Container: HTMLElement | null =
             document.createElement('section');
@@ -90,7 +82,6 @@ class Pick3Game extends Pick3GameTemplate {
         this.body = body;
         this.scriptHeaderShell = scriptHeaderShell;
         this.scriptHistoricalData = scriptHistoricalData;
-        this.scriptPick3Scrape = scriptPick3Scrape;
         this.getPick3Container = getPick3Container;
         this.lotteryAiPalmetto = lotteryAiPalmetto;
         this.descripSection = descripSection;
@@ -111,12 +102,6 @@ class Pick3Game extends Pick3GameTemplate {
         setAttributes(this.scriptHistoricalData, {
             type: 'module',
             src: '/src/components/game_components/pick3_components/pick3_logic/historical_lottery.js',
-            content: 'text/javascript',
-            crossOrigin: 'anonymous'
-        });
-        setAttributes(this.scriptPick3Scrape, {
-            type: 'module',
-            src: '/src/components/game_components/pick3_components/pick3_SC_scrape/pick3-scrape.js',
             content: 'text/javascript',
             crossOrigin: 'anonymous'
         });
@@ -170,8 +155,7 @@ class Pick3Game extends Pick3GameTemplate {
 
         appendChildren(this.head, [
             this.scriptHeaderShell,
-            this.scriptHistoricalData,
-            this.scriptPick3Scrape
+            this.scriptHistoricalData
         ]);
 
         const pick3Window: () => Promise<void> = async () => {

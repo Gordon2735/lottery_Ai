@@ -304,13 +304,14 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-margin--sp3-3: -3rem;
         --sp3-margin--sp3-2: -2rem;
         --sp3-margin--sp3-1: -1rem;
-        --sp3-margin-0: 1.2em 0em 1.2em 0.5em;
+        --sp3-margin-0: 1.2em 0em 0em 0.5em;
         --sp3-margin-0a: 0;
         --sp3-margin-0bz: 0em 5em 0em -4em;
         --sp3-margin-00: 0em 0em 0em 0em;
         --sp3-margin-00a: 5em auto 0em auto;
         --sp3-margin-00b: 0 auto 5em auto;
         --sp3-margin-00c: 1em auto 0.2em auto;
+        --sp3-margin-00z: 0em auto 0em auto;
         --sp3-margin-auto: auto;
         --sp3-margin-xxsm: 0.19rem;
         --sp3-margin-xxs: 0.25rem;
@@ -517,6 +518,7 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-top-15: 15%;
         --sp3-top-10: 10%;
         --sp3-top-5: 5%;
+        --sp3-top-3: 3%;
         --sp3-top-0: 0;
         --sp3-top-xxs: 0.125rem;
         --sp3-top-xs: 0.25rem;
@@ -723,6 +725,9 @@ pick3Scrape_sharedStyles.root = /*css*/ `
         --sp3-justify-space-evenly: space-evenly;
         --sp3-justify-right: right;
         --sp3-justify-left: left;
+
+        /* Justify-Self */
+        --sp3-justify-self-center: center;
 
 
 
@@ -976,11 +981,13 @@ pick3Scrape_sharedStyles.root = /*css*/ `
             ". . . button button";
 
         --sp3-grid-template-areas-9:
-            "image image image image . . . . ."
-            "image image image image header2 header2 header2 header2 ."
-            ". when-event when-event when-event . . . . ."
-            "scrape-numbers scrape-numbers scrape-numbers scrape-numbers scrape-numbers header4 header4 fireball_number"
-            ". . . . . button button button button";
+            "image image . . ."
+            "image image . . ."
+            "header2 header2 header2 header2 header2"
+            "scrape-number scrape-numbers scrape-numbers scrape-numbers scrape-numbers"
+            "scrape-number scrape-numbers scrape-numbers scrape-numbers scrape-numbers"
+            "button button . . ."
+        ;
             
 
 
@@ -1022,6 +1029,7 @@ pick3Scrape_sharedStyles.root = /*css*/ `
 
         /* Grid Template Columns Variables */
         --sp3-grid-template-columns-1: repeat(1, 1fr);
+        --sp3-grid-template-columns-6: repeat(6, 1fr);
         --sp3-grid-template-columns-2: repeat(9, 1fr);
         --sp3-grid-template-columns-3: (1fr, 1fr, 1fr);
         --sp3-grid-template-columns-4: (1fr, 1fr, 1fr, 1fr);
@@ -1126,10 +1134,9 @@ pick3Scrape_sharedStyles.root = /*css*/ `
 pick3Scrape_sharedStyles.container = /*css*/ `
 
     .pick3-scrape-main-container {
-        margin: var(--sp3-margin-0bz);
+        margin: var(--sp3-margin-0a);     
         width: var(--sp3-width-auto);
         background: none;
-        overflow: var(--sp3-overflow-hidden);
     }    
     
 `;
@@ -1144,34 +1151,20 @@ pick3Scrape_sharedStyles.header = /*css*/ `
         grid-area: header2;
     }
 
-    .para-pick3-scrape-date {
-        grid-area: when-event;
-    }
-
     .para-pick3-scrape-numbers {
         grid-area: scrape-numbers;
     }
 
-    .scrape-h4 {
-        grid-area: header4;
-    }
-
-    .para-pick3-scrape-fireball {
-        grid-area: fireball_number;
-    }
-
     .pick3-scrape-button {
         grid-area: button;
-    }
+    } 
 
-    * {
-    box-sizing: border-box;
-  }
-    
   .pick3-scrape-main-container > .pick3-scrape-header {
-        margin: var(--sp3-margin-00a);  
-        width: var(--sp3-width-35);
-        height: var(--sp3-height-auto);
+        margin: var(--sp3-margin-0a);  
+        padding: var(--sp3-padding-0);
+        display: var(--sp3-display-grid);
+        grid-template-areas: var(--sp3-grid-template-areas-9);
+        width: var(--sp3-width-1080);
         background-image: var(--sp3-gradient-dark-0),
                           var(--sp3-gradient-dark-1);  
         border: var(--sp3-border-xthicka);
@@ -1179,11 +1172,11 @@ pick3Scrape_sharedStyles.header = /*css*/ `
         filter: var(--sp3-filter-shadow-xmda);
         font-family: var(--sp3-ff-src-code-pro);
         opacity: var(--sp3-opacity-1);
-    }
+    }    
 
     .pick3-scrape-header > .scrape-pick3-logo {
-        margin: var(--sp3-margin-0);        
-        width: var(--sp3-width-120);
+        margin: var(--sp3-margin-0a);        
+        width: var(--sp3-width-140);
         rotate: var(--sp3-rotate-345);
     }
 
@@ -1192,49 +1185,24 @@ pick3Scrape_sharedStyles.header = /*css*/ `
         font-weight: var(--sp3-fw-bold);
         color: var(--sp3-clr-fc-11);
         text-shadow: var(--sp3-text-shadow-xmdz);
-        text-align: var(--sp3-text-align-right);
-    }
-
-    .pick3-scrape-header > .para-pick3-scrape-date {
-        font-size: var(--sp3-fs-xs);
-        font-weight: var(--sp3-fw-semibold);
-        color: var(--sp3-clr-fc-2);
-        font-style: var(--sp3-f-style-italic);
-        text-shadow: var(--sp3-text-shadow-xmd);
+        text-align: var(--sp3-text-align-center);
     }
 
     .pick3-scrape-header > .para-pick3-scrape-numbers {
-        justify: var(--sp3-justify-right);
-        font-size: var(--sp3-fs-xs);
-        font-weight: var(--sp3-fw-semibold);
-        color: var(--sp3-clr-fc-11);
-        font-style: var(--sp3-f-style-italic);
+        margin: var(--sp3-margin-00z);
+        display: var(--sp3-display-inline-flex);
+        font-size: var(--sp3-fs-sm);
+        font-weight: var(--sp3-fw-normal);
+        color: var(--sp3-bg-color-2);
+        font-style: var(--sp3-f-style-oblique);
         text-shadow: var(--sp3-text-shadow-xmdz);
     }
- 
-    .pick3-scrape-header > .scrape-h4 {
-        justify: var(--sp3-justify-end);
-        font-size: var(--sp3-fs-sm);
-        font-weight: var(--sp3-fw-semibold);
-        color: var(--sp3-clr-fc-6);
-        font-style: var(--sp3-f-style-italic);
-        text-shadow: var(--sp3-text-shadow-xmd);
-    }
-
-    .pick3-scrape-header > .para-pick3-scrape-fireball {
-        justify: var(--sp3-justify-start);
-        font-family: var(--sp3-ff-titillium-web);
-        font-size: var(--sp3-fs-xs);
-        font-weight: var(--sp3-fw-bold);
-        color: var(--sp3-clr-fc-0f);
-        text-shadow: var(--sp3-text-shadow-xmd);
-    }
-
     .pick3-scrape-header > .pick3-scrape-button {
-        margin: var(--sp3-margin-00b);
-        width: var(--sp3-width-200);
-        height: var(--sp3-height-50);
-        font-size: var(--sp3-fs-md);
+        margin: var(--sp3-margin-00z);
+        width: var(--sp3-width-120);
+        height: var(--sp3-height-60);
+        text-align: var(--sp3-text-align-center);
+        font-size: var(--sp3-fs-sm);
         font-weight: var(--sp3-fw-bold);
         color: var(--sp3-clr-fc-11);
         text-shadow: var(--sp3-text-shadow-xmd);
@@ -1243,6 +1211,7 @@ pick3Scrape_sharedStyles.header = /*css*/ `
         background-color: var(--sp3-bg-color-button);
         box-shadow: var(--sp3-shadow-inset-xxl-1a);
         filter: var(--sp3-filter-shadow-xmda);
+        index: var(--sp3-z-index-10);
     }
 
     .pick3-scrape-button:hover {
@@ -1267,14 +1236,6 @@ pick3Scrape_sharedStyles.header = /*css*/ `
         color: var(--sp3-clr-fc-2);
     }
 
-    .pick3-scrape-header {
-        display: var(--sp3-display-grid);
-        padding: var(--sp3-padding-xxs);
-        grid-template-columns: var(--sp3-grid-template-columns-4);
-        grid-auto-rows: var(--sp3-grid-auto-rows-5);
-        grid-template-areas: var(--sp3-grid-template-areas-4);
-      
-    }
 `;
 
 pick3Scrape_sharedStyles.numbers = /*css*/ `
