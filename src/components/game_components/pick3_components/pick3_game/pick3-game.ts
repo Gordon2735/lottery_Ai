@@ -28,6 +28,8 @@ class Pick3Game extends Pick3GameTemplate {
     grab_StandardPick3H2: HTMLHeadingElement;
     private _StandardPick3Para: HTMLParagraphElement;
     private _StandardPick3Span: HTMLSpanElement;
+    button_pick3_predictions: HTMLButtonElement;
+    pick3_predictionHREF: string;
 
     public get template(): string {
         return /*html*/ `
@@ -77,6 +79,9 @@ class Pick3Game extends Pick3GameTemplate {
             document.createElement('p');
         const _StandardPick3Span: HTMLSpanElement | null =
             document.createElement('span');
+        const button_pick3_predictions: HTMLButtonElement =
+            document.createElement('button');
+        const pick3_predictionHREF: string = '/pick3_predictions';
 
         this.head = head;
         this.body = body;
@@ -92,6 +97,8 @@ class Pick3Game extends Pick3GameTemplate {
         this.grab_StandardPick3H2 = grab_StandardPick3H2;
         this._StandardPick3Para = _StandardPick3Para;
         this._StandardPick3Span = _StandardPick3Span;
+        this.button_pick3_predictions = button_pick3_predictions;
+        this.pick3_predictionHREF = pick3_predictionHREF;
 
         setAttributes(this.scriptHeaderShell, {
             type: 'module',
@@ -148,6 +155,10 @@ class Pick3Game extends Pick3GameTemplate {
             id: '_StandardPick3Span',
             class: '_standard-pick3-span blink'
         });
+        setAttributes(this.button_pick3_predictions, {
+            id: 'buttonPick3Predictions',
+            class: 'button-pick3-predictions'
+        });
     }
 
     connectedCallback(): void {
@@ -191,6 +202,7 @@ class Pick3Game extends Pick3GameTemplate {
                     this.grab_StandardPick3H2,
                     this._StandardPick3Para
                 ]);
+
                 return await Promise.resolve();
             } catch (error: unknown) {
                 console.error(
@@ -209,13 +221,63 @@ class Pick3Game extends Pick3GameTemplate {
                 );
             }
         };
-
         const lcg = new LCG(12345);
         console.log('lcg.next():  ', lcg.next());
-
         console.log('Pick 3 - 8:  ', pick3RandomInts(3, 9));
-
         pick3Window();
+
+        this.button_pick3_predictions.addEventListener(
+            'click',
+            async (event: MouseEvent): Promise<void> => {
+                try {
+                    event.preventDefault();
+                    console.info(event.target);
+
+                    await getPredictionPage(this.pick3_predictionHREF);
+                    return event.stopPropagation();
+                } catch (error: unknown) {
+                    console.error(
+                        `
+                    this.button_pick3_predictions.addEventListener() Method 
+                        was caught in the try/catch block...
+                    Listener ERROR: ${error}
+                `
+                    );
+                } finally {
+                    console.info(
+                        `
+                        this.button_pick3_predictions.addEventListener() Method was invoked...                       
+                        The Listener's Promise has been resolved and the event's stopPropagation
+                            was also invoked destroying all Propagation in the 
+                            'Capturing and Bubbling Phases'..... 
+                    `
+                    );
+                }
+            }
+        );
+
+        async function getPredictionPage(url: string) {
+            try {
+                // Using the Assign() method stores the 'Back-Button' URL in the History Object
+                return document.location.assign(url);
+            } catch (error: unknown) {
+                console.error(
+                    `
+                    The getPredictionsPage() Function was caught in the try/catch block...
+                    ERROR: ${error}
+                `
+                );
+            } finally {
+                console.info(
+                    `
+                    The getPredictionsPage() Function routed the Application to:
+                    Location Assignment: ${window.location},
+                    URL: ${url},
+                    The getPredictionPage() Function's Promise has been resolved...
+                `
+                );
+            }
+        }
     }
 
     public attributeChangedCallback(

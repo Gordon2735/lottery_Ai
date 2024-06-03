@@ -55,7 +55,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-ff-saira-stencil-one: 'Saira Stencil One', sans-serif;
         --pk3-ff-days-one: 'Days One', sans-serif;
         --pk3-ff-Black-Han-Sans: 'Black Han Sans', sans-serif;
-
+        --pk3-overflow-hidden
         /* Font Size Variables */
         --pk3-fs-xxs: 0.5rem;
         --pk3-fs-xs: 0.65rem;
@@ -325,7 +325,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-margin-0-c: -2.5em 0em 0em -5em;
         --pk3-margin-0-d: -1.9em 0em 0em 9em;
         --pk3-margin-0-e: -2.3em 0em 0em 5.7em;
-        --pk3-margin-0: 0em 0em 0em 0em;
+        --pk3-margin-0: 0;
         --pk3-margin-1: 1.2em 0em 1.2em 0.5em;
         --pk3-margin-00a: 3em auto 0em auto;
         --pk3-margin-00z: 0.4em auto 0em auto;
@@ -1312,7 +1312,44 @@ pick3Game_sharedStyles.game = /*css*/ `
 
 pick3Game_sharedStyles.results = /*css*/ `
 
+    .get-pick3-container > .button-pick3-predictions {
+        margin: var(--sp3-margin-00z);
+        width: var(--sp3-width-120);
+        height: var(--sp3-height-60);
+        text-align: var(--sp3-text-align-center);
+        font-size: var(--sp3-fs-sm);
+        font-weight: var(--sp3-fw-bold);
+        color: var(--sp3-clr-fc-11);
+        text-shadow: var(--sp3-text-shadow-xmd);
+        border: var(--sp3-border-button);
+        border-radius: var(--sp3-radius-sm);
+        background-color: var(--sp3-bg-color-button);
+        box-shadow: var(--sp3-shadow-inset-xxl-1a);
+        filter: var(--sp3-filter-shadow-xmda);
+        index: var(--sp3-z-index-10);
+    }
 
+    .button-pick3-predictions:hover {
+        background-color: var(--sp3-bg-color-button-hover);
+        transition: var(--sp3-transition-07s);
+        color: var(--sp3-clr-fc-9);
+        cursor: var(--sp3-cursor-pointer);    
+    }
+
+    .button-pick3-predictions:focus {
+        outline-color: transparent;
+        outline-style: solid;
+        box-shadow: 0 0 0 4px #5a01a7;
+        transition: 0.7s;
+        color: var(--sp3-clr-fc-9);
+    }
+
+    .button-pick3-predictions:active {
+        transform: var(--sp3-scale-095);
+        transition: var(--sp3-transition-01s);
+        background-color: var(--sp3-bg-color-button-active); 
+        color: var(--sp3-clr-fc-2);
+    }
 
 `;
 

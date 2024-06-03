@@ -14,7 +14,9 @@ import indexHandler, {
     state_boxHandler,
     powerballHandler,
     pick3Handler,
-    pick3ScrapePostHandler
+    pick3ScrapePostHandler,
+    pick3PredictionsHandler,
+    pick3PredictionsPostHandler
 } from './route_handlers/route_handlers.js';
 
 const router: Router = express.Router();
@@ -43,6 +45,14 @@ const pick3ScrapePost_route: express.Router = router.post(
     '/pick3',
     pick3ScrapePostHandler
 );
+const pick3Predictions_route: express.Router = router.get(
+    '/pick3_predictions',
+    pick3PredictionsHandler
+);
+const pick3PredictionsPost_route: express.Router = router.post(
+    '/pick3_predictions',
+    pick3PredictionsPostHandler
+);
 
 const errorBase_route: express.Router = router.get('/errors', errorBaseHandler);
 
@@ -58,5 +68,7 @@ export {
     state_box_route,
     powerball_route,
     pick3_route,
-    pick3ScrapePost_route
+    pick3ScrapePost_route,
+    pick3Predictions_route,
+    pick3PredictionsPost_route
 };

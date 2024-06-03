@@ -1,9 +1,7 @@
 'use strict';
 
 import IPick3AnnualData from '../pick3_types/Ipick3.js';
-import zero_three_mid_dayWinNums from './pick3_data/pick3Data.js';
-// import * as ss from 'simple-statistics';
-// import { Chart } from 'chart.js';
+import { zero_three_midDayWinNums } from './pick3_data/pick3Data.js';
 
 // Data: historical lottery numbers
 const lotteryData: number[] = [];
@@ -15,7 +13,7 @@ queryPick3DataPeriod(
     pick3AnnualData,
     '2003',
     'midDay',
-    zero_three_mid_dayWinNums
+    zero_three_midDayWinNums
 );
 
 async function queryPick3DataPeriod(
@@ -106,38 +104,3 @@ async function addPick3PeriodData(
         );
     }
 }
-
-// Calculate basic statistics
-// const mean = ss.mean(lotteryData);
-// const median = ss.median(lotteryData);
-// const standardDeviation = ss.standardDeviation(lotteryData);
-
-// console.log(
-//     `Mean: ${mean}, Median: ${median}, Standard Deviation: ${standardDeviation}`
-// );
-
-// // Create a chart to visualize the data
-// const ctx = document.getElementById('historicalChart') as HTMLCanvasElement;
-// const myChart: Chart<'bar', number[], string> = new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//         labels: lotteryData.map((_, index) => `Draw ${index + 1}`),
-//         datasets: [
-//             {
-//                 label: '# of Draws',
-//                 data: lotteryData,
-//                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
-//                 borderColor: 'rgba(75, 192, 192, 1)',
-//                 borderWidth: 1
-//             }
-//         ]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
-// console.log(myChart);

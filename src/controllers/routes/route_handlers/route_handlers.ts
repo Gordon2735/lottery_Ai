@@ -18,10 +18,14 @@ import Session from 'express-session';
 import {} from '../../../../src/@types/global.d.js';
 import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
-import puppeteer from 'puppeteer';
-import scraper from '../../../models/appData/puppeteer/pageScraper.js';
-import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
-import startBrowser from '../../../models/appData/puppeteer/browser.js';
+// import puppeteer from 'puppeteer';
+// import scraper from '../../../models/appData/puppeteer/pageScraper.js';
+// import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
+// import startBrowser from '../../../models/appData/puppeteer/browser.js';
+// import predictionsChart, {
+//     ctx,
+//     lotteryData
+// } from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
 
 declare module 'express-session' {
     interface Session {
@@ -550,27 +554,100 @@ async function pick3ScrapePostHandler(
     try {
         console.log('pick3TestPostHandler ROUTER: starting scraperController');
 
-        await startScraperController();
+        // await startScraperController();
 
-        const browser = (await startBrowser()) as puppeteer.Browser;
-        const scrapeCollection = [];
-        const scraperText = scraper.scrapers(browser);
-        const scrapered = (await scraperText).scrapeData;
+        // const browser = (await startBrowser()) as puppeteer.Browser;
+        // const scrapeCollection = [];
+        // const scraperText = scraper.scrapers(browser);
+        // const scrapered = (await scraperText).scrapeData;
 
-        scrapeCollection.push({ scrapeData: scrapered });
+        // scrapeCollection.push({ scrapeData: scrapered });
 
-        console.log(
-            `JSON.stringify({ collectionModified }): ${JSON.stringify({
-                scrapeCollection
-            })}`
-        );
-        0;
-        return res.json({ scrapeCollection });
+        // console.log(
+        //     `JSON.stringify({ collectionModified }): ${JSON.stringify({
+        //         scrapeCollection
+        //     })}`
+        // );
+        // return res.json({ scrapeCollection });
     } catch (error: unknown) {
         console.error(`pick3TestPostHandler had an ERROR: ${error}`);
         res.status(500).send('Server Error');
 
         return Promise.reject() as Promise<void>;
+    }
+}
+
+async function pick3PredictionsHandler(
+    _req: Request,
+    res: Response
+): Promise<void> {
+    try {
+        const scriptPick3Predictions: string = `
+			<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-predictions.js"
+				content="text/javascript" crossorigin="anonymous">
+			</script>
+		`;
+
+        console.info(
+            `
+            The Routing pick3PredictionsHandler() Function has fired...
+        `
+        );
+
+        res.set('Content-Type', 'text/html');
+        res.set('target', '_blank');
+        res.render('pick3_predictions', {
+            title: 'Pick 3®️ Predictions',
+            layout: 'pick3_predictions_main',
+            partials: 'partials',
+            helpers: 'helpers',
+            script: [scriptPick3Predictions]
+        });
+
+        return Promise.resolve() as Promise<void>;
+    } catch (error: unknown) {
+        console.error(
+            `
+            pick3PredictionsHandler had an ERROR: ${error}
+        `
+        );
+        res.status(500).send('Server Error');
+
+        return Promise.reject() as Promise<void>;
+    }
+}
+
+async function pick3PredictionsPostHandler(req: Request, res: Response) {
+    try {
+        console.info(
+            `
+            The Routing pick3PredictionsPostHandler() Function has fired...
+        `
+        );
+
+        // const pick3_predictions_object = {
+        //     chart: [predictionsChart, ctx],
+        //     data: [lotteryData]
+        // };
+
+        // return res.json({ pick3_predictions_object });
+    } catch (error: unknown) {
+        console.error(
+            `
+            The Routing pick3PredictionsPostHandler() Function was caught by the try/catch block...
+            ERROR: ${error}
+        `
+        );
+        res.status(500).send('Server Error');
+
+        return Promise.reject() as Promise<void>;
+    } finally {
+        console.info(
+            `
+             The Routing pick3PredictionsPostHandler() Function fired and its
+             Promise has been resolved...   
+        `
+        );
     }
 }
 
@@ -586,5 +663,7 @@ export {
     state_boxHandler,
     powerballHandler,
     pick3Handler,
-    pick3ScrapePostHandler
+    pick3ScrapePostHandler,
+    pick3PredictionsHandler,
+    pick3PredictionsPostHandler
 };
