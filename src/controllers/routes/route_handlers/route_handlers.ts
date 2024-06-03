@@ -18,10 +18,10 @@ import Session from 'express-session';
 import {} from '../../../../src/@types/global.d.js';
 import IUser from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
-// import puppeteer from 'puppeteer';
-// import scraper from '../../../models/appData/puppeteer/pageScraper.js';
-// import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
-// import startBrowser from '../../../models/appData/puppeteer/browser.js';
+import puppeteer from 'puppeteer';
+import scraper from '../../../models/appData/puppeteer/pageScraper.js';
+import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
+import startBrowser from '../../../models/appData/puppeteer/browser.js';
 // import predictionsChart, {
 //     ctx,
 //     lotteryData
@@ -554,21 +554,21 @@ async function pick3ScrapePostHandler(
     try {
         console.log('pick3TestPostHandler ROUTER: starting scraperController');
 
-        // await startScraperController();
+        await startScraperController();
 
-        // const browser = (await startBrowser()) as puppeteer.Browser;
-        // const scrapeCollection = [];
-        // const scraperText = scraper.scrapers(browser);
-        // const scrapered = (await scraperText).scrapeData;
+        const browser = (await startBrowser()) as puppeteer.Browser;
+        const scrapeCollection = [];
+        const scraperText = scraper.scrapers(browser);
+        const scrapered = (await scraperText).scrapeData;
 
-        // scrapeCollection.push({ scrapeData: scrapered });
+        scrapeCollection.push({ scrapeData: scrapered });
 
-        // console.log(
-        //     `JSON.stringify({ collectionModified }): ${JSON.stringify({
-        //         scrapeCollection
-        //     })}`
-        // );
-        // return res.json({ scrapeCollection });
+        console.log(
+            `JSON.stringify({ collectionModified }): ${JSON.stringify({
+                scrapeCollection
+            })}`
+        );
+        return res.json({ scrapeCollection });
     } catch (error: unknown) {
         console.error(`pick3TestPostHandler had an ERROR: ${error}`);
         res.status(500).send('Server Error');
@@ -583,7 +583,7 @@ async function pick3PredictionsHandler(
 ): Promise<void> {
     try {
         const scriptPick3Predictions: string = `
-			<script type="module" src="/src/components/game_components/pick3_components/pick3_game/pick3-predictions.js"
+			<script type="module" src="/src/components/game_components/pick3_components/pick3_predictions/pick3-predictions.js"
 				content="text/javascript" crossorigin="anonymous">
 			</script>
 		`;

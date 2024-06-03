@@ -24,9 +24,11 @@ class Pick3PredictionsTemplate extends HTMLElement {
         this.root = root;
 
         if (this.activateShadowDOM === false) {
-            return (this.innerHTML = template || this.template);
+            this.innerHTML = template || this.template;
+            return;
         } else {
-            return (root!.innerHTML = template || this.template);
+            root!.innerHTML = template || this.template;
+            return;
         }
     }
 

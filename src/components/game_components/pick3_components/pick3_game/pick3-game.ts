@@ -35,11 +35,10 @@ class Pick3Game extends Pick3GameTemplate {
         return /*html*/ `
         
         
-            <style>
-                ${pick3Game_sharedStyles.root}
-                ${pick3Game_sharedStyles.container}
-                ${pick3Game_sharedStyles.game}
-            </style>   
+            <style>${pick3Game_sharedStyles.root}</style> 
+            <style>${pick3Game_sharedStyles.container}</style>  
+            <style>${pick3Game_sharedStyles.game}</style>  
+            <style>${pick3Game_sharedStyles.results}</style>  
 
             ${pick3Game_sharedHTML.container}
 
@@ -161,7 +160,7 @@ class Pick3Game extends Pick3GameTemplate {
         });
     }
 
-    connectedCallback(): void {
+    override connectedCallback(): void {
         super.connectedCallback();
 
         appendChildren(this.head, [
@@ -203,7 +202,7 @@ class Pick3Game extends Pick3GameTemplate {
                     this._StandardPick3Para
                 ]);
 
-                return await Promise.resolve();
+                return;
             } catch (error: unknown) {
                 console.error(
                     `
@@ -234,7 +233,7 @@ class Pick3Game extends Pick3GameTemplate {
                     console.info(event.target);
 
                     await getPredictionPage(this.pick3_predictionHREF);
-                    return event.stopPropagation();
+                    event.stopPropagation();
                 } catch (error: unknown) {
                     console.error(
                         `
@@ -243,6 +242,7 @@ class Pick3Game extends Pick3GameTemplate {
                     Listener ERROR: ${error}
                 `
                     );
+                    return;
                 } finally {
                     console.info(
                         `
@@ -253,13 +253,15 @@ class Pick3Game extends Pick3GameTemplate {
                     `
                     );
                 }
+                return;
             }
         );
 
         async function getPredictionPage(url: string) {
             try {
                 // Using the Assign() method stores the 'Back-Button' URL in the History Object
-                return document.location.assign(url);
+                document.location.assign(url);
+                return;
             } catch (error: unknown) {
                 console.error(
                     `
@@ -267,6 +269,7 @@ class Pick3Game extends Pick3GameTemplate {
                     ERROR: ${error}
                 `
                 );
+                return;
             } finally {
                 console.info(
                     `
@@ -278,6 +281,10 @@ class Pick3Game extends Pick3GameTemplate {
                 );
             }
         }
+        this.button_pick3_predictions.textContent = 'Predictions';
+        appendChildren(this, [this.button_pick3_predictions]);
+
+        return;
     }
 
     public attributeChangedCallback(
@@ -294,6 +301,7 @@ class Pick3Game extends Pick3GameTemplate {
                         newValue: ${newValue}
                 `
             );
+            return;
         } catch (error: unknown) {
             console.error(
                 `
@@ -301,6 +309,7 @@ class Pick3Game extends Pick3GameTemplate {
                     ERROR: ${error}
                 `
             );
+            return;
         }
     }
 }

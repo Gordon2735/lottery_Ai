@@ -18,9 +18,92 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         /* Variables for Backgrounds and Gradients/Images */
         --pk3-predictions-gradient-dark-A: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 53%, hsla(41, 92%, 53%, 0.393));
         --pk3-predictions-gradient-dark-B: linear-gradient(178.35deg, hsla(41, 92%, 53%, 0.993), 94.5%, hsla(187, 52%, 80%, 0.593));
+        --pk3-predictions-gradient-dark-1a: linear-gradient(178.35deg, hsla(188, 98%, 34%, 0.993), 64.5%, hsla(187, 52%, 80%, 0.593));
+        --pk3-predictions-gradient-dark-2: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 87%, hsla(188, 35%, 58%, 0.993));
+
+        /* Font Size Variables */
+        --pk3-predictions-fs-xxs: 0.5rem;
+        --pk3-predictions-fs-xs: 0.65rem;
+        --pk3-predictions-fs-sm: 0.875rem;
+        --pk3-predictions-fs-md: 1rem;
+        --pk3-predictions-fs-lg: 1.125rem;
+        --pk3-predictions-fs-xl: 1.25rem;
+        --pk3-predictions-fs-xxl: 1.5rem;
+        --pk3-predictions-fs-xxlz: 1.82rem;
+        --pk3-predictions-fs-xxxl: 1.875rem;
+        --pk3-predictions-fs-xxxl-0: 2rem;
+        --pk3-predictions-fs-xxxl-1: 2.25rem;
+        --pk3-predictions-fs-xxxl-2: 3rem;
+        --pk3-predictions-fs-xxxl-3: 3.75rem;
+        --pk3-predictions-fs-xxxl-4: 4.5rem;
+        --pk3-predictions-fs-xxxl-5: 5.25rem;
+        --pk3-predictions-fs-em-0-1: 0.1em;
+        --pk3-predictions-fs-em-0-2: 0.2em;
+        --pk3-predictions-fs-em-0-4: 0.4em;
+        --pk3-predictions-fs-em-0-6: 0.6em;
+        --pk3-predictions-fs-em-0-8: 0.8em;
+        --pk3-predictions-fs-em-1: 1em;
+        --pk3-predictions-fs-em-1-2: 1.2em;
+        --pk3-predictions-fs-em-1-4: 1.4em;
+        --pk3-predictions-fs-em-1-6: 1.6em;
+        --pk3-predictions-fs-em-1-8: 1.8em;
+        --pk3-predictions-fs-em-2: 2em;
+        --pk3-predictions-fs-em-2-2: 2.2em;
+        --pk3-predictions-fs-em-2-4: 2.4em;
+        --pk3-predictions-fs-em-2-6: 2.6em;
+        --pk3-predictions-fs-em-2-8: 2.8em;
+        --pk3-predictions-fs-em-3: 3em;
+        --pk3-predictions-fs-em-3-2: 3.2em;
+        --pk3-predictions-fs-em-3-4: 3.4em;
+        --pk3-predictions-fs-em-3-6: 3.6em;
+        --pk3-predictions-fs-em-3-8: 3.8em;
+        --pk3-predictions-fs-em-4: 4em;
+        --pk3-predictions-fs-em-4-2: 4.2em;
+        --pk3-predictions-fs-em-4-4: 4.4em;
+        --pk3-predictions-fs-em-4-6: 4.6em;
+        --pk3-predictions-fs-em-4-8: 4.8em;
+        --pk3-predictions-fs-em-5: 5em;
+
+        /* Font Weight Variables */
+        --pk3-predictions-fw-thin: 100;
+        --pk3-predictions-fw-extra_light: 200;
+        --pk3-predictions-fw-light: 300;
+        --pk3-predictions-fw-normal: 400;
+        --pk3-predictions-fw-medium: 500;
+        --pk3-predictions-fw-semibold: 600;
+        --pk3-predictions-fw-bold: 700;
+        --pk3-predictions-fw-extra_bold: 800;
+        --pk3-predictions-fw-black: 900;
+        
+        /* Font Styles Variables */
+        --pk3-predictions-f-style-italic: italic;
+        --pk3-predictions-f-style-normal: normal;
+        --pk3-predictions-f-style-oblique: oblique;
+
+        /* Font Color Variables */
+        /* Text Color Variables */
+        --pk3-predictions-clr-fc-0: hsla(80, 61%, 50%, 0.993);
+        --pk3-predictions-clr-fc-0f: hsla(0, 79%, 72%, 0.993);
+        --pk3-predictions-clr-fc-1: hsla(240, 64%, 27%, 0.993);
+        --pk3-predictions-clr-fc-2: hsla(198, 53%, 87%, 0.99);
+        --pk3-predictions-clr-fc-4: hsl(0, 0%, 70%);
+        --pk3-predictions-clr-fc-5: hsl(0, 38%, 38%);
+        --pk3-predictions-clr-fc-6: hsl(32, 83%, 54%);
+        --pk3-predictions-clr-fc-7: hsla(0, 0%, 0%, 0.9963);
+        --pk3-predictions-clr-fc-8: hsla(240, 64%, 27%, 0.993);
+        --pk3-predictions-clr-fc-9: hsla(80, 61%, 50%, 0.993);
+        --pk3-predictions-clr-fc-10: hsla(0, 79%, 72%, 0.593); 
+        --pk3-predictions-clr-fc-pick3-11: hsla(108, 60%, 53%, 0.993);
+        --pk3-predictions-clr-fc-pick3-12: hsla(187, 52%, 80%, 0.993);
+        --pk3-predictions-clr-fc-pick3-13: hsla(108, 88%, 84%, 0.993);
+        --pk3-predictions-clr-fc-pick3-14: hsla(234, 68%, 37%, 0.993);
+        --pk3-predictions-clr-fc-pick3-15: hsla(34, 78%, 91%, 0.993);
+        --pk3-predictions-clr-fc-pick3-16: hsla(41, 92%, 53%, 0.993);
+
 
         /* Variables for Margins */
         --pk3-predictions-margin-0: 0; 
+        --pk3-predictions-margin-1: 3em 0em 1em 0em; 
         
         /* Padding Variables */
         --pk3-predictions-padding-0: 0;
@@ -162,6 +245,10 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         /* Scroll Behaviour Variables */
         --pk3-predictions-scroll-behaviour-auto: auto;
         --pk3-predictions-scroll-behaviour-smooth: smooth;
+
+        /* Position Variables */
+        --pk3-predictions-position-absolute: absolute;
+        --pk3-predictions-position-relative: relative;
         
         /* Display Variables */
         --pk3-predictions-display-none: none;
@@ -173,6 +260,15 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-display-flex: flex;
         --pk3-predictions-display-inline-flex: inline-flex;
         --pk3-predictions-display-grid: grid;
+
+        /* Top Variables */
+        --pk3-predictions-top-10: 10%;
+       
+        /* left Variables */
+        --pk3-predictions-left-10: 10%;
+        --pk3-predictions-left-20: 20%;
+        --pk3-predictions-left-25: 25%;
+        --pk3-predictions-left-30: 30%;
 
          /* Rotate */
          --pk3-rotate-0: 0;
@@ -320,11 +416,19 @@ pick3_predictions_sharedStyles.container = /*css*/ `
         }
     }
 
+    .pick3-predictions {
+        margin: var(--pk3-predictions-margin-0);
+        padding: var(--pk3-predictions-padding-0);
+    }
+`;
+
+pick3_predictions_sharedStyles.predictions = /*css*/ `
+
     .main-body {
         margin: var(--pk3-predictions-margin-0);
         padding: var(--pk3-predictions-padding-0);
         background-image: var(--pk3-predictions-gradient-dark-A),
-                          var(--pk3-predictions-gradient-dark-B);   
+                        var(--pk3-predictions-gradient-dark-B);   
         background-repeat: var(--pk3-predictions-repeat-2);
         background-size: var(--pk3-predictions-size-1);
         overflow: var(--pk3-predictions-overflow-hidden);
@@ -337,17 +441,32 @@ pick3_predictions_sharedStyles.container = /*css*/ `
         width: var(--pk3-predictions-width-100a);
     }
 
+    .pick3-predictions-header {
+        margin: var(--pk3-predictions-margin-1);
+        padding: var(--pk3-predictions-padding-xxs);
+        width: var(--pk3-predictions-width-75);
+        position: var(--pk3-predictions-position-absolute);
+        top: var(--pk3-predictions-top-10);
+        left: var(--pk3-predictions-left-25);
+        background-image: var(--pk3-predictions-gradient-dark-2),
+                          var(--pk3-predictions-gradient-dark-2);
+    }
+
+    .pick3-prediction-header-figure {
+        position: var(--pk3-predictions-position-relative);
+        display: var(--pk3-predictions-display-inline-flex);
+    }
+
+    .pick3-predictions-captions {
+        font-family: var(--pk3-predictions-ff-titillium-web);
+        font-size: var(--pk3-predictions-fs-xxxl-0);
+        color: var(--pk3-predictions-clr-fc-2);
+    }
+
     .header-figure-img {
         width: var(--pk3-predictions-width-240);
         rotate: var(--pk3-rotate-345);
     }
-
-`;
-
-pick3_predictions_sharedStyles.predictions = /*css*/ `
-
-
-
 
 `;
 

@@ -56,6 +56,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-ff-days-one: 'Days One', sans-serif;
         --pk3-ff-Black-Han-Sans: 'Black Han Sans', sans-serif;
         --pk3-overflow-hidden
+        
         /* Font Size Variables */
         --pk3-fs-xxs: 0.5rem;
         --pk3-fs-xs: 0.65rem;
@@ -329,6 +330,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-margin-1: 1.2em 0em 1.2em 0.5em;
         --pk3-margin-00a: 3em auto 0em auto;
         --pk3-margin-00z: 0.4em auto 0em auto;
+        --pk3-margin-00zz: 12.4em 0em 1em 30em;
         --pk3-margin-descripSection: 0.7em auto 0em auto;
         --pk3-margin-pick3-palmetto: -3.2em -6em 0em 12em;
         --pk3-margin-00az: 4em auto 0em auto;
@@ -475,6 +477,7 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-height-10: 10%;
         --pk3-height-auto: auto;
         --pk3-height-px: 1px;
+        --pk3-height-px-2: 30px;
         --pk3-height-xxs: 0.125rem;
         --pk3-height-xs: 0.25rem;
         --pk3-height-sm: 0.5rem;
@@ -1312,28 +1315,28 @@ pick3Game_sharedStyles.game = /*css*/ `
 
 pick3Game_sharedStyles.results = /*css*/ `
 
-    .get-pick3-container > .button-pick3-predictions {
-        margin: var(--sp3-margin-00z);
-        width: var(--sp3-width-120);
-        height: var(--sp3-height-60);
-        text-align: var(--sp3-text-align-center);
-        font-size: var(--sp3-fs-sm);
-        font-weight: var(--sp3-fw-bold);
-        color: var(--sp3-clr-fc-11);
-        text-shadow: var(--sp3-text-shadow-xmd);
-        border: var(--sp3-border-button);
-        border-radius: var(--sp3-radius-sm);
-        background-color: var(--sp3-bg-color-button);
-        box-shadow: var(--sp3-shadow-inset-xxl-1a);
-        filter: var(--sp3-filter-shadow-xmda);
-        index: var(--sp3-z-index-10);
+    .button-pick3-predictions {
+        margin: var(--pk3-margin-00zz);
+        width: var(--pk3-width-160);
+        height: var(--pk3-height-px-2);
+        text-align: var(--pk3-text-align-center);
+        font-size: var(--pk3-fs-sm);
+        font-weight: var(--pk3-fw-bold);
+        color: var(--pk3-clr-fc-11);
+        text-shadow: var(--pk3-text-shadow-xmd);
+        border: var(--pk3-border-button);
+        border-radius: var(--pk3-radius-sm);
+        background-color: var(--pk3-bg-color-button);
+        box-shadow: var(--pk3-shadow-inset-xxl-1a);
+        filter: var(--pk3-filter-shadow-xmda);
+        z-index: var(--pk3-z-index-9);
     }
 
     .button-pick3-predictions:hover {
-        background-color: var(--sp3-bg-color-button-hover);
-        transition: var(--sp3-transition-07s);
-        color: var(--sp3-clr-fc-9);
-        cursor: var(--sp3-cursor-pointer);    
+        background-color: var(--pk3-bg-color-button-hover);
+        transition: var(--pk3-transition-07s);
+        color: var(--pk3-clr-fc-9);
+        cursor: var(--pk3-cursor-pointer);    
     }
 
     .button-pick3-predictions:focus {
@@ -1341,14 +1344,14 @@ pick3Game_sharedStyles.results = /*css*/ `
         outline-style: solid;
         box-shadow: 0 0 0 4px #5a01a7;
         transition: 0.7s;
-        color: var(--sp3-clr-fc-9);
+        color: var(--pk3-clr-fc-9);
     }
 
     .button-pick3-predictions:active {
-        transform: var(--sp3-scale-095);
-        transition: var(--sp3-transition-01s);
-        background-color: var(--sp3-bg-color-button-active); 
-        color: var(--sp3-clr-fc-2);
+        transform: var(--pk3-scale-095);
+        transition: var(--pk3-transition-01s);
+        background-color: var(--pk3-bg-color-button-active); 
+        color: var(--pk3-clr-fc-2);
     }
 
 `;

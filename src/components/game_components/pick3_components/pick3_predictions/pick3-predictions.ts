@@ -11,14 +11,13 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
     public get template(): string {
         return /*html*/ `
         
-            <style>
-                ${pick3_predictions_sharedStyles.root}
-                ${pick3_predictions_sharedStyles.container}
-                ${pick3_predictions_sharedStyles.predictions}
-                ${pick3_predictions_sharedStyles.results}
-            </style>
+            <style>${pick3_predictions_sharedStyles.root}</style>
+            <style>${pick3_predictions_sharedStyles.container}</style>
+            <style>${pick3_predictions_sharedStyles.predictions}</style>
+            <style>${pick3_predictions_sharedStyles.results}</style>
 
-            ${pick3_predictions_sharedHTML.container}        
+            ${pick3_predictions_sharedHTML.container} 
+            ${pick3_predictions_sharedHTML.predictions}       
         
         `;
     }
@@ -31,6 +30,35 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
         super();
 
         this.activateShadowDOM = false;
+    }
+
+    override connectedCallback(): void {
+        super.connectedCallback();
+
+        try {
+            console.info(
+                `
+                The Pick-3 Predictions Component has Fired 
+                    and the connectedCallback() has been 'invoked' ...                
+            `
+            );
+        } catch (error: unknown) {
+            console.info(
+                `
+                The Pick-3 Predictions Component has been 'caught' in the connectedCallback()
+                    try/catch Block...
+                ERROR: ${error}                
+            `
+            );
+            return;
+        } finally {
+            console.info(
+                `
+                The Pick-3 Predictions Component has finalized...                
+            `
+            );
+        }
+        return;
     }
 
     public attributeChangedCallback(
@@ -69,7 +97,7 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
             );
         }
     }
+
+    disconnectedCallback(): void {}
 }
 RegisterComponent('pick3-predictions', Pick3Predictions);
-
-export { Pick3Predictions };

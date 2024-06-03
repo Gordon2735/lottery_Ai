@@ -30,25 +30,25 @@ class Pick3GameShell extends Pick3GameTemplate {
         this.activateShadowDOM = false;
 
         const head: HTMLHeadElement = document.getElementsByTagName('head')[0];
-        const scriptPick3Game: HTMLScriptElement =
-            document.createElement('script');
         const scriptSpinnerBase1: HTMLScriptElement =
+            document.createElement('script');
+        const scriptPick3Game: HTMLScriptElement =
             document.createElement('script');
 
         this.head = head;
         // this.body = body;
-        this.scriptPick3Game = scriptPick3Game;
         this.scriptSpinnerBase1 = scriptSpinnerBase1;
+        this.scriptPick3Game = scriptPick3Game;
 
-        setAttributes(this.scriptPick3Game, {
-            type: 'module',
-            src: '/src/components/game_components/pick3_components/pick3_game/pick3-game.js',
-            content: 'text/javascript',
-            crossOrigin: 'anonymous'
-        });
         setAttributes(this.scriptSpinnerBase1, {
             type: 'module',
             src: '/src/components/animation_components/spinner_comps/spinnerBase1_comp/spinner-base1.js',
+            content: 'text/javascript',
+            crossOrigin: 'anonymous'
+        });
+        setAttributes(this.scriptPick3Game, {
+            type: 'module',
+            src: '/src/components/game_components/pick3_components/pick3_game/pick3-game.js',
             content: 'text/javascript',
             crossOrigin: 'anonymous'
         });
@@ -71,7 +71,6 @@ class Pick3GameShell extends Pick3GameTemplate {
 					this.scriptPick3Game: ${this.scriptPick3Game}
 				`
             );
-            return;
         } catch (error: unknown) {
             console.error(
                 `
@@ -85,6 +84,7 @@ class Pick3GameShell extends Pick3GameTemplate {
                 `The component pick3-game_shell's 'connectedCallback()' has fired...`
             );
         }
+        return;
     }
 }
 RegisterComponent('pick3-game_shell', Pick3GameShell);
