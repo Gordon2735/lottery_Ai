@@ -80,6 +80,48 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-f-style-normal: normal;
         --pk3-predictions-f-style-oblique: oblique;
 
+        /* Text Align Variables */
+        --pk3-predictions-text-align-left: left;
+        --pk3-predictions-text-align-right: right;
+        --pk3-predictions-text-align-center: center;
+        --pk3-predictions-text-align-justify: justify;
+        
+        /* Text Transform Variables */
+        --pk3-predictions-text-transform-uppercase: uppercase;
+        --pk3-predictions-text-transform-lowercase: lowercase;
+        --pk3-predictions-text-transform-capitalize: capitalize;
+        --pk3-predictions-text-transform-none: none;
+        
+        /* Text Decoration Variables */
+        --pk3-predictions-text-decoration-none: none;
+        --pk3-predictions-text-decoration-underline: underline;
+        --pk3-predictions-text-decoration-overline: overline;
+        --pk3-predictions-text-decoration-line-through: line-through;
+        
+        /* Text Overflow Variables */
+        --pk3-predictions-text-overflow-clip: clip;
+        --pk3-predictions-text-overflow-ellipsis: ellipsis;
+        
+        /* Text White Space Variables */
+        --pk3-predictions-white-space-normal: normal;
+        --pk3-predictions-white-space-nowrap: nowrap;
+        --pk3-predictions-white-space-pre: pre;
+        --pk3-predictions-white-space-pre-line: pre-line;
+        --pk3-predictions-white-space-pre-wrap: pre-wrap;
+        
+        /* Text Break Variables */
+        --pk3-predictions-word-break-normal: normal;
+        --pk3-predictions-word-break-break-all: break-all;
+        --pk3-predictions-word-break-keep-all: keep-all;
+        --pk3-predictions-word-break-break-word: break-word;
+
+        /* Text Justify Variables */
+        --pk3-predictions-text-justify-all: distribute-all-lines;
+        
+        /* -ms Text Justify Variables // -ms-text-justify */
+        /* Works with text-align is set to justify */
+        --pk3-predictions-ms-text-justify-all: distribute;          
+        
         /* Font Color Variables */
         /* Text Color Variables */
         --pk3-predictions-clr-fc-0: hsla(80, 61%, 50%, 0.993);
@@ -89,6 +131,7 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-clr-fc-4: hsl(0, 0%, 70%);
         --pk3-predictions-clr-fc-5: hsl(0, 38%, 38%);
         --pk3-predictions-clr-fc-6: hsl(32, 83%, 54%);
+        --pk3-predictions-clr-fc-6a: hsla(32, 100%, 68%, 0.993);
         --pk3-predictions-clr-fc-7: hsla(0, 0%, 0%, 0.9963);
         --pk3-predictions-clr-fc-8: hsla(240, 64%, 27%, 0.993);
         --pk3-predictions-clr-fc-9: hsla(80, 61%, 50%, 0.993);
@@ -99,11 +142,31 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-clr-fc-pick3-14: hsla(234, 68%, 37%, 0.993);
         --pk3-predictions-clr-fc-pick3-15: hsla(34, 78%, 91%, 0.993);
         --pk3-predictions-clr-fc-pick3-16: hsla(41, 92%, 53%, 0.993);
+        --pk3-predictions-clr-fc-pick3-17: hsla(108, 72%, 82%, 0.993);
+
+        /* Text Shadow Variables */
+        --pk3-predictions-text-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.5);
+        --pk3-predictions-text-shadow-md: 0 4px 10px rgba(0, 0, 0, 0.5);
+        --pk3-predictions-text-shadow-xmd: 0.2px 0.4px 3px hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-text-shadow-xmdz: 0.8px 1px 2px hsla(0, 0%, 0%, 0.99);
+        --pk3-predictions-text-shadow-standard: 0px 0px 7px hsla(0, 0%, 0%, 0.99);
+        --pk3-predictions-text-shadow-standard-2: 0px 0px 8px hsla(0, 0%, 0%, 0.99);
+        --pk3-predictions-text-shadow-xmda: 3.2px 3.8px 8px hsla(0, 0%, 0%, 0.69);
 
 
         /* Variables for Margins */
         --pk3-predictions-margin-0: 0; 
         --pk3-predictions-margin-1: 3em 0em 1em 0em; 
+        --pk3-predictions-margin-0a: 2em 0em 1em 0em; 
+        --pk3-predictions-margin-0b: 1.1em 0em 0em 1.1em; 
+        --pk3-predictions-margin-1a: 1em 0em 1em 0em; 
+        --pk3-predictions-margin-2: 0.2em 0em 0.3em 1em; 
+        --pk3-predictions-margin-2a: 2.2em 0em 1.3em 0em; 
+        --pk3-predictions-margin-3: 1em 0em 1.5em 0em; 
+        
+        /* Variables for Margins Bottom */
+        --pk3-predictions-margin-bottom-0: 1.5em; 
+
         
         /* Padding Variables */
         --pk3-predictions-padding-0: 0;
@@ -121,6 +184,8 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-width-100a: 100%;
         --pk3-predictions-width-90: 90%;
         --pk3-predictions-width-75: 75%;
+        --pk3-predictions-width-60: 60%;
+        --pk3-predictions-width-55: 55%;
         --pk3-predictions-width-50: 50%;
         --pk3-predictions-width-35: 35%;
         --pk3-predictions-width-25: 25%;
@@ -174,6 +239,7 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-width-150: 150px;
         --pk3-predictions-width-160: 160px;
         --pk3-predictions-width-180: 180px;
+        --pk3-predictions-width-185: 185px;
         --pk3-predictions-width-200: 200px;
         --pk3-predictions-width-220: 220px;
         --pk3-predictions-width-240: 240px;
@@ -262,46 +328,95 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-display-grid: grid;
 
         /* Top Variables */
+        --pk3-predictions-top-4: 4%;
         --pk3-predictions-top-10: 10%;
+        --pk3-predictions-top-20: 20%;
+        --pk3-predictions-top-34: 34%;
+        --pk3-predictions-top-40: 40%;
+        --pk3-predictions-top-40_6: 40.6%;
+        --pk3-predictions-top-41: 41%;
+        --pk3-predictions-top-42: 42%;
+        --pk3-predictions-top-43: 43%;
+        --pk3-predictions-top-44: 44%;
+        --pk3-predictions-top-44_5: 44.5%;
+        --pk3-predictions-top-45: 45%;
        
         /* left Variables */
+        --pk3-predictions-left-2: 2%;
+        --pk3-predictions-left-7: 7%;
         --pk3-predictions-left-10: 10%;
+        --pk3-predictions-left-15: 15%;
         --pk3-predictions-left-20: 20%;
         --pk3-predictions-left-25: 25%;
         --pk3-predictions-left-30: 30%;
 
+        /* Border Variables */
+        --pk3-predictions-border-thin: 1px solid hsla(0, 0%, 0%, 0.993);
+        --pk3-predictions-border-thick: 2px solid hsla(0, 0%, 0%, 0.993);
+        --pk3-predictions-border-xthick: 3px solid hsla(188, 98%, 34%, 0.993);
+        --pk3-predictions-border-xthicka: 6px solid hsla(188, 98%, 34%, 0.993);
+        --pk3-predictions-border-xxthick: 4px solid hsla(0, 0%, 0%, 0.993);
+        --pk3-predictions-border-xxxthick: 10px solid hsla(188, 98%, 34%, 0.993);
+        --pk3-predictions-border-feather: 10px solid hsla(188, 98%, 34%, 0.993);
+        --pk3-predictions-border-details: 5px solid hsla(41, 92%, 53%, 0.993);
+
+        /* Border Radius Variables */
+        --pk3-predictions-border-radius-1: 7px;
+
+        /* Filter Variables */
+        --pk3-predictions-filter-0: drop-shadow(0 0 0.7rem hsla(0, 0%, 0%, 0.89));
+        --pk3-predictions-filter-1: drop-shadow(0 0 1.7rem hsla(188, 98%, 34%, 0.997));
+
+        /* Box Shadow Variables */
+        --pk3-predictions-shadow-line: 0px 0px 4px hsla(0, 0%, 0%, 0.8993);
+        --pk3-predictions-shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.1);
+        --pk3-predictions-shadow-md: 0 8px 30px rgba(0, 0, 0, 0.1);
+        --pk3-predictions-shadow-xmd: 7px 5px 9px hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-shadow-lg: 0 12px 35px rgba(0, 0, 0, 0.15);
+        --pk3-predictions-shadow-xl: 0 16px 50px rgba(0, 0, 0, 0.15);
+        --pk3-predictions-shadow-xxl: 0 24px 60px rgba(0, 0, 0, 0.2);
+        --pk3-predictions-shadow-inset: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-shadow-inset-md: inset 0 4px 8px 0 hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-shadow-inset-lg: inset 0 6px 12px 0 hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-shadow-inset-xl: inset 0 8px 16px 0 hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-shadow-inset-xxl: inset 0 12px 24px 0 hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-shadow-inset-xxl-1: inset 0 16px 32px 0 hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-shadow-inset-xxl-1a: inset 0 9px 33px 25px hsla(0, 0%, 0%, 0.19);
+        --pk3-predictions-shadow-inset-xxl-2: inset 0 24px 48px 0 hsla(0, 0%, 0%, 0.69);
+        --pk3-predictions-shadow-inset-xxl-3: inset 0 32px 64px 0 hsla(0, 0%, 0%, 0.69);
+
          /* Rotate */
-         --pk3-rotate-0: 0;
-         --pk3-rotate-1: 1deg;
-         --pk3-rotate-2: 2deg;
-         --pk3-rotate-3: 3deg;
-         --pk3-rotate-5: 5deg;
-         --pk3-rotate-6: 6deg;
-         --pk3-rotate-7: 7deg;
-         --pk3-rotate-8: 8deg;
-         --pk3-rotate-9: 9deg;
-         --pk3-rotate-10: 10deg;
-         --pk3-rotate-15: 15deg;
-         --pk3-rotate-30: 30deg;
-         --pk3-rotate-45: 45deg;
-         --pk3-rotate-90: 90deg;
-         --pk3-rotate-180: 180deg;
-         --pk3-rotate-270: 270deg;
-         --pk3-rotate-359: 359deg;
-         --pk3-rotate-358: 358deg;
-         --pk3-rotate-355: 355deg;
-         --pk3-rotate-350: 350deg;
-         --pk3-rotate-345: 345deg;
-         --pk3-rotate-335: 335deg;
-         --pk3-rotate-330: 330deg;
-         --pk3-rotate-325: 325deg;
-         --pk3-rotate-320: 320deg;
-         --pk3-rotate-315: 315deg;
-         --pk3-rotate-310: 310deg;
-         --pk3-rotate-305: 305deg;
-         --pk3-rotate-300: 300deg;
-         --pk3-rotate-295: 295deg;
-         --pk3-rotate-290: 290deg;
+         --pk3-predictions-rotate-0: 0;
+         --pk3-predictions-rotate-1: 1deg;
+         --pk3-predictions-rotate-2: 2deg;
+         --pk3-predictions-rotate-3: 3deg;
+         --pk3-predictions-rotate-5: 5deg;
+         --pk3-predictions-rotate-6: 6deg;
+         --pk3-predictions-rotate-7: 7deg;
+         --pk3-predictions-rotate-8: 8deg;
+         --pk3-predictions-rotate-9: 9deg;
+         --pk3-predictions-rotate-10: 10deg;
+         --pk3-predictions-rotate-15: 15deg;
+         --pk3-predictions-rotate-30: 30deg;
+         --pk3-predictions-rotate-45: 45deg;
+         --pk3-predictions-rotate-90: 90deg;
+         --pk3-predictions-rotate-180: 180deg;
+         --pk3-predictions-rotate-270: 270deg;
+         --pk3-predictions-rotate-359: 359deg;
+         --pk3-predictions-rotate-358: 358deg;
+         --pk3-predictions-rotate-355: 355deg;
+         --pk3-predictions-rotate-350: 350deg;
+         --pk3-predictions-rotate-345: 345deg;
+         --pk3-predictions-rotate-335: 335deg;
+         --pk3-predictions-rotate-330: 330deg;
+         --pk3-predictions-rotate-325: 325deg;
+         --pk3-predictions-rotate-320: 320deg;
+         --pk3-predictions-rotate-315: 315deg;
+         --pk3-predictions-rotate-310: 310deg;
+         --pk3-predictions-rotate-305: 305deg;
+         --pk3-predictions-rotate-300: 300deg;
+         --pk3-predictions-rotate-295: 295deg;
+         --pk3-predictions-rotate-290: 290deg;
  
     }
     
@@ -442,14 +557,17 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
     }
 
     .pick3-predictions-header {
-        margin: var(--pk3-predictions-margin-1);
-        padding: var(--pk3-predictions-padding-xxs);
-        width: var(--pk3-predictions-width-75);
+        margin: var(--pk3-predictions-margin-3);
+        padding: var(--pk3-predictions-padding-md);
+        width: var(--pk3-predictions-width-55);
         position: var(--pk3-predictions-position-absolute);
-        top: var(--pk3-predictions-top-10);
-        left: var(--pk3-predictions-left-25);
+        top: var(--pk3-predictions-top-4);
+        left: var(--pk3-predictions-left-2);
         background-image: var(--pk3-predictions-gradient-dark-2),
                           var(--pk3-predictions-gradient-dark-2);
+        border: var(--pk3-predictions-border-details);
+        border-radius: var(--pk3-predictions-border-radius-1);
+        filter: var(--pk3-predictions-filter-0);
     }
 
     .pick3-prediction-header-figure {
@@ -457,15 +575,110 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         display: var(--pk3-predictions-display-inline-flex);
     }
 
+    .header-figure-img {
+        margin: var(--pk3-predictions-margin-0b);
+        width: var(--pk3-predictions-width-185);
+        rotate: var(--pk3-predictions-rotate-325);
+        filter: var(--pk3-predictions-filter-0);
+    }
+
     .pick3-predictions-captions {
+        margin-left: 1.3em;
         font-family: var(--pk3-predictions-ff-titillium-web);
         font-size: var(--pk3-predictions-fs-xxxl-0);
         color: var(--pk3-predictions-clr-fc-2);
+        text-shadow: var(--pk3-predictions-text-shadow-xmdz);
     }
 
-    .header-figure-img {
-        width: var(--pk3-predictions-width-240);
-        rotate: var(--pk3-rotate-345);
+    .pick3-predictions-header-H1 {
+        margin: -1.9em auto 1.305em 5.4em;
+        text-align: center;
+        font-family: var(--pk3-predictions-ff-titillium-web);
+        font-size: var(--pk3-predictions-fs-xxxl-0);
+        font-weight: var(--pk3-predictions-fw-bold);
+        color: var(--pk3-predictions-clr-fc-pick3-17);
+        text-shadow: var(--pk3-predictions-text-shadow-xmdz);
+        filter: var(--pk3-predictions-filter-1);
+        letter-spacing: 0.17777em;
+    }
+
+    
+    .pick3-predictions-header-H2 {
+        font-family: var(--pk3-predictions-ff-titillium-web);
+        font-size: var(--pk3-predictions-fs-xxl);
+        color: var(--pk3-predictions-clr-fc-6a);
+        text-shadow: var(--pk3-predictions-text-shadow-xmdz);
+    }
+    
+    hr.header-line {
+        width: 55%;
+        border-top: 1px hsla(198, 53%, 87%, 0.99);
+        box-shadow: var(--pk3-predictions-shadow-line);
+    }
+  
+    .line-h1 {
+        margin: -1.7em auto 1.1em 16em;
+        width: 75%;
+    }
+
+    .paraHdr {
+        margin: 1em 0em 0.3em 0em;
+        font-family: var(--pk3-predictions-ff-src-code-pro);
+        font-size: var(--pk3-predictions-fs-sm);
+        font-style: var(--pk3-predictions-f-style-italic);
+        text-align: var(--pk3-predictions-text-align-justify);
+        color: var(--pk3-predictions-clr-fc-pick3-17);
+        text-shadow: var(--pk3-predictions-text-shadow-xmdz);
+    }
+
+    .pick3-predictions-detail-section {
+        margin: var(--pk3-predictions-margin-2a);
+        padding: var(--pk3-predictions-padding-xxs);
+        width: var(--pk3-predictions-width-55);
+        position: var(--pk3-predictions-position-absolute);
+        top: var(--pk3-predictions-top-44_5);
+        left: var(--pk3-predictions-left-2);
+        background-image: var(--pk3-predictions-gradient-dark-2),
+                          var(--pk3-predictions-gradient-dark-2);
+        border: var(--pk3-predictions-border-details);        
+        border-radius: var(--pk3-predictions-border-radius-1);    
+        filter: var(--pk3-predictions-filter-0);
+    }
+
+    .pick3-predictions-details-1,
+    .pick3-predictions-details-2,
+    .pick3-predictions-details-3,
+    .pick3-predictions-details-4,
+    .pick3-predictions-details-5 {
+        margin: var(--pk3-predictions-margin-2);
+    }
+    
+    .summy {
+        font-family: var(--pk3-predictions-ff-titillium-web);
+        font-size: var(--pk3-predictions-fs-xxl);
+        color: var(--pk3-predictions-clr-fc-6a);
+        text-shadow: var(--pk3-predictions-text-shadow-xmdz);
+    }
+
+    summary::marker {
+        color: var(--pk3-predictions-clr-fc-pick3-17);
+        font-size: 0.7em;
+    }
+    
+    summary {
+      list-style-position: outside;
+      margin-left: 30px;
+      padding: 10px 10px 10px 20px;
+      border-radius: 5px;
+    }
+
+    .detLi {
+        padding: 0em 1.3em 1.1em 0em;
+        font-family: var(--pk3-predictions-ff-src-code-pro);
+        font-size: var(--pk3-predictions-fs-sm);
+        color: var(--pk3-predictions-clr-fc-2);
+        text-shadow: var(--pk3-predictions-text-shadow-xmdz);
+        text-align: var(--pk3-predictions-text-align-justify);
     }
 
 `;
