@@ -20,12 +20,12 @@ interface IPick3AnnualData {
     [year: number]: IYearResults; // Mapping from year to IYearResults
 }
 
-interface IPick3DataObject {
-    [year: number]: {
-        midDay: string[];
-        evening: string[];
-    };
-}
+// interface IPick3DataObject {
+//     [year: string]: {
+//         midDay: string[];
+//         evening: string[];
+//     };
+// }
 
 export {
     IPick3AnnualData as default,

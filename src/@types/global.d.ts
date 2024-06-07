@@ -47,4 +47,11 @@ declare global {
         [fireNum: string | null | undefined]: string;
     }
     [] | null | undefined | string;
+
+    interface IPick3DataObject {
+        [year: string]: {
+            midDay: string[];
+            evening: string[];
+        };
+    }
 }

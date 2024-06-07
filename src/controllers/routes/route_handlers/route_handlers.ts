@@ -22,10 +22,8 @@ import puppeteer from 'puppeteer';
 import scraper from '../../../models/appData/puppeteer/pageScraper.js';
 import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
 import startBrowser from '../../../models/appData/puppeteer/browser.js';
-// import predictionsChart, {
-//     ctx,
-//     lotteryData
-// } from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
+import processLotteryCollection from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
+import Pick3DataObject from '../../../components/game_components/pick3_components/pick3_logic/pick3_data/pick3Data.js';
 
 declare module 'express-session' {
     interface Session {
@@ -625,12 +623,49 @@ async function pick3PredictionsPostHandler(req: Request, res: Response) {
         `
         );
 
-        // const pick3_predictions_object = {
-        //     chart: [predictionsChart, ctx],
-        //     data: [lotteryData]
-        // };
+        const receiveData: IPick3DataObject = Pick3DataObject;
 
-        // return res.json({ pick3_predictions_object });
+        const getProcessDataObject = async (
+            years: string,
+            period: string
+        ): Promise<number[]> => {
+            const processedCollectionData: number[] = [];
+            async function getKey(
+                object: IPick3DataObject,
+                collection: number[]
+            ) {
+                Object.keys(object).find((key) => {
+                    if (key === years) {
+                        for (const event in object.key) {
+                            const drawing: {
+                                midDay: string[];
+                                evening: string[];
+                            } = object.event;
+
+                            console.info(`Event: ${event}`);
+
+                            let draw: any = [''];
+                            for (draw in drawing) {
+                                if (draw === period) {
+                                    for (const value in draw) {
+                                        const valueStringToNumber: number =
+                                            parseInt(value);
+                                        collection.push(valueStringToNumber);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                return collection;
+            }
+            await getKey(receiveData, processedCollectionData);
+            const data: number[] = await processLotteryCollection(
+                processedCollectionData
+            );
+            return data;
+        };
+        return res.json(await getProcessDataObject('2003', 'midDay'));
     } catch (error: unknown) {
         console.error(
             `
@@ -650,7 +685,6 @@ async function pick3PredictionsPostHandler(req: Request, res: Response) {
         );
     }
 }
-
 export {
     stateHandler,
     errorBaseHandler,

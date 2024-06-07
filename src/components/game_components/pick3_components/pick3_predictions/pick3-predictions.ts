@@ -1,12 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
 import { Pick3PredictionsTemplate } from './pick3-predictions_template.js';
 import { pick3_predictions_sharedHTML } from './pick3-predictions_sharedHTML.js';
 import { pick3_predictions_sharedStyles } from './pick3-predictions_sharedStyles.js';
 import { RegisterComponent } from '../../../componentTools/general_helpers.js';
+// import { Chart } from 'chart.js';
+// import { Chart } from '../../../../node_modules/chart.js/dist/chart.js';
+
+// declare module 'chart.js' {}
 
 class Pick3Predictions extends Pick3PredictionsTemplate {
     activateShadowDOM: boolean = false;
+    lotteryData: number[];
+    ctx: HTMLCanvasElement;
+    getPredictionsBtn: HTMLButtonElement;
 
     public get template(): string {
         return /*html*/ `
@@ -30,6 +38,20 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
         super();
 
         this.activateShadowDOM = false;
+
+        // Data: historical lottery numbers@
+        const lotteryData: number[] = [];
+        const ctx: HTMLCanvasElement = document.getElementById(
+            'historicalChart'
+        ) as HTMLCanvasElement;
+
+        const getPredictionsBtn = document.getElementById(
+            'getPredictionsBtn'
+        ) as HTMLButtonElement;
+
+        this.lotteryData = lotteryData;
+        this.ctx = ctx;
+        this.getPredictionsBtn = getPredictionsBtn;
     }
 
     override connectedCallback(): void {
@@ -42,6 +64,34 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                     and the connectedCallback() has been 'invoked' ...                
             `
             );
+            // const predictionsChart: Chart<'bar', number[], string> = new Chart(
+            //     this.ctx,
+            //     {
+            //         type: 'bar',
+            //         data: {
+            //             labels: this.lotteryData.map(
+            //                 (_, index) => `Draw ${index + 1}`
+            //             ),
+            //             datasets: [
+            //                 {
+            //                     label: '# of Draws',
+            //                     data: this.lotteryData,
+            //                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            //                     borderColor: 'rgba(75, 192, 192, 1)',
+            //                     borderWidth: 1
+            //                 }
+            //             ]
+            //         },
+            //         options: {
+            //             scales: {
+            //                 y: {
+            //                     beginAtZero: true
+            //                 }
+            //             }
+            //         }
+            //     }
+            // );
+            // console.log(predictionsChart);
         } catch (error: unknown) {
             console.info(
                 `

@@ -12,8 +12,13 @@ const pick3_predictions_sharedStyles: Ipick3PredictionsSharedStyles = {
 pick3_predictions_sharedStyles.root = /*css*/ `
 
     :root {
-
+        --pk3-predictions-shadow-inset-xxl-1a
         /* CSS Variables */
+        
+        /* Background Color Variables */
+        --pk3-predictions-bg-color-light: #f4f4f4;
+        --pk3-predictions-bg-color-dark: #333;
+        --pk3-predictions-bg-color-4t: rgba(95, 158, 160, 0.393);
 
         /* Variables for Backgrounds and Gradients/Images */
         --pk3-predictions-gradient-dark-A: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 53%, hsla(41, 92%, 53%, 0.393));
@@ -120,7 +125,24 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         
         /* -ms Text Justify Variables // -ms-text-justify */
         /* Works with text-align is set to justify */
-        --pk3-predictions-ms-text-justify-all: distribute;          
+        --pk3-predictions-ms-text-justify-all: distribute;
+        
+        /* Line Height Variables */
+        --pk3-predictions-lh-1: 1;
+        --pk3-predictions-lh-2: 1.25;
+        --pk3-predictions-lh-3: 1.5;
+        --pk3-predictions-lh-4: 1.75;
+        --pk3-predictions-lh-5: 2;
+
+        /* Spacing Variables */
+        --pk3-predictions-spacing-xxs: 0.25rem;
+        --pk3-predictions-spacing-xxsa: 0.38rem;
+        --pk3-predictions-spacing-xs: 0.5rem;
+        --pk3-predictions-spacing-sm: 0.75rem;
+        --pk3-predictions-spacing-md: 1rem;
+        --pk3-predictions-spacing-lg: 1.5rem;
+        --pk3-predictions-spacing-xl: 2rem;
+        --pk3-predictions-spacing-xxl: 3rem;
         
         /* Font Color Variables */
         /* Text Color Variables */
@@ -159,14 +181,19 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-margin-1: 3em 0em 1em 0em; 
         --pk3-predictions-margin-0a: 2em 0em 1em 0em; 
         --pk3-predictions-margin-0b: 1.1em 0em 0em 1.1em; 
+        --pk3-predictions-margin-00z: 0.4em auto 0em auto;
         --pk3-predictions-margin-1a: 1em 0em 1em 0em; 
         --pk3-predictions-margin-2: 0.2em 0em 0.3em 1em; 
         --pk3-predictions-margin-2a: 2.2em 0em 1.3em 0em; 
+        --pk3-predictions-margin-2b: 3.2em 0em 1.3em 0em; 
+        --pk3-predictions-margin-2bz: 2.2em 0em 1.3em 0em; 
+        --pk3-predictions-margin-2c: 4.2em 0em 1.3em 0em; 
+        --pk3-predictions-margin-2d: 5.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-3: 1em 0em 1.5em 0em; 
+        --pk3-predictions-margin-3a: -1em 0em 1.9em 0em; 
         
         /* Variables for Margins Bottom */
         --pk3-predictions-margin-bottom-0: 1.5em; 
-
         
         /* Padding Variables */
         --pk3-predictions-padding-0: 0;
@@ -279,6 +306,36 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-width-vw-20: 20vw;
         --pk3-predictions-width-vw-25: 25vw;
 
+        /* Height Variables */
+        --pk3-predictions-height-100: 100%;
+        --pk3-predictions-height-75: 75%;
+        --pk3-predictions-height-50: 50%;
+        --pk3-predictions-height-48: 48%;
+        --pk3-predictions-height-42: 42%;
+        --pk3-predictions-height-30: 30%;
+        --pk3-predictions-height-25: 25%;
+        --pk3-predictions-height-15: 15%;
+        --pk3-predictions-height-10: 10%;
+        --pk3-predictions-height-auto: auto;
+        --pk3-predictions-height-px: 1px;
+        --pk3-predictions-height-px-1: 10px;
+        --pk3-predictions-height-px-2: 20px;
+        --pk3-predictions-height-px-3: 30px;
+        --pk3-predictions-height-px-4: 40px;
+        --pk3-predictions-height-xxs: 0.125rem;
+        --pk3-predictions-height-xs: 0.25rem;
+        --pk3-predictions-height-sm: 0.5rem;
+        --pk3-predictions-height-md: 1rem;
+        --pk3-predictions-height-lg: 2rem;
+        --pk3-predictions-height-xl: 3rem;
+        --pk3-predictions-height-xxl: 4rem;
+        --pk3-predictions-height-xxxl: 5rem;
+        --pk3-predictions-height-xxxl-1: 6rem;
+        --pk3-predictions-height-xxxl-2: 7rem;
+        --pk3-predictions-height-xxxl-3: 8rem;
+        --pk3-predictions-height-xxxl-4: 9rem;
+        --pk3-predictions-height-xxxl-5: 10rem;
+
         /* Background Size */
         --pk3-predictions-size-1: cover;
         /* --bgRepeat-wc */
@@ -315,6 +372,9 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         /* Position Variables */
         --pk3-predictions-position-absolute: absolute;
         --pk3-predictions-position-relative: relative;
+        --pk3-predictions-position-static: static;
+        --pk3-predictions-position-fixed: fixed;
+        --pk3-predictions-position-sticky: sticky;
         
         /* Display Variables */
         --pk3-predictions-display-none: none;
@@ -326,6 +386,96 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-display-flex: flex;
         --pk3-predictions-display-inline-flex: inline-flex;
         --pk3-predictions-display-grid: grid;
+
+        /* Flex Direction Variables */
+        --pk3-predictions-flex-direction-row: row;
+        --pk3-predictions-flex-direction-row-reverse: row-reverse;
+        --pk3-predictions-flex-direction-column: column;
+        --pk3-predictions-flex-direction-column-reverse: column-reverse;
+
+        /* Flex Wrap Variables */
+        --pk3-predictions-flex-wrap-wc: wrap;
+        --pk3-predictions-flex-nowrap-wc: nowrap;
+        --pk3-predictions-flex-wrap-reverse-wc: wrap-reverse;
+
+        /* Justify Content Variables */
+        --pk3-predictions-justify-content-start: start;
+        --pk3-predictions-justify-content-end: end;
+        --pk3-predictions-justify-content-center: center;
+        --pk3-predictions-justify-content-space-between: space-between;
+        --pk3-predictions-justify-content-space-around: space-around;
+        --pk3-predictions-justify-content-space-evenly: space-evenly;
+
+        /* Justify Self */
+        --pk3-predictions-justify-self-center: center;
+
+        /* Flex Align Items Variables */
+        --pk3-predictions-align-items-flex-start: flex-start;
+        --pk3-predictions-align-items-flex-end: flex-end;
+        --pk3-predictions-align-items-center: center;
+        --pk3-predictions-align-items-baseline: baseline;
+        --pk3-predictions-align-items-stretch: stretch;
+
+        /* Flex Align Content Variables */
+        --pk3-predictions-align-content-flex-start: flex-start;
+        --pk3-predictions-align-content-flex-end: flex-end;
+        --pk3-predictions-align-content-center: center;
+        --pk3-predictions-align-content-space-between: space-between;
+        --pk3-predictions-align-content-space-around: space-around;
+        --pk3-predictions-align-content-stretch: stretch;
+
+        /* Flex Align Self Variables */
+        --pk3-predictions-align-self-auto: auto;
+        --pk3-predictions-align-self-flex-start: flex-start;
+        --pk3-predictions-align-self-flex-end: flex-end;
+        --pk3-predictions-align-self-center: center;
+        --pk3-predictions-align-self-baseline: baseline;
+        --pk3-predictions-align-self-stretch: stretch;
+
+        /* Flex Order Variables */
+        --pk3-predictions-order-1: 1;
+        --pk3-predictions-order-2: 2;
+        --pk3-predictions-order-3: 3;
+        --pk3-predictions-order-4: 4;
+        --pk3-predictions-order-5: 5;
+        --pk3-predictions-order-6: 6;
+        --pk3-predictions-order-7: 7;
+        --pk3-predictions-order-8: 8;
+        --pk3-predictions-order-9: 9;
+        --pk3-predictions-order-10: 10;
+        --pk3-predictions-order-11: 11;
+        --pk3-predictions-order-12: 12;
+        --pk3-predictions-order-13: 13;
+        --pk3-predictions-order-14: 14;
+        --pk3-predictions-order-15: 15;
+        --pk3-predictions-order-16: 16;
+        --pk3-predictions-order-17: 17;
+        --pk3-predictions-order-18: 18;
+        --pk3-predictions-order-19: 19;
+        --pk3-predictions-order-20: 20;
+        --pk3-predictions-order-21: 21;
+
+        /* Visibility Variables */
+        --pk3-predictions-visibility-visible: visible;
+        --pk3-predictions-visibility-hidden: hidden;
+        --pk3-predictions-visibility-collapse: collapse;
+
+        /* Opacity Variables */
+        --pk3-predictions-opacity-0: 0;
+        --pk3-predictions-opacity-05: 0.05;
+        --pk3-predictions-opacity-08: 0.08;
+        --pk3-predictions-opacity-10: 0.10;
+        --pk3-predictions-opacity-12: 0.12;
+        --pk3-predictions-opacity-15: 0.15;
+        --pk3-predictions-opacity-25: 0.25;
+        --pk3-predictions-opacity-35: 0.35;
+        --pk3-predictions-opacity-40: 0.40;
+        --pk3-predictions-opacity-45: 0.45;
+        --pk3-predictions-opacity-50: 0.50;
+        --pk3-predictions-opacity-60: 0.60;
+        --pk3-predictions-opacity-65: 0.65;
+        --pk3-predictions-opacity-75: 0.75;
+        --pk3-predictions-opacity-100: 1;
 
         /* Top Variables */
         --pk3-predictions-top-4: 4%;
@@ -342,13 +492,56 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-top-45: 45%;
        
         /* left Variables */
+        --pk3-predictions-left-0: 0;
         --pk3-predictions-left-2: 2%;
         --pk3-predictions-left-7: 7%;
         --pk3-predictions-left-10: 10%;
         --pk3-predictions-left-15: 15%;
+        --pk3-predictions-left-19: 19%;
+        --pk3-predictions-left-18: 18%;
+        --pk3-predictions-left-17: 17%;
+        --pk3-predictions-left-16: 16%;
         --pk3-predictions-left-20: 20%;
+        --pk3-predictions-left-22: 22%;
+        --pk3-predictions-left-23: 23%;
+        --pk3-predictions-left-24: 24%;
         --pk3-predictions-left-25: 25%;
         --pk3-predictions-left-30: 30%;
+        --pk3-predictions-left-35: 35%;
+        --pk3-predictions-left-40: 40%;
+        --pk3-predictions-left-50: 50%;
+        --pk3-predictions-left-75: 75%;
+        --pk3-predictions-left-80: 80%;
+        --pk3-predictions-left-85: 85%;
+        --pk3-predictions-left-90: 90%;
+        --pk3-predictions-left-95: 95%;
+        --pk3-predictions-left-100: 100%;
+
+        
+        /* bottom Variables */
+        --pk3-predictions-bottom-2pc: 2%;
+        --pk3-predictions-bottom-5pc: 5%;
+        --pk3-predictions-bottom-7pc: 7%;
+        --pk3-predictions-bottom-10pc: 10%;
+        --pk3-predictions-bottom-15pc: 15%;
+        --pk3-predictions-bottom-20pc: 20%;
+        --pk3-predictions-bottom-25pc: 25%;
+        --pk3-predictions-bottom-30pc: 30%;
+        --pk3-predictions-bottom-35pc: 35%;
+        --pk3-predictions-bottom-40pc: 40%;
+        --pk3-predictions-bottom-45pc: 45%;
+        --pk3-predictions-bottom-50pc: 50%;
+        --pk3-predictions-bottom-55pc: 55%;
+        --pk3-predictions-bottom-60pc: 60%;
+        --pk3-predictions-bottom-65pc: 65%;
+        --pk3-predictions-bottom-70pc: 70%;
+        --pk3-predictions-bottom-75pc: 75%;
+        --pk3-predictions-bottom-80pc: 80%;
+        --pk3-predictions-bottom-85pc: 85%;
+        --pk3-predictions-bottom-90pc: 90%;
+        --pk3-predictions-bottom-95pc: 95%;
+        --pk3-predictions-bottom-100pc: 100%;
+        --pk3-predictions-bottom-0: 0rem;
 
         /* Border Variables */
         --pk3-predictions-border-thin: 1px solid hsla(0, 0%, 0%, 0.993);
@@ -359,13 +552,33 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-border-xxxthick: 10px solid hsla(188, 98%, 34%, 0.993);
         --pk3-predictions-border-feather: 10px solid hsla(188, 98%, 34%, 0.993);
         --pk3-predictions-border-details: 5px solid hsla(41, 92%, 53%, 0.993);
+        --pk3-predictions-border-predictions-1: 4px solid hsla(41, 92%, 53%, 0.993);
+        --pk3-predictions-border-predictions-2: 4px solid hsla(41, 92%, 53%, 0.793);
 
         /* Border Radius Variables */
         --pk3-predictions-border-radius-1: 7px;
+        --pk3-predictions-radius-0: 0rem;
+        --pk3-predictions-radius-xxs: 0.125rem;
+        --pk3-predictions-radius-sm: 0.25rem;
+        --pk3-predictions-radius-smmd: 0.35rem;
+        --pk3-predictions-radius-md: 0.5rem;
+        --pk3-predictions-radius-lg: 1rem;
+        --pk3-predictions-radius-xl: 2rem;
+        --pk3-predictions-radius-xxl: 3rem;
+        --pk3-predictions-radius-em-35: 0.35em;
 
         /* Filter Variables */
-        --pk3-predictions-filter-0: drop-shadow(0 0 0.7rem hsla(0, 0%, 0%, 0.89));
+        --pk3-predictions-filter-0: drop-shadow(0 0 3rem hsla(0, 0%, 0%, 0.211));
         --pk3-predictions-filter-1: drop-shadow(0 0 1.7rem hsla(188, 98%, 34%, 0.997));
+        --pk3-predictions-filter-shadow-inset: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5)) inset;
+        --pk3-predictions-filter-shadow-inset-md: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5)) inset;
+        --pk3-predictions-filter-shadow-inset-lg: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.5)) inset;
+        --pk3-predictions-filter-shadow-inset-xl: drop-shadow(0 0 3rem rgba(0, 0, 0, 0.5)) inset;
+        --pk3-predictions-filter-shadow-inset-xxl: drop-shadow(0 0 4rem rgba(0, 0, 0, 0.5)) inset;
+        --pk3-predictions-filter-shadow-inset-xxxl: drop-shadow(0 0 5rem rgba(0, 0, 0, 0.5)) inset;
+        --pk3-predictions-filter-shadow-inset-xxxxl: drop-shadow(0 0 6rem rgba(0, 0, 0, 0.5)) inset;
+        --pk3-predictions-filter-shadow-inset-xxxxxl: drop-shadow(0 0 7rem rgba(0, 0, 0, 0.5)) inset;
+
 
         /* Box Shadow Variables */
         --pk3-predictions-shadow-line: 0px 0px 4px hsla(0, 0%, 0%, 0.8993);
@@ -381,7 +594,13 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-shadow-inset-xl: inset 0 8px 16px 0 hsla(0, 0%, 0%, 0.69);
         --pk3-predictions-shadow-inset-xxl: inset 0 12px 24px 0 hsla(0, 0%, 0%, 0.69);
         --pk3-predictions-shadow-inset-xxl-1: inset 0 16px 32px 0 hsla(0, 0%, 0%, 0.69);
-        --pk3-predictions-shadow-inset-xxl-1a: inset 0 9px 33px 25px hsla(0, 0%, 0%, 0.19);
+        --pk3-predictions-shadow-inset-xxl-1a: inset 0 3px 3px 3px hsla(0, 1%, 71%, 0.393),
+                                                        0 3px 3px 2px hsla(0, 1%, 23%, 0.292);
+        --pk3-predictions-shadow-inset-xxl-1b: inset 0 3px 13px 7px hsla(0, 1%, 71%, 0.193),
+                                                        0 3px 13px 5px hsla(0, 1%, 23%, 0.192);
+        --pk3-predictions-shadow-inset-xxl-1c: inset 0 2px 4px 3.5px hsla(0, 1%, 71%, 0.213),
+                                                     0 3px 3px 4px hsla(0, 1%, 23%, 0.492),
+                                                     0 3px 3px 3.5px hsla(0, 1%, 71%, 0.293);
         --pk3-predictions-shadow-inset-xxl-2: inset 0 24px 48px 0 hsla(0, 0%, 0%, 0.69);
         --pk3-predictions-shadow-inset-xxl-3: inset 0 32px 64px 0 hsla(0, 0%, 0%, 0.69);
 
@@ -417,7 +636,53 @@ pick3_predictions_sharedStyles.root = /*css*/ `
          --pk3-predictions-rotate-300: 300deg;
          --pk3-predictions-rotate-295: 295deg;
          --pk3-predictions-rotate-290: 290deg;
- 
+
+                 /* Transition Variables */
+        --pk3-predictions-transition-fast: all 0.1s ease-in-out;
+        --pk3-predictions-transition-moderate: all 0.3s ease-in-out;
+        --pk3-predictions-transition-xmoderate: all 0.5s ease-in-out;
+        --pk3-predictions-transition-slow: all 0.7s ease-in-out;
+
+        /* Transform Variables */
+        --pk3-predictions-transform-1: scale(0.95);
+
+        /* Button Background Color */
+        --pk3-predictions-bgc-button-0: hsla(0, 0%, 45%, 0.993);
+        --pk3-predictions-bgc-button-1: hsla(0, 2%, 12%, 0.993);
+
+        /* Button Font Color */
+        --pk3-predictions-button-fc-0: hsla(0, 0%, 20%, 0.993);
+        --pk3-predictions-button-fc-1: hsla(90, 100%, 50%, 0.993);
+        --pk3-predictions-button-fc-2: hsla(32, 100%, 68%, 0.993);
+
+        /* Button Hover Variables */
+        --pks-predictions-bgc-hover-0: hsla(0, 1%, 71%, 0.993);
+        --pks-predictions-bgc-hover-1: hsla(0, 0%, 20%, 0.993);
+        --pks-predictions-bgc-hover-2: hsla(32, 100%, 68%, 0.993);
+        --pks-predictions-bgc-hover-3: hsla(0, 100%, 56%, 0.993);
+         
+         /* Z-Index Variables */
+         --pk3-predictions-z-index-1: 100;
+         --pk3-predictions-z-index-2: 200;
+         --pk3-predictions-z-index-3: 300;
+         --pk3-predictions-z-index-4: 400;
+         --pk3-predictions-z-index-5: 500;
+         --pk3-predictions-z-index-6: 600;
+         --pk3-predictions-z-index-7: 700;
+         --pk3-predictions-z-index-8: 800;
+         --pk3-predictions-z-index-9: 900;
+         --pk3-predictions-z-index-10: 1000;
+         --pk3-predictions-z-index-11: 1100;
+         --pk3-predictions-z-index-12: 1200;
+         --pk3-predictions-z-index-13: 1300;
+         --pk3-predictions-z-index-14: 1400;
+         --pk3-predictions-z-index-15: 1500;
+         --pk3-predictions-z-index-16: 1600;
+         --pk3-predictions-z-index-17: 1700;
+         --pk3-predictions-z-index-18: 1800;
+         --pk3-predictions-z-index-19: 1900;
+         --pk3-predictions-z-index-20: 2000;
+    
     }
     
 `;
@@ -557,7 +822,7 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
     }
 
     .pick3-predictions-header {
-        margin: var(--pk3-predictions-margin-3);
+        margin: var(--pk3-predictions-margin-3a);
         padding: var(--pk3-predictions-padding-md);
         width: var(--pk3-predictions-width-55);
         position: var(--pk3-predictions-position-absolute);
@@ -580,6 +845,7 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         width: var(--pk3-predictions-width-185);
         rotate: var(--pk3-predictions-rotate-325);
         filter: var(--pk3-predictions-filter-0);
+        animation: spin 7.1s linear infinite;
     }
 
     .pick3-predictions-captions {
@@ -632,7 +898,7 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
     }
 
     .pick3-predictions-detail-section {
-        margin: var(--pk3-predictions-margin-2a);
+        margin: var(--pk3-predictions-margin-2bz);
         padding: var(--pk3-predictions-padding-xxs);
         width: var(--pk3-predictions-width-55);
         position: var(--pk3-predictions-position-absolute);
@@ -666,7 +932,7 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
     }
     
     summary {
-      list-style-position: outside;
+      list-style-position: inside;
       margin-left: 30px;
       padding: 10px 10px 10px 20px;
       border-radius: 5px;
@@ -681,7 +947,64 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         text-align: var(--pk3-predictions-text-align-justify);
     }
 
+    .get-predictions-btn {
+        margin: var(--pk3-predictions-margin-00zz);
+        position: var(--pk3-predictions-position-absolute);
+        bottom: var(--pk3-predictions-bottom-7pc);
+        left: var(--pk3-predictions-left-40);
+        width: var(--pk3-predictions-width-180);
+        height: var(--pk3-predictions-height-px-4);
+        text-align: var(--pk3-predictions-text-align-center);
+        font-size: var(--pk3-predictions-fs-sm);
+        font-weight: var(--pk3-predictions-fw-bold);
+        color: var(--pk3-predictions-button-fc-1);
+        text-shadow: var(--pk3-predictions-text-shadow-xmd);
+        border: var(--pk3-predictions-border-predictions-2);
+        border-radius: var(--pk3-predictions-radius-sm);
+        background-color: var(--pk3-predictions-bgc-button-0);
+        box-shadow: var(--pk3-predictions-shadow-inset-xxl-1a);
+        filter: var(--pk3-predictions-filter-0);
+        z-index: var(--pk3-predictions-z-index-10);
+    }
+
+    .get-predictions-btn:hover {
+        background-color: var(--pks-predictions-bgc-hover-1);
+        transition: var(--pk3-predictions-transition-moderate);
+        color: var(--pks-predictions-bgc-hover-2);
+        cursor: var(--pk3-predictions-cursor-pointer);  
+        box-shadow: var(--pk3-predictions-shadow-inset-xxl-1b);
+    }
+
+    .get-predictions-btn:focus {
+        outline-color: transparent;
+        outline-style: solid;
+        box-shadow: 0 0 0 4px #5a01a7;
+        transition: 0.7s;
+        color: var(--pks-predictions-bgc-hover-2);
+    }
+
+    .get-predictions-btn:active {
+        transform: var(--pk3-predictions-transform-1);
+        transition: var(--pk3-predictions-transition-slow);
+        background-color: var(--pk3-predictions-bgc-button-1); 
+        color: var(--pks-predictions-bgc-hover-3);
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(360deg);
+        }
+    }
+
 `;
+
+// summary {
+//     list-style: none;
+//     padding: 10px 10px 10px 40px;
+//     background: url(arrow.svg) no-repeat 14px 50%;
+//     background-size: 18px;
+//     font-weight: bold;
+//   }
 
 pick3_predictions_sharedStyles.results = /*css*/ `
 

@@ -259,9 +259,8 @@ class Pick3Game extends Pick3GameTemplate {
 
         async function getPredictionPage(url: string) {
             try {
-                // Using the Assign() method stores the 'Back-Button' URL in the History Object
+                // Using the Assign() method stores in the 'Back-Button' URL in the History Object
                 document.location.assign(url);
-                return;
             } catch (error: unknown) {
                 console.error(
                     `
@@ -280,6 +279,7 @@ class Pick3Game extends Pick3GameTemplate {
                 `
                 );
             }
+            return;
         }
         this.button_pick3_predictions.textContent = 'Predictions';
         appendChildren(this, [this.button_pick3_predictions]);

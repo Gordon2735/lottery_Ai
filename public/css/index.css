@@ -29,9 +29,7 @@
     --clr-wc-background-after-1: hsla(0, 0%, 41%, 0.081);
     --clr-wc-background-after-2: hsla(182, 25%, 50%, 0.993);
     color: hsla(108, 88%, 84%, 0.993);
-    justify-self: center;
-    animation: ease-in-out;
-
+    list-style-position: inside;
     /* Background Image */
     --bgImage-wc-moneyPile: url('../images/033e_sc_lottery.webp');
 

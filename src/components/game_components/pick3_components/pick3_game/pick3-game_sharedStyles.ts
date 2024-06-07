@@ -13,7 +13,7 @@ const pick3Game_sharedStyles: Ipick3GameSharedStyles = {
 pick3Game_sharedStyles.root = /*css*/ `
 
     :root {
-
+        --pk3-bg-color-button
         /* CSS Variables */
 
         /* Background Colors */
@@ -815,6 +815,9 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-transition-moderate: all 0.3s ease-in-out;
         --pk3-transition-xmoderate: all 0.5s ease-in-out;
         --pk3-transition-slow: all 0.7s ease-in-out;
+        
+        /* Transform Variables */
+        --pk3-transform-1: scale(0.95);
 
         /* Rotate */
         --pk3-rotate-0: 0;
@@ -849,16 +852,12 @@ pick3Game_sharedStyles.root = /*css*/ `
         --pk3-rotate-295: 295deg;
         --pk3-rotate-290: 290deg;
 
-
         /* Grid Type Variables */
         --pk3-grid-template-areas:
             ". image image ."
             "header1 header1 header1 header1"
             "header2 header2 header2 header2"
             "numbers numbers numbers fireball";
-
-
-
 
         /* Grid Gap Variables */
         --pk3-grid-gap: 1rem;
@@ -1322,19 +1321,19 @@ pick3Game_sharedStyles.results = /*css*/ `
         text-align: var(--pk3-text-align-center);
         font-size: var(--pk3-fs-sm);
         font-weight: var(--pk3-fw-bold);
-        color: var(--pk3-clr-fc-11);
+        color: var(--pk3-clr-fc-pick3-13);
         text-shadow: var(--pk3-text-shadow-xmd);
         border: var(--pk3-border-button);
         border-radius: var(--pk3-radius-sm);
-        background-color: var(--pk3-bg-color-button);
+        background-color: hsla(0, 0%, 45%, 0.993);
         box-shadow: var(--pk3-shadow-inset-xxl-1a);
         filter: var(--pk3-filter-shadow-xmda);
         z-index: var(--pk3-z-index-9);
     }
 
     .button-pick3-predictions:hover {
-        background-color: var(--pk3-bg-color-button-hover);
-        transition: var(--pk3-transition-07s);
+        background-color: hsla(0, 1%, 71%, 0.993);
+        transition: var(--pk3-transition-moderate);
         color: var(--pk3-clr-fc-9);
         cursor: var(--pk3-cursor-pointer);    
     }
@@ -1348,8 +1347,8 @@ pick3Game_sharedStyles.results = /*css*/ `
     }
 
     .button-pick3-predictions:active {
-        transform: var(--pk3-scale-095);
-        transition: var(--pk3-transition-01s);
+        transform: var(--pk3-transform-1);
+        transition: var(--pk3-transition-slow);
         background-color: var(--pk3-bg-color-button-active); 
         color: var(--pk3-clr-fc-2);
     }
