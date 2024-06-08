@@ -11,14 +11,14 @@ const pick3Game_sharedHTML: Ipick3GameSharedHTML = {
 
 pick3Game_sharedHTML.shell = /*html*/ `
 
-    <pick3-game id="pick3Game" class="pick3-game" data-transmit="non-transmission"></pick3-game>
+    <pick3-game type="module" id="pick3Game" class="pick3-game" data-transmit="non-transmission"></pick3-game>
 
 
 `;
 
 pick3Game_sharedHTML.container = /*html*/ `
 
-    <pick3-scrape id="pick3Scrape" class="pick3-scrape" data-scrape="non-active"></pick3-scrape>    
+    <pick3-scrape type="module" id="pick3Scrape" class="pick3-scrape" data-scrape="non-active"></pick3-scrape>    
 
 `;
 

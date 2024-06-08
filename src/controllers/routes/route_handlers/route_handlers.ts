@@ -602,7 +602,8 @@ async function pick3PredictionsHandler(
             script: [scriptPick3Predictions]
         });
 
-        return Promise.resolve() as Promise<void>;
+        // return Promise.resolve() as Promise<void>;
+        return;
     } catch (error: unknown) {
         console.error(
             `

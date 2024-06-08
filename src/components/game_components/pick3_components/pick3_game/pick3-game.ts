@@ -260,7 +260,9 @@ class Pick3Game extends Pick3GameTemplate {
         async function getPredictionPage(url: string) {
             try {
                 // Using the Assign() method stores in the 'Back-Button' URL in the History Object
-                document.location.assign(url);
+                window.location.assign(url);
+                // document.location.assign(url);
+                // window.location.href = url;
             } catch (error: unknown) {
                 console.error(
                     `

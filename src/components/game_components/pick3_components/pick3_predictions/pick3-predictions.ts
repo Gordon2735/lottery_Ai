@@ -6,15 +6,19 @@ import { pick3_predictions_sharedHTML } from './pick3-predictions_sharedHTML.js'
 import { pick3_predictions_sharedStyles } from './pick3-predictions_sharedStyles.js';
 import { RegisterComponent } from '../../../componentTools/general_helpers.js';
 // import { Chart } from 'chart.js';
-// import { Chart } from '../../../../node_modules/chart.js/dist/chart.js';
+// import { Chart } from '../../../../../node_modules/chart.js/auto/auto.js';
+// import {
+//     Chart,
+//     registerables
+// } from '../../../../../node_modules/chart.js/auto/auto.js';
 
-// declare module 'chart.js' {}
+// Chart.register(...registerables);
 
 class Pick3Predictions extends Pick3PredictionsTemplate {
     activateShadowDOM: boolean = false;
-    lotteryData: number[];
-    ctx: HTMLCanvasElement;
-    getPredictionsBtn: HTMLButtonElement;
+    lotteryData: number[] | undefined;
+    ctx: HTMLCanvasElement | undefined;
+    getPredictionsBtn: HTMLButtonElement | undefined;
 
     public get template(): string {
         return /*html*/ `
@@ -38,9 +42,13 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
         super();
 
         this.activateShadowDOM = false;
+    }
+
+    override connectedCallback(): void {
+        super.connectedCallback();
 
         // Data: historical lottery numbers@
-        const lotteryData: number[] = [];
+        const lotteryData: number[] = [1, 2, 3, 4, 5, 6, 22, 67];
         const ctx: HTMLCanvasElement = document.getElementById(
             'historicalChart'
         ) as HTMLCanvasElement;
@@ -52,11 +60,6 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
         this.lotteryData = lotteryData;
         this.ctx = ctx;
         this.getPredictionsBtn = getPredictionsBtn;
-    }
-
-    override connectedCallback(): void {
-        super.connectedCallback();
-
         try {
             console.info(
                 `
@@ -64,34 +67,33 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                     and the connectedCallback() has been 'invoked' ...                
             `
             );
-            // const predictionsChart: Chart<'bar', number[], string> = new Chart(
-            //     this.ctx,
-            //     {
-            //         type: 'bar',
-            //         data: {
-            //             labels: this.lotteryData.map(
-            //                 (_, index) => `Draw ${index + 1}`
-            //             ),
-            //             datasets: [
-            //                 {
-            //                     label: '# of Draws',
-            //                     data: this.lotteryData,
-            //                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            //                     borderColor: 'rgba(75, 192, 192, 1)',
-            //                     borderWidth: 1
-            //                 }
-            //             ]
-            //         },
-            //         options: {
-            //             scales: {
-            //                 y: {
-            //                     beginAtZero: true
-            //                 }
+            // let myChart = new Chart(new CanvasRenderingContext2D());
+
+            // const predictionsChart = new Chart(ctx, {
+            //     type: 'bar',
+            //     data: {
+            //         labels: lotteryData.map((_, index) => `Draw ${index + 1}`),
+            //         datasets: [
+            //             {
+            //                 label: '# of Draws',
+            //                 data: lotteryData,
+            //                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            //                 borderColor: 'rgba(75, 192, 192, 1)',
+            //                 borderWidth: 1
+            //             }
+            //         ]
+            //     },
+            //     options: {
+            //         scales: {
+            //             y: {
+            //                 beginAtZero: true
             //             }
             //         }
             //     }
-            // );
+            // }) as Chart<'bar', number[], string>;
             // console.log(predictionsChart);
+            // this.ctx.insertAdjacentHTML('afterbegin', predictionsChart);
+            // predictionsChart.update();
         } catch (error: unknown) {
             console.info(
                 `
