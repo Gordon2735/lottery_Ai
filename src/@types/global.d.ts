@@ -48,10 +48,18 @@ declare global {
     }
     [] | null | undefined | string;
 
+    // interface IPick3DataObject {
+    //     [year: string]: string;
+    //     [midDay: string]: string[];
+    //     [evening: string]: string[];
+    // }
+    [];
     interface IPick3DataObject {
-        [year: string]: {
+        [years: string]: {
+            year: string[];
             midDay: string[];
             evening: string[];
         };
     }
+    [];
 }

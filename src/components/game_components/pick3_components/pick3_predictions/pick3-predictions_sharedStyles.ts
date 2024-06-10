@@ -12,7 +12,6 @@ const pick3_predictions_sharedStyles: Ipick3PredictionsSharedStyles = {
 pick3_predictions_sharedStyles.root = /*css*/ `
 
     :root {
-        --pk3-predictions-shadow-inset-xxl-1a
         /* CSS Variables */
         
         /* Background Color Variables */
@@ -517,6 +516,10 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-left-95: 95%;
         --pk3-predictions-left-100: 100%;
 
+        /* Right Variable */
+        --pk3-predictions-right-10: 10%;
+        --pk3-predictions-right-5: 5%;
+
         
         /* bottom Variables */
         --pk3-predictions-bottom-2pc: 2%;
@@ -988,6 +991,43 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         transition: var(--pk3-predictions-transition-slow);
         background-color: var(--pk3-predictions-bgc-button-1); 
         color: var(--pks-predictions-bgc-hover-3);
+    }
+
+    .predictions-section {
+        margin: var(--pk3-predictions-margin-2bz);
+        padding: var(--pk3-predictions-padding-xxs);
+        width: var(--pk3-predictions-width-25);
+        position: var(--pk3-predictions-position-absolute);
+        top: var(--pk3-predictions-top-20);
+        right: var(--pk3-predictions-right-5);
+        text-align: var(--pk3-predictions-text-align-justify);
+        background-image: var(--pk3-predictions-gradient-dark-2),
+                          var(--pk3-predictions-gradient-dark-2);
+        border: var(--pk3-predictions-border-details);        
+        border-radius: var(--pk3-predictions-border-radius-1);    
+        filter: var(--pk3-predictions-filter-0);
+    }
+
+    .predictions-h1 {
+        margin: var(--pk3-predictions-margin-00z);
+        text-align: var(--pk3-predictions-text-align-center);
+        font-family: var(--pk3-predictions-ff-titillium-web);
+        font-size: var(--pk3-predictions-fs-xxxl-0);
+        font-weight: var(--pk3-predictions-fw-bold);
+        color: var(--pk3-predictions-clr-fc-pick3-17);
+        text-shadow: var(--pk3-predictions-text-shadow-xmdz);
+        filter: var(--pk3-predictions-filter-1);
+        letter-spacing: 0.17777em;
+    }
+
+    .section-para {
+        margin: 1em auto 1em auto;
+        padding: 0em 1.3em 1.1em 0em;
+        font-family: var(--pk3-predictions-ff-src-code-pro);
+        font-size: var(--pk3-predictions-fs-lg);
+        color: var(--pk3-predictions-clr-fc-2);
+        text-shadow: var(--pk3-predictions-text-shadow-xmdz);
+        text-align: var(--pk3-predictions-text-align-justify);
     }
 
     @keyframes spin {

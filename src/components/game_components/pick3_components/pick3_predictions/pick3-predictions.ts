@@ -4,7 +4,11 @@
 import { Pick3PredictionsTemplate } from './pick3-predictions_template.js';
 import { pick3_predictions_sharedHTML } from './pick3-predictions_sharedHTML.js';
 import { pick3_predictions_sharedStyles } from './pick3-predictions_sharedStyles.js';
-import { RegisterComponent } from '../../../componentTools/general_helpers.js';
+import {
+    RegisterComponent,
+    setAttributes,
+    appendChildren
+} from '../../../componentTools/general_helpers.js';
 // import { Chart } from 'chart.js';
 // import { Chart } from '../../../../../node_modules/chart.js/auto/auto.js';
 // import {
@@ -16,8 +20,8 @@ import { RegisterComponent } from '../../../componentTools/general_helpers.js';
 
 class Pick3Predictions extends Pick3PredictionsTemplate {
     activateShadowDOM: boolean = false;
-    lotteryData: number[] | undefined;
-    ctx: HTMLCanvasElement | undefined;
+    lotteryData: number[];
+    ctx: HTMLCanvasElement;
     getPredictionsBtn: HTMLButtonElement | undefined;
 
     public get template(): string {
@@ -42,24 +46,26 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
         super();
 
         this.activateShadowDOM = false;
+
+        // Data: historical lottery numbers@
+        const lotteryData: number[] = [];
+        const ctx: HTMLCanvasElement = document.getElementById(
+            'historicalChart'
+        ) as HTMLCanvasElement;
+
+        this.lotteryData = lotteryData;
+        this.ctx = ctx;
     }
 
     override connectedCallback(): void {
         super.connectedCallback();
 
-        // Data: historical lottery numbers@
-        const lotteryData: number[] = [1, 2, 3, 4, 5, 6, 22, 67];
-        const ctx: HTMLCanvasElement = document.getElementById(
-            'historicalChart'
-        ) as HTMLCanvasElement;
-
         const getPredictionsBtn = document.getElementById(
             'getPredictionsBtn'
         ) as HTMLButtonElement;
 
-        this.lotteryData = lotteryData;
-        this.ctx = ctx;
         this.getPredictionsBtn = getPredictionsBtn;
+
         try {
             console.info(
                 `
@@ -67,16 +73,81 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                     and the connectedCallback() has been 'invoked' ...                
             `
             );
+
+            this.getPredictionsBtn.addEventListener(
+                'click',
+                async (event: MouseEvent) => {
+                    // event.preventDefault();
+
+                    console.info(`Event: ${event}`);
+                    const processedDataObject = async (
+                        data: number[]
+                    ): Promise<number[]> => {
+                        const response: Response = await fetch(
+                            '/pick3_predictions',
+                            {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'javascript/json'
+                                },
+                                body: JSON.stringify(data)
+                            }
+                        );
+                        if (!response.ok) {
+                            throw new Error(`
+                                The processedDataObject() Function's fetch
+                                logic has thrown as Error in the 'response'....
+                            `);
+                        }
+                        return (data = await response.json());
+                    };
+
+                    const container: HTMLElement | null =
+                        document.getElementById('pick3PredictionsMain');
+                    const section: HTMLElement =
+                        document.createElement('section');
+                    const sectionH1: HTMLHeadingElement =
+                        document.createElement('h1');
+                    const sectionPara: HTMLParagraphElement =
+                        document.createElement('p');
+
+                    setAttributes(section, {
+                        id: 'predictionsSection',
+                        class: 'predictions-section'
+                    });
+                    setAttributes(sectionH1, {
+                        id: 'predictionsH1',
+                        class: 'predictions-h1'
+                    });
+                    setAttributes(sectionPara, {
+                        id: 'sectionPara',
+                        class: 'section-para'
+                    });
+
+                    const postedData: number[] = await processedDataObject(
+                        this.lotteryData
+                    );
+
+                    container?.appendChild(section);
+                    await appendChildren(section, [sectionH1, sectionPara]);
+
+                    sectionH1.textContent = 'Pick-3 Prediction';
+                    sectionPara.innerHTML = JSON.stringify(
+                        postedData.slice(0, 6).join()
+                    );
+                }
+            );
+
             // let myChart = new Chart(new CanvasRenderingContext2D());
 
-            // const predictionsChart = new Chart(ctx, {
+            // const predictionsChart = new Chart(this.ctx, {
             //     type: 'bar',
             //     data: {
-            //         labels: lotteryData.map((_, index) => `Draw ${index + 1}`),
+            //         labels: this.lotteryData.map((_, index) => `Draw ${index + 1}`),
             //         datasets: [
             //             {
             //                 label: '# of Draws',
-            //                 data: lotteryData,
+            //                 data: this.lotteryData,
             //                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
             //                 borderColor: 'rgba(75, 192, 192, 1)',
             //                 borderWidth: 1
