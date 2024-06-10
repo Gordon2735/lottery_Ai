@@ -9,19 +9,11 @@ import {
     setAttributes,
     appendChildren
 } from '../../../componentTools/general_helpers.js';
-// import { Chart } from 'chart.js';
-// import { Chart } from '../../../../../node_modules/chart.js/auto/auto.js';
-// import {
-//     Chart,
-//     registerables
-// } from '../../../../../node_modules/chart.js/auto/auto.js';
-
-// Chart.register(...registerables);
+// import Chart from 'chart.js/auto';
+import Chart from '../../../../../node_modules/chart.js/auto/auto.js';
 
 class Pick3Predictions extends Pick3PredictionsTemplate {
     activateShadowDOM: boolean = false;
-    lotteryData: number[];
-    ctx: HTMLCanvasElement;
     getPredictionsBtn: HTMLButtonElement | undefined;
 
     public get template(): string {
@@ -46,19 +38,16 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
         super();
 
         this.activateShadowDOM = false;
+    }
+
+    override connectedCallback(): void {
+        super.connectedCallback();
 
         // Data: historical lottery numbers@
         const lotteryData: number[] = [];
         const ctx: HTMLCanvasElement = document.getElementById(
             'historicalChart'
         ) as HTMLCanvasElement;
-
-        this.lotteryData = lotteryData;
-        this.ctx = ctx;
-    }
-
-    override connectedCallback(): void {
-        super.connectedCallback();
 
         const getPredictionsBtn = document.getElementById(
             'getPredictionsBtn'
@@ -76,7 +65,7 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
 
             this.getPredictionsBtn.addEventListener(
                 'click',
-                async (event: MouseEvent) => {
+                async (event: MouseEvent): Promise<void> => {
                     // event.preventDefault();
 
                     console.info(`Event: ${event}`);
@@ -99,6 +88,38 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                                 logic has thrown as Error in the 'response'....
                             `);
                         }
+
+                        const predictionsChart: Chart<'bar', number[], string> =
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: lotteryData.map(
+                                        (_, index) => `Draw ${index + 1}`
+                                    ),
+                                    datasets: [
+                                        {
+                                            label: '# of Draws',
+                                            data: lotteryData,
+                                            backgroundColor:
+                                                'rgba(75, 192, 192, 0.2)',
+                                            borderColor:
+                                                'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            }) as Chart<'bar', number[], string>;
+                        // console.log(predictionsChart);
+                        // this.ctx.innerHTML = predictionsChart;
+                        predictionsChart.update();
+
                         return (data = await response.json());
                     };
 
@@ -124,47 +145,19 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                         class: 'section-para'
                     });
 
-                    const postedData: number[] = await processedDataObject(
-                        this.lotteryData
-                    );
+                    const postedData: number[] =
+                        await processedDataObject(lotteryData);
 
                     container?.appendChild(section);
                     await appendChildren(section, [sectionH1, sectionPara]);
 
                     sectionH1.textContent = 'Pick-3 Prediction';
-                    sectionPara.innerHTML = JSON.stringify(
-                        postedData.slice(0, 6).join()
-                    );
+                    const modifiedPostedData: string = postedData.join(', ');
+                    const paraText: Text =
+                        document.createTextNode(modifiedPostedData);
+                    sectionPara.appendChild(paraText);
                 }
             );
-
-            // let myChart = new Chart(new CanvasRenderingContext2D());
-
-            // const predictionsChart = new Chart(this.ctx, {
-            //     type: 'bar',
-            //     data: {
-            //         labels: this.lotteryData.map((_, index) => `Draw ${index + 1}`),
-            //         datasets: [
-            //             {
-            //                 label: '# of Draws',
-            //                 data: this.lotteryData,
-            //                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            //                 borderColor: 'rgba(75, 192, 192, 1)',
-            //                 borderWidth: 1
-            //             }
-            //         ]
-            //     },
-            //     options: {
-            //         scales: {
-            //             y: {
-            //                 beginAtZero: true
-            //             }
-            //         }
-            //     }
-            // }) as Chart<'bar', number[], string>;
-            // console.log(predictionsChart);
-            // this.ctx.insertAdjacentHTML('afterbegin', predictionsChart);
-            // predictionsChart.update();
         } catch (error: unknown) {
             console.info(
                 `

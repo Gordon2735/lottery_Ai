@@ -186,6 +186,7 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-margin-2a: 2.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-2b: 3.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-2bz: 2.2em 0em 1.3em 0em; 
+        --pk3-predictions-margin-2bza: 2.2em 0em 1.3em 3em; 
         --pk3-predictions-margin-2c: 4.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-2d: 5.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-3: 1em 0em 1.5em 0em; 
@@ -213,6 +214,7 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-width-60: 60%;
         --pk3-predictions-width-55: 55%;
         --pk3-predictions-width-50: 50%;
+        --pk3-predictions-width-35: 35%;
         --pk3-predictions-width-35: 35%;
         --pk3-predictions-width-25: 25%;
         --pk3-predictions-width-20: 20%;
@@ -517,8 +519,9 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-left-100: 100%;
 
         /* Right Variable */
-        --pk3-predictions-right-10: 10%;
+        --pk3-predictions-right-3: 3%;
         --pk3-predictions-right-5: 5%;
+        --pk3-predictions-right-10: 10%;
 
         
         /* bottom Variables */
@@ -994,12 +997,13 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
     }
 
     .predictions-section {
-        margin: var(--pk3-predictions-margin-2bz);
-        padding: var(--pk3-predictions-padding-xxs);
-        width: var(--pk3-predictions-width-25);
+        margin: var(--pk3-predictions-margin-2bza);
+        width: var(--pk3-predictions-width-35);
         position: var(--pk3-predictions-position-absolute);
         top: var(--pk3-predictions-top-20);
-        right: var(--pk3-predictions-right-5);
+        right: var(--pk3-predictions-right-3);
+        display: var(--pk3-predictions-display-inline-block);
+        justify-content: var(--pk3-predictions-justify-content-center);
         text-align: var(--pk3-predictions-text-align-justify);
         background-image: var(--pk3-predictions-gradient-dark-2),
                           var(--pk3-predictions-gradient-dark-2);
@@ -1010,6 +1014,8 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
 
     .predictions-h1 {
         margin: var(--pk3-predictions-margin-00z);
+        position: var(--pk3-predictions-position-relative);
+        display: var(--pk3-predictions-display-block);
         text-align: var(--pk3-predictions-text-align-center);
         font-family: var(--pk3-predictions-ff-titillium-web);
         font-size: var(--pk3-predictions-fs-xxxl-0);
@@ -1021,13 +1027,15 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
     }
 
     .section-para {
-        margin: 1em auto 1em auto;
-        padding: 0em 1.3em 1.1em 0em;
+        margin: 1.75em auto 1.3em auto;
+        position: var(--pk3-predictions-position-relative);
+        display: var(--pk3-predictions-display-block);
         font-family: var(--pk3-predictions-ff-src-code-pro);
-        font-size: var(--pk3-predictions-fs-lg);
-        color: var(--pk3-predictions-clr-fc-2);
+        font-size: var(--pk3-predictions-fs-xxlz);
+        color: var(--pk3-predictions-clr-fc-6a);
         text-shadow: var(--pk3-predictions-text-shadow-xmdz);
-        text-align: var(--pk3-predictions-text-align-justify);
+        text-align: var(--pk3-predictions-text-align-center);
+        align-self: var(--pk3-predictions-justify-self-center);
     }
 
     @keyframes spin {
