@@ -13,7 +13,8 @@ async function processLotteryCollection(
     console.log(
         `Mean: ${mean}, Median: ${median}, Standard Deviation: ${standardDeviation}`
     );
-    return dataArray;
+    const statisticsArray: number[] = [mean, median, standardDeviation];
+    return statisticsArray;
 }
 
 // Create a chart to visualize the data

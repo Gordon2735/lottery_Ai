@@ -21,7 +21,7 @@ import puppeteer from 'puppeteer';
 import scraper from '../../../models/appData/puppeteer/pageScraper.js';
 import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
 import startBrowser from '../../../models/appData/puppeteer/browser.js';
-// import processLotteryCollection from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
+import processLotteryCollection from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
 // import Pick3DataObject from '../../../components/game_components/pick3_components/pick3_logic/pick3_data/pick3Data.js';
 
 declare module 'express-session' {
@@ -676,8 +676,10 @@ async function pick3PredictionsPostHandler(req: Request, res: Response) {
         //         'midDay'
         //     )}`
         // );
-        const testData: number[] = [23, 56, 32, 89, 67, 77];
-        return res.json(testData);
+        const testData: number[] = [23, 56, 32, 89, 67, 77, 123, 758, 432];
+        const testedData: Promise<number[]> =
+            processLotteryCollection(testData);
+        return res.json(await testedData);
     } catch (error: unknown) {
         console.error(
             `

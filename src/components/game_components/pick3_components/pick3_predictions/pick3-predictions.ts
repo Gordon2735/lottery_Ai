@@ -10,7 +10,7 @@ import {
     appendChildren
 } from '../../../componentTools/general_helpers.js';
 // import * as Chart from 'chart.js/auto';
-import * as Chart from '../../../../../node_modules/chart.js/auto/auto.js';
+// import * as Chart from '../../../../../node_modules/chart.js/auto/auto.js';
 
 class Pick3Predictions extends Pick3PredictionsTemplate {
     activateShadowDOM: boolean = false;
@@ -45,9 +45,9 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
 
         // Data: historical lottery numbers@
         const lotteryData: number[] = [];
-        const ctx: HTMLCanvasElement = document.getElementById(
-            'historicalChart'
-        ) as HTMLCanvasElement;
+        // const ctx: HTMLCanvasElement = document.getElementById(
+        //     'historicalChart'
+        // ) as HTMLCanvasElement;
 
         const getPredictionsBtn = document.getElementById(
             'getPredictionsBtn'
@@ -68,7 +68,7 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                 async (event: MouseEvent): Promise<void> => {
                     // event.preventDefault();
 
-                    console.info(`Event: ${event}`);
+                    console.info(`Event: ${JSON.stringify(event)}`);
                     const processedDataObject = async (
                         data: number[]
                     ): Promise<number[]> => {
@@ -90,38 +90,39 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                         }
 
                         // const predictionsChart: Chart<'bar', number[], string> =
-                        const predictionsChart: Chart.Chart<
-                            'bar',
-                            number[],
-                            string
-                        > = new Chart.Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: lotteryData.map(
-                                    (_, index) => `Draw ${index + 1}`
-                                ),
-                                datasets: [
-                                    {
-                                        label: '# of Draws',
-                                        data: lotteryData,
-                                        backgroundColor:
-                                            'rgba(75, 192, 192, 0.2)',
-                                        borderColor: 'rgba(75, 192, 192, 1)',
-                                        borderWidth: 1
-                                    }
-                                ]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        }) as Chart.default<'bar', number[], string>;
+                        // const predictionsChart: Chart.Chart<
+                        //     'bar',
+                        //     number[],
+                        //     string
+                        // > = new Chart.Chart(ctx, {
+                        //     type: 'bar',
+                        //     data: {
+                        //         labels: lotteryData.map(
+                        //             (_, index) => `Draw ${index + 1}`
+                        //         ),
+                        //         datasets: [
+                        //             {
+                        //                 label: '# of Draws',
+                        //                 data: lotteryData,
+                        //                 backgroundColor:
+                        //                     'rgba(75, 192, 192, 0.2)',
+                        //                 borderColor: 'rgba(75, 192, 192, 1)',
+                        //                 borderWidth: 1
+                        //             }
+                        //         ]
+                        //     },
+                        //     options: {
+                        //         scales: {
+                        //             y: {
+                        //                 beginAtZero: true
+                        //             }
+                        //         }
+                        //     }
+                        // });
                         // console.log(predictionsChart);
                         // this.ctx.innerHTML = predictionsChart;
-                        predictionsChart.update();
+                        // predictionsChart.render();
+                        // predictionsChart.update();
 
                         return (data = await response.json());
                     };
@@ -155,10 +156,20 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                     await appendChildren(section, [sectionH1, sectionPara]);
 
                     sectionH1.textContent = 'Pick-3 Prediction';
-                    const modifiedPostedData: string = postedData.join(', ');
+
+                    const dataNumbersRounded: number[] = [];
+
+                    postedData.forEach((num: number) => {
+                        dataNumbersRounded.push(Math.ceil(num));
+                    });
+
+                    const modifiedPostedData: string =
+                        dataNumbersRounded.join(', ');
                     const paraText: Text =
                         document.createTextNode(modifiedPostedData);
                     sectionPara.appendChild(paraText);
+
+                    console.info(`Predictions: ${modifiedPostedData}`);
                 }
             );
         } catch (error: unknown) {
