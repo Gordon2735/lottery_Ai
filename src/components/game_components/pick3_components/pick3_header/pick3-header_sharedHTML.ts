@@ -1,11 +1,11 @@
 'use strict';
 
-import { Ipick3_header_sharedHTML } from './Ipick3_header.js';
+import type { Ipick3_header_sharedHTML } from './Ipick3_header.js';
 
 const pick3_header_sharedHTML: Ipick3_header_sharedHTML = {
-	shell: '',
-	header: '',
-	currentPick3: ''
+    shell: '',
+    header: '',
+    currentPick3: ''
 };
 
 pick3_header_sharedHTML.shell = /*html*/ `

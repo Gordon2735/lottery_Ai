@@ -3,7 +3,10 @@
 import * as dotenv from 'dotenv';
 import OpenAI from 'openai';
 import fs from 'fs';
-import IConfig, { SessionData } from '../src/@types/interfaces/interfaces.js';
+import type {
+    IConfig,
+    SessionData
+} from '../src/@types/interfaces/interfaces.js';
 
 // Load environment variables from .env file
 dotenv.config({

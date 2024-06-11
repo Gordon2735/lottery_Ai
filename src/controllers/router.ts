@@ -2,7 +2,7 @@
 
 'use strict';
 
-import express, { Application, Router } from 'express';
+import express, { type Application, Router } from 'express';
 import index_route, {
     state_mgt_route,
     errorBase_route,

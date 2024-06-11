@@ -5,7 +5,7 @@
 'use script';
 
 import moment from 'moment';
-import { Response } from '../../../src/app.js';
+import { type Response } from '../../../src/app.js';
 
 const helper = {
     if_cond: (v1: any, operator: any, v2: any, options: any): any => {

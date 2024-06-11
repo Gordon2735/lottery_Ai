@@ -1,6 +1,6 @@
 'use strict';
 
-import { Ipick3GameSharedHTML } from './Ipick3_game.js';
+import type { Ipick3GameSharedHTML } from './Ipick3_game.js';
 
 const pick3Game_sharedHTML: Ipick3GameSharedHTML = {
     shell: ``,

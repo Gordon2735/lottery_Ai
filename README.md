@@ -28,4 +28,7 @@
 
 -   [x] **LOTTERY Ai™️** makes playing the **South Carolina Lottery Games** **FUN & EXCITING**! Feel your **confidence grow** as you and your new **Teammate** strategize your next play.
 
-##
+## "types": [
+
+            "offscreencanvas"
+        ]

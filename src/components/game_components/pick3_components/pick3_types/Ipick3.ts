@@ -27,7 +27,7 @@ interface IPick3AnnualData {
 //     };
 // }
 
-export {
+export type {
     IPick3AnnualData as default,
     IPeriodsResults,
     IYearResults,

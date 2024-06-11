@@ -1,13 +1,13 @@
 'use strict';
 
-import { IPowerBallGameSharedStyles } from '../powerBall_resources/powerBall_types/IPowerBallGame.js';
+import type { IPowerBallGameSharedStyles } from '../powerBall_resources/powerBall_types/IPowerBallGame.js';
 
 const powerballGame_sharedStyles: IPowerBallGameSharedStyles = {
-	global: '',
-	root: '',
-	shell: '',
-	container: '',
-	queries: ''
+    global: '',
+    root: '',
+    shell: '',
+    container: '',
+    queries: ''
 };
 
 powerballGame_sharedStyles.global = /*css*/ `

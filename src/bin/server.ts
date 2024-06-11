@@ -3,12 +3,12 @@
 'use strict';
 
 import getConfig from '../../config/config.js';
-import { Application } from 'express';
+import { type Application } from 'express';
 import { connection } from '../models/databases/userDB.js';
 import http from 'http';
 import App from '../app.js';
-import { AddressInfo } from 'node:net';
-import { SessionData } from '../@types/interfaces/interfaces.js';
+import { type AddressInfo } from 'node:net';
+import { type SessionData } from '../@types/interfaces/interfaces.js';
 import createUserTable from '../models/Schemas/userModel.js';
 
 const config: {

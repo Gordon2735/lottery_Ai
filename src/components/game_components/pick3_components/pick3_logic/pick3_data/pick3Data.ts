@@ -1,4 +1,4 @@
-import { IPick3DataObject } from '../../pick3_types/Ipick3.js';
+import type { IPick3DataObject } from '../../pick3_types/Ipick3.js';
 
 // ! Need to create One Object and a Function to enter these Periods
 // ! into the Object...
@@ -6,7 +6,7 @@ import { IPick3DataObject } from '../../pick3_types/Ipick3.js';
 // prettier-ignore
 const Pick3DataObject: IPick3DataObject = {
     
-    'year_2002':   { 
+   2002:   { 
         year: ['2002'],
         midDay: [
             '0'
@@ -44,7 +44,7 @@ const Pick3DataObject: IPick3DataObject = {
             '746', '189', '498', '127', '015', '743', '186', '558', '049'
          ]
     }, 
-    'year_2003':   { 
+    2003:   { 
         year: ['2003'],
         midDay: [
             '644', '394', '343', '785', '415', '220', '644', '691', '898', '473', 
@@ -100,7 +100,7 @@ const Pick3DataObject: IPick3DataObject = {
         ]
         
     },
-    'year_2004':   { 
+    2004:   { 
         year: ['2004'],
         midDay: [
             '974', '398', '624', '013', '397', '105', '359', '900', '912', '098',

@@ -30,7 +30,7 @@
         // "reactNamespace": "",                             /* Specify the object invoked for 'createElement'. This only applies when targeting 'react' JSX emit. */
         // "noLib": true,                                    /* Disable including any library files, including the default lib.d.ts. */
         // "useDefineForClassFields": true,                  /* Emit ECMAScript-standard-compliant class fields. */
-        "moduleDetection": "auto" /* Control what method is used to detect module-format JS files. */,
+        // "moduleDetection": "auto" /* Control what method is used to detect module-format JS files. */,
 
         /* Modules */
         "module": "NodeNext" /* Specify what module code is generated. */,
@@ -46,7 +46,7 @@
         "typeRoots": [
             "./src/@types/global.d.js"
         ] /* Specify multiple folders that act like './node_modules/@types'. */,
-        // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
+        "types": [] /* Specify type package names to be included without being referenced in a source file. */,
         // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
         // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
         // "allowImportingTsExtensions": true,               /* Allow imports to include TypeScript file extensions. Requires '--moduleResolution bundler' and either '--noEmit' or '--emitDeclarationOnly' to be set. */
@@ -73,7 +73,7 @@
         // "removeComments": true,                           /* Disable emitting comments. */
         // "noEmit": true,                                   /* Disable emitting files from a compilation. */
         // "importHelpers": true,                            /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
-        // "importsNotUsedAsValues": "remove",               /* Specify emit/checking behavior for imports that are only used for types. */
+        "verbatimModuleSyntax": true /* Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting. */,
         // "downlevelIteration": true,                       /* Emit more compliant, but verbose and less performant JavaScript for iteration. */
         // "sourceRoot": "",                                 /* Specify the root path for debuggers to find the reference source code. */
         // "mapRoot": "",                                    /* Specify the location where debugger should locate map files instead of generated locations. */

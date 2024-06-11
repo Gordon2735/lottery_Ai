@@ -1,6 +1,6 @@
 'use strict';
 
-import { Ipick3PredictionsSharedHTML } from './Ipick3-predictions.js';
+import type { Ipick3PredictionsSharedHTML } from './Ipick3-predictions.js';
 
 const pick3_predictions_sharedHTML: Ipick3PredictionsSharedHTML = {
     container: ``,

@@ -1,10 +1,10 @@
 'use strict';
 
-import { IspinnerBase1SharedHTML } from './Ispinner-base1.js';
+import type { IspinnerBase1SharedHTML } from './Ispinner-base1.js';
 
 const spinnerBase1_SharedHTML: IspinnerBase1SharedHTML = {
-	construct: '',
-	logic: ''
+    construct: '',
+    logic: ''
 };
 
 spinnerBase1_SharedHTML.construct = /*html*/ `

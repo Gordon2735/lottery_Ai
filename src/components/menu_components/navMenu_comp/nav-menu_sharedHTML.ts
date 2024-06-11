@@ -1,11 +1,11 @@
 'use strict';
 
-import { INavMenuSharedHTML } from './Inav-menu.js';
+import type { INavMenuSharedHTML } from './Inav-menu.js';
 
 const navMenu_sharedHTML: INavMenuSharedHTML = {
-	shell: ``,
-	navbar: ``,
-	navHamBtn: ``
+    shell: ``,
+    navbar: ``,
+    navHamBtn: ``
 };
 
 navMenu_sharedHTML.shell = /*html*/ `

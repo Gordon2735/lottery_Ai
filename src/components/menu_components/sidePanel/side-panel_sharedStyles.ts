@@ -1,27 +1,27 @@
 'use strict';
 
-import { IsidePanelSharedStyles } from './IsidePanel.js';
+import type { IsidePanelSharedStyles } from './IsidePanel.js';
 
 const sidePanel_sharedStyles: IsidePanelSharedStyles = {
-	global: ``,
-	root: ``,
-	shell: ``,
-	panel: ``,
-	lottery: ``,
-	powerball: ``,
-	mega_mil: ``,
-	cash5: ``,
-	pick3: ``,
-	pick4: ``,
-	cash_pop: ``,
-	winnings: ``,
-	today_nums: ``,
-	histories: ``,
-	terms: ``,
-	q_a: ``,
-	security: ``,
-	about: ``,
-	contact: ``
+    global: ``,
+    root: ``,
+    shell: ``,
+    panel: ``,
+    lottery: ``,
+    powerball: ``,
+    mega_mil: ``,
+    cash5: ``,
+    pick3: ``,
+    pick4: ``,
+    cash_pop: ``,
+    winnings: ``,
+    today_nums: ``,
+    histories: ``,
+    terms: ``,
+    q_a: ``,
+    security: ``,
+    about: ``,
+    contact: ``
 };
 
 sidePanel_sharedStyles.global = /*css*/ `

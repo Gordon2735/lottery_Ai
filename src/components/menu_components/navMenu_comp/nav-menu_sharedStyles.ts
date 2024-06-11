@@ -1,12 +1,12 @@
 'use strict';
 
-import { INavMenuSharedStyles } from './Inav-menu.js';
+import type { INavMenuSharedStyles } from './Inav-menu.js';
 
 const navMenu_sharedStyles: INavMenuSharedStyles = {
-	shell: ``,
-	navbar: ``,
-	navHamBtn: ``,
-	navbarQueries: ``
+    shell: ``,
+    navbar: ``,
+    navHamBtn: ``,
+    navbarQueries: ``
 };
 
 navMenu_sharedStyles.shell = /*css*/ `

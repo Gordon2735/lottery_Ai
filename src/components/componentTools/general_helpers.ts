@@ -1,6 +1,7 @@
 // General Component Helper Functions
 
-import ISetAttributes, {
+import type {
+    ISetAttributes,
     IAppendChildren,
     IRemoveChildren
 } from './Interface_componentTools.js';

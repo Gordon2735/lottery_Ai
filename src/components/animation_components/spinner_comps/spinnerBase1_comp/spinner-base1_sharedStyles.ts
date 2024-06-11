@@ -1,13 +1,13 @@
 'use strict';
 
-import { IspinnerBase1SharedStyles } from './Ispinner-base1.js';
+import type { IspinnerBase1SharedStyles } from './Ispinner-base1.js';
 
 const spinnerBase1_SharedStyles: IspinnerBase1SharedStyles = {
-	global: '',
-	root: '',
-	construct: '',
-	logic: '',
-	queries: ''
+    global: '',
+    root: '',
+    construct: '',
+    logic: '',
+    queries: ''
 };
 
 spinnerBase1_SharedStyles.global = /*css*/ `

@@ -48,18 +48,59 @@ declare global {
     }
     [] | null | undefined | string;
 
-    // interface IPick3DataObject {
-    //     [year: string]: string;
-    //     [midDay: string]: string[];
-    //     [evening: string]: string[];
-    // }
-    [];
     interface IPick3DataObject {
-        [years: string]: {
+        [years: number]: {
             year: string[];
             midDay: string[];
             evening: string[];
         };
     }
     [];
+
+    interface HTMLCanvasElement extends HTMLElement {
+        // ...
+        transferControlToOffscreen(): OffscreenCanvas;
+    }
+    interface OffscreenCanvasRenderingContext2D
+        extends CanvasState,
+            CanvasTransform,
+            CanvasCompositing,
+            CanvasImageSmoothing,
+            CanvasFillStrokeStyles,
+            CanvasShadowStyles,
+            CanvasFilters,
+            CanvasRect,
+            CanvasDrawPath,
+            CanvasUserInterface,
+            CanvasText,
+            CanvasDrawImage,
+            CanvasImageData,
+            CanvasPathDrawingStyles,
+            CanvasTextDrawingStyles,
+            CanvasPath {
+        readonly canvas: OffscreenCanvas;
+    }
+    declare const OffscreenCanvasRenderingContext2D: {
+        prototype: OffscreenCanvasRenderingContext2D;
+        new (): OffscreenCanvasRenderingContext2D;
+    };
+
+    type Transferable =
+        | ArrayBuffer
+        | MessagePort
+        | ImageBitmap
+        | OffscreenCanvas;
 }
+
+// interface OffscreenCanvas extends EventTarget {
+//     width: number;
+//     height: number;
+//     getContext(
+//         contextId: '2d',
+//         contextAttributes?: CanvasRenderingContext2DSettings
+//     ): OffscreenCanvasRenderingContext2D | null;
+// }
+// declare const OffscreenCanvas: {
+//     prototype: OffscreenCanvas;
+//     new (width: number, height: number): OffscreenCanvas;
+// };

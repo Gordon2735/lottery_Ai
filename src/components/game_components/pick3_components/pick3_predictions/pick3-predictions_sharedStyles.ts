@@ -1,6 +1,6 @@
 'use strict';
 
-import { Ipick3PredictionsSharedStyles } from './Ipick3-predictions.js';
+import type { Ipick3PredictionsSharedStyles } from './Ipick3-predictions.js';
 
 const pick3_predictions_sharedStyles: Ipick3PredictionsSharedStyles = {
     root: ``,

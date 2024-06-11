@@ -1,6 +1,6 @@
 'use strict';
 
-import { Ipick3Scrape_sharedStyles } from './Ipick3-scrape.js';
+import type { Ipick3Scrape_sharedStyles } from './Ipick3-scrape.js';
 
 const pick3Scrape_sharedStyles: Ipick3Scrape_sharedStyles = {
     // shared styles

@@ -1,7 +1,7 @@
 'use strict';
 
 // import { buffer } from 'node:stream/consumers';
-import { Request } from '../app.js';
+import type { Request } from '../app.js';
 // import getConfig from '../../config/config.js';
 
 const req = new Request('/login').body as Request | null;
@@ -11,12 +11,12 @@ console.info(`You have routed to the Login page.`);
 // const config = await getConfig();
 
 console.info(
-	`
+    `
         %c
         username: ${req?.body.user_id},
         data: ${req?.body.user} 
     `,
-	`
+    `
         color: chartreuse;
         font-family: 'Titillium Web', sans-serif; 
         font-size: 0.85rem;

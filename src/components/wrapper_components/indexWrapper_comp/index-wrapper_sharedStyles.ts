@@ -1,6 +1,6 @@
 'use strict';
 
-import { IIndexWrapperSharedStyles } from './Iindex-wrapper.js';
+import type { IIndexWrapperSharedStyles } from './Iindex-wrapper.js';
 
 const indexWrapperSharedStyles: IIndexWrapperSharedStyles = {
     global: '',

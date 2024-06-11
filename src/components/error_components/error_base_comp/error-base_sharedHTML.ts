@@ -1,8 +1,8 @@
 'use strict';
-import { IerrorBaseSharedHTML } from '../errorInterfaces/IerrorBase.js';
+import type { IerrorBaseSharedHTML } from '../errorInterfaces/IerrorBase.js';
 
 const errorBase_sharedHTML: IerrorBaseSharedHTML = {
-	base: ``
+    base: ``
 };
 
 errorBase_sharedHTML.base = /*html*/ `

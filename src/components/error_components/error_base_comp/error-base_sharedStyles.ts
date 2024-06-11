@@ -1,9 +1,9 @@
 'use strict';
-import { IerrorBaseSharedStyles } from '../errorInterfaces/IerrorBase.js';
+import type { IerrorBaseSharedStyles } from '../errorInterfaces/IerrorBase.js';
 
 const errorBase_sharedStyles: IerrorBaseSharedStyles = {
-	root: ``,
-	base: ``
+    root: ``,
+    base: ``
 };
 
 errorBase_sharedStyles.root = /*css*/ `

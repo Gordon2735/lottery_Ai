@@ -1,6 +1,6 @@
 'use strict';
 
-import { Ipick3Scrape_sharedHTML } from './Ipick3-scrape.js';
+import type { Ipick3Scrape_sharedHTML } from './Ipick3-scrape.js';
 
 const pick3Scrape_sharedHTML: Ipick3Scrape_sharedHTML = {
     container: ``,

@@ -1,12 +1,12 @@
 'use strict';
 
-import { Ipick3_header_sharedStyles } from './Ipick3_header.js';
+import type { Ipick3_header_sharedStyles } from './Ipick3_header.js';
 
 const pick3_header_sharedStyles: Ipick3_header_sharedStyles = {
-	root: '',
-	shell: '',
-	header: '',
-	currentPick3: ''
+    root: '',
+    shell: '',
+    header: '',
+    currentPick3: ''
 };
 
 pick3_header_sharedStyles.root = /*css*/ `

@@ -1,6 +1,6 @@
 'use strict';
 
-import { Ipick3GameSharedStyles } from './Ipick3_game.js';
+import type { Ipick3GameSharedStyles } from './Ipick3_game.js';
 
 const pick3Game_sharedStyles: Ipick3GameSharedStyles = {
     root: ``,

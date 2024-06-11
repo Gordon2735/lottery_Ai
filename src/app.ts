@@ -4,10 +4,10 @@
 
 import getConfig from '../config/config.js';
 import express, {
-    Application,
-    Request,
-    Response,
-    NextFunction,
+    type Application,
+    type Request,
+    type Response,
+    type NextFunction,
     Router
 } from 'express';
 import { create, ExpressHandlebars } from 'express-handlebars';
@@ -184,4 +184,11 @@ export default async function (config: {
 
 const uuidV4: typeof uuid = uuid;
 
-export { express, Application, Request, Response, NextFunction, uuidV4 };
+export {
+    express,
+    type Application,
+    type Request,
+    type Response,
+    type NextFunction,
+    uuidV4
+};

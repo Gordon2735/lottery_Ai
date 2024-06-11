@@ -5,8 +5,8 @@
 'use strict';
 // @ts-check
 
-import { Request, Response, NextFunction } from '../../../app.js';
-import express, { Application } from 'express';
+import type { Request, Response, NextFunction } from '../../../app.js';
+import express, { type Application } from 'express';
 import getConfig from '../../../../config/config.js';
 import {
     insertSession,
@@ -15,8 +15,7 @@ import {
 } from '../../../models/Schemas/userModel.js';
 import bcrypt from 'bcryptjs';
 import Session from 'express-session';
-import {} from '../../../../src/@types/global.d.js';
-import IUser from '../../../../src/@types/interfaces/interfaces.js';
+import type { IUser } from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
 import puppeteer from 'puppeteer';
 import scraper from '../../../models/appData/puppeteer/pageScraper.js';
@@ -698,6 +697,35 @@ async function pick3PredictionsPostHandler(req: Request, res: Response) {
         );
     }
 }
+async function pick3ChartPostHandler(_req: Request, res: Response) {
+    try {
+        return res.json();
+    } catch (error: unknown) {
+        console.info(
+            `
+            The Routing pick3ChartPostHandler() Function has been caught
+                in the try/catch block...
+            ERROR: ${error}
+        `
+        );
+        res.status(500).send(
+            `
+            The Route Handler 'pick3ChartPostHandler' has produced this 
+                Server Error: ${error}
+        `
+        );
+
+        return Promise.reject() as Promise<void>;
+    } finally {
+        console.info(
+            `
+            The Routing pick3ChartPostHandler() Function's try/catch/finally block 
+                has reached 'finally'...
+        `
+        );
+    }
+}
+
 export {
     stateHandler,
     errorBaseHandler,
@@ -712,5 +740,6 @@ export {
     pick3Handler,
     pick3ScrapePostHandler,
     pick3PredictionsHandler,
-    pick3PredictionsPostHandler
+    pick3PredictionsPostHandler,
+    pick3ChartPostHandler
 };

@@ -9,8 +9,8 @@ import {
     setAttributes,
     appendChildren
 } from '../../../componentTools/general_helpers.js';
-// import Chart from 'chart.js/auto';
-import Chart from '../../../../../node_modules/chart.js/auto/auto.js';
+// import * as Chart from 'chart.js/auto';
+import * as Chart from '../../../../../node_modules/chart.js/auto/auto.js';
 
 class Pick3Predictions extends Pick3PredictionsTemplate {
     activateShadowDOM: boolean = false;
@@ -89,33 +89,36 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
                             `);
                         }
 
-                        const predictionsChart: Chart<'bar', number[], string> =
-                            new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: lotteryData.map(
-                                        (_, index) => `Draw ${index + 1}`
-                                    ),
-                                    datasets: [
-                                        {
-                                            label: '# of Draws',
-                                            data: lotteryData,
-                                            backgroundColor:
-                                                'rgba(75, 192, 192, 0.2)',
-                                            borderColor:
-                                                'rgba(75, 192, 192, 1)',
-                                            borderWidth: 1
-                                        }
-                                    ]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true
-                                        }
+                        // const predictionsChart: Chart<'bar', number[], string> =
+                        const predictionsChart: Chart.Chart<
+                            'bar',
+                            number[],
+                            string
+                        > = new Chart.Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: lotteryData.map(
+                                    (_, index) => `Draw ${index + 1}`
+                                ),
+                                datasets: [
+                                    {
+                                        label: '# of Draws',
+                                        data: lotteryData,
+                                        backgroundColor:
+                                            'rgba(75, 192, 192, 0.2)',
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        borderWidth: 1
+                                    }
+                                ]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
                                     }
                                 }
-                            }) as Chart<'bar', number[], string>;
+                            }
+                        }) as Chart.default<'bar', number[], string>;
                         // console.log(predictionsChart);
                         // this.ctx.innerHTML = predictionsChart;
                         predictionsChart.update();

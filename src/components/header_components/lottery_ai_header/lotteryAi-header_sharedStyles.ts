@@ -1,12 +1,12 @@
 // Lottery Ai Header Shared Styles
 
-import { ILotteryAiHeaderSharedStyles } from './Ilotteryai_header.js';
+import type { ILotteryAiHeaderSharedStyles } from './Ilotteryai_header.js';
 
 const lotteryAiHeaderSharedStyles: ILotteryAiHeaderSharedStyles = {
-	global: '',
-	shell: '',
-	contents: '',
-	queries: ''
+    global: '',
+    shell: '',
+    contents: '',
+    queries: ''
 };
 
 lotteryAiHeaderSharedStyles.global = /*css*/ `

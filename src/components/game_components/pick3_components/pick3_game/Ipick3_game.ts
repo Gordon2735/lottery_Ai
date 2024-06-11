@@ -3,17 +3,17 @@
 // Pick 3 Component Interfaces
 
 interface Ipick3GameSharedHTML {
-	shell: string;
-	container: string;
-	game: string;
-	results: string;
+    shell: string;
+    container: string;
+    game: string;
+    results: string;
 }
 interface Ipick3GameSharedStyles {
-	root: string;
-	shell: string;
-	container: string;
-	game: string;
-	results: string;
+    root: string;
+    shell: string;
+    container: string;
+    game: string;
+    results: string;
 }
 
-export { Ipick3GameSharedHTML, Ipick3GameSharedStyles };
+export type { Ipick3GameSharedHTML, Ipick3GameSharedStyles };

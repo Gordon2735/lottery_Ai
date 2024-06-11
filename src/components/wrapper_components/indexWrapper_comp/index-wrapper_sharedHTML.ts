@@ -2,12 +2,12 @@
 +63;
 0.0;
 
-import { IIndexWrapperSharedHTML } from './Iindex-wrapper.js';
+import type { IIndexWrapperSharedHTML } from './Iindex-wrapper.js';
 
 const indexWrapperSharedHTML: IIndexWrapperSharedHTML = {
-	global: '',
-	shell: '',
-	container: ''
+    global: '',
+    shell: '',
+    container: ''
 };
 
 indexWrapperSharedHTML.global = /*html*/ `

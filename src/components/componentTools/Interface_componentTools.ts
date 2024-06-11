@@ -3,15 +3,15 @@
 'use strict';
 
 interface ISetAttributes {
-	[key: string]: string; // key-value pairs for attributes
+    [key: string]: string; // key-value pairs for attributes
 }
 
 interface IAppendChildren {
-	(parent: HTMLElement, children: Node[]): Promise<void>;
+    (parent: HTMLElement, children: Node[]): Promise<void>;
 }
 
 interface IRemoveChildren {
-	(parent: HTMLElement, children: Node[]): Promise<void>;
+    (parent: HTMLElement, children: Node[]): Promise<void>;
 }
 
-export { ISetAttributes as default, IAppendChildren, IRemoveChildren };
+export type { ISetAttributes, IAppendChildren, IRemoveChildren };

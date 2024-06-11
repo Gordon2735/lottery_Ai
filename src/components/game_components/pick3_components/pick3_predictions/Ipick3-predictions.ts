@@ -14,4 +14,4 @@ interface Ipick3PredictionsSharedStyles {
     results: string;
 }
 
-export { Ipick3PredictionsSharedHTML, Ipick3PredictionsSharedStyles };
+export type { Ipick3PredictionsSharedHTML, Ipick3PredictionsSharedStyles };

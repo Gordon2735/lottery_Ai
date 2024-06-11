@@ -1,11 +1,11 @@
 'use strict';
 
-import { IsidePanelSharedHTML } from './IsidePanel.js';
+import type { IsidePanelSharedHTML } from './IsidePanel.js';
 
 const sidePanel_sharedHTML: IsidePanelSharedHTML = {
-	shell: ``,
-	panel: ``,
-	lottery: ``
+    shell: ``,
+    panel: ``,
+    lottery: ``
 };
 
 sidePanel_sharedHTML.shell = /*html*/ `
