@@ -48,14 +48,16 @@ declare global {
     }
     [] | null | undefined | string;
 
-    interface IPick3DataObject {
-        [years: number]: {
-            year: string[];
-            midDay: string[];
-            evening: string[];
-        };
+    // Pick 3 Interfaces
+    interface IPick3Data {
+        year: string[];
+        midDay: string[];
+        evening: string[];
     }
-    [];
+
+    interface IPick3DataObject {
+        [years: number]: IPick3Data;
+    }
 
     interface HTMLCanvasElement extends HTMLElement {
         // ...

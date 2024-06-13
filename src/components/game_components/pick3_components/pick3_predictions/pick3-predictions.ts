@@ -66,7 +66,7 @@ class Pick3Predictions extends Pick3PredictionsTemplate {
             this.getPredictionsBtn.addEventListener(
                 'click',
                 async (event: MouseEvent): Promise<void> => {
-                    // event.preventDefault();
+                    event.preventDefault();
 
                     console.info(`Event: ${JSON.stringify(event)}`);
                     const processedDataObject = async (

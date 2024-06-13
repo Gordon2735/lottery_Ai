@@ -22,7 +22,7 @@ import scraper from '../../../models/appData/puppeteer/pageScraper.js';
 import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
 import startBrowser from '../../../models/appData/puppeteer/browser.js';
 import processLotteryCollection from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
-// import Pick3DataObject from '../../../components/game_components/pick3_components/pick3_logic/pick3_data/pick3Data.js';
+import Pick3DataObject from '../../../components/game_components/pick3_components/pick3_logic/pick3_data/pick3Data.js';
 
 declare module 'express-session' {
     interface Session {
@@ -622,64 +622,69 @@ async function pick3PredictionsPostHandler(req: Request, res: Response) {
             The Routing pick3PredictionsPostHandler() Function has fired...
         `
         );
+        const receiveData: IPick3DataObject = Pick3DataObject;
+        const processedCollectionData: number[] = [];
+        const processedCollectionDataIndexes: number[] = [];
 
-        // const receiveData: IPick3DataObject = Pick3DataObject;
+        const getProcessDataObject = async (
+            object: IPick3DataObject,
+            collection: number[],
+            indexes: number[]
+        ): Promise<number[]> => {
+            for (const year in Pick3DataObject) {
+                if (Object.prototype.hasOwnProperty.call(object, year)) {
+                    const objectYear = object[year];
+                    const yearStr = objectYear.year[0]; // Single element array, so accessing first element
+                    console.log(`Year: ${yearStr}`);
 
-        // const getProcessDataObject = async (
-        //     years: string,
-        //     period: string
-        // ): Promise<number[]> => {
-        //     const processedCollectionData: number[] = [];
-        //     async function getKey(
-        //         object: IPick3DataObject,
-        //         collection: number[]
-        //     ) {
-        //         Object.keys(object).find((key) => {
-        //             if (key === years) {
-        //                 for (const event in object.key) {
-        //                     const drawing: {
-        //                         year: string[];
-        //                         midDay: string[];
-        //                         evening: string[];
-        //                     } = object.event;
+                    objectYear.midDay.forEach(async (midDayValue, index) => {
+                        collection.push(parseInt(midDayValue));
+                        indexes.push(index);
+                    });
+                    objectYear.evening.forEach(async (eveningValue, index) => {
+                        collection.push(parseInt(eveningValue));
+                        indexes.push(index);
+                    });
+                }
+            }
+            // Calculate the sum of indexes using reduce
+            const indexSum: number = collection.reduce(
+                (sum, _, index) => sum + index,
+                0
+            );
+            console.info(
+                `indexSum reduces to effect the sum of Indexes: ${indexSum}`
+            );
+            return collection;
+        };
 
-        //                     console.info(`
-        //                         object.event: ${object.event},
-        //                         event:        ${event},
-        //                         drawing:      ${drawing}
-        //                     `);
+        const lotteryData: number[] = await getProcessDataObject(
+            receiveData,
+            processedCollectionData,
+            processedCollectionDataIndexes
+        );
+        const predictionsData: number[] =
+            await processLotteryCollection(lotteryData);
 
-        //                     let draw: any = [''];
-        //                     for (draw in drawing) {
-        //                         if (draw === period) {
-        //                             for (const value in draw) {
-        //                                 const valueStringToNumber: number =
-        //                                     parseInt(value);
-        //                                 collection.push(valueStringToNumber);
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         });
-        //         return collection;
-        //     }
-        //     await getKey(receiveData, processedCollectionData);
-        //     const data: number[] = await processLotteryCollection(
-        //         processedCollectionData
-        //     );
-        //     return data;
-        // };
-        // console.info(
-        //     `await getProcessDataObject('year_2003', 'midDay'): ${await getProcessDataObject(
-        //         'year_2003',
-        //         'midDay'
-        //     )}`
-        // );
-        const testData: number[] = [23, 56, 32, 89, 67, 77, 123, 758, 432];
-        const testedData: Promise<number[]> =
-            processLotteryCollection(testData);
-        return res.json(await testedData);
+        // Calculate the sum of indexes using reduce && making sure the lotteryData and the Indexes match...
+        const indexCollectionDataIndexesSum: number =
+            processedCollectionDataIndexes.reduce(
+                (sum, _, index) => sum + index,
+                0
+            );
+        console.info(
+            `indexCollectionDataIndexesSum indexSum reduces to effect the sum of Indexes: ${indexCollectionDataIndexesSum}`
+        );
+        // Calculate the sum of indexes using reduce && making sure the lotteryData and the Indexes match...
+        const indexCollectionDataSum: number = processedCollectionData.reduce(
+            (sum, _, index) => sum + index,
+            0
+        );
+        console.info(
+            `processedCollectionData indexSum reduces to effect the sum of Indexes: ${indexCollectionDataSum}`
+        );
+
+        return res.json(predictionsData);
     } catch (error: unknown) {
         console.error(
             `
