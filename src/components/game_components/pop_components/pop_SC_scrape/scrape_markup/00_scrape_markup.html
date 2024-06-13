@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img src="/images/games/GamePagesLogos_CashPOP.png" alt="CASH POP Logo">
+        </div>
+        <div class="col-md-2" style="display:block; margin-top:25px;">
+
+            <div class="numbers-date"
+                style="display: block; font-size:30px;  margin-top: -3px; text-align: center; padding-top: 1px; text-transform:uppercase;">
+                <div class="CashPOPDrawResultsFont_White" style="display:block;">6/12/2024</div>
+                <div class="CashPOPDrawResultsFont_Purple" style="display:block; margin-top:-12px">Evening</div>
+            </div>
+            <span class="cashPOPInstructionCircle" style="padding-right:3px;">8</span>
+        </div>
+        <div class="col-md-2" style="display:block; margin-top:25px;">
+
+            <div class="numbers-date"
+                style="display: block; font-size:30px;  margin-top: -3px; text-align: center; padding-top: 1px; text-transform:uppercase;">
+                <div class="CashPOPDrawResultsFont_White" style="display:block;">6/12/2024</div>
+                <div class="CashPOPDrawResultsFont_Purple" style="display:block; margin-top:-12px">Midday</div>
+            </div>
+            <span class="cashPOPInstructionCircle" style="padding-right:3px;">10</span>
+        </div>
+
+        <div class="text-center col-md-7"
+            style="min-width:350px; max-width:350px; text-align:center; margin-left:auto; margin-right:auto;">
+            <div style="display:block; text-align:center" class="text-center">
+                <form action="/Search/SearchCP" class="text-center" method="post" style="text-align:center"><input
+                        name="__RequestVerificationToken" type="hidden"
+                        value="NFYu1UzuU914FBV5ZR6HLrknN2txQf-5bTkEsBwfQGApXCW2d0sPhkCGAAOZ20g3XXgmXryTepF8NiHqVTl0jsDPP1q3efwdMwQlbyktgz81">
+                    <label>Search for past winning numbers</label>
+                    <select
+                        style="margin-top:0px; background: #FFF url(../images/down-triangle-cashpop.png) no-repeat; background-position: right 6px center;"
+                        id="monthCP" name="monthCP" class="month-dropdown" aria-label="CASH POP Month Search Field"
+                        required="" onblur="validateMonthCP(event)">
+
+                        <option selected="" disabled="" value="">Month</option>
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+
+                    <select
+                        style="margin-top:0px; background: #FFF url(../images/down-triangle-cashpop.png) no-repeat; background-position: right 6px center;"
+                        id="yearCP" name="yearCP" class="year-dropdown" aria-label="CASH POP Year Search Field"
+                        required="" onblur="validateMonthCP(event);">
+
+                        <option selected="" disabled="" value="">Year</option>
+                        <option>2024</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                    </select>
+                    <button style="margin-top:17px; background:#bf0072;" id="cpMonthButton" name="cpMonthButton" href=""
+                        class="search-button" data-di-id="#cpMonthButton">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

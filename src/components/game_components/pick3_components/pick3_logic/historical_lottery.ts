@@ -1,7 +1,7 @@
 'use strict';
 
 import type IPick3AnnualData from '../pick3_types/Ipick3.js';
-import { zero_three_midDayWinNums } from './pick3_data/pick3Data.js';
+import { zero_three_midDayWinNums } from './pick3_data/pick3YearlyData.js';
 
 // Data: historical lottery numbers
 const lotteryData: number[] = [];

@@ -186,7 +186,8 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-margin-2a: 2.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-2b: 3.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-2bz: 2.2em 0em 1.3em 0em; 
-        --pk3-predictions-margin-2bza: 2.2em 0em 1.3em 3em; 
+        --pk3-predictions-margin-2bza: 1.2em 0em 1.3em 3em; 
+        --pk3-predictions-margin-2bzb: 3.2em 0em 1.3em 3em; 
         --pk3-predictions-margin-2c: 4.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-2d: 5.2em 0em 1.3em 0em; 
         --pk3-predictions-margin-3: 1em 0em 1.5em 0em; 
@@ -480,8 +481,10 @@ pick3_predictions_sharedStyles.root = /*css*/ `
 
         /* Top Variables */
         --pk3-predictions-top-4: 4%;
+        --pk3-predictions-top-5: 5%;
         --pk3-predictions-top-10: 10%;
         --pk3-predictions-top-20: 20%;
+        --pk3-predictions-top-25: 25%;
         --pk3-predictions-top-34: 34%;
         --pk3-predictions-top-40: 40%;
         --pk3-predictions-top-40_6: 40.6%;
@@ -953,11 +956,8 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         text-align: var(--pk3-predictions-text-align-justify);
     }
 
-    .get-predictions-btn {
-        margin: var(--pk3-predictions-margin-00zz);
+    .predict_btn {
         position: var(--pk3-predictions-position-absolute);
-        bottom: var(--pk3-predictions-bottom-7pc);
-        left: var(--pk3-predictions-left-40);
         width: var(--pk3-predictions-width-180);
         height: var(--pk3-predictions-height-px-4);
         text-align: var(--pk3-predictions-text-align-center);
@@ -972,8 +972,21 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         filter: var(--pk3-predictions-filter-0);
         z-index: var(--pk3-predictions-z-index-10);
     }
+    
+    .get-predictions-btn {        
+        margin: var(--pk3-predictions-margin-00zz);
+        bottom: var(--pk3-predictions-bottom-7pc);
+        left: var(--pk3-predictions-left-40);        
+        }
+        
+    .get-predictions-MidDay-btn {
+        margin: var(--pk3-predictions-margin-00zz);
+        bottom: var(--pk3-predictions-bottom-7pc);
+        left: var(--pk3-predictions-left-25);   
+    }
 
-    .get-predictions-btn:hover {
+
+    .predict_btn:hover {
         background-color: var(--pks-predictions-bgc-hover-1);
         transition: var(--pk3-predictions-transition-moderate);
         color: var(--pks-predictions-bgc-hover-2);
@@ -981,7 +994,7 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         box-shadow: var(--pk3-predictions-shadow-inset-xxl-1b);
     }
 
-    .get-predictions-btn:focus {
+    .predict_btn:focus {
         outline-color: transparent;
         outline-style: solid;
         box-shadow: 0 0 0 4px #5a01a7;
@@ -989,27 +1002,30 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         color: var(--pks-predictions-bgc-hover-2);
     }
 
-    .get-predictions-btn:active {
+    .predict_btn:active {
         transform: var(--pk3-predictions-transform-1);
         transition: var(--pk3-predictions-transition-slow);
         background-color: var(--pk3-predictions-bgc-button-1); 
         color: var(--pks-predictions-bgc-hover-3);
-    }
+    } 
 
-    .predictions-section {
-        margin: var(--pk3-predictions-margin-2bza);
+    .predict-section {
         width: var(--pk3-predictions-width-35);
         position: var(--pk3-predictions-position-absolute);
-        top: var(--pk3-predictions-top-20);
-        right: var(--pk3-predictions-right-3);
         display: var(--pk3-predictions-display-inline-block);
         justify-content: var(--pk3-predictions-justify-content-center);
         text-align: var(--pk3-predictions-text-align-justify);
         background-image: var(--pk3-predictions-gradient-dark-2),
-                          var(--pk3-predictions-gradient-dark-2);
+        var(--pk3-predictions-gradient-dark-2);
         border: var(--pk3-predictions-border-details);        
         border-radius: var(--pk3-predictions-border-radius-1);    
         filter: var(--pk3-predictions-filter-0);
+        }
+        
+    .predictions-section {        
+        margin: var(--pk3-predictions-margin-2bza);
+        top: var(--pk3-predictions-top-5);
+        right: var(--pk3-predictions-right-3);       
     }
 
     .predictions-h1 {
@@ -1036,6 +1052,12 @@ pick3_predictions_sharedStyles.predictions = /*css*/ `
         text-shadow: var(--pk3-predictions-text-shadow-xmdz);
         text-align: var(--pk3-predictions-text-align-center);
         align-self: var(--pk3-predictions-justify-self-center);
+    }
+
+    .predictions-MidDay-section {
+        margin: var(--pk3-predictions-margin-2bzb);
+        top: var(--pk3-predictions-top-34);
+        right: var(--pk3-predictions-right-3);
     }
 
     @keyframes spin {

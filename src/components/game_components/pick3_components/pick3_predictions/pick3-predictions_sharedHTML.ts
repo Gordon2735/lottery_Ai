@@ -141,7 +141,8 @@ pick3_predictions_sharedHTML.predictions = /*html*/ `
             </p>
         </details>
     </section>
-    <button id="getPredictionsBtn" class="get-predictions-btn">Predictions</button>
+    <button id="getPredictionsBtn" class="get-predictions-btn predict_btn">Predictions</button>
+    <button id="getPredictionsMidDayBtn" class="get-predictions-MidDay-btn predict_btn">Mid-Day Predictions</button>
     <canvas id="historicalChart" class="historical-chart"></canvas>
     </main>
 

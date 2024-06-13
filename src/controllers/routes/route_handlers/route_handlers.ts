@@ -22,6 +22,8 @@ import scraper from '../../../models/appData/puppeteer/pageScraper.js';
 import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
 import startBrowser from '../../../models/appData/puppeteer/browser.js';
 import processLotteryCollection from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
+import getProcessDataObject from '../../../models/appData/dataPrediction_functions/func_getProcessDataObject.js';
+import getMidDayProcessDataObject from '../../../models/appData/dataPrediction_functions/func_getMidDayProcessDataObject.js';
 import Pick3DataObject from '../../../components/game_components/pick3_components/pick3_logic/pick3_data/pick3Data.js';
 
 declare module 'express-session' {
@@ -545,7 +547,7 @@ async function pick3Handler(_req: Request, res: Response): Promise<void> {
 }
 
 async function pick3ScrapePostHandler(
-    req: Request,
+    _req: Request,
     res: Response
 ): Promise<void | Response<any, Record<string, any>>> {
     try {
@@ -615,7 +617,7 @@ async function pick3PredictionsHandler(
     }
 }
 
-async function pick3PredictionsPostHandler(req: Request, res: Response) {
+async function pick3PredictionsPostHandler(_req: Request, res: Response) {
     try {
         console.info(
             `
@@ -626,45 +628,13 @@ async function pick3PredictionsPostHandler(req: Request, res: Response) {
         const processedCollectionData: number[] = [];
         const processedCollectionDataIndexes: number[] = [];
 
-        const getProcessDataObject = async (
-            object: IPick3DataObject,
-            collection: number[],
-            indexes: number[]
-        ): Promise<number[]> => {
-            for (const year in Pick3DataObject) {
-                if (Object.prototype.hasOwnProperty.call(object, year)) {
-                    const objectYear = object[year];
-                    const yearStr = objectYear.year[0]; // Single element array, so accessing first element
-                    console.log(`Year: ${yearStr}`);
-
-                    objectYear.midDay.forEach(async (midDayValue, index) => {
-                        collection.push(parseInt(midDayValue));
-                        indexes.push(index);
-                    });
-                    objectYear.evening.forEach(async (eveningValue, index) => {
-                        collection.push(parseInt(eveningValue));
-                        indexes.push(index);
-                    });
-                }
-            }
-            // Calculate the sum of indexes using reduce
-            const indexSum: number = collection.reduce(
-                (sum, _, index) => sum + index,
-                0
-            );
-            console.info(
-                `indexSum reduces to effect the sum of Indexes: ${indexSum}`
-            );
-            return collection;
-        };
-
-        const lotteryData: number[] = await getProcessDataObject(
+        const pick3AllData: number[] = await getProcessDataObject(
             receiveData,
             processedCollectionData,
             processedCollectionDataIndexes
         );
         const predictionsData: number[] =
-            await processLotteryCollection(lotteryData);
+            await processLotteryCollection(pick3AllData);
 
         // Calculate the sum of indexes using reduce && making sure the lotteryData and the Indexes match...
         const indexCollectionDataIndexesSum: number =
@@ -685,6 +655,64 @@ async function pick3PredictionsPostHandler(req: Request, res: Response) {
         );
 
         return res.json(predictionsData);
+    } catch (error: unknown) {
+        console.error(
+            `
+            The Routing pick3PredictionsPostHandler() Function was caught by the try/catch block...
+            ERROR: ${error}
+        `
+        );
+        res.status(500).send('Server Error');
+
+        return Promise.reject() as Promise<void>;
+    } finally {
+        console.info(
+            `
+             The Routing pick3PredictionsPostHandler() Function fired and its
+             Promise has been resolved...   
+        `
+        );
+    }
+}
+async function pick3PredictionsMidDayPostHandler(_req: Request, res: Response) {
+    try {
+        console.info(
+            `
+            The Routing pick3PredictionsPostHandler() Function has fired...
+        `
+        );
+        const receiveData: IPick3DataObject = Pick3DataObject;
+        const processedMidDayCollectionData: number[] = [];
+        const processedMidDayCollectionDataIndexes: number[] = [];
+
+        const pick3MidDayData: number[] = await getMidDayProcessDataObject(
+            receiveData,
+            processedMidDayCollectionData,
+            processedMidDayCollectionDataIndexes
+        );
+        const predictionsMidDayData: number[] =
+            await processLotteryCollection(pick3MidDayData);
+
+        // Calculate the sum of indexes using reduce && making sure the lotteryData and the Indexes match...
+        const indexMidDayCollectionDataIndexesSum: number =
+            processedMidDayCollectionDataIndexes.reduce(
+                (sum, _, index) => sum + index,
+                0
+            );
+        console.info(
+            `indexMidDayCollectionDataIndexesSum indexSum reduces to effect the sum of Indexes: ${indexMidDayCollectionDataIndexesSum}`
+        );
+        // Calculate the sum of indexes using reduce && making sure the lotteryData and the Indexes match...
+        const indexMidDayCollectionDataSum: number =
+            processedMidDayCollectionData.reduce(
+                (sum, _, index) => sum + index,
+                0
+            );
+        console.info(
+            `processedMidDayCollectionData indexSum reduces to effect the sum of Indexes: ${indexMidDayCollectionDataSum}`
+        );
+
+        return res.json(predictionsMidDayData);
     } catch (error: unknown) {
         console.error(
             `
@@ -748,5 +776,6 @@ export {
     pick3ScrapePostHandler,
     pick3PredictionsHandler,
     pick3PredictionsPostHandler,
+    pick3PredictionsMidDayPostHandler,
     pick3ChartPostHandler
 };
