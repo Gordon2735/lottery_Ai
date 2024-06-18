@@ -377,6 +377,8 @@ pick3_predictions_sharedStyles.root = /*css*/ `
         --pk3-predictions-position-static: static;
         --pk3-predictions-position-fixed: fixed;
         --pk3-predictions-position-sticky: sticky;
+
+        --pk3-predictions-width-180
         
         /* Display Variables */
         --pk3-predictions-display-none: none;

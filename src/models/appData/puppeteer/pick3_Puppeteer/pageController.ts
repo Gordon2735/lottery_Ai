@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
-// import { Browser } from 'puppeteer';
 import puppeteer from 'puppeteer';
 import pageScraper from './pageScraper.js';
 
-// const browserInstances: puppeteer.Browser = browserInstance;
 async function scrapeAll(browserInstance: puppeteer.Browser) {
     let browser: puppeteer.Browser;
     // browserInstance = browserInstances;
     try {
         browser = browserInstance;
         await pageScraper.scrapers(browser);
-    } catch (error) {
+    } catch (error: unknown) {
         console.log('Could not resolve the browser instance => ', error);
     }
     return;

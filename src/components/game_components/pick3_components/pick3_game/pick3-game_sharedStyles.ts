@@ -13,7 +13,7 @@ const pick3Game_sharedStyles: Ipick3GameSharedStyles = {
 pick3Game_sharedStyles.root = /*css*/ `
 
     :root {
-        --pk3-bg-color-button
+       
         /* CSS Variables */
 
         /* Background Colors */

@@ -2,7 +2,6 @@
 'use strict';
 
 import puppeteer from 'puppeteer';
-// import puppeteer, { Browser } from 'puppeteer';
 
 export default async function startBrowser(): Promise<puppeteer.Browser> {
     let browser: puppeteer.Browser;

@@ -6,7 +6,7 @@ import {
     setAttributes,
     appendChildren,
     insertStyle
-} from '../../../components/componentTools/general_helpers.js';
+} from '../../../../components/componentTools/general_helpers.js';
 
 //! Refactor the Code for this FILE / Especially in the DOM Element creations
 //! and most definitely the styles in the <li></li> element which upon each iteration

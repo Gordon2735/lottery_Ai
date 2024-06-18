@@ -6,91 +6,91 @@ import { sidePanel_sharedStyles } from './side-panel_sharedStyles.js';
 import { sidePanel_sharedHTML } from './side-panel_sharedHTML.js';
 import { RegisterComponent } from '../../componentTools/general_helpers.js';
 class SidePanel extends SidePanelTemplate {
-	document: Document | null = this.ownerDocument;
-	lotteryAnchor: HTMLElement | null | undefined;
-	powerballAnchor: HTMLElement | null | undefined;
-	mega_milAnchor: HTMLElement | null | undefined;
-	cash5Anchor: HTMLElement | null | undefined;
-	pick3Anchor: HTMLElement | null | undefined;
-	pick4Anchor: HTMLElement | null | undefined;
-	cash_popAnchor: HTMLElement | null | undefined;
-	winningsAnchor: HTMLElement | null | undefined;
-	today_numsAnchor: HTMLElement | null | undefined;
-	historiesAnchor: HTMLElement | null | undefined;
-	termsAnchor: HTMLElement | null | undefined;
-	q_aAnchor: HTMLElement | null | undefined;
-	securityAnchor: HTMLElement | null | undefined;
-	aboutAnchor: HTMLElement | null | undefined;
-	contactAnchor: HTMLElement | null | undefined;
-	menuContainer: HTMLElement | undefined;
+    document: Document | null = this.ownerDocument;
+    lotteryAnchor: HTMLElement | null | undefined;
+    powerballAnchor: HTMLElement | null | undefined;
+    mega_milAnchor: HTMLElement | null | undefined;
+    cash5Anchor: HTMLElement | null | undefined;
+    pick3Anchor: HTMLElement | null | undefined;
+    pick4Anchor: HTMLElement | null | undefined;
+    cash_popAnchor: HTMLElement | null | undefined;
+    winningsAnchor: HTMLElement | null | undefined;
+    today_numsAnchor: HTMLElement | null | undefined;
+    historiesAnchor: HTMLElement | null | undefined;
+    termsAnchor: HTMLElement | null | undefined;
+    q_aAnchor: HTMLElement | null | undefined;
+    securityAnchor: HTMLElement | null | undefined;
+    aboutAnchor: HTMLElement | null | undefined;
+    contactAnchor: HTMLElement | null | undefined;
+    menuContainer: HTMLElement | undefined;
 
-	constructor() {
-		super();
+    constructor() {
+        super();
 
-		this.activateShadowDOM = false;
+        this.activateShadowDOM = false;
 
-		let menuContainer: HTMLElement | undefined;
-		this.menuContainer = menuContainer;
-	}
-	connectedCallback() {
-		super.connectedCallback();
+        let menuContainer: HTMLElement | undefined;
+        this.menuContainer = menuContainer;
+    }
+    connectedCallback() {
+        super.connectedCallback();
 
-		conLog();
+        conLog();
 
-		class Menu {
-			container: HTMLElement | null | undefined;
-			big3: HTMLElement | null | undefined;
-			vanilla: HTMLElement | null | undefined;
-			isMenuShown: boolean;
-			tsSymbol: HTMLElement | undefined | null;
-			jsSymbol: HTMLElement | undefined | null;
-			menuBody: HTMLBodyElement | null | undefined;
-			menuContainer: HTMLElement | undefined;
-			itemHTML: HTMLElement | string | undefined;
+        class Menu {
+            container: HTMLElement | null | undefined;
+            big3: HTMLElement | null | undefined;
+            vanilla: HTMLElement | null | undefined;
+            isMenuShown: boolean;
+            tsSymbol: HTMLElement | undefined | null;
+            jsSymbol: HTMLElement | undefined | null;
+            menuBody: HTMLBodyElement | null | undefined;
+            menuContainer: HTMLElement | undefined;
+            itemHTML: HTMLElement | string | undefined;
 
-			slide(): void {
-				this.container = document.getElementById('container');
-				this.big3 = document.getElementById('big-3');
-				this.vanilla = document.getElementById('vanilla');
-				this.jsSymbol = document.getElementById('js-symbol');
-				this.tsSymbol = document.getElementById('ts-symbol');
+            slide(): void {
+                this.container = document.getElementById('container');
+                this.big3 = document.getElementById('big-3');
+                this.vanilla = document.getElementById('vanilla');
+                this.jsSymbol = document.getElementById('js-symbol');
+                this.tsSymbol = document.getElementById('ts-symbol');
 
-				!menu.isMenuShown
-					? ((this.container!.style.transform = 'translateX(0px)'),
-						(this.big3!.style.transform = 'rotate(360deg)'),
-						(this.big3!.style.animation = 'FadeIn 2s'),
-						(this.jsSymbol!.style.transform = 'rotate(360deg)'),
-						(this.jsSymbol!.style.animation = 'FadeIn 2s'),
-						(this.tsSymbol!.style.transform = 'rotate(360deg)'),
-						(this.tsSymbol!.style.animation = 'FadeIn 2s'),
-						(this.vanilla!.style.animation = 'FadeIn 4s'),
-						(this.isMenuShown = true))
-					: ((this.container!.style.transform = 'translateX(-210px)'),
-						(this.big3!.style.transform = 'rotate(-360deg)'),
-						(this.big3!.style.animation = 'FadeOut 500ms'),
-						(this.jsSymbol!.style.transform = 'rotate(-360deg)'),
-						(this.jsSymbol!.style.animation = 'FadeOut 500ms'),
-						(this.tsSymbol!.style.transform = 'rotate(-360deg)'),
-						(this.tsSymbol!.style.animation = 'FadeOut 500ms'),
-						(this.vanilla!.style.animation = 'FadeOut 1s'),
-						(this.isMenuShown = false));
-			}
-			elementID(doc: Document, element: string): HTMLElement | null {
-				const getElement: HTMLElement | null =
-					doc.getElementById(element);
-				return getElement;
-			}
+                !menu.isMenuShown
+                    ? ((this.container!.style.transform = 'translateX(0px)'),
+                      (this.big3!.style.transform = 'rotate(360deg)'),
+                      (this.big3!.style.animation = 'FadeIn 2s'),
+                      (this.jsSymbol!.style.transform = 'rotate(360deg)'),
+                      (this.jsSymbol!.style.animation = 'FadeIn 2s'),
+                      (this.tsSymbol!.style.transform = 'rotate(360deg)'),
+                      (this.tsSymbol!.style.animation = 'FadeIn 2s'),
+                      (this.vanilla!.style.animation = 'FadeIn 4s'),
+                      (this.isMenuShown = true))
+                    : ((this.container!.style.transform = 'translateX(-210px)'),
+                      (this.big3!.style.transform = 'rotate(-360deg)'),
+                      (this.big3!.style.animation = 'FadeOut 500ms'),
+                      (this.jsSymbol!.style.transform = 'rotate(-360deg)'),
+                      (this.jsSymbol!.style.animation = 'FadeOut 500ms'),
+                      (this.tsSymbol!.style.transform = 'rotate(-360deg)'),
+                      (this.tsSymbol!.style.animation = 'FadeOut 500ms'),
+                      (this.vanilla!.style.animation = 'FadeOut 1s'),
+                      (this.isMenuShown = false));
+            }
+            elementID(doc: Document, element: string): HTMLElement | null {
+                const getElement: HTMLElement | null =
+                    doc.getElementById(element);
+                return getElement;
+            }
 
-			constructor() {
-				this.isMenuShown = false;
+            constructor() {
+                this.isMenuShown = false;
 
-				const menuBody: HTMLBodyElement | null =
-					document.querySelector('body');
-				this.menuContainer = menuBody?.querySelector('#container') as
-					| HTMLElement
-					| undefined;
+                const menuBody: HTMLBodyElement | null =
+                    document.querySelector('body');
+                this.menuContainer = menuBody?.querySelector('#container') as
+                    | HTMLElement
+                    | undefined;
 
-				const itemHTML: HTMLElement | string | undefined = /*html*/ `
+                const itemHTML: HTMLElement | string | undefined = /*html*/ `
                     <div id="lotteryDiv" class="item">&#127915;&nbsp;&nbsp;&nbsp;<a id="lotteryA" class="lottery-a" 
 						href="/">Lottery</a></div>
                     <div id="powerballDiv" class="item" >&#127915;&nbsp;&nbsp;&nbsp;<a id="powerballAnchor" class="powerball-a" href="/powerball">Powerball</a></div>
@@ -127,256 +127,256 @@ class SidePanel extends SidePanelTemplate {
                     <hr id="line2" class="line2" />
                     <h3 id="vanilla" class="vanilla">Vanilla is BEST!</h3>
                 `;
-				this.menuContainer?.insertAdjacentHTML('afterbegin', itemHTML);
-			}
-		}
+                this.menuContainer?.insertAdjacentHTML('afterbegin', itemHTML);
+            }
+        }
 
-		const menu: Menu = new Menu();
-		const hamburgers: HTMLElement | null | undefined =
-			document.getElementById('hamburgers');
+        const menu: Menu = new Menu();
+        const hamburgers: HTMLElement | null | undefined =
+            document.getElementById('hamburgers');
 
-		async function conLog(): Promise<void> {
-			try {
-				const conLogging: void = console.info(
-					'Side-Panel is Rendered :::: HooT™️ Webelistics®️ '
-				);
-				null;
-				return conLogging;
-			} catch (error: unknown) {
-				console.error(
-					`
+        async function conLog(): Promise<void> {
+            try {
+                const conLogging: void = console.info(
+                    'Side-Panel is Rendered :::: HooT™️ Webelistics®️ '
+                );
+                null;
+                return conLogging;
+            } catch (error: unknown) {
+                console.error(
+                    `
 						%cThere appears to be an error in the side-panel component's conLog Function; ERROR: ${error}
 					`,
-					'color: red; font-size: 0.85rem; font-weight: bold;'
-				);
-			}
-		}
+                    'color: red; font-size: 0.85rem; font-weight: bold;'
+                );
+            }
+        }
 
-		hamburgers?.addEventListener(
-			'click',
-			(event: {
-				preventDefault: () => void;
-				stopPropagation: () => void;
-			}) => {
-				event.preventDefault();
+        hamburgers?.addEventListener(
+            'click',
+            (event: {
+                preventDefault: () => void;
+                stopPropagation: () => void;
+            }) => {
+                event.preventDefault();
 
-				!menu.isMenuShown
-					? (menu.slide(), conLog(), (menu.isMenuShown = true))
-					: (menu.slide(), (menu.isMenuShown = false));
+                !menu.isMenuShown
+                    ? (menu.slide(), conLog(), (menu.isMenuShown = true))
+                    : (menu.slide(), (menu.isMenuShown = false));
 
-				event.stopPropagation();
-				// console.log(event);
-			}
-		);
-		const sliderContainer: HTMLElement | null | undefined =
-			document.getElementById('container');
-		sliderContainer?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
+                event.stopPropagation();
+                // console.log(event);
+            }
+        );
+        const sliderContainer: HTMLElement | null | undefined =
+            document.getElementById('container');
+        sliderContainer?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
 
-			menu.isMenuShown
-				? (menu.slide(),
-					(menu.isMenuShown = false),
-					event.stopPropagation())
-				: (event.stopPropagation(),
-					console.info(`Menu-Shown: ${menu.isMenuShown}`));
-			event.stopImmediatePropagation();
-		});
+            menu.isMenuShown
+                ? (menu.slide(),
+                  (menu.isMenuShown = false),
+                  event.stopPropagation())
+                : (event.stopPropagation(),
+                  console.info(`Menu-Shown: ${menu.isMenuShown}`));
+            event.stopImmediatePropagation();
+        });
 
-		// Lottery Page
-		const lotteryDiv: HTMLElement | null | undefined =
-			document.getElementById('lotteryDiv');
-		const lotteryAnchor: HTMLElement | null | undefined =
-			document.getElementById('lotteryA');
+        // Lottery Page
+        const lotteryDiv: HTMLElement | null | undefined =
+            document.getElementById('lotteryDiv');
+        const lotteryAnchor: HTMLElement | null | undefined =
+            document.getElementById('lotteryA');
 
-		lotteryDiv?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
-		lotteryAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        lotteryDiv?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
+        lotteryAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Powerball Game Page
-		const powerballAnchor: HTMLElement | null | undefined =
-			document.getElementById('powerballAnchor');
+        // Powerball Game Page
+        const powerballAnchor: HTMLElement | null | undefined =
+            document.getElementById('powerballAnchor');
 
-		powerballAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/powerball';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        powerballAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/powerball';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Mega-Millions Game Page
-		const mega_milAnchor: HTMLElement | null | undefined =
-			document.getElementById('mega_mil');
+        // Mega-Millions Game Page
+        const mega_milAnchor: HTMLElement | null | undefined =
+            document.getElementById('mega_mil');
 
-		mega_milAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/mega_mil';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        mega_milAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/mega_mil';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Cash 5 Game Page
-		const cash5Anchor: HTMLElement | null | undefined =
-			document.getElementById('cash5Anchor');
+        // Cash 5 Game Page
+        const cash5Anchor: HTMLElement | null | undefined =
+            document.getElementById('cash5Anchor');
 
-		cash5Anchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/cash5';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        cash5Anchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/cash5';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Pick 3 Game Page
-		const pick3Anchor: HTMLElement | null | undefined =
-			document.getElementById('pick3Anchor');
+        // Pick 3 Game Page
+        const pick3Anchor: HTMLElement | null | undefined =
+            document.getElementById('pick3Anchor');
 
-		pick3Anchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/pick3';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        pick3Anchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/pick3';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Pick 4 Game Page
-		const pick4Anchor: HTMLElement | null | undefined =
-			document.getElementById('pick4Anchor');
+        // Pick 4 Game Page
+        const pick4Anchor: HTMLElement | null | undefined =
+            document.getElementById('pick4Anchor');
 
-		pick4Anchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/pick4';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        pick4Anchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/pick4';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Cash Pop Game Page
-		const cash_popAnchor: HTMLElement | null | undefined =
-			document.getElementById('cash_popAnchor');
+        // Cash Pop Game Page
+        const cash_popAnchor: HTMLElement | null | undefined =
+            document.getElementById('cash_popAnchor');
 
-		cash_popAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/cash_pop';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        cash_popAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/pop';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Lottery Ai Past Winning Numbers Page
-		const winningsAnchor: HTMLElement | null | undefined =
-			document.getElementById('winningsAnchor');
+        // Lottery Ai Past Winning Numbers Page
+        const winningsAnchor: HTMLElement | null | undefined =
+            document.getElementById('winningsAnchor');
 
-		winningsAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/winnings';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        winningsAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/winnings';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Today's Winning Numbers Page
-		const today_numsAnchor: HTMLElement | null | undefined =
-			document.getElementById('today_numsAnchor');
+        // Today's Winning Numbers Page
+        const today_numsAnchor: HTMLElement | null | undefined =
+            document.getElementById('today_numsAnchor');
 
-		today_numsAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/today_nums';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        today_numsAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/today_nums';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Winning Numbers Histories Page
-		const historiesAnchor: HTMLElement | null | undefined =
-			document.getElementById('historiesAnchor');
+        // Winning Numbers Histories Page
+        const historiesAnchor: HTMLElement | null | undefined =
+            document.getElementById('historiesAnchor');
 
-		historiesAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/histories';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        historiesAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/histories';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Terms & Conditions Page
-		const termsAnchor: HTMLElement | null | undefined =
-			document.getElementById('termsAnchor');
+        // Terms & Conditions Page
+        const termsAnchor: HTMLElement | null | undefined =
+            document.getElementById('termsAnchor');
 
-		termsAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/terms';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        termsAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/terms';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Questions & Answers Page
-		const q_aAnchor: HTMLElement | null | undefined =
-			document.getElementById('q_aAnchor');
+        // Questions & Answers Page
+        const q_aAnchor: HTMLElement | null | undefined =
+            document.getElementById('q_aAnchor');
 
-		q_aAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/q_a';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        q_aAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/q_a';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Application Security Provisions Page
-		const securityAnchor: HTMLElement | null | undefined =
-			document.getElementById('securityAnchor');
+        // Application Security Provisions Page
+        const securityAnchor: HTMLElement | null | undefined =
+            document.getElementById('securityAnchor');
 
-		securityAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/security';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        securityAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/security';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// About Us Page
-		const aboutAnchor: HTMLElement | null | undefined =
-			document.getElementById('aboutAnchor');
+        // About Us Page
+        const aboutAnchor: HTMLElement | null | undefined =
+            document.getElementById('aboutAnchor');
 
-		aboutAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/about';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
+        aboutAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/about';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
 
-		// Contact Us Page
-		const contactAnchor: HTMLElement | null | undefined =
-			document.getElementById('contactAnchor');
+        // Contact Us Page
+        const contactAnchor: HTMLElement | null | undefined =
+            document.getElementById('contactAnchor');
 
-		contactAnchor?.addEventListener('click', (event: MouseEvent) => {
-			event.preventDefault();
-			window.location.href = '/contact';
-			menu.slide(), (menu.isMenuShown = false);
-			event.stopPropagation();
-		});
-	}
+        contactAnchor?.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            window.location.href = '/contact';
+            menu.slide(), (menu.isMenuShown = false);
+            event.stopPropagation();
+        });
+    }
 
-	static get observedAttributes() {
-		return ['window.location.href'];
-	}
-	public attributeChangedCallback(
-		name: string,
-		_oldValue: string,
-		_newValue: string
-	) {
-		_oldValue !== _newValue
-			? console.info(`old location: ${_oldValue},
+    static get observedAttributes() {
+        return ['window.location.href'];
+    }
+    public attributeChangedCallback(
+        name: string,
+        _oldValue: string,
+        _newValue: string
+    ) {
+        _oldValue !== _newValue
+            ? console.info(`old location: ${_oldValue},
 				${name} has a new location of: ${_newValue}
 				which should be equal to: ${window.location} `)
-			: console.info(`old location: ${_oldValue}`);
-	}
-	public get template() {
-		return /*html*/ `
+            : console.info(`old location: ${_oldValue}`);
+    }
+    public get template() {
+        return /*html*/ `
             ${sidePanel_sharedHTML.panel} 
             <!-- ${sidePanel_sharedHTML.lottery} -->
             <style>${sidePanel_sharedStyles.panel}</style>
             
             `;
-	}
+    }
 }
 RegisterComponent('side-panel', SidePanel);

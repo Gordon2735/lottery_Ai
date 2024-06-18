@@ -18,9 +18,12 @@ import Session from 'express-session';
 import type { IUser } from '../../../../src/@types/interfaces/interfaces.js';
 import { postLoginErrorHandler } from '../../../errors/postLoginErrorHandler.js';
 import puppeteer from 'puppeteer';
-import scraper from '../../../models/appData/puppeteer/pageScraper.js';
-import startScraperController from '../../../models/appData/puppeteer/indexWebScraper.js';
-import startBrowser from '../../../models/appData/puppeteer/browser.js';
+import scraper from '../../../models/appData/puppeteer/pick3_Puppeteer/pageScraper.js';
+import startScraperController from '../../../models/appData/puppeteer/pick3_Puppeteer/indexWebScraper.js';
+import startBrowser from '../../../models/appData/puppeteer/pick3_Puppeteer/browser.js';
+// import popScraper from '../../../models/appData/puppeteer/pop_Puppeteer/pageScraperPop.js';
+// import startControllerScraper from '../../../models/appData/puppeteer/pop_Puppeteer/indexWebScraperPop.js';
+// import startPopScrapeBrowser from '../../../models/appData/puppeteer/pop_Puppeteer/browserPop.js';
 import processLotteryCollection from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
 import getProcessDataObject from '../../../models/appData/dataPrediction_functions/func_getProcessDataObject.js';
 import getMidDayProcessDataObject from '../../../models/appData/dataPrediction_functions/func_getMidDayProcessDataObject.js';
@@ -760,6 +763,42 @@ async function pick3ChartPostHandler(_req: Request, res: Response) {
         );
     }
 }
+async function popHandler(_req: Request, res: Response): Promise<void> {
+    try {
+        const scriptPop: string = `
+			<script type="module" src="/src/components/game_components/pop_components/pop_game/pop-game_shell.js"
+				content="text/javascript" crossorigin="anonymous">
+			</script>
+		`;
+
+        console.info(
+            `
+            The Routing popHandler() Function has fired...
+        `
+        );
+
+        res.set('Content-Type', 'text/html');
+        res.set('target', '_blank');
+        res.render('pop', {
+            title: 'Cash Pop®️',
+            layout: 'pop_main',
+            partials: 'partials',
+            helpers: 'helpers',
+            script: [scriptPop]
+        });
+
+        return;
+    } catch (error: unknown) {
+        console.error(
+            `
+            popHandler had an ERROR: ${error}
+        `
+        );
+        res.status(500).send('Server Error');
+
+        return Promise.reject() as Promise<void>;
+    }
+}
 
 export {
     stateHandler,
@@ -777,5 +816,6 @@ export {
     pick3PredictionsHandler,
     pick3PredictionsPostHandler,
     pick3PredictionsMidDayPostHandler,
-    pick3ChartPostHandler
+    pick3ChartPostHandler,
+    popHandler
 };

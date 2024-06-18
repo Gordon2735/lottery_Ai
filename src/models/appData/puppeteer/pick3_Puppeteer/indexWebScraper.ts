@@ -1,6 +1,5 @@
 'use strict';
 
-// import { Browser } from 'puppeteer';
 import puppeteer from 'puppeteer';
 import startBrowser from './browser.js';
 import scraperController from './pageController.js';

@@ -1,24 +1,21 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
 
 import puppeteer from 'puppeteer';
-import fileName_date_time from '../../../tools/date_time/file_date_template.js';
+import fileName_date_time from '../../../../tools/date_time/file_date_template.js';
 
 //! Implement a Try-Catch in the Scraper
 //! Refactor Code for this FILE...
-const scraper = {
-    url: 'https://www.sceducationlottery.com/Games/Pick3',
+const popScraper = {
+    url: 'https://www.sceducationlottery.com/Games/CashPOP',
     async scrapers(browser: puppeteer.Browser): Promise<{
         scrapeData: Promise<
             Awaited<
                 ReturnType<
                     () =>
                         | {
+                              dataDate: string | null | undefined;
                               drawEvent: string | null | undefined;
-                              winNumbers: string;
-                              fireNum: string | null | undefined;
+                              popNumber: string | null | undefined;
                           }[]
                         | null
                         | undefined
@@ -45,7 +42,7 @@ const scraper = {
                 path: `./public/images/screenshots/${screenshotDataTime}_${name}.png`
             });
         }
-        await takeScreenshot(page, 'pick3Screenshot');
+        await takeScreenshot(page, 'popScreenshot');
 
         await page.waitForSelector('.col-md-2', {
             timeout: 5000
@@ -53,34 +50,32 @@ const scraper = {
 
         const scrape = await page.evaluate(async () => {
             const elements: {
+                dataDate: string | null | undefined;
                 drawEvent: string | null | undefined;
-                winNumbers: string;
-                fireNum: string | null | undefined;
+                popNumber: string | null | undefined;
             }[] = [];
 
             const elementsQuery: NodeListOf<HTMLElement> =
                 document.querySelectorAll('.col-md-2');
 
             for (const element of elementsQuery) {
+                const dataDate: HTMLElement | null | undefined =
+                    element?.querySelector<HTMLElement>(
+                        '.CashPOPDrawResultsFont_White'
+                    );
                 const dataEvent: HTMLElement | null | undefined =
-                    element?.querySelector<HTMLElement>('.numbers-date');
-                const numbers: NodeListOf<HTMLElement> =
-                    element.querySelectorAll<HTMLElement>('.number-circle');
-                const fireballNumber: HTMLElement | null | undefined =
+                    element?.querySelector<HTMLElement>(
+                        '.CashPOPDrawResultsFont_Purple'
+                    );
+                const popNumber: HTMLElement | null | undefined =
                     element.querySelector<HTMLElement>(
-                        '.number-circle-fireball-pick3'
+                        '.cashPOPInstructionCircle'
                     );
 
-                const convertNumbers: any[] = [];
-
-                Array.from(numbers).map((number) => {
-                    return convertNumbers.push(number.textContent);
-                });
-
                 elements.push({
+                    dataDate: dataDate?.textContent,
                     drawEvent: dataEvent?.textContent,
-                    winNumbers: convertNumbers.join(''),
-                    fireNum: fireballNumber?.textContent
+                    popNumber: popNumber?.textContent
                 });
             }
             const stringifyElements: string = JSON.stringify(elements);
@@ -95,15 +90,15 @@ const scraper = {
         });
 
         const scrapedCollection: {
+            dataDate: string | null | undefined;
             drawEvent: string | null | undefined;
-            winNumbers: string;
-            fireNum: string | null | undefined;
+            popNumber: string | null | undefined;
         }[] = [];
 
         const data: {
+            dataDate: string | null | undefined;
             drawEvent: string | null | undefined;
-            winNumbers: string;
-            fireNum: string | null | undefined;
+            popNumber: string | null | undefined;
         }[] = scrape;
 
         scrapedCollection.push(...data);
@@ -140,9 +135,9 @@ const scraper = {
                     ReturnType<
                         () =>
                             | {
+                                  dataDate: string | null | undefined;
                                   drawEvent: string | null | undefined;
-                                  winNumbers: string;
-                                  fireNum: string | null | undefined;
+                                  popNumber: string | null | undefined;
                               }[]
                             | null
                             | undefined
@@ -152,13 +147,4 @@ const scraper = {
         };
     }
 };
-export default scraper;
-
-// const preparePageForTests = async (page: any) => {
-// 	const userAgent =
-// 		'Mozilla/5.0 (X11; Linux x86_64)' +
-// 		'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36';
-// 	await page.setUserAgent(userAgent);
-// };
-
-// await preparePageForTests(page);
+export default popScraper;
