@@ -21,13 +21,13 @@ import puppeteer from 'puppeteer';
 import scraper from '../../../models/appData/puppeteer/pick3_Puppeteer/pageScraper.js';
 import startScraperController from '../../../models/appData/puppeteer/pick3_Puppeteer/indexWebScraper.js';
 import startBrowser from '../../../models/appData/puppeteer/pick3_Puppeteer/browser.js';
-// import popScraper from '../../../models/appData/puppeteer/pop_Puppeteer/pageScraperPop.js';
-// import startControllerScraper from '../../../models/appData/puppeteer/pop_Puppeteer/indexWebScraperPop.js';
-// import startPopScrapeBrowser from '../../../models/appData/puppeteer/pop_Puppeteer/browserPop.js';
 import processLotteryCollection from '../../../models/appData/pick3Data/pick3_predictions_logic.js';
 import getProcessDataObject from '../../../models/appData/dataPrediction_functions/func_getProcessDataObject.js';
 import getMidDayProcessDataObject from '../../../models/appData/dataPrediction_functions/func_getMidDayProcessDataObject.js';
 import Pick3DataObject from '../../../components/game_components/pick3_components/pick3_logic/pick3_data/pick3Data.js';
+import startControllerScraper from '../../../models/appData/puppeteer/pop_Puppeteer/indexWebScraperPop.js';
+import startPopScrapeBrowser from '../../../models/appData/puppeteer/pop_Puppeteer/browserPop.js';
+import popScraper from '../../../models/appData/puppeteer/pop_Puppeteer/pageScraperPop.js';
 
 declare module 'express-session' {
     interface Session {
@@ -763,7 +763,10 @@ async function pick3ChartPostHandler(_req: Request, res: Response) {
         );
     }
 }
-async function popHandler(_req: Request, res: Response): Promise<void> {
+async function popHandler(
+    _req: Request,
+    res: Response
+): Promise<void | Response<any, Record<string, any>>> {
     try {
         const scriptPop: string = `
 			<script type="module" src="/src/components/game_components/pop_components/pop_game/pop-game_shell.js"
@@ -786,8 +789,6 @@ async function popHandler(_req: Request, res: Response): Promise<void> {
             helpers: 'helpers',
             script: [scriptPop]
         });
-
-        return;
     } catch (error: unknown) {
         console.error(
             `
@@ -797,6 +798,62 @@ async function popHandler(_req: Request, res: Response): Promise<void> {
         res.status(500).send('Server Error');
 
         return Promise.reject() as Promise<void>;
+    }
+}
+
+async function popPostHandler(_req: Request, res: Response) {
+    try {
+        // Scraper Logic For the Cash Pop
+        await startControllerScraper();
+
+        const browser = (await startPopScrapeBrowser()) as puppeteer.Browser;
+        const scrapePopCollection = [];
+        const scrapePopText: Promise<{
+            scrapeData: Promise<
+                | {
+                      dataDate: string | null | undefined;
+                      drawEvent: string | null | undefined;
+                      popNumber: string | null | undefined;
+                  }[]
+                | null
+                | undefined
+            >;
+        }> = popScraper.scrapers(browser);
+        const scrapered: Promise<
+            | {
+                  dataDate: string | null | undefined;
+                  drawEvent: string | null | undefined;
+                  popNumber: string | null | undefined;
+              }[]
+            | null
+            | undefined
+        > = (await scrapePopText).scrapeData;
+
+        scrapePopCollection.push({ scrapeData: scrapered });
+
+        console.log(
+            `JSON.stringify({ scrapePopCollection }): ${JSON.stringify({
+                scrapePopCollection
+            })}`
+        );
+
+        return res.json({ scrapePopCollection });
+    } catch (error: unknown) {
+        console.error(
+            `
+            popPostHandler had an ERROR: ${error}
+        `
+        );
+        res.status(500).send('Server Error');
+
+        return Promise.reject() as Promise<void>;
+    } finally {
+        console.info(
+            `
+            popPostHandler has been invoked and has been finalized in the 
+                try/catch/finally block...
+        `
+        );
     }
 }
 
@@ -817,5 +874,6 @@ export {
     pick3PredictionsPostHandler,
     pick3PredictionsMidDayPostHandler,
     pick3ChartPostHandler,
-    popHandler
+    popHandler,
+    popPostHandler
 };

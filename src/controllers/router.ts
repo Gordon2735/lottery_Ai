@@ -18,7 +18,8 @@ import index_route, {
     pick3Predictions_route,
     pick3PredictionsPost_route,
     pick3PredictionsMidDayPostHandler_route,
-    pop_route
+    pop_route,
+    popPostHandler_route
 } from './routes/routes.js';
 
 const app: Application = express();
@@ -43,7 +44,8 @@ const routes: Router[] = [
     pick3Predictions_route,
     pick3PredictionsPost_route,
     pick3PredictionsMidDayPostHandler_route,
-    pop_route
+    pop_route,
+    popPostHandler_route
 ];
 
 const thisRoute: express.Router = router;

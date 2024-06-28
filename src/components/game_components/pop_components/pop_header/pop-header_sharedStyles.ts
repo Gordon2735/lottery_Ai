@@ -43,6 +43,58 @@ popHeader_sharedStyles.root = /*css*/ `
         --pop-header-bg-blend-mode-overlay: overlay;
         --pop-header-bg-blend-mode-screen: screen;
 
+        /* Margin Variable */
+        --pop-header-margin_0: 0;
+        --pop-header-margin_1: 2em auto 2em auto;
+  
+        /* Padding Variable */
+        --pop-header-padding_0: 0;
+        --pop-header-padding_1: 1em;
+        --pop-header-padding_2: 2em;
+
+        /* Position Variable */
+        --pop-header-position-0: absolute;
+        --pop-header-position-1: fixed;
+        --pop-header-position-2: relative;
+        --pop-header-position-4: absolute;
+        --pop-header-position-5: sticky;
+        --pop-header-position-6: static;
+
+        /* Display Variables */
+        --pop-header-display-none: none;
+        --pop-header-display-inline: inline;
+        --pop-header-display-inline-block: inline-block;
+        --pop-header-display-block: block;
+        --pop-header-display-table: table;
+        --pop-header-display-table-cell: table-cell;
+        --pop-header-display-flex: flex;
+        --pop-header-display-inline-flex: inline-flex;
+        --pop-header-display-grid: grid;
+
+        /* Visibility Variables */
+        --pop-header-visibility-visible: visible;
+        --pop-header-visibility-hidden: hidden;
+        --pop-header-visibility-collapse: collapse;
+
+        /* Flex Wrap Variables */
+        --pop-header-flex-wrap-wc: wrap;
+        --pop-header-flex-nowrap-wc: nowrap;
+        --pop-header-flex-wrap-reverse-wc: wrap-reverse;
+        
+        /* Justify Content Variables */
+        --pop-header-justify-content-start: start;
+        --pop-header-justify-content-end: end;
+        --pop-header-justify-content-center: center;
+        --pop-header-justify-content-space-between: space-between;
+        --pop-header-justify-content-space-around: space-around;
+        --pop-header-justify-content-space-evenly: space-evenly;
+
+        --pop-header-text-justify-all: distribute;
+        --pop-header-text-start: start;
+        --pop-header-text-center: center;
+        --pop-header-text-end: end;
+
+
         /* Rotate */
         --pop-header-rotate-0: 0;
         --pop-header-rotate-1: 1deg;
@@ -108,12 +160,11 @@ popHeader_sharedStyles.shell = /*css*/ `
 popHeader_sharedStyles.container = /*css*/ `
 
     .fig-lot {
-        margin: 2em auto 2em auto;
+        margin: 5em 2em 0em auto;
         padding: 2.5px;
         display: flex;
         flex-flow: column;
         max-width: 320px;
-        border: thin #c0c0c0 solid;
         rotate: var(--pop-header-rotate-345);
         z-index: var(--pop-header-z-index-6);
     }
@@ -132,7 +183,7 @@ popHeader_sharedStyles.container = /*css*/ `
         text-align: center;
     }
     
-    .blink,
+    .blink:hover,
     .fig-cap-lot:hover {
         display: visible;
         cursor: pointer;
@@ -163,10 +214,15 @@ popHeader_sharedStyles.container = /*css*/ `
     }
 
     .pop-header {
+        margin: var(--pop-header-margin_1);
+        padding: var(--pop-header-padding_1);
+        position: var(--pop-header-position-2:);
+        display: var(--pop-display-inline-block);
         background-image: var(--pop-header-gradient-dark-0a),
                           var(--pop-header-gradient-dark-1a);
         width: 40%;
-        height: 30%;
+        height: 35%;
+        text-align: var(--pop-header-text-center);
     }
     
     .fig-header {
@@ -175,12 +231,12 @@ popHeader_sharedStyles.container = /*css*/ `
         display: flex;
         flex-flow: column;
         max-width: 220px;
-        border: thin #c0c0c0 solid;
+        text-align: var(--pop-header-text-center);
     }
 
     .pop-header-logo {
-        max-width: 480px;
-        max-height: 420px;
+        max-width: 540px;
+        max-height: 480px;
     }
 
     .fig-cap-header-pop {
