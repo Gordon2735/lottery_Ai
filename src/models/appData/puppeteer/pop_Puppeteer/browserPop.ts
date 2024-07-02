@@ -19,6 +19,7 @@ export default async function startPopScrapeBrowser(): Promise<puppeteer.Browser
             slowMo: 300,
             protocolTimeout: 220000
         });
+        return browser;
     } catch (error) {
         console.error(
             `
@@ -38,17 +39,17 @@ export default async function startPopScrapeBrowser(): Promise<puppeteer.Browser
         `
         );
     }
-    if (!browser) {
-        throw new Error(
-            `
-            Escaped the startPop3ScrapeBrowser() Function's 
-                try/catch/finally block...
-            Even though the function threw a new Error() at the
-                return browser if/else statement due to an absence
-                of an active Puppeteer Scraping Browser...
-        `
-        );
-    } else {
-        return browser;
-    }
+    // if (!browser) {
+    //     throw new Error(
+    //         `
+    //         Escaped the startPop3ScrapeBrowser() Function's
+    //             try/catch/finally block...
+    //         Even though the function threw a new Error() at the
+    //             return browser if/else statement due to an absence
+    //             of an active Puppeteer Scraping Browser...
+    //     `
+    //     );
+    // } else {
+    //     return browser;
+    // }
 }

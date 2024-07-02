@@ -192,9 +192,10 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-margin-2bz: 2.2em 0em 1.3em 0em; 
         --pop-margin-2bza: 1.2em 0em 1.3em 3em; 
         --pop-margin-2bzb: 3.2em 0em 1.3em 3em; 
+        --pop-margin-2bzz: 3.2em 0em 5.3em 3em; 
         --pop-margin-2c: 4.2em 0em 1.3em 0em; 
         --pop-margin-2d: 5.2em 0em 1.3em 0em; 
-        --pop-margin-3: 1em 0em 1.5em 0em; 
+        --pop-margin-3: 3em 0em 4.25em 0em; 
         --pop-margin-3a: -1em 0em 1.9em 0em; 
     
         /* Variables for Margins Bottom */
@@ -211,6 +212,10 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-padding-lg: 1.5rem;
         --pop-padding-xl: 2rem;
         --pop-padding-xxl: 3rem;
+
+        /* Variables for Padding Bottom */
+        --pop-padding-bottom-0: 0;
+        --pop-padding-bottom-1: 1rem;
        
         /* Width Variables */
         --pop-width-100a: 100%;
@@ -822,6 +827,40 @@ popGame_sharedStyle.shell = /*css*/ `
 `;
 
 popGame_sharedStyle.container = /*css*/ `   
+
+    .main-container .scrape_container {
+        margin: var(--pop-margin-0);
+        padding: var(--pop-padding-0);
+        position: var(--pop-position-absolute);
+        top: var(--pop-top-4);
+        left: var(--pop-left-50);
+        width: var(--pop-width-35);
+        min-height: var(--pop-height-42);
+        display: var(--pop-display-flex);
+        flex-direction: var(--pop-flex-direction-column);
+        justify-content: var(--pop-justify-content-center);
+        align-items: var(--pop-align-items-center);
+    }
+
+    .scrapeContainer .scrape_h1 {
+        margin: var(--pop-margin-2bzz);
+        padding-bottom: var(--pop-padding-bottom-1);
+        font-family: var(--pop-ff-src-code-pro);
+        font-size: var(--pop-fs-lg);
+        font-weight: var(--pop-fw-bold);
+        color: var(--pop-button-fc-1);
+        text-shadow: var(--pop-text-shadow-xmd);
+    }
+
+    .scrapeContainer .scrape_numbers {
+        margin: var(--pop-margin-3);
+        padding: var(--pop-padding-0);
+        font-family: var(--pop-ff-src-code-pro);
+        font-size: var(--pop-fs-md);
+        font-weight: var(--pop-fw-bold);
+        color: var(--pop-button-fc-1);
+        text-shadow: var(--pop-text-shadow-xmd);
+    }
 
     .pop-predict_btn {
         position: var(--pop-position-absolute);

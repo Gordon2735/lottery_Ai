@@ -46,6 +46,7 @@ popHeader_sharedStyles.root = /*css*/ `
         /* Margin Variable */
         --pop-header-margin_0: 0;
         --pop-header-margin_1: 2em auto 2em auto;
+        --pop-header-margin_2: 2em 0em 2em 7em;
   
         /* Padding Variable */
         --pop-header-padding_0: 0;
@@ -117,6 +118,7 @@ popHeader_sharedStyles.root = /*css*/ `
         --pop-header-rotate-355: 355deg;
         --pop-header-rotate-350: 350deg;
         --pop-header-rotate-345: 345deg;
+        --pop-header-rotate-340: 340deg;
         --pop-header-rotate-335: 335deg;
         --pop-header-rotate-330: 330deg;
         --pop-header-rotate-325: 325deg;
@@ -160,12 +162,12 @@ popHeader_sharedStyles.shell = /*css*/ `
 popHeader_sharedStyles.container = /*css*/ `
 
     .fig-lot {
-        margin: 5em 2em 0em auto;
+        margin: 1.5em 7em 0em 1em;
         padding: 2.5px;
         display: flex;
         flex-flow: column;
-        max-width: 320px;
-        rotate: var(--pop-header-rotate-345);
+        max-width: 380px;
+        rotate: var(--pop-header-rotate-340);
         z-index: var(--pop-header-z-index-6);
     }
 
@@ -218,15 +220,17 @@ popHeader_sharedStyles.container = /*css*/ `
         padding: var(--pop-header-padding_1);
         position: var(--pop-header-position-2:);
         display: var(--pop-display-inline-block);
-        background-image: var(--pop-header-gradient-dark-0a),
+        /*background-image: var(--pop-header-gradient-dark-0a),
                           var(--pop-header-gradient-dark-1a);
+        */
+        background: transparent;
         width: 40%;
         height: 35%;
         text-align: var(--pop-header-text-center);
     }
     
     .fig-header {
-        margin: auto;
+        margin: auto 4em auto 0em;
         padding: 5px;
         display: flex;
         flex-flow: column;

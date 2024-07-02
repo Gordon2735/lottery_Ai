@@ -25,7 +25,9 @@ popGame_sharedHTML.container = /*html*/ `
             Pop Predictions
         </button>
 
-    </main>
+        <pop-scrape id="popScrape" class="pop-scrape"></pop-scrape>
+
+</main>
 
 `;
 

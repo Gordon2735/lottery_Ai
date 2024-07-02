@@ -804,30 +804,33 @@ async function popHandler(
 async function popPostHandler(_req: Request, res: Response) {
     try {
         // Scraper Logic For the Cash Pop
+        console.log('popPostHandler ROUTER: starting scraperController');
         await startControllerScraper();
 
         const browser = (await startPopScrapeBrowser()) as puppeteer.Browser;
         const scrapePopCollection = [];
-        const scrapePopText: Promise<{
-            scrapeData: Promise<
-                | {
-                      dataDate: string | null | undefined;
-                      drawEvent: string | null | undefined;
-                      popNumber: string | null | undefined;
-                  }[]
-                | null
-                | undefined
-            >;
-        }> = popScraper.scrapers(browser);
-        const scrapered: Promise<
-            | {
-                  dataDate: string | null | undefined;
-                  drawEvent: string | null | undefined;
-                  popNumber: string | null | undefined;
-              }[]
-            | null
-            | undefined
-        > = (await scrapePopText).scrapeData;
+        const scrapePopText = popScraper.scrapers(browser);
+        // const scrapePopText: Promise<{
+        //     scrapeData: Promise<
+        //         | {
+        //               dataDate: string | null | undefined;
+        //               drawEvent: string | null | undefined;
+        //               popNumber: string | null | undefined;
+        //           }[]
+        //         | null
+        //         | undefined
+        //     >;
+        // }> = popScraper.scrapers(browser);
+        const scrapered = (await scrapePopText).scrapeData;
+        // const scrapered: Promise<
+        //     | {
+        //           dataDate: string | null | undefined;
+        //           drawEvent: string | null | undefined;
+        //           popNumber: string | null | undefined;
+        //       }[]
+        //     | null
+        //     | undefined
+        // > = (await scrapePopText).scrapeData;
 
         scrapePopCollection.push({ scrapeData: scrapered });
 
@@ -847,14 +850,15 @@ async function popPostHandler(_req: Request, res: Response) {
         res.status(500).send('Server Error');
 
         return Promise.reject() as Promise<void>;
-    } finally {
-        console.info(
-            `
-            popPostHandler has been invoked and has been finalized in the 
-                try/catch/finally block...
-        `
-        );
     }
+    // finally {
+    //     console.info(
+    //         `
+    //         popPostHandler has been invoked and has been finalized in the
+    //             try/catch/finally block...
+    //     `
+    //     );
+    // }
 }
 
 export {

@@ -14,6 +14,7 @@ class PopGameShell extends PopGameTemplate {
     head: HTMLHeadElement;
     popHeaderShellScript: HTMLScriptElement;
     scriptPopGame: HTMLScriptElement;
+    scrapePopScript: HTMLScriptElement;
 
     public get template(): string {
         return /*html*/ `        
@@ -38,20 +39,29 @@ class PopGameShell extends PopGameTemplate {
             document.createElement('script');
         const popHeaderShellScript: HTMLScriptElement =
             document.createElement('script');
+        const scrapePopScript: HTMLScriptElement =
+            document.createElement('script');
 
         this.head = head;
         this.scriptPopGame = scriptPopGame;
         this.popHeaderShellScript = popHeaderShellScript;
+        this.scrapePopScript = scrapePopScript;
 
-        setAttributes(scriptPopGame, {
+        setAttributes(this.scriptPopGame, {
             type: 'module',
             src: '/src/components/game_components/pop_components/pop_game/pop-game.js',
             content: 'text/javascript',
             crossOrigin: 'anonymous'
         });
-        setAttributes(popHeaderShellScript, {
+        setAttributes(this.popHeaderShellScript, {
             type: 'module',
             src: '/src/components/game_components/pop_components/pop_header/pop-header_shell.js',
+            content: 'text/javascript',
+            crossOrigin: 'anonymous'
+        });
+        setAttributes(this.scrapePopScript, {
+            type: 'module',
+            src: '/src/components/game_components/pop_components/pop_SC_scrape/pop-scrape.js',
             content: 'text/javascript',
             crossOrigin: 'anonymous'
         });
@@ -61,7 +71,8 @@ class PopGameShell extends PopGameTemplate {
 
         appendChildren(this.head, [
             this.scriptPopGame,
-            this.popHeaderShellScript
+            this.popHeaderShellScript,
+            this.scrapePopScript
         ]);
     }
 }
