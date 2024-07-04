@@ -28,6 +28,29 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-gradient-dark-B: linear-gradient(178.35deg, hsla(41, 92%, 53%, 0.993), 94.5%, hsla(187, 52%, 80%, 0.593));
         --pop-gradient-dark-1a: linear-gradient(178.35deg, hsla(188, 98%, 34%, 0.993), 64.5%, hsla(187, 52%, 80%, 0.593));
         --pop-gradient-dark-2: linear-gradient(178.25deg, hsla(0, 0%, 20%, 0.993), 87%, hsla(188, 35%, 58%, 0.993));
+
+        /* Font Color Variables */
+        /* Text Color Variables */
+        --pop-fc-pop: hsla(313, 100%, 29%, 0.993);
+        --pop-clr-fc-0: hsla(80, 61%, 50%, 0.993);
+        --pop-clr-fc-0f: hsla(0, 79%, 72%, 0.993);
+        --pop-clr-fc-1: hsla(240, 64%, 27%, 0.993);
+        --pop-clr-fc-2: hsla(198, 53%, 87%, 0.99);
+        --pop-clr-fc-4: hsl(0, 0%, 70%);
+        --pop-clr-fc-5: hsl(0, 38%, 38%);
+        --pop-clr-fc-6: hsl(32, 83%, 54%);
+        --pop-clr-fc-6a: hsla(32, 100%, 68%, 0.993);
+        --pop-clr-fc-7: hsla(0, 0%, 0%, 0.9963);
+        --pop-clr-fc-8: hsla(240, 64%, 27%, 0.993);
+        --pop-clr-fc-9: hsla(80, 61%, 50%, 0.993);
+        --pop-clr-fc-10: hsla(0, 79%, 72%, 0.593); 
+        --pop-clr-fc-pick3-11: hsla(108, 60%, 53%, 0.993);
+        --pop-clr-fc-pick3-12: hsla(187, 52%, 80%, 0.993);
+        --pop-clr-fc-pick3-13: hsla(108, 88%, 84%, 0.993);
+        --pop-clr-fc-pick3-14: hsla(234, 68%, 37%, 0.993);
+        --pop-clr-fc-pick3-15: hsla(34, 78%, 91%, 0.993);
+        --pop-clr-fc-pick3-16: hsla(41, 92%, 53%, 0.993);
+        --pop-clr-fc-pick3-17: hsla(108, 72%, 82%, 0.993);
        
         /* Font Size Variables */
         --pop-fs-xxs: 0.5rem;
@@ -145,29 +168,8 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-spacing-md: 1rem;
         --pop-spacing-lg: 1.5rem;
         --pop-spacing-xl: 2rem;
-        --pop-spacing-xxl: 3rem;
-    
-        /* Font Color Variables */
-        /* Text Color Variables */
-        --pop-clr-fc-0: hsla(80, 61%, 50%, 0.993);
-        --pop-clr-fc-0f: hsla(0, 79%, 72%, 0.993);
-        --pop-clr-fc-1: hsla(240, 64%, 27%, 0.993);
-        --pop-clr-fc-2: hsla(198, 53%, 87%, 0.99);
-        --pop-clr-fc-4: hsl(0, 0%, 70%);
-        --pop-clr-fc-5: hsl(0, 38%, 38%);
-        --pop-clr-fc-6: hsl(32, 83%, 54%);
-        --pop-clr-fc-6a: hsla(32, 100%, 68%, 0.993);
-        --pop-clr-fc-7: hsla(0, 0%, 0%, 0.9963);
-        --pop-clr-fc-8: hsla(240, 64%, 27%, 0.993);
-        --pop-clr-fc-9: hsla(80, 61%, 50%, 0.993);
-        --pop-clr-fc-10: hsla(0, 79%, 72%, 0.593); 
-        --pop-clr-fc-pick3-11: hsla(108, 60%, 53%, 0.993);
-        --pop-clr-fc-pick3-12: hsla(187, 52%, 80%, 0.993);
-        --pop-clr-fc-pick3-13: hsla(108, 88%, 84%, 0.993);
-        --pop-clr-fc-pick3-14: hsla(234, 68%, 37%, 0.993);
-        --pop-clr-fc-pick3-15: hsla(34, 78%, 91%, 0.993);
-        --pop-clr-fc-pick3-16: hsla(41, 92%, 53%, 0.993);
-        --pop-clr-fc-pick3-17: hsla(108, 72%, 82%, 0.993);
+        --pop-spacing-xxl: 3rem;   
+  
        
         /* Text Shadow Variables */
         --pop-text-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -181,6 +183,7 @@ popGame_sharedStyle.root = /*css*/ `
        
         /* Variables for Margins */
         --pop-margin-0: 0; 
+        --pop-margin-0a: 0em auto 0em auto; 
         --pop-margin-1: 3em 0em 1em 0em; 
         --pop-margin-0a: 2em 0em 1em 0em; 
         --pop-margin-0b: 1.1em 0em 0em 1.1em; 
@@ -191,7 +194,7 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-margin-2b: 3.2em 0em 1.3em 0em; 
         --pop-margin-2bz: 2.2em 0em 1.3em 0em; 
         --pop-margin-2bza: 1.2em 0em 1.3em 3em; 
-        --pop-margin-2bzb: 3.2em 0em 1.3em 3em; 
+        --pop-margin-2bzb: 2.9em 0em 1.3em 3em; 
         --pop-margin-2bzz: 3.2em 0em 5.3em 3em; 
         --pop-margin-2c: 4.2em 0em 1.3em 0em; 
         --pop-margin-2d: 5.2em 0em 1.3em 0em; 
@@ -211,11 +214,7 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-padding-md: 1rem;
         --pop-padding-lg: 1.5rem;
         --pop-padding-xl: 2rem;
-        --pop-padding-xxl: 3rem;
-
-        /* Variables for Padding Bottom */
-        --pop-padding-bottom-0: 0;
-        --pop-padding-bottom-1: 1rem;
+        --pop-padding-xxl: 3rem;      
        
         /* Width Variables */
         --pop-width-100a: 100%;
@@ -224,7 +223,7 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-width-60: 60%;
         --pop-width-55: 55%;
         --pop-width-50: 50%;
-        --pop-width-35: 35%;
+        --pop-width-40: 40%;
         --pop-width-35: 35%;
         --pop-width-25: 25%;
         --pop-width-20: 20%;
@@ -491,6 +490,8 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-opacity-100: 1;
        
         /* Top Variables */
+        --pop-top-0: 0.5%;
+        --pop-top-1: 1%;
         --pop-top-4: 4%;
         --pop-top-5: 5%;
         --pop-top-10: 10%;
@@ -525,6 +526,7 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-left-35: 35%;
         --pop-left-40: 40%;
         --pop-left-50: 50%;
+        --pop-left-65: 65%;
         --pop-left-75: 75%;
         --pop-left-80: 80%;
         --pop-left-85: 85%;
@@ -562,6 +564,10 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-bottom-95pc: 95%;
         --pop-bottom-100pc: 100%;
         --pop-bottom-0: 0rem;
+
+        /* Variables for Padding Bottom */
+        --pop-padding-bottom-0: 0;
+        --pop-padding-bottom-1: 2rem;
        
         /* Border Variables */
         --pop-border-thin: 1px solid hsla(0, 0%, 0%, 0.993);
@@ -805,7 +811,8 @@ popGame_sharedStyle.shell = /*css*/ `
         repeat: var(--pop-repeat-2);
         overflow: var(--pop-overflow-hidden);
         width: var(--pop-width-100a);
-        min-height: 100%; 
+        height: 100%; 
+        /* min-height: 100%; */
         z-index: var(--pop-z-index-5);
     }
 
@@ -814,27 +821,29 @@ popGame_sharedStyle.shell = /*css*/ `
         padding: 0;
        /* background-image: var(--pop-bckgrd-image-0);*/
         width: 100%;
-        min-height: 100%;
+        height: 100%; 
+        /* min-height: 100%;  */
+        font-family: var(--pop-ff-src-code-pro);
     }
 
     .pop-shell {
         margin: 0;
         padding: 0;
-        width: 100%;
-        min-height: 100%; 
+        /* width: 100%;
+        min-height: 100%; */
     }
 
 `;
 
-popGame_sharedStyle.container = /*css*/ `   
+popGame_sharedStyle.container = /*css*/ `    
 
-    .main-container .scrape_container {
+    .main-container > .random-pop-container {      
         margin: var(--pop-margin-0);
         padding: var(--pop-padding-0);
         position: var(--pop-position-absolute);
         top: var(--pop-top-4);
-        left: var(--pop-left-50);
-        width: var(--pop-width-35);
+        left: var(--pop-left-30);
+        width: var(--pop-width-40);
         min-height: var(--pop-height-42);
         display: var(--pop-display-flex);
         flex-direction: var(--pop-flex-direction-column);
@@ -842,23 +851,23 @@ popGame_sharedStyle.container = /*css*/ `
         align-items: var(--pop-align-items-center);
     }
 
-    .scrapeContainer .scrape_h1 {
-        margin: var(--pop-margin-2bzz);
-        padding-bottom: var(--pop-padding-bottom-1);
-        font-family: var(--pop-ff-src-code-pro);
+    .random-pop-container > .random-pop-h1 {
+        margin: var(--pop-margin-0a);
+        padding: var(--pop-padding-0);
+        text-align: var(--pop-text-align-center);
         font-size: var(--pop-fs-lg);
         font-weight: var(--pop-fw-bold);
-        color: var(--pop-button-fc-1);
+        color: var(--pop-fc-pop);
         text-shadow: var(--pop-text-shadow-xmd);
     }
 
-    .scrapeContainer .scrape_numbers {
-        margin: var(--pop-margin-3);
-        padding: var(--pop-padding-0);
-        font-family: var(--pop-ff-src-code-pro);
-        font-size: var(--pop-fs-md);
+    .random-pop-container > .random-pop-numbers {
+        margin: var(--pop-margin-00z);
+        padding-bottom: var(--pop-padding-bottom-1);
+        text-align: var(--pop-text-align-center);
+        font-size: var(--pop-fs-xxl);
         font-weight: var(--pop-fw-bold);
-        color: var(--pop-button-fc-1);
+        color: var(--pop-clr-fc-pick3-13);
         text-shadow: var(--pop-text-shadow-xmd);
     }
 

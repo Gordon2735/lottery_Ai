@@ -26,6 +26,44 @@ class PopScrape extends PopScrapeTemplate {
     public get template(): string {
         return /*html*/ `
         
+            <style>
+
+                .main-container > .scrape-container {
+                    margin: var(--pop-margin-0);
+                    padding: var(--pop-padding-0);
+                    position: var(--pop-position-absolute);
+                    top: var(--pop-top-4);
+                    left: var(--pop-left-65);
+                    width: var(--pop-width-35);
+                    min-height: var(--pop-height-42);
+                    display: var(--pop-display-flex);
+                    flex-direction: var(--pop-flex-direction-column);
+                    justify-content: var(--pop-justify-content-center);
+                    align-items: var(--pop-align-items-center);
+                }
+
+                .scrape-container > .scrape-h1 {
+                    margin: var(--pop-margin-00z);
+                    padding-bottom: var(--pop-padding-bottom-1);
+                    text-align: var(--pop-text-align-center);
+                    font-family: var(--pop-ff-src-code-pro);
+                    font-size: var(--pop-fs-xxl);
+                    font-weight: var(--pop-fw-bold);
+                    color: var(--pop-fc-pop);
+                    text-shadow: var(--pop-text-shadow-xmd);
+                }
+
+                .scrape-container > .scrape-numbers {
+                    margin: var(--pop-margin-00z);
+                    padding: var(--pop-padding-0);
+                    text-align: var(--pop-text-align-center);
+                    font-size: var(--pop-fs-lg);
+                    font-weight: var(--pop-fw-bold);
+                    color: var(--pop-clr-fc-pick3-13);
+                    text-shadow: var(--pop-text-shadow-xmd);
+                }
+
+            </style>
         
         `;
     }
@@ -156,6 +194,8 @@ class PopScrape extends PopScrapeTemplate {
                             appendChildren(this.getScrapeNumbers, [
                                 breakElement,
                                 popSpan,
+                                breakElement,
+                                breakElement,
                                 breakElement,
                                 breakElement,
                                 line,

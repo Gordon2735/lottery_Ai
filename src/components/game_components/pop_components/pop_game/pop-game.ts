@@ -10,6 +10,7 @@ import {
     setAttributes,
     appendChildren
 } from '../../../componentTools/general_helpers.js';
+import getRandomPopNumber from '../pop_logic/popLogic.js';
 
 class PopGame extends PopGameTemplate {
     activateShadowDOM: boolean = false;
@@ -18,6 +19,9 @@ class PopGame extends PopGameTemplate {
     scrapeContainer: HTMLElement;
     scrapeH1: HTMLHeadingElement;
     scrapeNumbers: HTMLParagraphElement;
+    randomPopContainer: HTMLElement;
+    randomPopH1: HTMLHeadingElement;
+    randomPopNumbers: HTMLParagraphElement;
 
     public get template(): string {
         return /*html*/ `        
@@ -42,23 +46,43 @@ class PopGame extends PopGameTemplate {
         const scrapeContainer: HTMLElement = document.createElement('section');
         const scrapeH1: HTMLHeadingElement = document.createElement('h1');
         const scrapeNumbers: HTMLParagraphElement = document.createElement('p');
+        const randomPopContainer: HTMLElement =
+            document.createElement('section');
+        const randomPopH1: HTMLHeadingElement = document.createElement('h1');
+        const randomPopNumbers: HTMLParagraphElement =
+            document.createElement('p');
 
         this.body = body;
         this.scrapeContainer = scrapeContainer;
         this.scrapeH1 = scrapeH1;
         this.scrapeNumbers = scrapeNumbers;
+        this.randomPopContainer = randomPopContainer;
+        this.randomPopH1 = randomPopH1;
+        this.randomPopNumbers = randomPopNumbers;
 
         setAttributes(this.scrapeContainer, {
             id: 'scrapeContainer',
-            class: 'scrape_container'
+            class: 'scrape-container'
         });
         setAttributes(this.scrapeH1, {
             id: 'scrapeH1',
-            class: 'scrape_h1'
+            class: 'scrape-h1'
         });
         setAttributes(this.scrapeNumbers, {
             id: 'scrapeNumbers',
-            class: 'scrape_numbers'
+            class: 'scrape-numbers'
+        });
+        setAttributes(this.randomPopContainer, {
+            id: 'randomPopContainer',
+            class: 'random-pop-container'
+        });
+        setAttributes(this.randomPopH1, {
+            id: 'randomPopH1',
+            class: 'random-pop-h1'
+        });
+        setAttributes(this.randomPopNumbers, {
+            id: 'randomPopNumbers',
+            class: 'random-pop-numbers'
         });
     }
     connectedCallback(): void {
@@ -68,24 +92,31 @@ class PopGame extends PopGameTemplate {
             document.getElementById('mainContainer')!;
         this.mainContainer = mainContainer;
 
+        appendChildren(this.mainContainer, [
+            this.randomPopContainer,
+            this.scrapeContainer
+        ]);
         appendChildren(this.scrapeContainer, [
             this.scrapeH1,
             this.scrapeNumbers
         ]);
 
-        // const scrapePopComponent: HTMLElement =
-        //     document.createElement('pop-scrape');
+        this.randomPopH1.textContent = 'Random Pop Number';
 
-        // setAttributes(scrapePopComponent, {
-        //     type: 'module',
-        //     id: 'scrapePopComponent',
-        //     class: 'scrape_pop_component',
-        //     src: '/src/components/game_components/pop_components/pop_SC_components/pop-scrape.js',
-        //     content: 'text/javascript'
-        // });
-        appendChildren(this.mainContainer, [
-            this.scrapeContainer
-            // scrapePopComponent
+        const sanitizeRandomPopNumber = async () => {
+            await getRandomPopNumber().then((num: number) => {
+                this.randomPopNumbers.innerHTML = /*html*/ `                
+        
+                    <span>${num}</span>
+                
+                `;
+            });
+        };
+        sanitizeRandomPopNumber();
+
+        appendChildren(this.randomPopContainer, [
+            this.randomPopH1,
+            this.randomPopNumbers
         ]);
     }
     disConnectedCallback(): void {}
