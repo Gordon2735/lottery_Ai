@@ -34,7 +34,7 @@ class PopScrape extends PopScrapeTemplate {
                     position: var(--pop-position-absolute);
                     top: var(--pop-top-4);
                     left: var(--pop-left-65);
-                    width: var(--pop-width-35);
+                    width: var(--pop-width-25);
                     min-height: var(--pop-height-42);
                     display: var(--pop-display-flex);
                     flex-direction: var(--pop-flex-direction-column);
@@ -46,7 +46,7 @@ class PopScrape extends PopScrapeTemplate {
                     margin: var(--pop-margin-00z);
                     padding-bottom: var(--pop-padding-bottom-1);
                     text-align: var(--pop-text-align-center);
-                    font-family: var(--pop-ff-src-code-pro);
+                    /* font-family: var(--pop-ff-src-code-pro); */
                     font-size: var(--pop-fs-xxl);
                     font-weight: var(--pop-fw-bold);
                     color: var(--pop-fc-pop);
@@ -277,8 +277,10 @@ class PopScrape extends PopScrapeTemplate {
                         `getScrapePopButton.addEventListener('click')`
                     );
                     const url: string = '/pop';
-                    const popFetch: Response =
+                    const popFetch = setTimeout(async () => {
                         await scrapePopFetchResponse(url);
+                    }, 2000) as unknown as Response;
+
                     console.info(
                         `
                         pop-scrape components

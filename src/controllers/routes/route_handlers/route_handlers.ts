@@ -808,7 +808,7 @@ async function popPostHandler(_req: Request, res: Response) {
         await startControllerScraper();
 
         const browser = (await startPopScrapeBrowser()) as puppeteer.Browser;
-        const scrapePopCollection = [];
+        const scrapePopCollection: unknown[] = [];
         const scrapePopText = popScraper.scrapers(browser);
         // const scrapePopText: Promise<{
         //     scrapeData: Promise<

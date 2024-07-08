@@ -31,7 +31,6 @@ popGame_sharedStyle.root = /*css*/ `
 
         /* Font Color Variables */
         /* Text Color Variables */
-        --pop-fc-pop: hsla(313, 100%, 29%, 0.993);
         --pop-clr-fc-0: hsla(80, 61%, 50%, 0.993);
         --pop-clr-fc-0f: hsla(0, 79%, 72%, 0.993);
         --pop-clr-fc-1: hsla(240, 64%, 27%, 0.993);
@@ -51,6 +50,9 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-clr-fc-pick3-15: hsla(34, 78%, 91%, 0.993);
         --pop-clr-fc-pick3-16: hsla(41, 92%, 53%, 0.993);
         --pop-clr-fc-pick3-17: hsla(108, 72%, 82%, 0.993);
+        --pop-fc-pop: hsla(313, 100%, 29%, 0.993);
+        --pop-clr-fc-pop-stroke-red: hsla(319, 92%, 48%, 0.993);
+        --pop-clr-fc-pop-stroke-white: hsla(0, 0%, 100%, 0.993);
        
         /* Font Size Variables */
         --pop-fs-xxs: 0.5rem;
@@ -152,6 +154,10 @@ popGame_sharedStyle.root = /*css*/ `
         /* -ms Text Justify Variables // -ms-text-justify */
         /* Works with text-align is set to justify */
         --pop-ms-text-justify-all: distribute;
+
+        /*  Text Stroke Variables // -webkit-text-stroke: 5px black;  */ 
+        --pop-text-stroke-1: 1px black;
+        --pop-text-stroke-2: 2px black;
     
         /* Line Height Variables */
         --pop-lh-1: 1;
@@ -188,6 +194,7 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-margin-0a: 2em 0em 1em 0em; 
         --pop-margin-0b: 1.1em 0em 0em 1.1em; 
         --pop-margin-00z: 0.4em auto 0em auto;
+        --pop-margin-00za: 0em auto 0em auto;
         --pop-margin-1a: 1em 0em 1em 0em; 
         --pop-margin-2: 0.2em 0em 0.3em 1em; 
         --pop-margin-2a: 2.2em 0em 1.3em 0em; 
@@ -385,9 +392,7 @@ popGame_sharedStyle.root = /*css*/ `
         --pop-position-static: static;
         --pop-position-fixed: fixed;
         --pop-position-sticky: sticky;
-       
-        --pop-width-180
-    
+     
         /* Display Variables */
         --pop-display-none: none;
         --pop-display-inline: inline;
@@ -596,6 +601,7 @@ popGame_sharedStyle.root = /*css*/ `
         /* Filter Variables */
         --pop-filter-0: drop-shadow(0 0 3rem hsla(0, 0%, 0%, 0.211));
         --pop-filter-1: drop-shadow(0 0 1.7rem hsla(188, 98%, 34%, 0.997));
+        --pop-filter-pop-stroke: drop-shadow(0 0 0.65rem hsla(319, 92%, 48%, 0.993));
         --pop-filter-shadow-inset: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5)) inset;
         --pop-filter-shadow-inset-md: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.5)) inset;
         --pop-filter-shadow-inset-lg: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.5)) inset;
@@ -841,9 +847,9 @@ popGame_sharedStyle.container = /*css*/ `
         margin: var(--pop-margin-0);
         padding: var(--pop-padding-0);
         position: var(--pop-position-absolute);
-        top: var(--pop-top-4);
+        top: var(--pop-top-0);
         left: var(--pop-left-30);
-        width: var(--pop-width-40);
+        width: var(--pop-width-25);
         min-height: var(--pop-height-42);
         display: var(--pop-display-flex);
         flex-direction: var(--pop-flex-direction-column);
@@ -852,23 +858,25 @@ popGame_sharedStyle.container = /*css*/ `
     }
 
     .random-pop-container > .random-pop-h1 {
-        margin: var(--pop-margin-0a);
-        padding: var(--pop-padding-0);
-        text-align: var(--pop-text-align-center);
-        font-size: var(--pop-fs-lg);
-        font-weight: var(--pop-fw-bold);
-        color: var(--pop-fc-pop);
-        text-shadow: var(--pop-text-shadow-xmd);
-    }
-
-    .random-pop-container > .random-pop-numbers {
         margin: var(--pop-margin-00z);
         padding-bottom: var(--pop-padding-bottom-1);
         text-align: var(--pop-text-align-center);
         font-size: var(--pop-fs-xxl);
         font-weight: var(--pop-fw-bold);
-        color: var(--pop-clr-fc-pick3-13);
+        color: var(--pop-fc-pop);
         text-shadow: var(--pop-text-shadow-xmd);
+        /*-webkit-text-stroke: 5px black; */
+    }
+    
+    .random-pop-container > .random-pop-numbers {
+        margin: var(--pop-margin-00za);
+        padding: var(--pop-padding-0);
+        text-align: var(--pop-text-align-center);
+        font-size: var(--pop-fs-xxxl-3);
+        font-weight: var(--pop-fw-bold);
+        color: var(--pop-clr-fc-pop-stroke-white);
+        -webkit-text-stroke: 2.75px var(--pop-clr-fc-pop-stroke-red);
+        filter: var(--pop-filter-pop-stroke);
     }
 
     .pop-predict_btn {

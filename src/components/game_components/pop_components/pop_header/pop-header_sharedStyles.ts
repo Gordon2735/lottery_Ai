@@ -162,7 +162,7 @@ popHeader_sharedStyles.shell = /*css*/ `
 popHeader_sharedStyles.container = /*css*/ `
 
     .fig-lot {
-        margin: 1.5em 7em 0em 1em;
+        margin: 1.5em 8em 0em 0em;
         padding: 2.5px;
         display: flex;
         flex-flow: column;
@@ -180,15 +180,15 @@ popHeader_sharedStyles.container = /*css*/ `
         padding: 3px;
         background-color: #222;
         display: hidden;
+        cursor: pointer;
         color: #fff;
         font: italic smaller sans-serif;
         text-align: center;
     }
     
-    .blink:hover,
+    /* .blink:hover, */
     .fig-cap-lot:hover {
         display: visible;
-        cursor: pointer;
     }
 
     .blink {
@@ -219,7 +219,8 @@ popHeader_sharedStyles.container = /*css*/ `
         margin: var(--pop-header-margin_1);
         padding: var(--pop-header-padding_1);
         position: var(--pop-header-position-2:);
-        display: var(--pop-display-inline-block);
+        display: hidden;
+        /*display: var(--pop-display-inline-block);*/
         /*background-image: var(--pop-header-gradient-dark-0a),
                           var(--pop-header-gradient-dark-1a);
         */
@@ -228,19 +229,22 @@ popHeader_sharedStyles.container = /*css*/ `
         height: 35%;
         text-align: var(--pop-header-text-center);
     }
+    +
     
     .fig-header {
         margin: auto 4em auto 0em;
         padding: 5px;
         display: flex;
         flex-flow: column;
-        max-width: 220px;
+        max-width: 520px;
         text-align: var(--pop-header-text-center);
     }
 
     .pop-header-logo {
         max-width: 540px;
-        max-height: 480px;
+        min-width: 320px;
+        max-height: 680px;
+        min-height: 380px;
     }
 
     .fig-cap-header-pop {
@@ -251,15 +255,29 @@ popHeader_sharedStyles.container = /*css*/ `
         color: #fff;
         font: italic smaller sans-serif;
         text-align: center;
+        display: hidden;
+        cursor: pointer;
     }
 
+    
     .header-h1 {
         padding: 3px;
         background-color: #222;
+        display: hidden;
         color: #fff;
         font: sans-serif;
         font-size: 24px;
         text-align: center;
+    }
+
+    .pop-header:hover {
+        display: var(--pop-display-inline-block);
+    }
+
+
+    .header-h1:hover,
+    .fig-cap-header-pop:hover {
+        display: visible;
     }
 
 `;

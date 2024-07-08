@@ -25,7 +25,7 @@ popHeader_sharedHTML.container = /*html*/ `
     <figure id="figHeader" class="fig-header">
         <img src="./components/game_components/pop_components/pop_resources/images/00_pop_logo.png" id="popHeaderLogo" class="pop-header-logo"
             alt="SC Education Lottery Cash Pop" />
-        <figcaption id="figCapHeaderPop" class="fig-cap-header-pop blink">Cash Pop</figcaption>
+        <figcaption id="figCapHeaderPop" class="fig-cap-header-pop">Cash Pop</figcaption>
     </figure>
 
     <style>
