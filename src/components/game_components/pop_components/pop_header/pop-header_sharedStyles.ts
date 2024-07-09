@@ -45,6 +45,7 @@ popHeader_sharedStyles.root = /*css*/ `
 
         /* Margin Variable */
         --pop-header-margin_0: 0;
+        --pop-header-margin_0a: 0em auto 0em auto;
         --pop-header-margin_1: 2em auto 2em auto;
         --pop-header-margin_2: 2em 0em 2em 7em;
   
@@ -52,6 +53,71 @@ popHeader_sharedStyles.root = /*css*/ `
         --pop-header-padding_0: 0;
         --pop-header-padding_1: 1em;
         --pop-header-padding_2: 2em;
+
+        /* Top Variable */
+        --pop-header-top-0: 0;
+        --pop-header-top-1: 3%;
+        --pop-header-top-2: 5%;
+        --pop-header-top-3: 10%;
+        --pop-header-top-4: 15%;
+        --pop-header-top-5: 20%;
+        --pop-header-top-6: 25%;
+        --pop-header-top-7: 30%;
+        --pop-header-top-8: 35%;
+        --pop-header-top-9: 40%;
+        --pop-header-top-10: 45%;
+        --pop-header-top-11: 50%;
+        --pop-header-top-12: 55%;
+        --pop-header-top-13: 60%;
+        --pop-header-top-14: 65%;
+        --pop-header-top-15: 70%;
+        --pop-header-top-16: 75%;
+        --pop-header-top-17: 80%;
+        --pop-header-top-18: 85%;
+        --pop-header-top-19: 90%;
+        --pop-header-top-20: 95%;
+
+        /* Left Variable */
+        --pop-header-left-0: 0;
+        --pop-header-left-1: 3%;
+        --pop-header-left-2: 5%;
+        --pop-header-left-3: 10%;
+        --pop-header-left-4: 15%;
+        --pop-header-left-5: 20%;
+        --pop-header-left-6: 25%;
+        --pop-header-left-7: 30%;
+        --pop-header-left-8: 35%;
+        --pop-header-left-9: 40%;
+        --pop-header-left-10: 45%;
+        --pop-header-left-11: 50%;
+        --pop-header-left-12: 55%;
+        --pop-header-left-13: 60%;
+        --pop-header-left-14: 65%;
+        --pop-header-left-15: 70%;
+        --pop-header-left-16: 75%;
+        --pop-header-left-17: 80%;
+        --pop-header-left-18: 85%;
+        --pop-header-left-19: 90%;
+        --pop-header-left-20: 95%;
+
+        /* Right Variable */
+        --pop-header-right-0: 0;
+        --pop-header-right-1: 3%;
+        --pop-header-right-2: 5%;
+        --pop-header-right-3: 10%;
+        --pop-header-right-4: 15%;
+        --pop-header-right-5: 20%;
+        --pop-header-right-6: 25%;
+        --pop-header-right-7: 30%;
+        --pop-header-right-8: 35%;
+
+        /* Bottom Variable */
+        --pop-header-bottom-0: 0;
+        --pop-header-bottom-1: 3%;
+        --pop-header-bottom-2: 5%;
+        --pop-header-bottom-3: 10%;
+        --pop-header-bottom-4: 15%;
+        --pop-header-bottom-5: 20%;
 
         /* Position Variable */
         --pop-header-position-0: absolute;
@@ -218,7 +284,9 @@ popHeader_sharedStyles.container = /*css*/ `
     .pop-header {
         margin: var(--pop-header-margin_1);
         padding: var(--pop-header-padding_1);
-        position: var(--pop-header-position-2:);
+        position: var(--pop-header-position-0);
+        top: var(--pop-header-top-1);
+        left: var(--pop-header-left-9);
         display: hidden;
         /*display: var(--pop-display-inline-block);*/
         /*background-image: var(--pop-header-gradient-dark-0a),
@@ -241,26 +309,27 @@ popHeader_sharedStyles.container = /*css*/ `
     }
 
     .pop-header-logo {
+        display: var(--pop-display-inline-block);
         max-width: 540px;
         min-width: 320px;
         max-height: 680px;
         min-height: 380px;
+        z-index: var(--pop-header-z-index-6);
     }
 
     .fig-cap-header-pop {
         padding: 3px;
         background-image: var(--pop-header-gradient-dark-1),
                           var(--pop-header-gradient-dark-1a);
-        /*background-color: #222;*/
         color: #fff;
         font: italic smaller sans-serif;
         text-align: center;
         display: hidden;
         cursor: pointer;
     }
-
-    
+        
     .header-h1 {
+        margin: var(--pop-header-margin_0a);
         padding: 3px;
         background-color: #222;
         display: hidden;
@@ -270,6 +339,7 @@ popHeader_sharedStyles.container = /*css*/ `
         text-align: center;
     }
 
+    /*
     .pop-header:hover {
         display: var(--pop-display-inline-block);
     }
@@ -279,6 +349,7 @@ popHeader_sharedStyles.container = /*css*/ `
     .fig-cap-header-pop:hover {
         display: visible;
     }
+    */
 
 `;
 
