@@ -826,8 +826,8 @@ popGame_sharedStyle.shell = /*css*/ `
         margin: 0;
         padding: 0;
        /* background-image: var(--pop-bckgrd-image-0);*/
-        width: 100%;
-        height: 100%; 
+       width: var(--pop-width-100a);
+       min-height: 100%; 
         /* min-height: 100%;  */
         font-family: var(--pop-ff-src-code-pro);
     }

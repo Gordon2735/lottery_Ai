@@ -227,7 +227,7 @@ popHeader_sharedStyles.shell = /*css*/ `
 
 popHeader_sharedStyles.container = /*css*/ `
 
-    .fig-lot {
+    .main-container > .fig-lot {
         margin: 1.5em 8em 0em 0em;
         padding: 2.5px;
         display: flex;
@@ -253,6 +253,7 @@ popHeader_sharedStyles.container = /*css*/ `
     }
     
     /* .blink:hover, */
+    /*
     .fig-cap-lot:hover {
         display: visible;
     }
@@ -260,8 +261,9 @@ popHeader_sharedStyles.container = /*css*/ `
     .blink {
         animation: blinkIt 4s ease-in-out infinite;
     }
+    */
 
-    @keyframes blinkIt {
+    @keyframes blinkIt {21
         0% {
             color: var(--pk3-clr-fc-pick3-13); 
         }
@@ -281,7 +283,7 @@ popHeader_sharedStyles.container = /*css*/ `
         }
     }
 
-    .pop-header {
+    .main-container > .pop-header {
         margin: var(--pop-header-margin_1);
         padding: var(--pop-header-padding_1);
         position: var(--pop-header-position-0);
@@ -297,9 +299,9 @@ popHeader_sharedStyles.container = /*css*/ `
         height: 35%;
         text-align: var(--pop-header-text-center);
     }
-    +
     
-    .fig-header {
+    
+    .pop-header > .fig-header {
         margin: auto 4em auto 0em;
         padding: 5px;
         display: flex;
@@ -308,7 +310,7 @@ popHeader_sharedStyles.container = /*css*/ `
         text-align: var(--pop-header-text-center);
     }
 
-    .pop-header-logo {
+    .fig-header > .pop-header-logo {
         display: var(--pop-display-inline-block);
         max-width: 540px;
         min-width: 320px;
@@ -317,7 +319,7 @@ popHeader_sharedStyles.container = /*css*/ `
         z-index: var(--pop-header-z-index-6);
     }
 
-    .fig-cap-header-pop {
+    .fig-header > .fig-cap-header-pop {
         padding: 3px;
         background-image: var(--pop-header-gradient-dark-1),
                           var(--pop-header-gradient-dark-1a);
@@ -328,7 +330,7 @@ popHeader_sharedStyles.container = /*css*/ `
         cursor: pointer;
     }
         
-    .header-h1 {
+    .fig-header > .header-h1 {
         margin: var(--pop-header-margin_0a);
         padding: 3px;
         background-color: #222;
