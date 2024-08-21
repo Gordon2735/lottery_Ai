@@ -161,6 +161,10 @@ popHeader_sharedStyles.root = /*css*/ `
         --pop-header-text-center: center;
         --pop-header-text-end: end;
 
+        /*  Width Variables  */
+        
+        --pop-header-max-width: 380px;
+
 
         /* Rotate */
         --pop-header-rotate-0: 0;
@@ -217,42 +221,47 @@ popHeader_sharedStyles.shell = /*css*/ `
     .pop-header-shell {
         margin: 3em auto 2em auto;
         padding: 1.25em;
+        position: absolute;
         width: 45%;
-        min-width: 320px;
-        height: 25%;
-        min-height: 280px;
+        height: 35%;
+        /*
+        min-width: 420px;
+        min-height: 480px;
+        */
     }
 
 `;
 
 popHeader_sharedStyles.container = /*css*/ `
 
-    .main-container > .fig-lot {
+    .fig-lot {
         margin: 1.5em 8em 0em 0em;
         padding: 2.5px;
-        display: flex;
-        flex-flow: column;
-        max-width: 380px;
+        position: var(--pop-header-position-0);
+        /*display: flex;*/
+        /*flex-flow: column;*/
+        max-width: var(--pop-header-max-width);
         rotate: var(--pop-header-rotate-340);
         z-index: var(--pop-header-z-index-6);
     }
 
-    .sc-lottery-logo {
+    .fig-lot > .sc-lottery-logo {
         max-width: 280px;
         max-height: 135px;
     }
 
-    .fig-cap-lot {
+    .fig-lot > .fig-cap-lot {
         padding: 3px;
-        background-color: #222;
-        display: hidden;
+        background-color: #389;
+        /* display: hidden; */
+        max-width: var(--pop-header-max-width);
         cursor: pointer;
         color: #fff;
         font: italic smaller sans-serif;
         text-align: center;
     }
     
-    /* .blink:hover, */
+    /* .blink:hover */
     /*
     .fig-cap-lot:hover {
         display: visible;
@@ -261,10 +270,9 @@ popHeader_sharedStyles.container = /*css*/ `
     .blink {
         animation: blinkIt 4s ease-in-out infinite;
     }
-    */
-
+    
     @keyframes blinkIt {21
-        0% {
+    0% {
             color: var(--pk3-clr-fc-pick3-13); 
         }
         25% {
@@ -282,16 +290,17 @@ popHeader_sharedStyles.container = /*css*/ `
             opacity: 1;
         }
     }
+    */
 
-    .main-container > .pop-header {
+    .pop-header {
         margin: var(--pop-header-margin_1);
         padding: var(--pop-header-padding_1);
         position: var(--pop-header-position-0);
         top: var(--pop-header-top-1);
         left: var(--pop-header-left-9);
+        /*display: var(--pop-display-inline-block);
         display: hidden;
-        /*display: var(--pop-display-inline-block);*/
-        /*background-image: var(--pop-header-gradient-dark-0a),
+        background-image: var(--pop-header-gradient-dark-0a),
                           var(--pop-header-gradient-dark-1a);
         */
         background: transparent;
@@ -304,7 +313,7 @@ popHeader_sharedStyles.container = /*css*/ `
     .pop-header > .fig-header {
         margin: auto 4em auto 0em;
         padding: 5px;
-        display: flex;
+        display: inline block;
         flex-flow: column;
         max-width: 520px;
         text-align: var(--pop-header-text-center);
@@ -345,8 +354,7 @@ popHeader_sharedStyles.container = /*css*/ `
     .pop-header:hover {
         display: var(--pop-display-inline-block);
     }
-
-
+        
     .header-h1:hover,
     .fig-cap-header-pop:hover {
         display: visible;
