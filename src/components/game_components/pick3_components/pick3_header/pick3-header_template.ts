@@ -1,39 +1,39 @@
 'use strict';
 
 class Pick3HeaderTemplate extends HTMLElement {
-	activateShadowDOM: boolean = false;
-	root: ShadowRoot | undefined | null;
+    activateShadowDOM: boolean = false;
+    root: ShadowRoot | undefined | null;
 
-	public set template(value: string) {
-		this.template = value;
-	}
+    public set template(value: string) {
+        this.template = value;
+    }
 
-	public get template(): string {
-		return this.template;
-	}
+    public get template(): string {
+        return this.template;
+    }
 
-	connectedCallback(): void {
-		if (this.activateShadowDOM === true)
-			this.attachShadow({ mode: 'open' });
+    connectedCallback(): void {
+        if (this.activateShadowDOM === true)
+            this.attachShadow({ mode: 'open' });
 
-		this.render(this.template);
-	}
+        this.render(this.template);
+    }
 
-	render(template: string): void {
-		const root: ShadowRoot | null | undefined = this.shadowRoot;
-		this.root = root;
+    render(template: string): void {
+        const root: ShadowRoot | null | undefined = this.shadowRoot;
+        this.root = root;
 
-		if (this.activateShadowDOM === false) {
-			this.innerHTML = template || this.template;
-			return;
-		} else {
-			this.root!.innerHTML = template || this.template;
-			return;
-		}
-	}
+        if (this.activateShadowDOM === false) {
+            this.innerHTML = template || this.template;
+            return;
+        } else {
+            this.root!.innerHTML = template || this.template;
+            return;
+        }
+    }
 
-	disConnectedCallback(): void {}
+    disConnectedCallback(): void {}
 
-	// Create a possible method to access Official Pick3 Current Draw
+    // Create a possible method to access Official Pick3 Current Draw
 }
 export { Pick3HeaderTemplate };
